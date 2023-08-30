@@ -1,8 +1,8 @@
-const {Router} = require('express')
-const SuperUser = require('./SuperUser/SuperUser')
+const { Router } = require("express");
+const SuperUser = require("./SuperUser/SuperUserPost");
 
-const routes = Router()
+const routes = Router();
 
-routes.use('/',SuperUser)
+routes.use("/", SuperUser);
 
-module.exports = routes
+module.exports = routes;
