@@ -34,7 +34,7 @@ function App() {
 
         <Route
           path='/dashboard'
-          element= {<AuthenticationGuard component={Dashboard} />}
+          element= {<Dashboard />} //{<AuthenticationGuard component={Dashboard} />}
         />
       </Routes>
     </div>
