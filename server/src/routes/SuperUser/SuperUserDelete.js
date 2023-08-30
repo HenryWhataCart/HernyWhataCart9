@@ -3,6 +3,6 @@ const SuperUserDeleted = require('../../handler/SuperUser/deleteSuperUser')
 
 const deleteRouter = Router()
 
-deleteRouter.delete('/:id',SuperUserDeleted)
+deleteRouter.delete('/deleteSuperUser/:id',SuperUserDeleted)
 
 module.exports = deleteRouter
