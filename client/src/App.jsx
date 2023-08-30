@@ -7,7 +7,7 @@ import Dashboard from './views/Dashboard/Dashboard'
 // import { useAuth0 } from "@auth0/auth0-react"
 // import { PageLoader } from "./components/PageLoader";
 
-import { AuthenticationGuard } from "./components/Auth0RoutesGuard/AuthenticationGuard";
+import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
 import SignIn from './views/SignIn/SignIn'
 axios.defaults.baseURL = 'http://localhost:3001'
 

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import { LogoutButton } from "../../components/Auth0Button/LogoutButton"
+import { LogoutButton } from "../../components/Auth0/SignOut/LogoutButton"
 
 const Dashboard = () => {
 
