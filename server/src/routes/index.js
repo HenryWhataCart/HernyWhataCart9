@@ -3,6 +3,6 @@ const SuperUser = require('./SuperUser/SuperUser')
 
 const routes = Router()
 
-routes.use('/superUser',SuperUser)
+routes.use('/',SuperUser)
 
 module.exports = routes
