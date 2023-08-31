@@ -1,12 +1,12 @@
 import { Box } from "@mui/material"
-import { LogoutButton } from "../../components/Auth0/SignOut/LogoutButton"
+import NavBar from "../../components/NavBar/NavBar"
+import styles from './Dashboard.module.css'
 
 const Dashboard = () => {
 
     return (
-        <Box>
-            <h1>SOY EL DASHBOARD</h1>
-            <LogoutButton />
+        <Box className={styles.dashboardContainer}>
+            <NavBar />
         </Box>
     )
 }
