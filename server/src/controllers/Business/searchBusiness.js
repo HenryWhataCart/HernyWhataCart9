@@ -4,8 +4,8 @@ const {Business} = require('../../db')
 const BusinessSearched = async(name) =>{
     try {
         if(!name) return await Business.findAll()
-        const wantedBusiness = await Business.findOne({where:{name:{
-            [Op.iLike] : `%${name}`
+        const wantedBusiness = await Business.findAll({where:{name:{
+            [Op.iLike] : `%${name}%`,
         }}})
         return wantedBusiness
     } catch (error) {
