@@ -7,6 +7,7 @@ const businessPost = require('../routes/Business/BusinessPost');
 const businessUpdate = require('../routes/Business/BusinessUpdate')
 const businessSearch = require('../routes/Business/BusinessSearch')
 const userSearch = require('../routes/User/UserSearch')
+const userDelete = require('../routes/User/UserDelete')
 
 const routes = Router();
 routes.use("/", SuperUserPost);
@@ -17,5 +18,6 @@ routes.use("/",businessSearch)
 routes.use("/", SuperUser);
 routes.use("/", SuperUserPut);
 routes.use("/",userSearch)
+routes.use("/",userDelete)
 
 module.exports = routes;
