@@ -12,6 +12,7 @@ const userUpdated = require("../routes/User/UserUpdate");
 const userSearch = require('../routes/User/UserSearch');
 const userDelete = require('../routes/User/UserDelete');
 const userPost = require("../routes/User/UserPost")
+const rolDelete = require('../routes/Rol/RolDelete')
 
 const routes = Router();
 
@@ -28,5 +29,7 @@ routes.use("/", userUpdated);
 routes.use("/", userSearch);
 routes.use("/", userDelete);
 routes.use("/",userPost)
+routes.use('/', rolDelete)
+
 
 module.exports = routes;
