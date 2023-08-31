@@ -3,6 +3,6 @@ const handleDeleteUser = require('../../handler/User/UserDelete')
 
 const userDeleteRouter = Router()
 
-userDeleteRouter.delete('/deleteUser',handleDeleteUser)
+userDeleteRouter.delete('/deleteUser/:id',handleDeleteUser)
 
 module.exports = userDeleteRouter
