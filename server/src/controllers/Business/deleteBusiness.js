@@ -2,7 +2,7 @@ const { Business } = require("../../db");
 
 const deleteBusiness = async (id) => {
   try {
-    const findBusiness = await Business.findeOne({ where: { id } });
+    const findBusiness = await Business.findOne({ where: { id } });
     if (!findBusiness) {
       throw error("providen id not found");
     }
