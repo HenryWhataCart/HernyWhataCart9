@@ -29,7 +29,7 @@ function App() {
           element= {<Dashboard />} //{<AuthenticationGuard component={Dashboard} />}
         />
         
-        {/* RUTA DE PRUEBA */}
+        {/* ROUTE DE PRUEBA */}
         <Route
           path='/prueba'
           element= {<ChatList />}
