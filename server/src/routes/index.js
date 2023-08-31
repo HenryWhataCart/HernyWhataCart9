@@ -6,6 +6,7 @@ const deleteSuperUser = require("./SuperUser/SuperUserDelete");
 const businessPost = require('../routes/Business/BusinessPost');
 const businessUpdate = require('../routes/Business/BusinessUpdate')
 const businessSearch = require('../routes/Business/BusinessSearch')
+const SuperUserGet = require("../routes/SuperUser/SuperUserGet")
 
 const routes = Router();
 routes.use("/", SuperUserPost);
@@ -15,5 +16,6 @@ routes.use("/",businessUpdate)
 routes.use("/",businessSearch)
 routes.use("/", SuperUser);
 routes.use("/", SuperUserPut);
+routes.use("/", SuperUserGet)
 
 module.exports = routes;
