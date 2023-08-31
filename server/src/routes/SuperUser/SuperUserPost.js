@@ -3,6 +3,6 @@ const superUserPost = require('../../handler/SuperUser/postSuperUser')
 
 const superuserRoute = Router()
 
-superuserRoute.post('/',superUserPost)
+superuserRoute.post('/createSuperUser',superUserPost)
 
 module.exports = superuserRoute
