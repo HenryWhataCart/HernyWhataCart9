@@ -8,9 +8,10 @@ const businessPost = require('../routes/Business/BusinessPost');
 const businessUpdate = require('../routes/Business/BusinessUpdate');
 const businessSearch = require('../routes/Business/BusinessSearch');
 const businessDelete = require("../routes/Business/BusinessDelete");
-const userUpdated = require("../routes/User/UserUpdated");
+// const userUpdated = require("../routes/User/UserUpdated");
 const userSearch = require('../routes/User/UserSearch');
 const userDelete = require('../routes/User/UserDelete');
+const userPost = require("../routes/User/UserPost")
 
 const routes = Router();
 
@@ -23,8 +24,9 @@ routes.use("/", businessPost);
 routes.use("/", businessUpdate);
 routes.use("/", businessSearch);
 routes.use("/", businessDelete);
-routes.use("/", userUpdated);
+// routes.use("/", userUpdated);
 routes.use("/", userSearch);
 routes.use("/", userDelete);
+routes.use("/",userPost)
 
 module.exports = routes;
