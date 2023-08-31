@@ -1,5 +1,4 @@
 const { Business } = require("../../db");
-
 const deleteBusiness = async (id) => {
   try {
     const findBusiness = await Business.findOne({ where: { id } });
@@ -12,5 +11,4 @@ const deleteBusiness = async (id) => {
     throw error;
   }
 };
-
 module.exports = deleteBusiness;
