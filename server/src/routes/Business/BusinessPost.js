@@ -3,7 +3,7 @@ const handlerBusinessPost = require('../../handler/Business/businessPost')
 
 const BusinessPostRoute = Router()
 
-BusinessPostRoute.put('/createBusiness',handlerBusinessPost)
+BusinessPostRoute.post('/createBusiness',handlerBusinessPost)
 
 module.exports = BusinessPostRoute
 

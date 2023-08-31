@@ -1,7 +1,7 @@
 const {Superuser} = require('../../db')
 
 const createSuperUser = async(name,email,password) =>{
-    try {
+    
         const [newSuperUser,created] = await Superuser.findOrCreate({
             where:{
                 name,
@@ -9,13 +9,9 @@ const createSuperUser = async(name,email,password) =>{
                 password
             }
         })
-        console.log(created)
         await newSuperUser.save()
+
         return newSuperUser
-    } catch (error) {
-        console.log('an error occurred while creating superuser',error)
-        throw error
-    }
 }
 
 module.exports = createSuperUser
