@@ -24,6 +24,10 @@ export default function Navbar() {
     null
   }
 
+  const handleContacts = () => {
+    navigate("/contacts");
+  }
+
   return (
     <AppBar position="relative" sx={{bgcolor: "transparent"}}>
       <Toolbar>
@@ -39,7 +43,7 @@ export default function Navbar() {
                     messenger
                 </Box>
             </Button>
-            <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={handleSection}>
+            <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={handleContacts}>
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <Icon sx={{ pb: 1 }}><ContactsRoundedIcon/></Icon>
                     contacts
