@@ -8,6 +8,7 @@ import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import { Contacts } from './views/Contacts/Contacts'
 import Layout from './components/Layout/Layout'
+import Error from './views/Error/error'
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -36,6 +37,12 @@ function App() {
           path='/contacts'
           element={<Contacts />}
           />
+        {/* ROUTE DE Error */}
+        <Route
+          path='*'
+          element= {<Error />}
+        />
+        
       </Routes>
     </div>
   )
