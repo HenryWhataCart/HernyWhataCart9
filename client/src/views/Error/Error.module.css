@@ -1,0 +1,10 @@
+.dashboardContainer {
+    margin: 0;
+}
+
+.logo {
+    width: 10rem;
+    object-fit: contain;
+}
+
+
