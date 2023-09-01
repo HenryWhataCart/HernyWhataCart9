@@ -26,4 +26,5 @@ routes.use("/", businessDelete);
 routes.use("/", rolPost);
 routes.use("/", rolSearch);
 routes.use("/", RolDelete);
+
 module.exports = routes;
