@@ -11,6 +11,14 @@ module.exports = (sequelize) =>{
         name:{
             type: DataTypes.TEXT,
             allowNull: false,
+        },
+        phone:{
+            type: DataTypes.BIGINT,
+            allowNull:false
+        },
+        email:{
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {timestamps: false});
 }
