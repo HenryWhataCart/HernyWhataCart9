@@ -24,6 +24,7 @@ const chats = [
   { name: 'Chat 2', text: 'Último mensaje del chat 2' },
   { name: 'Chat 2', text: 'Último mensaje del chat 2' },
   { name: 'Chat 3', text: 'Último mensaje del chat 3' },
+  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
 ];
 
 const ChatList = () => {
