@@ -4,6 +4,6 @@ const RolDeleted = require('../../handler/Rol/deleteRol')
 
 const deleteRouter = Router()
 
-deleteRouter.delete('/deleteSuperUser/:id',RolDeleted)
+deleteRouter.delete('/deleteRol/:id',RolDeleted)
 
 module.exports = deleteRouter
