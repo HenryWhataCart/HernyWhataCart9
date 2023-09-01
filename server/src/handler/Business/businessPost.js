@@ -1,10 +1,10 @@
 const createBusiness = require('../../controllers/Business/createBusiness')
 
 const handlerBusinessPost = async(req,res) =>{
-    const {name,SuperuserId} = req.body
+    const {name,phone, email,SuperuserId} = req.body
     try {
-        if(!name) return res.status(404).json({error:'required data not found'})
-        const newBusiness = await createBusiness(name,SuperuserId)
+        if(!name || !phone || !email) return res.status(404).json({error:'required data not found'})
+        const newBusiness = await createBusiness(name,phone,email,SuperuserId)
         if(!newBusiness) return res.status(404).json({error:'Business not found'})
         return res.status(200).json(newBusiness)
     } catch (error) {

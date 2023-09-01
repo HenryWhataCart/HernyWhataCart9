@@ -1,11 +1,12 @@
 const {User} = require('../../db')
 
-const createUser = async(name,email,password,privilege, businessId) =>{
+const createUser = async(name,email,password,phone,privilege, businessId) =>{
         const [newUser,created] = await User.findOrCreate({
             where:{
                 name,
                 email,
                 password,
+                phone,
                 privilege,
                 BusinessId: businessId
             }
