@@ -10,6 +10,7 @@ const businessSearch = require("../routes/Business/BusinessSearch");
 const businessDelete = require("../routes/Business/BusinessDelete");
 const rolPost = require("../routes/Rol/RolPost");
 const rolSearch = require("../routes/Rol/RolSearch");
+const RolDelete = require('../routes/Rol/RolDelete')
 
 const routes = Router();
 
@@ -24,4 +25,5 @@ routes.use("/", businessSearch);
 routes.use("/", businessDelete);
 routes.use("/", rolPost);
 routes.use("/", rolSearch);
+routes.use("/", RolDelete);
 module.exports = routes;
