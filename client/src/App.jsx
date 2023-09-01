@@ -7,6 +7,8 @@ import Dashboard from './views/Dashboard/Dashboard'
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import ChatList from './components/ChatList/ChatList';
+import { Contacts } from './views/Contacts/Contacts'
+
 axios.defaults.baseURL = 'http://localhost:3001'
 
 function App() {
@@ -27,6 +29,11 @@ function App() {
         <Route
           path='/dashboard'
           element= {<Dashboard />} //{<AuthenticationGuard component={Dashboard} />}
+        />
+
+        <Route
+        path='/contacts'
+        element={<Contacts />}
         />
         
         {/* ROUTE DE PRUEBA */}
