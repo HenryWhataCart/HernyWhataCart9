@@ -25,6 +25,10 @@ Business.belongsTo(Superuser)
 User.belongsTo(Business)
 Business.hasMany(User)
 
+
+Rol.belongsTo(Business)
+Business.hasMany(Rol)
+
 //Third: User belongs to many Rol, and Rol belongs to many User, N:M, Mid table
 User.belongsToMany(Rol, { through: 'user_rol', timestamps: false})
 Rol.belongsToMany(User, { through: 'user_rol', timestamps: false})
