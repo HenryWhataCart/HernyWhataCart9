@@ -1,13 +1,17 @@
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import { Avatar, Typography } from '@mui/material';
-import SvgIcon from '@mui/material/SvgIcon';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import Navbar from '../../components/NavBar/NavBar';
+import {
+  Paper,
+  Table,
+  TableRow,
+  TableContainer,
+  TableCell,
+  TableBody,
+  Avatar,
+  Typography,
+  Box,
+} from "@mui/material";
+import SvgIcon from "@mui/material/SvgIcon";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import Navbar from "../../components/NavBar/NavBar";
 
 const mockContacts = [
   {
@@ -52,7 +56,6 @@ const mockContacts = [
   },
 ];
 
-
 export const Contacts = () => {
   return (
     <>
@@ -76,10 +79,12 @@ export const Contacts = () => {
                   </Typography>
                 </TableCell>
                 <TableCell style={{ padding: "25px" }}>
-                  {contact.phoneNumber}
+                  <Typography style={{ fontWeight: "bold"}}>{contact.phoneNumber}</Typography>
                 </TableCell>
                 <TableCell style={{ padding: "25px" }}>
-                  <SvgIcon component={QuestionAnswerIcon} fontSize="small" />
+                  <Box display="flex" justifyContent="end" >
+                    <SvgIcon component={QuestionAnswerIcon} fontSize="small" />
+                  </Box>
                 </TableCell>
               </TableRow>
             ))}
@@ -89,4 +94,3 @@ export const Contacts = () => {
     </>
   );
 };
-    
