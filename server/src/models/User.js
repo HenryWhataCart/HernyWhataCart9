@@ -20,6 +20,10 @@ module.exports = (sequelize) =>{
             type: DataTypes.STRING,
             allowNull: false
         },
+        phone:{
+            type: DataTypes.BIGINT,
+            allowNull:false
+        },
         privilege:{
             type: DataTypes.ENUM('Admin','Member'),
             allowNull: false,
