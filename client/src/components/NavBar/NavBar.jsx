@@ -32,7 +32,7 @@ const NavBar = () => {
   }
 
   return (
-    <AppBar position="relative" sx={{bgcolor: "white", mb: 1}}>
+    <AppBar position="relative" sx={{bgcolor: "white", mb: 1, }}>
       <Toolbar>
 
         <Link to={'https://whatacart.ai/'}>
