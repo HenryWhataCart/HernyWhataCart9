@@ -1,21 +1,22 @@
 import axios from 'axios';
-import { DELETE_SUPERUSER_REQUEST, DELETE_SUPERUSER_SUCCESS, DELETE_SUPERUSER_FAILURE } from '../actionType';
+import ACTION_TYPES from '../../actionTypes'
+
 
 export const deleteSuperUserRequest = () => {
   return {
-    type: DELETE_SUPERUSER_REQUEST
+    type: ACTION_TYPES.DELETE_SUPERUSER_REQUEST
   };
 };
 
 export const deleteSuperUserSuccess = () => {
   return {
-    type: DELETE_SUPERUSER_SUCCESS
+    type: ACTION_TYPES.DELETE_SUPERUSER_SUCCESS
   };
 };
 
 export const deleteSuperUserFailure = (error) => {
   return {
-    type: DELETE_SUPERUSER_FAILURE,
+    type: ACTION_TYPES.DELETE_SUPERUSER_FAILURE,
     payload: error
   };
 };
