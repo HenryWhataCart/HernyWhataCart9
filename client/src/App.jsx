@@ -10,6 +10,7 @@ import { Contacts } from './views/Contacts/Contacts'
 import Error from './views/Error/Error'
 import { useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
+import Metricas from './views/Metricas/Metricas';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -41,6 +42,11 @@ function App() {
           path='/contacts'
           element={<Contacts />}
           />
+          
+          <Route
+          path='/metrics'
+          element= {<Metricas/>}
+        />
 
         {/* ROUTE DE Error */}
         <Route

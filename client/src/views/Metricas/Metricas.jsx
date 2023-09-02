@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material"
-import Navbar from "../../components/NavBar/NavBar"
 import CircularProgress from '@mui/material/CircularProgress';
 import { Table, TableHead, TableBody, TableRow, TableCell, Paper, Icon } from '@mui/material';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
@@ -21,7 +20,6 @@ const Metricas = () => {
   ];
   return (
     <Box >
-      <Navbar />
       <div >
         <div  >
           <Box display="flex"   sx={{color:"black", m:2}}>
