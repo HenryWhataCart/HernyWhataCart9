@@ -8,16 +8,14 @@ import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/system";
 
-// Define un nuevo color personalizado en la paleta de colores
 const theme = createTheme({
   palette: {
     customGreen: {
-      main: "#09e6a7", // El color personalizado que deseas
+      main: "#09e6a7",
     },
   },
 });
 
-// Estilos personalizados para hacer responsive
 const ResponsiveFooter = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column-reverse",
