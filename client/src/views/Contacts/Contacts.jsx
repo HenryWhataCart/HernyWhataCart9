@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Paper,
   Table,
@@ -11,7 +12,7 @@ import {
 } from "@mui/material";
 import SvgIcon from "@mui/material/SvgIcon";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-import styles from "./Contacts.module.css"
+import styles from "./Contacts.module.css";
 
 const mockContacts = [
   {
@@ -55,66 +56,89 @@ const mockContacts = [
     phoneNumber: "987-654-3213",
   },
   {
-    id: 8,
+    id: 9,
     name: "Brian Watson",
     phoneNumber: "987-654-3213",
   },
   {
-    id: 8,
+    id: 10,
     name: "Brian Watson",
     phoneNumber: "987-654-3213",
   },
   {
-    id: 8,
+    id: 11,
     name: "Brian Watson",
     phoneNumber: "987-654-3213",
   },
   {
-    id: 8,
+    id: 12,
     name: "Brian Watson",
     phoneNumber: "987-654-3213",
   },
   {
-    id: 8,
+    id: 13,
     name: "Brian Watson",
     phoneNumber: "987-654-3213",
   },
 ];
 
 export const Contacts = () => {
+  const [showPhoneNumber, setShowPhoneNumber] = useState(false);
+  const handleResize = () =>
+    window.innerWidth >= 720
+      ? setShowPhoneNumber(true)
+      : setShowPhoneNumber(false);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-      <TableContainer sx={{ height: '87vh', overflow: 'auto' }} component={Paper} className={styles.scrollBarStyle}>
-        <Table>
-          <TableBody>
-            {mockContacts.map((contact) => (
-              <TableRow key={contact.id}>
-                <TableCell
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1em",
-                    padding: "25px",
-                  }}
-                >
+    <TableContainer
+      sx={{ maxHeight: "85vh", overflow: "auto" }}
+      component={Paper}
+      className={styles.scrollBarStyle}
+    >
+      <Table>
+        <TableBody>
+          {mockContacts.map((contact) => (
+            <TableRow key={contact.id}>
+              <TableCell
+                style={{
+                  alignItems: "center",
+                  gap: "1em",
+                }}
+              >
+                <Box display="flex" className={styles.name}>
                   <Avatar alt={contact.name} src="imagen.png" />
-                  <Typography style={{ color: "#4E4E4E" }}>
-                    {contact.name}
-                  </Typography>
-                </TableCell>
+                  <Box display="flex" flexDirection="column">
+                    <Typography style={{ color: "#4E4E4E" }} fontWeight={600}>
+                      {contact.name}
+                    </Typography>
+                    {!showPhoneNumber && (<Typography style={{ color: "#4E4E4E" }} fontWeight={400}>
+                      {contact.phoneNumber}
+                    </Typography>)}
+                  </Box>
+                </Box>
+              </TableCell>
+              {showPhoneNumber && (
                 <TableCell style={{ padding: "25px" }}>
-                  <Typography style={{ color: "#4E4E4E"}}>
+                  <Typography style={{ color: "#4E4E4E" }}>
                     {contact.phoneNumber}
                   </Typography>
                 </TableCell>
-                <TableCell style={{ padding: "25px" }}>
-                  <Box display="flex" justifyContent="end" >
-                    <SvgIcon component={QuestionAnswerIcon} fontSize="small" />
-                  </Box>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+              )}
+              <TableCell style={{ padding: "25px" }}>
+                <Box display="flex" justifyContent="end">
+                  <SvgIcon component={QuestionAnswerIcon} fontSize="small" />
+                </Box>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
