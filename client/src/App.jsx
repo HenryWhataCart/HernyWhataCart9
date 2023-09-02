@@ -7,17 +7,21 @@ import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/Auth
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import { Contacts } from './views/Contacts/Contacts'
-import Layout from './components/Layout/Layout'
-import Error from './views/Error/error'
+import Error from './views/Error/Error'
+import { useLocation } from 'react-router-dom'
+import NavBar from './components/NavBar/NavBar';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
 function App() {
 
+  const location = useLocation();
+  const showNavBar = location.pathname !== '/' && location.pathname !== '/signout';
+
   return (
     <div>
+      {showNavBar && <NavBar />}
       <Routes>
-       
           <Route
             path='/'
             element= {<SignIn />}
@@ -37,6 +41,7 @@ function App() {
           path='/contacts'
           element={<Contacts />}
           />
+
         {/* ROUTE DE Error */}
         <Route
           path='*'
