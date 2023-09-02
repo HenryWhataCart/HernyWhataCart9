@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import SvgIcon from "@mui/material/SvgIcon";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-import Navbar from "../../components/NavBar/NavBar";
+import styles from "./Contacts.module.css"
 
 const mockContacts = [
   {
@@ -54,13 +54,36 @@ const mockContacts = [
     name: "Brian Watson",
     phoneNumber: "987-654-3213",
   },
+  {
+    id: 8,
+    name: "Brian Watson",
+    phoneNumber: "987-654-3213",
+  },
+  {
+    id: 8,
+    name: "Brian Watson",
+    phoneNumber: "987-654-3213",
+  },
+  {
+    id: 8,
+    name: "Brian Watson",
+    phoneNumber: "987-654-3213",
+  },
+  {
+    id: 8,
+    name: "Brian Watson",
+    phoneNumber: "987-654-3213",
+  },
+  {
+    id: 8,
+    name: "Brian Watson",
+    phoneNumber: "987-654-3213",
+  },
 ];
 
 export const Contacts = () => {
   return (
-    <>
-      <Navbar />
-      <TableContainer component={Paper}>
+      <TableContainer sx={{ height: '87vh', overflow: 'auto' }} component={Paper} className={styles.scrollBarStyle}>
         <Table>
           <TableBody>
             {mockContacts.map((contact) => (
@@ -74,12 +97,14 @@ export const Contacts = () => {
                   }}
                 >
                   <Avatar alt={contact.name} src="imagen.png" />
-                  <Typography style={{ fontWeight: "bold" }}>
+                  <Typography style={{ color: "#4E4E4E" }}>
                     {contact.name}
                   </Typography>
                 </TableCell>
                 <TableCell style={{ padding: "25px" }}>
-                  <Typography style={{ fontWeight: "bold"}}>{contact.phoneNumber}</Typography>
+                  <Typography style={{ color: "#4E4E4E"}}>
+                    {contact.phoneNumber}
+                  </Typography>
                 </TableCell>
                 <TableCell style={{ padding: "25px" }}>
                   <Box display="flex" justifyContent="end" >
@@ -91,6 +116,5 @@ export const Contacts = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
   );
 };

@@ -1,13 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Menu, MenuItem, Box, Button, Icon } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Menu, MenuItem, Box, Button, Icon, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './NavBar.module.css'
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import ContactsRoundedIcon from '@mui/icons-material/ContactsRounded';
 import MenuIcon from '@mui/icons-material/Menu';
+import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 
-export default function Navbar() {
+const NavBar = () => {
+
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const navigate = useNavigate()
@@ -29,7 +32,7 @@ export default function Navbar() {
   }
 
   return (
-    <AppBar position="relative" sx={{bgcolor: "transparent"}}>
+    <AppBar position="relative" sx={{bgcolor: "white", mb: 1, }}>
       <Toolbar>
 
         <Link to={'https://whatacart.ai/'}>
@@ -37,7 +40,7 @@ export default function Navbar() {
         </Link>
         
         <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
-            <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={handleSection}>
+            <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={() => navigate("/dashboard")}>
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <Icon sx={{ pb: 1 }}><SendRoundedIcon/></Icon>
                     messenger
@@ -50,6 +53,21 @@ export default function Navbar() {
                 </Box>
             </Button>
         </Box>
+        
+        {/* <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
+            <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={handleSection}>
+                <Box display="flex" flexDirection="column" alignItems="center">
+                    <Icon sx={{ pb: 1 }}><BusinessRoundedIcon/></Icon>
+                    companies
+                </Box>
+            </Button>
+            <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={handleContacts}>
+                <Box display="flex" flexDirection="column" alignItems="center">
+                    <Icon sx={{ pb: 1 }}><PeopleRoundedIcon/></Icon>
+                    users
+                </Box>
+            </Button>
+        </Box> */}
 
 
         {/* Menú */}
@@ -68,12 +86,27 @@ export default function Navbar() {
           open={open}
           onClose={handleClose}
           MenuListProps={{
-            'aria-labelledby': 'basic-button',
+            'aria-labelledby': 'basic-button',  
           }}
         >
+          <MenuItem disableRipple onClick={null}>
+            <Box>
+              <Typography variant='body1'>
+                nombre de usuario
+              </Typography>
+              <Typography variant='body2'>
+                admin o role
+              </Typography>
+            </Box>
+          </MenuItem>
+          <MenuItem>Manage</MenuItem>
+          <MenuItem>Manage company</MenuItem>
+          <MenuItem>Metrics</MenuItem>
           <MenuItem onClick={() => navigate('/signout')}>Sign out</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
   )
 }
+
+export default NavBar
