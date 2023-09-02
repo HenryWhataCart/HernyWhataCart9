@@ -30,7 +30,7 @@ const Error = () => {
         Error <span style={{ color: "#30EAB5" }}>404</span>
       </Typography>
       <Typography variant="h2" style={errorStyles}>Something happened, page not found</Typography>
-      <Link to="/dashboard">
+      <Link to="/">
         <Button variant="contained" style={buttonStyles}>
           Return to Home Page
         </Button>
