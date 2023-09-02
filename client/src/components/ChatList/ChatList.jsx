@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Grid, List, ListItemAvatar, Avatar, ListItemText, Divider, ListItemButton } from '@mui/material';
-import Navbar from '../NavBar/NavBar';
 import styles from './ChatList.module.css'
 
 const chats = [

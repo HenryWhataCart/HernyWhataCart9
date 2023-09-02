@@ -9,6 +9,7 @@ import SignOut from './components/Auth0/SignOut/SignOut';
 import ChatList from './components/ChatList/ChatList';
 import { Contacts } from './views/Contacts/Contacts'
 import Error from './views/Error/error'
+import Metricas from './views/Metricas/Metricas'
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -35,6 +36,11 @@ function App() {
         <Route
         path='/contacts'
         element={<Contacts />}
+        />
+
+        <Route
+        path='/metrics'
+        element={<Metricas />}
         />
         
         {/* ROUTE DE PRUEBA */}
