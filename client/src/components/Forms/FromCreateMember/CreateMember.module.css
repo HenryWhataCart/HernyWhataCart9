@@ -1,0 +1,12 @@
+.containerFormMember{
+    display:flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    margin: 1rem 27rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px black;
+    padding: 3rem;
+    max-width: 200%;
+}

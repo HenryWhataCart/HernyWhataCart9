@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import FormCreateMember from './components/Forms/FromCreateMember/FormCreateMember';
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
@@ -41,6 +42,11 @@ function App() {
           <Route
           path='/contacts'
           element={<Contacts />}
+          />
+
+          <Route
+          path='/prueba'
+          element={<FormCreateMember/>}
           />
 
         {/* ROUTE DE Error */}
