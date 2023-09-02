@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import FormCreateMember from './components/Forms/FromCreateMember/FormCreateMember';
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
@@ -9,8 +10,7 @@ import SignOut from './components/Auth0/SignOut/SignOut';
 import { Contacts } from './views/Contacts/Contacts'
 import Error from './views/Error/Error'
 import { useLocation } from 'react-router-dom'
-import NavBar from './components/NavBar/NavBar';
-import FormCreateMember from './components/Forms/FromCreateMember/FormCreateMember';
+import NavBar from './components/NavBar/NavBar';b045ebe19a0592af8c33700cc2950f2e
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -55,6 +55,8 @@ function App() {
         />
         
       </Routes>
+      
+      {showNavBar && <Footer />}
     </div>
   )
 }
