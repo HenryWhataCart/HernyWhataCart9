@@ -10,7 +10,8 @@ import SignOut from './components/Auth0/SignOut/SignOut';
 import { Contacts } from './views/Contacts/Contacts'
 import Error from './views/Error/Error'
 import { useLocation } from 'react-router-dom'
-import NavBar from './components/NavBar/NavBar';b045ebe19a0592af8c33700cc2950f2e
+import NavBar from './components/NavBar/NavBar';
+import Footer from "./components/Footer/Footer"
 
 axios.defaults.baseURL = 'http://localhost:3001'
 

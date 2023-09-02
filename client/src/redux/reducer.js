@@ -1,6 +1,5 @@
 import ACTION_TYPES from './actionTypes'
 
-import ACTION_TYPES from './actionTypes';
 
 const initialState = {
     superUser: [],

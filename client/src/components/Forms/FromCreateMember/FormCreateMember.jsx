@@ -23,6 +23,7 @@ import { Select } from '@mui/material';
 
 function FormCreateMember() {
     const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
     console.log(user)
     const [formUser,setFormUser] = React.useState({
         name:"",
