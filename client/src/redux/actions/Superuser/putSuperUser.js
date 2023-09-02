@@ -26,10 +26,7 @@ export const putSuperUser = (userId, updatedFields) => {
       dispatch(putSuperUserRequest());
 
       const url = `http://localhost:3001/updateSuperuser/${userId}`;
-
-      // Realizar la petición PUT a la API enviando el objeto con los campos actualizados
       await axios.put(url, updatedFields);
-
       dispatch(putSuperUserSuccess());
     } catch (error) {
       dispatch(putSuperUserFailure(error.message));
