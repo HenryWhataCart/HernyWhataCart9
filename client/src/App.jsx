@@ -10,6 +10,7 @@ import { Contacts } from './views/Contacts/Contacts'
 import Error from './views/Error/Error'
 import { useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
+import FormCreateMember from './components/Forms/FromCreateMember/FormCreateMember';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -40,6 +41,11 @@ function App() {
           <Route
           path='/contacts'
           element={<Contacts />}
+          />
+
+          <Route
+          path='/prueba'
+          element={<FormCreateMember/>}
           />
 
         {/* ROUTE DE Error */}
