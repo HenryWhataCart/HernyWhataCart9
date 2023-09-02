@@ -6,26 +6,21 @@ import styles from './NavBar.module.css'
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import ContactsRoundedIcon from '@mui/icons-material/ContactsRounded';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useBreakpoints } from '../../hooks/useBreakpoints';
 // import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 // import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const isMobile = useBreakpoints();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [showElements, setShowElements] = useState(false);
   const open = Boolean(anchorEl);
   
-  const handleResize = () => window.innerWidth >= 720 ? setShowElements(true) : setShowElements(false);
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const handleSection = () => null
   const handleContacts = () => navigate("/contacts");
 
-  useEffect(() => {
-     window.addEventListener('resize', handleResize);
-     handleResize();
-     return () => window.removeEventListener('resize', handleResize);
-   }, []);
 
   return (
     <AppBar position="relative" sx={{ bgcolor: "white", mb: 1 }}>
@@ -39,7 +34,7 @@ const NavBar = () => {
           />
         </Link>
 
-        {showElements && (
+        {!isMobile && (
           <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
             <Button
               variant="text"
@@ -110,7 +105,7 @@ const NavBar = () => {
               <Typography variant="body2">Admin o role</Typography>
             </Box>
           </MenuItem>
-          { !showElements && (
+          { isMobile && (
             <Box> 
               <MenuItem onClick={() => navigate("/dashboard")}>Messenger</MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   Paper,
   Table,
@@ -13,6 +12,7 @@ import {
 import SvgIcon from "@mui/material/SvgIcon";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import styles from "./Contacts.module.css";
+import { useBreakpoints } from "../../hooks/useBreakpoints";
 
 const mockContacts = [
   {
@@ -83,17 +83,7 @@ const mockContacts = [
 ];
 
 export const Contacts = () => {
-  const [showPhoneNumber, setShowPhoneNumber] = useState(false);
-  const handleResize = () =>
-    window.innerWidth >= 720
-      ? setShowPhoneNumber(true)
-      : setShowPhoneNumber(false);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useBreakpoints();
 
   return (
     <TableContainer
@@ -117,13 +107,13 @@ export const Contacts = () => {
                     <Typography style={{ color: "#4E4E4E" }} fontWeight={600}>
                       {contact.name}
                     </Typography>
-                    {!showPhoneNumber && (<Typography style={{ color: "#4E4E4E" }} fontWeight={400}>
+                    {isMobile && (<Typography style={{ color: "#4E4E4E" }} fontWeight={400}>
                       {contact.phoneNumber}
                     </Typography>)}
                   </Box>
                 </Box>
               </TableCell>
-              {showPhoneNumber && (
+              {!isMobile && (
                 <TableCell style={{ padding: "25px" }}>
                   <Typography style={{ color: "#4E4E4E" }}>
                     {contact.phoneNumber}
