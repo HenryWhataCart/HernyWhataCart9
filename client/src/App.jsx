@@ -11,6 +11,8 @@ import Error from './views/Error/Error'
 import { useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import Metricas from './views/Metricas/Metricas';
+import Footer from './components/Footer/Footer';
+import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -48,6 +50,11 @@ function App() {
           element= {<Metricas/>}
         />
 
+        <Route
+          path='/NewSuperAdmin'
+          element= {<NewSuperAdmin/>}
+        />
+
         {/* ROUTE DE Error */}
         <Route
           path='*'
@@ -55,6 +62,7 @@ function App() {
         />
         
       </Routes>
+      {showNavBar && <Footer />}
     </div>
   )
 }
