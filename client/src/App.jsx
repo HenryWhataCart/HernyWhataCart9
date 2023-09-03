@@ -54,6 +54,11 @@ function App() {
           path='*'
           element= {<Error />}
         />
+
+        <Route
+          path='/pruebita'
+          element= {<FormCreateMember />}
+        />
         
       </Routes>
       {showFooter && <Footer />}

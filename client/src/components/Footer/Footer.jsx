@@ -1,4 +1,3 @@
-import * as React from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -53,7 +52,7 @@ export default function Footer() {
                 },
               }}
             >
-              <Button variant="contained" color="customGreen">
+              <Button variant="contained" color="customGreen" sx={{color: "#4E4E4E"}}>
                 Support
               </Button>
             </Grid>
@@ -73,7 +72,7 @@ export default function Footer() {
               <Typography variant="body2" color="text.primary">
                 {"Copyright © "}
                 <Link color="inherit" href="https://whatacart.ai/">
-                  Whatacart
+                  WhataCart
                 </Link>{" "}
                 {new Date().getFullYear()}
               </Typography>
