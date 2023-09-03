@@ -8,10 +8,13 @@ import {
   Avatar,
   Typography,
   Box,
+  Skeleton
 } from "@mui/material";
 import SvgIcon from "@mui/material/SvgIcon";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-import styles from "./Contacts.module.css"
+// import styles from "./Contacts.module.css"
+import React from "react";
+import './Contacts.module.css'
 
 const mockContacts = [
   {
@@ -82,39 +85,65 @@ const mockContacts = [
 ];
 
 export const Contacts = () => {
+  const [loading, setLoading] = React.useState(true);
+  React.useEffect(() => {
+      setTimeout(() => setLoading(false),3000);
+  }, []);
   return (
-      <TableContainer sx={{ height: '87vh', overflow: 'auto' }} component={Paper} className={styles.scrollBarStyle}>
-        <Table>
-          <TableBody>
-            {mockContacts.map((contact) => (
-              <TableRow key={contact.id}>
-                <TableCell
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1em",
-                    padding: "25px",
-                  }}
-                >
-                  <Avatar alt={contact.name} src="imagen.png" />
-                  <Typography style={{ color: "#4E4E4E" }}>
-                    {contact.name}
-                  </Typography>
-                </TableCell>
-                <TableCell style={{ padding: "25px" }}>
-                  <Typography style={{ color: "#4E4E4E"}}>
-                    {contact.phoneNumber}
-                  </Typography>
-                </TableCell>
-                <TableCell style={{ padding: "25px" }}>
-                  <Box display="flex" justifyContent="end" >
-                    <SvgIcon component={QuestionAnswerIcon} fontSize="small" />
-                  </Box>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      <TableContainer sx={{ height: '90vh', overflow: 'auto' }} component={Paper}>
+          <Table>
+              <TableBody sx={{}}>
+                  {!loading ? mockContacts.map((contact) => (
+                      <TableRow key={contact.id}>
+                          <TableCell
+                              style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "1em",
+                                  padding: "25px",
+                              }}
+                          >
+                              <Avatar alt={contact.name} src="imagen.png" />
+                              <Typography style={{ color: "#4E4E4E" }}>
+                                  {contact.name}
+                              </Typography>
+                          </TableCell>
+                          <TableCell style={{ padding: "25px" }}>
+                              <Typography style={{ color: "#4E4E4E"}}>
+                                  {contact.phoneNumber}
+                              </Typography>
+                          </TableCell>
+                          <TableCell style={{ padding: "25px" }}>
+                              <Box display="flex" justifyContent="end" >
+                                  <SvgIcon component={QuestionAnswerIcon} fontSize="small" />
+                              </Box>
+                          </TableCell>
+                      </TableRow>
+                  )) : Array.from(new Array(9)).map((_, index) => (
+                      <TableRow key={index}>
+                          <TableCell
+                              style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "1em",
+                                  padding: "25px",
+                              }}
+                          >
+                              <Skeleton variant="circular" width={40} height={40} />
+                              <Skeleton width="30%" />
+                          </TableCell>
+                          <TableCell style={{ padding: "25px" }}>
+                              <Skeleton width="50%" />
+                          </TableCell>
+                          <TableCell style={{ padding: "25px" }}>
+                              <Box display="flex" justifyContent="end" >
+                                  <Skeleton variant="circular" width={24} height={24} />
+                              </Box>
+                          </TableCell>
+                      </TableRow>
+                  ))}
+              </TableBody>
+          </Table>
       </TableContainer>
   );
 };
