@@ -17,11 +17,12 @@ axios.defaults.baseURL = 'http://localhost:3001'
 function App() {
 
   const location = useLocation();
-  const showComponent = location.pathname !== '/' && location.pathname !== '/signout';
+  const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
+  const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
 
   return (
     <div>
-      {showComponent && <NavBar />}
+      {showNavBar && <NavBar />}
       <Routes>
           <Route
             path='/'
@@ -55,7 +56,7 @@ function App() {
         />
         
       </Routes>
-      {showComponent && <Footer />}
+      {showFooter && <Footer />}
     </div>
   )
 }
