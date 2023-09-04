@@ -1,35 +1,50 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
-
-import  {useDispatch, useSelector} from 'react-redux'
-
-import Box from '@mui/material/Box';
+import styles from './CreateMember.module.css'
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormLabel from '@mui/material/FormLabel';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { Select } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import validate from './Validation'
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import getRol from '../../../redux/actions/Rol/getRol';
-import styles from './CreateMember.module.css'
-import validate from './Validation'
+import { Select } from '@mui/material';
+import createUser from "../../../redux/actions/User/PostUser"
+import GetDataCreateMember from './getDataCreateMember';
+import { useDispatch } from 'react-redux';
 
 function FormCreateMember() {
-    const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
-    const roles = useSelector(state => state.rol)
 
-    console.log(user)
+    const { dispatch,roles, user} = GetDataCreateMember()
+    
+
+    const buttonStyles = {
+        background: "#30EAB5",  
+        color: 'white',
+        textTransform: 'none',        
+        fontWeight: 'bold',
+        padding: '10px 20px',         
+      };
+    
+      const buttonStylesNotSubmit = {
+        background: "red",  
+        color: 'white',
+        textTransform: 'none',        
+        fontWeight: 'bold',
+        padding: '10px 20px',         
+      };
+
+
     const [formUser,setFormUser] = React.useState({
         name:"",
         email:"",
@@ -39,10 +54,7 @@ function FormCreateMember() {
         rolIdRow:[],
         businessId:""
     })
-
     const [errors,setErrors] = React.useState({})
-    console.log(errors)
-
     const handleOnChange = (event) =>{
         const property = event.target.name
         const value = event.target.value
@@ -54,17 +66,21 @@ function FormCreateMember() {
 
 
     const onHandleSubmit = (event) =>{
+        console.log("entre");
         event.preventDefault()
-        const validateErrors = validate(formUser)
-        setErrors(validateErrors)
-        
-        if(Object.keys(validateErrors).length === 0){
-            dispatch(createUser(formUser))
-        }
+        dispatch(createUser(formUser))
+        alert('Your user '+ formUser.name +' has been created')
+        setFormUser({
+            name:"",
+            email:"",
+            password:"",
+            phone:"",
+            privilege:"",
+            rolIdRow:[],
+            businessId:""
+        })
     }
     
-    console.log(errors)
-    console.log(formUser)
 
     const isNotCompelte = 
     !formUser.name ||
@@ -74,12 +90,6 @@ function FormCreateMember() {
     !formUser.privilege ||
     !formUser.rolIdRow ||
     !formUser.businessId 
-
-    React.useEffect(()=>{
-        dispatch(getRol)
-    },[dispatch])
-
-    console.log(roles)
 
     //----------------------Password--------------------------------------------
     const [showPassword, setShowPassword] = React.useState(false);
@@ -166,7 +176,7 @@ function FormCreateMember() {
                     <TextField
                         required
                         id="outlined-number"
-                        label="Phone"
+                        label="Number"
                         type="phone"
                         InputLabelProps={{
                         shrink: true,
@@ -193,7 +203,7 @@ function FormCreateMember() {
                         </Select>
                         {errors.privilege && <FormHelperText error>{errors.privilege}</FormHelperText>}
                     </FormControl>
-                    <TextField
+                    {/* <TextField
                         required
                         id="outlined-required"
                         label="Business"
@@ -202,7 +212,7 @@ function FormCreateMember() {
                         onChange={handleOnChange}
                         helperText={errors.businessId && <p>{errors.businessId}</p>}
                         error={errors.businessId && <p>{errors.businessId}</p>}
-                    />
+                    /> */}
                     <Box sx={{ display: 'flex' }}>
                         <FormControl
                             required
@@ -210,26 +220,24 @@ function FormCreateMember() {
                             component="fieldset"
                             sx={{ m: 3,color:'black' }}
                             variant="standard"
-                            name='rolIdRow'
-                            value={formUser.rolIdRow}
-                            onChange={handleOnChange}
                         >
                         <FormLabel component="legend">Select at least 3</FormLabel>
                             <FormGroup>
-                            {roles.map((rol) => (
                                 <FormControlLabel
-                                    key={rol.id}
-                                    control={<Checkbox checked={state[rol.name]} onChange={handleChange} name={rol.name} />}
-                                    label={rol.name}
+                                    control={
+                                    <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+                                    }
+                                    label="Gilad Gray"
                                 />
-                            ))}
                             </FormGroup>
                         <FormHelperText>You can display an error</FormHelperText>
                     </FormControl>
                 </Box>
-                <Button disabled={isNotCompelte} type='submit' variant="contained" endIcon={<SendIcon />}>
+                {isNotCompelte? <Button type='notSubmit' variant="contained" endIcon={<SendIcon />} style={buttonStylesNotSubmit} >
+                        Empty fields 
+                </Button> : <Button type='submit' variant="contained" endIcon={<SendIcon />} style={buttonStyles}>
                         Send
-                </Button> 
+                </Button> }
             </form>
         </div>
     )
