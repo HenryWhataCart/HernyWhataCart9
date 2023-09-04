@@ -4,7 +4,7 @@ import { TextField, Button, Typography, Box } from '@mui/material';
 
 import styles from './BusinessRegistration.module.css'
 
-export const BusinessRegistration = () => {
+export const CreateBusiness = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,9 +30,6 @@ export const BusinessRegistration = () => {
     event.preventDefault();
     const error = validate(formData);
     setErrors(error)
-   
-    // if (Object.values(error).length === 0)
-    //   navigate("/business")
     };
 
   const buttonStyles = {
@@ -97,7 +94,7 @@ export const BusinessRegistration = () => {
             type="submit"
             style={buttonStyles}
           >
-            Register
+            Create
           </Button>
         </form>
         </Box>

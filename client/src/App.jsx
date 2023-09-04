@@ -14,6 +14,7 @@ import Metricas from './views/Metricas/Metricas';
 import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 import Footer from './components/Footer/Footer';
 import Support from './components/Support/Support';
+import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -22,7 +23,6 @@ function App() {
   const location = useLocation();
   const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
   const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
-
   return (
     <div>
       {showNavBar && <NavBar />}
@@ -48,18 +48,18 @@ function App() {
           />
 
           <Route
-          path='/prueba'
-          element={<FormCreateMember/>}
+          path='/createmember'
+          element={<AuthenticationGuard component={FormCreateMember} />}
         />
         
         <Route
           path='/metrics'
-          element={<Metricas/>}
+          element={<AuthenticationGuard component={Metricas} />}
         />
         
         <Route
           path='/superadmin'
-          element={<NewSuperAdmin/>}
+          element={<AuthenticationGuard component={NewSuperAdmin} />}
         />
         
         <Route
@@ -67,7 +67,11 @@ function App() {
           element= {<Support />}
         />
 
-        {/* ROUTE DE Error */}
+        <Route
+          path='/createbusiness'
+          element= {<AuthenticationGuard component={CreateBusiness} />}
+        />
+
         <Route
           path='*'
           element= {<Error />}
