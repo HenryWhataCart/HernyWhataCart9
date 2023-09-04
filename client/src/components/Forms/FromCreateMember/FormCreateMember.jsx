@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import styles from './CreateMember.module.css'
@@ -21,11 +20,10 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Select } from '@mui/material';
-import createUser from '../../../redux/actions/User/PostUser'
-import GetDataCreateMember from './getDataCreateMember'
+// import GetDataCreateMember from './getDataCreateMember';
 
 function FormCreateMember() {
-    const roles = ["rol1", "rol2", "rol3"]
+
     // const {roles} = GetDataCreateMember()
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
@@ -204,17 +202,14 @@ function FormCreateMember() {
                             variant="standard"
                         >
                         <FormLabel component="legend">Select at least 3</FormLabel>
-                        <FormGroup>
-    {roles.map((role) => (
-        <FormControlLabel
-            key={role}
-            control={
-                <Checkbox checked={state[role]} onChange={handleChange} name={role} />
-            }
-            label={role}
-        />
-    ))}
-</FormGroup>
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                    <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+                                    }
+                                    label="Gilad Gray"
+                                />
+                            </FormGroup>
                         <FormHelperText>You can display an error</FormHelperText>
                     </FormControl>
                 </Box>
