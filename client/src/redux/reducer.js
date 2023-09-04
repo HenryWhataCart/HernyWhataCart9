@@ -38,13 +38,14 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_BUSINESS_SUCCESS:
         return {
             ...state,
-            business: [...state.business, ...action.payload]
+            business: action.payload
         };
         case ACTION_TYPES.GET_BUSINESS_FAILURE:
         return state;
         case ACTION_TYPES.CREATE_BUSINESS_SUCCESS:
         return {
-            ...state
+            ...state,
+            business:[...state.business,action.payload]
         };
         case ACTION_TYPES.CREATE_BUSINESS_FAILURE:
         return state;

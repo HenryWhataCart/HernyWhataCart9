@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from '@mui/material';
+import { Box, TextField, Button, Typography} from '@mui/material';
+import { Table, TableContainer, TableBody, TableRow, TableCell, Paper, Icon } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import SupervisedUserCircleRoundedIcon from '@mui/icons-material/SupervisedUserCircleRounded';
-import TextField from '@mui/material/TextField';
 import createRol from '../../../redux/actions/Rol/postRol';
 import styles from './FormRol.module.css';
 import validation from './Validations';
@@ -87,6 +87,8 @@ function FormCreateRol() {
                 )}
             </div>
             </form>
+
+            
         </div>
         );
   }

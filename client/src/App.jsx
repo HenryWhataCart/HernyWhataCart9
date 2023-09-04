@@ -1,4 +1,4 @@
-import FormCreateMember from './components/Forms/FromCreateMember/FormCreateMember';
+import FormCreateMember from '../src/components/Forms/FormCreateMember/FormCreateMember';
 import './App.css'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import axios from 'axios'
@@ -14,6 +14,7 @@ import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 import Footer from './components/Footer/Footer';
 import Support from './components/Support/Support';
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
+import FormCreateRol from './components/Forms/FormCreateRol/FormCreateRol';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -74,6 +75,12 @@ function App() {
           path='/createbusiness'
           element= {<AuthenticationGuard component={CreateBusiness} />}
           // element= {<CreateBusiness />}
+        />
+
+        <Route
+          path='/createRol'
+          // element= {<AuthenticationGuard component={FormCreateRol} />}
+          element= {<FormCreateRol />}
         />
 
         <Route
