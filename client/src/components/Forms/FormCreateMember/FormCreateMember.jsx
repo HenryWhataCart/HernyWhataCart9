@@ -1,29 +1,34 @@
-import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
-import styles from './CreateMember.module.css'
+
 import  {useDispatch, useSelector} from 'react-redux'
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Box from '@mui/material/Box';
-import validate from './Validation'
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 import FormHelperText from '@mui/material/FormHelperText';
+import FormLabel from '@mui/material/FormLabel';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { Select } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Select } from '@mui/material';
+import getRol from '../../../redux/actions/Rol/getRol';
+import styles from './CreateMember.module.css'
+import validate from './Validation'
 
 function FormCreateMember() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
+    const roles = useSelector(state => state.rol)
+
     console.log(user)
     const [formUser,setFormUser] = React.useState({
         name:"",
@@ -34,8 +39,10 @@ function FormCreateMember() {
         rolIdRow:[],
         businessId:""
     })
+
     const [errors,setErrors] = React.useState({})
     console.log(errors)
+
     const handleOnChange = (event) =>{
         const property = event.target.name
         const value = event.target.value
@@ -67,6 +74,12 @@ function FormCreateMember() {
     !formUser.privilege ||
     !formUser.rolIdRow ||
     !formUser.businessId 
+
+    React.useEffect(()=>{
+        dispatch(getRol)
+    },[dispatch])
+
+    console.log(roles)
 
     //----------------------Password--------------------------------------------
     const [showPassword, setShowPassword] = React.useState(false);
@@ -153,7 +166,7 @@ function FormCreateMember() {
                     <TextField
                         required
                         id="outlined-number"
-                        label="Number"
+                        label="Phone"
                         type="phone"
                         InputLabelProps={{
                         shrink: true,
@@ -197,20 +210,24 @@ function FormCreateMember() {
                             component="fieldset"
                             sx={{ m: 3,color:'black' }}
                             variant="standard"
+                            name='rolIdRow'
+                            value={formUser.rolIdRow}
+                            onChange={handleOnChange}
                         >
                         <FormLabel component="legend">Select at least 3</FormLabel>
                             <FormGroup>
+                            {roles.map((rol) => (
                                 <FormControlLabel
-                                    control={
-                                    <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
-                                    }
-                                    label="Gilad Gray"
+                                    key={rol.id}
+                                    control={<Checkbox checked={state[rol.name]} onChange={handleChange} name={rol.name} />}
+                                    label={rol.name}
                                 />
+                            ))}
                             </FormGroup>
                         <FormHelperText>You can display an error</FormHelperText>
                     </FormControl>
                 </Box>
-                <Button type='submit' variant="contained" endIcon={<SendIcon />}>
+                <Button disabled={isNotCompelte} type='submit' variant="contained" endIcon={<SendIcon />}>
                         Send
                 </Button> 
             </form>
