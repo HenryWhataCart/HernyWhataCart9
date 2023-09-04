@@ -48,18 +48,18 @@ function App() {
           />
 
           <Route
-          path='/prueba'
-          element={<FormCreateMember/>}
+          path='/createmember'
+          element={<AuthenticationGuard component={FormCreateMember} />}
         />
         
         <Route
           path='/metrics'
-          element={<Metricas/>}
+          element={<AuthenticationGuard component={Metricas} />}
         />
         
         <Route
           path='/superadmin'
-          element={<NewSuperAdmin/>}
+          element={<AuthenticationGuard component={NewSuperAdmin} />}
         />
         
         <Route
@@ -67,7 +67,6 @@ function App() {
           element= {<Support />}
         />
 
-        {/* ROUTE DE Error */}
         <Route
           path='*'
           element= {<Error />}

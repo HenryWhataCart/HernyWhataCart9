@@ -7,6 +7,8 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import ContactsRoundedIcon from '@mui/icons-material/ContactsRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useBreakpoints } from '../../hooks/useBreakpoints';
+import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -33,7 +35,8 @@ const NavBar = () => {
         </Link>
 
         {!isMobile && (
-          <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
+          <Box sx={{display: "flex"}}>
+            <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
             <Button
               variant="text"
               color="inherit"
@@ -61,6 +64,21 @@ const NavBar = () => {
               </Box>
             </Button>
           </Box>
+                  <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
+                  <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={handleSection}>
+                      <Box display="flex" flexDirection="column" alignItems="center">
+                          <Icon sx={{ pb: 1 }}><BusinessRoundedIcon/></Icon>
+                          companies
+                      </Box>
+                  </Button>
+                <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={()=> {navigate("/createMember")} }>
+                      <Box display="flex" flexDirection="column" alignItems="center">
+                          <Icon sx={{ pb: 1 }}><PeopleRoundedIcon/></Icon>
+                          Members
+                      </Box>
+                  </Button>
+              </Box>
+          </Box>
         )}
 
         {/* MenÃº */}
@@ -84,14 +102,16 @@ const NavBar = () => {
         >
           <MenuItem disableRipple onClick={null}>
             <Box>
-              <Typography variant="body1" fontWeight={600}>Nombre de usuario</Typography>
-              <Typography variant="body2">Admin o role</Typography>
+              <Typography variant="body1" fontWeight={600}>Nacho</Typography>
+              <Typography variant="body2">Superadmin</Typography>
             </Box>
           </MenuItem>
           { isMobile && (
             <Box> 
               <MenuItem onClick={() => navigate("/dashboard")}>Messenger</MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
+              <MenuItem onClick={() => null}>Companies</MenuItem>
+              <MenuItem onClick={() => navigate("/createmember")}>Members</MenuItem>
             </Box>
           )}
           <MenuItem>Manage</MenuItem>
