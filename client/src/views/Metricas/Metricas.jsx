@@ -1,9 +1,8 @@
 import { Box, Typography } from "@mui/material"
-import Navbar from "../../components/NavBar/NavBar"
 import CircularProgress from '@mui/material/CircularProgress';
-import { Table, TableHead, TableBody, TableRow, TableCell, Paper, Icon } from '@mui/material';
+import { Table,TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Icon } from '@mui/material';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
-
+import "./Metricas.module.css"
 
 
 
@@ -17,11 +16,19 @@ const Metricas = () => {
     { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
     { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
     { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
-    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" }  
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
+    { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
   ];
   return (
     <Box >
-      <Navbar />
       <div >
         <div  >
           <Box display="flex"   sx={{color:"black", m:2}}>
@@ -29,9 +36,11 @@ const Metricas = () => {
                     Company: Apple
                 </Box>
         </div>
-        <div>
-          <Paper>
-      <Table >
+        <div >
+          <Paper >
+
+            <TableContainer sx={{ height:"70vh",overflow: 'auto', pb: 1 }} component={Paper}>
+                    <Table  >
         <TableHead>
           <TableRow>
             <TableCell>Bells</TableCell>
@@ -54,6 +63,7 @@ const Metricas = () => {
           ))}
         </TableBody>
       </Table>
+      </TableContainer>
     </Paper>
   );
       </div>

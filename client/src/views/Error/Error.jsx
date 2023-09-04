@@ -11,7 +11,7 @@ const Error = () => {
 
   const buttonStyles = {
     background: "#30EAB5",  
-    color: '#303030',
+    color: 'white',
     textTransform: 'none',        
     fontWeight: 'bold',
     padding: '10px 20px',         

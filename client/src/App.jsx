@@ -10,7 +10,10 @@ import SignOut from './components/Auth0/SignOut/SignOut';
 import { Contacts } from './views/Contacts/Contacts'
 import Error from './views/Error/Error'
 import NavBar from './components/NavBar/NavBar';
-import Footer from "./components/Footer/Footer"
+import Metricas from './views/Metricas/Metricas';
+import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
+import Footer from './components/Footer/Footer';
+import Support from './components/Support/Support';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -47,19 +50,28 @@ function App() {
           <Route
           path='/prueba'
           element={<FormCreateMember/>}
-          />
+        />
+        
+        <Route
+          path='/metrics'
+          element={<Metricas/>}
+        />
+        
+        <Route
+          path='/superadmin'
+          element={<NewSuperAdmin/>}
+        />
+        
+        <Route
+          path='/support'
+          element= {<Support />}
+        />
 
         {/* ROUTE DE Error */}
         <Route
           path='*'
           element= {<Error />}
         />
-
-        <Route
-          path='/pruebita'
-          element= {<FormCreateMember />}
-        />
-        
       </Routes>
       {showFooter && <Footer />}
     </div>
