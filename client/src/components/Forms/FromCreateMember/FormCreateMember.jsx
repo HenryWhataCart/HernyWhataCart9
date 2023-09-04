@@ -21,10 +21,12 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Select } from '@mui/material';
 import createUser from "../../../redux/actions/User/PostUser"
 import GetDataCreateMember from './getDataCreateMember';
+import { useDispatch } from 'react-redux';
 
 function FormCreateMember() {
 
-    const {dispatch, roles, user} = GetDataCreateMember()
+    const { dispatch,roles, user} = GetDataCreateMember()
+    
 
     const buttonStyles = {
         background: "#30EAB5",  
@@ -42,7 +44,7 @@ function FormCreateMember() {
         padding: '10px 20px',         
       };
 
-    console.log(user)
+
     const [formUser,setFormUser] = React.useState({
         name:"",
         email:"",
@@ -53,7 +55,6 @@ function FormCreateMember() {
         businessId:""
     })
     const [errors,setErrors] = React.useState({})
-    console.log(errors)
     const handleOnChange = (event) =>{
         const property = event.target.name
         const value = event.target.value
@@ -65,17 +66,21 @@ function FormCreateMember() {
 
 
     const onHandleSubmit = (event) =>{
+        console.log("entre");
         event.preventDefault()
-        const validateErrors = validate(formUser)
-        setErrors(validateErrors)
-        
-        if(Object.keys(validateErrors).length === 0){
-            dispatch(createUser(formUser))
-        }
+        dispatch(createUser(formUser))
+        alert('Your user '+ formUser.name +' has been created')
+        setFormUser({
+            name:"",
+            email:"",
+            password:"",
+            phone:"",
+            privilege:"",
+            rolIdRow:[],
+            businessId:""
+        })
     }
     
-    console.log(errors)
-    console.log(formUser)
 
     const isNotCompelte = 
     !formUser.name ||
@@ -198,7 +203,7 @@ function FormCreateMember() {
                         </Select>
                         {errors.privilege && <FormHelperText error>{errors.privilege}</FormHelperText>}
                     </FormControl>
-                    <TextField
+                    {/* <TextField
                         required
                         id="outlined-required"
                         label="Business"
@@ -207,7 +212,7 @@ function FormCreateMember() {
                         onChange={handleOnChange}
                         helperText={errors.businessId && <p>{errors.businessId}</p>}
                         error={errors.businessId && <p>{errors.businessId}</p>}
-                    />
+                    /> */}
                     <Box sx={{ display: 'flex' }}>
                         <FormControl
                             required

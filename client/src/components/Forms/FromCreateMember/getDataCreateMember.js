@@ -10,7 +10,7 @@ const GetDataCreateMember = () => {
 
     useEffect(() => {
         dispatch(getRol())
-    }, )
+    },[])
     
 
     return {

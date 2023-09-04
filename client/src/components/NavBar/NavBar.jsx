@@ -116,7 +116,8 @@ const NavBar = () => {
           )}
           <MenuItem>Manage</MenuItem>
           <MenuItem>Manage company</MenuItem>
-          <MenuItem>Metrics</MenuItem>
+          <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
+          <MenuItem onClick={() => navigate("/superadmin")}>Super user</MenuItem>
           <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
         </Menu>
       </Toolbar>
