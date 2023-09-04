@@ -14,6 +14,7 @@ import Metricas from './views/Metricas/Metricas';
 import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 import Footer from './components/Footer/Footer';
 import Support from './components/Support/Support';
+import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -22,7 +23,6 @@ function App() {
   const location = useLocation();
   const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
   const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
-
   return (
     <div>
       {showNavBar && <NavBar />}
@@ -65,6 +65,11 @@ function App() {
         <Route
           path='/support'
           element= {<Support />}
+        />
+
+        <Route
+          path='/createbusiness'
+          element= {<AuthenticationGuard component={CreateBusiness} />}
         />
 
         <Route

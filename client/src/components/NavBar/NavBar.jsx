@@ -65,7 +65,7 @@ const NavBar = () => {
             </Button>
           </Box>
                   <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
-                  <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={handleSection}>
+                  <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={() => navigate("/createbusiness")}>
                       <Box display="flex" flexDirection="column" alignItems="center">
                           <Icon sx={{ pb: 1 }}><BusinessRoundedIcon/></Icon>
                           companies
@@ -110,7 +110,7 @@ const NavBar = () => {
             <Box> 
               <MenuItem onClick={() => navigate("/dashboard")}>Messenger</MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
-              <MenuItem onClick={() => null}>Companies</MenuItem>
+              <MenuItem onClick={() => navigate("/createbusiness")}>Companies</MenuItem>
               <MenuItem onClick={() => navigate("/createmember")}>Members</MenuItem>
             </Box>
           )}
