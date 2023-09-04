@@ -1,16 +1,14 @@
-.scrollBarStyle {
-    ::-webkit-scrollbar {
-        width: 4px; 
-    }
+::-webkit-scrollbar {
+    width: 4px; 
+}
 
 
-    ::-webkit-scrollbar-thumb {
-        background-color: #30EAB5;
-        border-radius: 6px;
-    }
+::-webkit-scrollbar-thumb {
+    background-color: #30EAB5;
+    border-radius: 6px;
+}
 
 
-    ::-webkit-scrollbar-track {
-        background-color: #f1f1f1;
-    }
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
 }
