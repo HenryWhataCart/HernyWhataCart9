@@ -17,8 +17,6 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 
 import styles from "./Contacts.module.css";
 
-
-
 const mockContacts = [
   {
     id: 1,
