@@ -1,3 +1,5 @@
+import React from "react";
+import { useBreakpoints } from "../../hooks/useBreakpoints";
 import {
   Paper,
   Table,
@@ -8,11 +10,14 @@ import {
   Avatar,
   Typography,
   Box,
+  Skeleton
 } from "@mui/material";
 import SvgIcon from "@mui/material/SvgIcon";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+
 import styles from "./Contacts.module.css";
-import { useBreakpoints } from "../../hooks/useBreakpoints";
+
+
 
 const mockContacts = [
   {
@@ -84,49 +89,88 @@ const mockContacts = [
 
 export const Contacts = () => {
   const isMobile = useBreakpoints();
-
+  const [loading, setLoading] = React.useState(true);
+  React.useEffect(() => {
+      setTimeout(() => setLoading(false),3000);
+  }, []);
   return (
     <TableContainer
-      sx={{ maxHeight: "85vh", overflow: "auto" }}
+      sx={{ maxHeight: "84vh", overflow: "auto" }}
       component={Paper}
-      className={styles.scrollBarStyle}
     >
       <Table>
         <TableBody>
-          {mockContacts.map((contact) => (
-            <TableRow key={contact.id}>
-              <TableCell
-                style={{
-                  alignItems: "center",
-                  gap: "1em",
-                }}
-              >
-                <Box display="flex" className={styles.name}>
-                  <Avatar alt={contact.name} src="imagen.png" />
-                  <Box display="flex" flexDirection="column">
-                    <Typography style={{ color: "#4E4E4E" }} fontWeight={600}>
-                      {contact.name}
-                    </Typography>
-                    {isMobile && (<Typography style={{ color: "#4E4E4E" }} fontWeight={400}>
-                      {contact.phoneNumber}
-                    </Typography>)}
-                  </Box>
-                </Box>
-              </TableCell>
-              {!isMobile && (
-                <TableCell style={{ padding: "25px" }}>
-                  <Typography style={{ color: "#4E4E4E" }}>
-                    {contact.phoneNumber}
-                  </Typography>
-                </TableCell>
-              )}
-              <TableCell style={{ padding: "25px" }}>
-                <Box display="flex" justifyContent="end">
-                  <SvgIcon component={QuestionAnswerIcon} fontSize="small" />
-                </Box>
-              </TableCell>
-            </TableRow>
-          ))}
+          {!loading
+            ? mockContacts.map((contact) => (
+                <TableRow key={contact.id}>
+                  <TableCell
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1em",
+                      padding: "25px",
+                    }}
+                  >
+                    <Box display="flex" className={styles.name}>
+                      <Avatar alt={contact.name} src="imagen.png" />
+                      <Box display="flex" flexDirection="column">
+                        <Typography
+                          style={{ color: "#4E4E4E" }}
+                          fontWeight={600}
+                        >
+                          {contact.name}
+                        </Typography>
+                        {isMobile && (
+                          <Typography
+                            style={{ color: "#4E4E4E" }}
+                            fontWeight={400}
+                          >
+                            {contact.phoneNumber}
+                          </Typography>
+                        )}
+                      </Box>
+                    </Box>
+                  </TableCell>
+                  {!isMobile && (
+                    <TableCell style={{ padding: "25px" }}>
+                      <Typography style={{ color: "#4E4E4E" }}>
+                        {contact.phoneNumber}
+                      </Typography>
+                    </TableCell>
+                  )}
+                  <TableCell style={{ padding: "25px" }}>
+                    <Box display="flex" justifyContent="end">
+                      <SvgIcon
+                        component={QuestionAnswerIcon}
+                        fontSize="small"
+                      />
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              ))
+            : Array.from(new Array(9)).map((_, index) => (
+                <TableRow key={index}>
+                  <TableCell
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1em",
+                      padding: "25px",
+                    }}
+                  >
+                    <Skeleton variant="circular" width={40} height={40} />
+                    <Skeleton width="30%" />
+                  </TableCell>
+                  <TableCell style={{ padding: "25px" }}>
+                    <Skeleton width="50%" />
+                  </TableCell>
+                  <TableCell style={{ padding: "25px" }}>
+                    <Box display="flex" justifyContent="end">
+                      <Skeleton variant="circular" width={24} height={24} />
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              ))}
         </TableBody>
       </Table>
     </TableContainer>
