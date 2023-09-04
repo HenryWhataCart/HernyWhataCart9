@@ -22,4 +22,4 @@ export const validate = (formData) => {
     }
 
     return errors
-};
+}

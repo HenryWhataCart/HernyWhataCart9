@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Menu, MenuItem, Box, Button, Icon, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './NavBar.module.css'

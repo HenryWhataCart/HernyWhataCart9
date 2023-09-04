@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { validate } from './Validate';
 import { TextField, Button, Typography, Box } from '@mui/material';
-
 import styles from './BusinessRegistration.module.css'
 
 export const BusinessRegistration = () => {
