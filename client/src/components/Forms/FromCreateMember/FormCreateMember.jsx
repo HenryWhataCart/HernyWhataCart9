@@ -1,7 +1,6 @@
-import MenuItem from '@mui/material/MenuItem';
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import styles from './CreateMember.module.css'
-import  {useDispatch, useSelector} from 'react-redux'
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import FormLabel from '@mui/material/FormLabel';
@@ -20,13 +19,29 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Select } from '@mui/material';
-// import GetDataCreateMember from './getDataCreateMember';
+import createUser from "../../../redux/actions/User/PostUser"
+import GetDataCreateMember from './getDataCreateMember';
 
 function FormCreateMember() {
 
-    // const {roles} = GetDataCreateMember()
-    const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
+    const {dispatch, roles, user} = GetDataCreateMember()
+
+    const buttonStyles = {
+        background: "#30EAB5",  
+        color: 'white',
+        textTransform: 'none',        
+        fontWeight: 'bold',
+        padding: '10px 20px',         
+      };
+    
+      const buttonStylesNotSubmit = {
+        background: "red",  
+        color: 'white',
+        textTransform: 'none',        
+        fontWeight: 'bold',
+        padding: '10px 20px',         
+      };
+
     console.log(user)
     const [formUser,setFormUser] = React.useState({
         name:"",
@@ -213,9 +228,11 @@ function FormCreateMember() {
                         <FormHelperText>You can display an error</FormHelperText>
                     </FormControl>
                 </Box>
-                <Button type='submit' variant="contained" endIcon={<SendIcon />}>
+                {isNotCompelte? <Button type='notSubmit' variant="contained" endIcon={<SendIcon />} style={buttonStylesNotSubmit} >
+                        Empty fields 
+                </Button> : <Button type='submit' variant="contained" endIcon={<SendIcon />} style={buttonStyles}>
                         Send
-                </Button> 
+                </Button> }
             </form>
         </div>
     )

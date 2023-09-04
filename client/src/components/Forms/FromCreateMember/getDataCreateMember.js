@@ -5,6 +5,7 @@ import { useEffect } from "react"
 const GetDataCreateMember = () => {
 
     const roles = useSelector((state) => state.rol)
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -14,7 +15,8 @@ const GetDataCreateMember = () => {
 
     return {
         roles,
-        dispatch
+        dispatch,
+        user
     }
 }
 
