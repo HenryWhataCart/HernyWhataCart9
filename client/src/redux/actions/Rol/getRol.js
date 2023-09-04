@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ACTION_TYPES from '../../actionTypes'
 
-const getRol = (name) => {
+const getRol = (name = '') => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`http://localhost:3001/searchRol/?name=${name}`);

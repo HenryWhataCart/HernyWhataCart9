@@ -7,12 +7,12 @@ const createBusiness = async (name,phone,email,SuperuserId) =>{
                 name,
                 phone,
                 email,
-                SuperuserId
+                // SuperuserId
             }
         })
 
-        await newBusiness.setSuperuser(SuperuserId)
-        await newBusiness.save()
+        // await newBusiness.setSuperuser(SuperuserId)
+        // await newBusiness.save()
         return newBusiness
 }
 

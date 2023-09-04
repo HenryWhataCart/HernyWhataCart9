@@ -22,6 +22,9 @@ const messages = [
   { name: 'Juan', text: 'Hola, ¿cómo estás?', timestamp: '10:00 AM', sent:true},
   { name:'Pedro',text:'Bien,gracias.¿Y tú?',timestamp:'10 :05AM',sent:false},
   {name:'Juan',text:'También bien,gracias.',timestamp:'10 :10AM',sent:true},
+  { name: 'Juan', text: 'Hola, ¿cómo estás?', timestamp: '10:00 AM', sent:true},
+  { name:'Pedro',text:'Bien,gracias.¿Y tú?',timestamp:'10 :05AM',sent:false},
+  {name:'Juan',text:'También bien,gracias.',timestamp:'10 :10AM',sent:true},
 ]
 
 const Conversation = () => {
@@ -33,9 +36,9 @@ const Conversation = () => {
     }
 
     return (
-        <Grid container sx={{bgcolor:"white"}}>
+        <Grid container sx={{bgcolor:"white", boxShadow: 5}}>
             <Grid item xs={12} className={styles.scrollBarStyle}>
-                <Box sx={{ height:'83vh',overflow:'auto', px :2}}>
+                <Box sx={{ height:'80vh',overflow:'auto', px :2}}>
                     <List>
                         {messages.map((message,index)=>(
                             <React.Fragment key={index}>
@@ -74,7 +77,6 @@ const Conversation = () => {
                         ))}
                     </List>
                 </Box>
-            </Grid>
             <Grid item xs={12}>
                 <Box sx={{display:'flex' ,alignItems :'center', bgcolor:"white"}}>
                     <TextField
@@ -94,6 +96,7 @@ const Conversation = () => {
                         <SendIcon/>
                     </IconButton>
                 </Box>
+            </Grid>
             </Grid>
         </Grid>
     )
