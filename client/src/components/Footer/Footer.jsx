@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/system";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -24,6 +25,12 @@ const ResponsiveFooter = styled(Box)(({ theme }) => ({
 }));
 
 export default function Footer() {
+  const navigate = useNavigate();
+
+  const handleSupportClick = () => {
+    navigate("/support");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <ResponsiveFooter
@@ -36,7 +43,6 @@ export default function Footer() {
       >
         <Container maxWidth="lg">
           <Grid container spacing={2}>
-            {/* Columna de botón de soporte */}
             <Grid
               item
               xs={12}
@@ -52,11 +58,14 @@ export default function Footer() {
                 },
               }}
             >
-              <Button variant="contained" color="customGreen">
+              <Button
+                variant="contained"
+                color="customGreen"
+                onClick={handleSupportClick}
+              >
                 Support
               </Button>
             </Grid>
-            {/* Columna de texto de copyright */}
             <Grid
               item
               xs={12}
@@ -71,9 +80,9 @@ export default function Footer() {
             >
               <Typography variant="body2" color="text.primary">
                 {"Copyright © "}
-                <Link color="inherit" href="https://whatacart.ai/">
+                <MuiLink color="inherit" href="https://whatacart.ai/">
                   Whatacart
-                </Link>{" "}
+                </MuiLink>{" "}
                 {new Date().getFullYear()}
               </Typography>
             </Grid>
