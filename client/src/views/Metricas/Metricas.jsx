@@ -39,7 +39,7 @@ const Metricas = () => {
         <div >
           <Paper >
 
-            <TableContainer sx={{ height: '87vh', overflow: 'auto' }} component={Paper}>
+            <TableContainer sx={{ height:"70vh",overflow: 'auto', pb: 1 }} component={Paper}>
                     <Table  >
         <TableHead>
           <TableRow>

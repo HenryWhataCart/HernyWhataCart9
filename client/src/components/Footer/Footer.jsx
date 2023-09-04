@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/system";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -80,9 +80,9 @@ export default function Footer() {
             >
               <Typography variant="body2" color="text.primary">
                 {"Copyright © "}
-                <MuiLink color="inherit" href="https://whatacart.ai/">
+                <Link color="inherit" href="https://whatacart.ai/">
                   Whatacart
-                </MuiLink>{" "}
+                </Link>{" "}
                 {new Date().getFullYear()}
               </Typography>
             </Grid>

@@ -16,10 +16,15 @@ export default function Support() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "100vh",
+        height: "75vh",
+        bgcolor: "white",
+        borderRadius: 2,
+        p: 1,
+        mb:3,
+        boxShadow: 3,
       }}
     >
-      <Box sx={{ maxWidth: 600, mx: "auto", p: 2 }}>
+      <Box sx={{  mx: "auto", p: 2 }}>
         <Typography variant="h4" align="center" mb={2} color="#333">
           Contact Us
         </Typography>
@@ -68,3 +73,5 @@ export default function Support() {
     </Box>
   );
 }
+
+

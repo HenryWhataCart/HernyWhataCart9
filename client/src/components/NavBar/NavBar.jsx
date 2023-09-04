@@ -54,7 +54,7 @@ const NavBar = () => {
             </Button>
         </Box>
         
-        {/* <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
+        <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
             <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={handleSection}>
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <Icon sx={{ pb: 1 }}><BusinessRoundedIcon/></Icon>
@@ -67,7 +67,7 @@ const NavBar = () => {
                     users
                 </Box>
             </Button>
-        </Box> */}
+        </Box>
 
 
         {/* Menú */}
