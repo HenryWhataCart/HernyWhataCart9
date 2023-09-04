@@ -83,6 +83,10 @@ const reducer = (state = initialState, action) => {
 
         // Rol actions
         case ACTION_TYPES.GET_ROL_SUCCESS:
+            return{
+                ...state,
+                rol:action.payload
+            }
         case ACTION_TYPES.GET_ROL_FAILURE:
         return state;
         case ACTION_TYPES.CREATE_ROL_SUCCESS:
@@ -93,7 +97,10 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.CREATE_ROL_FAILURE:
         return state;
         case ACTION_TYPES.DELETE_ROL_SUCCESS:
-        return state;
+        return{
+            ...state,
+            rol:state.rol.filter(rols => rols.id !== action.payload)
+        };
         case ACTION_TYPES.DELETE_ROL_FAILURE:
         return state;
 
