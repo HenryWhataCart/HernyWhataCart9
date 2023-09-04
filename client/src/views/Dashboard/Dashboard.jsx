@@ -1,12 +1,13 @@
 import { Box, Grid } from "@mui/material"
-import styles from './Dashboard.module.css'
+import './Dashboard.module.css'
 import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
+import Footer from "../../components/Footer/Footer"
 
 const Dashboard = () => {
     return (
-        <Box className={styles.dashboardContainer}>
-            <Grid container>
+        <Box>
+            <Grid container sx={{mb: 2}}>
                 <Grid item xs={4}>
                     <ChatList />
                 </Grid>
@@ -14,6 +15,7 @@ const Dashboard = () => {
                     <Conversation />
                 </Grid>
             </Grid>
+            <Footer />
         </Box>
     )
 }

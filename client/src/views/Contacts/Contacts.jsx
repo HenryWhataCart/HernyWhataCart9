@@ -90,9 +90,9 @@ export const Contacts = () => {
       setTimeout(() => setLoading(false),3000);
   }, []);
   return (
-      <TableContainer sx={{ height: '90vh', overflow: 'auto' }} component={Paper}>
+      <TableContainer sx={{ height: '84vh', overflow: 'auto', mb: 2, boxShadow: 5 }} component={Paper}>
           <Table>
-              <TableBody sx={{}}>
+              <TableBody>
                   {!loading ? mockContacts.map((contact) => (
                       <TableRow key={contact.id}>
                           <TableCell

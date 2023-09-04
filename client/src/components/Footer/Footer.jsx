@@ -1,9 +1,8 @@
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import { Box } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
@@ -81,7 +80,7 @@ export default function Footer() {
               <Typography variant="body2" color="text.primary">
                 {"Copyright © "}
                 <Link color="inherit" href="https://whatacart.ai/">
-                  Whatacart
+                  WhataCart
                 </Link>{" "}
                 {new Date().getFullYear()}
               </Typography>
