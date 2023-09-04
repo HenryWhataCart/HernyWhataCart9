@@ -1,17 +1,31 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { validate } from './Validate';
-import { TextField, Button, Typography, Box } from '@mui/material';
-
+import { Box, TextField, Button, Typography} from '@mui/material';
+import { Table, TableContainer, TableBody, TableRow, TableCell, Paper, Icon , TableHead } from '@mui/material';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import styles from './BusinessRegistration.module.css'
+import { useDispatch } from 'react-redux';
+import {createBusiness} from '../../../redux/actions/Business/createBusiness'
+import {useSelector} from 'react-redux'
+import {getBusiness} from '../../../redux/actions/Business/getBusiness'
+import deleteBusiness from '../../../redux/actions/Business/deleteBusiness'
 
 export const CreateBusiness = () => {
+
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: '',
+    phone: '',
   });
 
+  const business = useSelector(state=>state.business)
   const [errors, setErrors] = useState({});
+
+  useEffect(()=>{
+    dispatch(getBusiness())
+   },[]) 
 
   const handleChange = (event) => {
     setFormData({
@@ -28,8 +42,14 @@ export const CreateBusiness = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const error = validate(formData);
-    setErrors(error)
+    // const error = validate(formData);
+    // setErrors(error)
+    dispatch(createBusiness(formData))
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+      });
     };
 
   const buttonStyles = {
@@ -37,8 +57,12 @@ export const CreateBusiness = () => {
     color: "white",     
   };
 
+  const onhandleDelete=(id)=>{
+    dispatch(deleteBusiness(id))
+}
+
   return (
-    <Box display="flex">
+    <Box display="flex-wrap">
         <form onSubmit={handleSubmit} className={styles.container}>
           <Box display="flex"><Typography variant="h4" align="center" style={{ color: "#4E4E4E" }} fontWeight={500} fontSize="25px" >
               ¡Welcome Business!</Typography>
@@ -54,6 +78,19 @@ export const CreateBusiness = () => {
             helperText={errors.name && <p>{errors.name}</p>}
             error={errors.name && <p>{errors.name}</p>}
           />
+
+          <TextField
+            label="Phone"
+            variant="outlined"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+            helperText={errors.password && <p>{errors.password}</p>}
+            error={errors.password && <p>{errors.password}</p>}
+          />
+
           <TextField
             label="Email"
             variant="outlined"
@@ -65,30 +102,7 @@ export const CreateBusiness = () => {
             helperText={errors.email && <p>{errors.email}</p>}
             error={errors.email && <p>{errors.email}</p>}
           />
-          <TextField
-            label="Password"
-            variant="outlined"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            helperText={errors.password && <p>{errors.password}</p>}
-            error={errors.password && <p>{errors.password}</p>}
-          />
-          <TextField
-            label="Repeat Password"
-            variant="outlined"
-            type="password"
-            name="repeatpassword"
-            value={formData.repeatpassword}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            helperText={errors.repeatPassword && <p>{errors.repeatPassword}</p>}
-            error={errors.repeatPassword && <p>{errors.repeatPassword}</p>}
-          />
+          
           <Button
             variant="contained"
             type="submit"
@@ -97,6 +111,28 @@ export const CreateBusiness = () => {
             Create
           </Button>
         </form>
-        </Box>
+
+        <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} sx={{bgcolor:"white", borderRadius:2, p:1, boxShadow:3}}>
+        <Typography  sx={{ color: "gray", textAlign: "center", fontSize:"1.3rem", mt:1.5, pb:1 }}>{"All Business"}</Typography>
+        <TableContainer sx={{ height:"41vh",overflow: 'auto', pb: 1, width:"35vw" }} component={Paper}>
+        <Table  >
+        <TableBody  >
+          {business?.map((row) => (
+            <TableRow key={row?.id} >
+              <TableCell sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Box>{row?.name}</Box>
+                <Box sx={{display:"flex"}}>
+                  <Box><Icon><DeleteForeverRoundedIcon onClick={()=>onhandleDelete(row?.id)}></DeleteForeverRoundedIcon></Icon></Box>
+                  {/* <Box><Icon><EditRoundedIcon onClick={()=>onhandleUpdate(row.id,row.name,row.email,row.password)}></EditRoundedIcon></Icon></Box> */}
+                </Box>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      </TableContainer>
+    </Box>
+  </Box>
+        
   );
 };

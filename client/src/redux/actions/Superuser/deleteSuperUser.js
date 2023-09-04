@@ -8,9 +8,10 @@ export const deleteSuperUserRequest = () => {
   };
 };
 
-export const deleteSuperUserSuccess = () => {
+export const deleteSuperUserSuccess = (userId) => {
   return {
-    type: ACTION_TYPES.DELETE_SUPERUSER_SUCCESS
+    type: ACTION_TYPES.DELETE_SUPERUSER_SUCCESS,
+    payload:userId
   };
 };
 
@@ -31,7 +32,7 @@ export const deleteSuperUser = (userId) => {
       // Realizar la petición DELETE a la API
       await axios.delete(url);
 
-      dispatch(deleteSuperUserSuccess());
+      dispatch(deleteSuperUserSuccess(userId));
     } catch (error) {
       dispatch(deleteSuperUserFailure(error.message));
     }

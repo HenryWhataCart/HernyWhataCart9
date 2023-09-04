@@ -14,16 +14,20 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_SUPERUSER_SUCCESS:
         return {
             ...state,
-            superUser: [...state.superUser, action.payload]
+            superUser: [...state.superUser, ...action.payload]
         };
         case ACTION_TYPES.GET_SUPERUSER_FAILURE:
         return state;
         case ACTION_TYPES.POST_SUPERUSER_SUCCESS:
-        return state;
+        return {
+            ...state,superUser:[...state.superUser, action.payload]
+        };
         case ACTION_TYPES.POST_SUPERUSER_FAILURE:
         return state;
         case ACTION_TYPES.DELETE_SUPERUSER_SUCCESS:
-        return state;
+        return {
+            ...state, superUser: state.superUser.filter(superU => superU.id !== action.payload)
+        };
         case ACTION_TYPES.DELETE_SUPERUSER_FAILURE:
         return state;
         case ACTION_TYPES.PUT_SUPERUSER_SUCCESS:
@@ -35,16 +39,20 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_BUSINESS_SUCCESS:
         return {
             ...state,
-            business: [...state.business, action.payload]
+            business: [...state.business, ...action.payload]
         };
         case ACTION_TYPES.GET_BUSINESS_FAILURE:
         return state;
         case ACTION_TYPES.CREATE_BUSINESS_SUCCESS:
-        return state;
+        return {
+            ...state
+        };
         case ACTION_TYPES.CREATE_BUSINESS_FAILURE:
         return state;
         case ACTION_TYPES.DELETE_BUSINESS_SUCCESS:
-        return state;
+        return {
+            ...state, business: state.business.filter(business => business.id !== action.payload)
+        };
         case ACTION_TYPES.DELETE_BUSINESS_FAILURE:
         return state;
         case ACTION_TYPES.UPDATE_BUSINESS_SUCCESS:

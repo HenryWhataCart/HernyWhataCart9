@@ -21,7 +21,7 @@ export const getBusinessFailure = (error) => {
   };
 };
 
-export const getBusiness = (name) => {
+export const getBusiness = (name='') => {
   return async (dispatch) => {
     try {
       dispatch(getBusinessRequest());

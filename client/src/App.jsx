@@ -45,20 +45,24 @@ function App() {
           <Route
           path='/contacts'
           element={<AuthenticationGuard component={Contacts} />}
+          // element={<Contacts />}
           />
 
           <Route
           path='/createmember'
           element={<AuthenticationGuard component={FormCreateMember} />}
+          // element={<FormCreateMember />}
         />
         
         <Route
           path='/metrics'
           element={<AuthenticationGuard component={Metricas} />}
+          // element={<Metricas />}
         />
         
         <Route
           path='/superadmin'
+          // element={<NewSuperAdmin />}
           element={<AuthenticationGuard component={NewSuperAdmin} />}
         />
         
@@ -70,6 +74,7 @@ function App() {
         <Route
           path='/createbusiness'
           element= {<AuthenticationGuard component={CreateBusiness} />}
+          // element= {<CreateBusiness />}
         />
 
         <Route
