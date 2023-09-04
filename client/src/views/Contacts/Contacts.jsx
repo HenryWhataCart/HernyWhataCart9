@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
 import {
   Paper,
@@ -87,8 +87,8 @@ const mockContacts = [
 
 export const Contacts = () => {
   const isMobile = useBreakpoints();
-  const [loading, setLoading] = React.useState(true);
-  React.useEffect(() => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
       setTimeout(() => setLoading(false),3000);
   }, []);
   return (

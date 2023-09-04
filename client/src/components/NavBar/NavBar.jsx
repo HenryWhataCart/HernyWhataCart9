@@ -7,8 +7,6 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import ContactsRoundedIcon from '@mui/icons-material/ContactsRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useBreakpoints } from '../../hooks/useBreakpoints';
-// import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
-// import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -64,21 +62,6 @@ const NavBar = () => {
             </Button>
           </Box>
         )}
-
-        {/* <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
-            <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={handleSection}>
-                <Box display="flex" flexDirection="column" alignItems="center">
-                    <Icon sx={{ pb: 1 }}><BusinessRoundedIcon/></Icon>
-                    companies
-                </Box>
-            </Button>
-            <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={handleContacts}>
-                <Box display="flex" flexDirection="column" alignItems="center">
-                    <Icon sx={{ pb: 1 }}><PeopleRoundedIcon/></Icon>
-                    users
-                </Box>
-            </Button>
-        </Box> */}
 
         {/* Menú */}
         <IconButton

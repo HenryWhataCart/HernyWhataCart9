@@ -1,17 +1,25 @@
-export const validate = (input) => {
-    let errors = {};
-    if (
-      !input.name ||
-      !/^[a-zA-Z\s]*$/.test(input.name) ||
-      input.name.length < 3 ||
-      input.name.length >= 25
-    )
-      errors.name = "Must contain 3 to 25 characters, letters only"; //patrón utilizado para buscar cadenas que consisten únicamente en caracteres alfabéticos (mayúsculas y minúsculas) y caracteres de espacio en blanco.
-    if (!input.difficulty) errors.difficulty = "Difficulty is required";
-    if (!input.duration) errors.duration = "Duration is required";
-    if (!input.season) errors.season = "Season is required";
-    if (input.countryId.length < 1)
-      errors.countryId = "Must select at least 1 Country";
-    return errors;
-  };
-  
+import { Typography } from "@mui/material";
+
+export const validate = (formData) => {
+    let errors = {}
+
+    if(formData.name.length > 30) errors.name = 'Must be less than 30 characters'
+
+    if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) errors.email = 'Invalid email'
+
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(formData.password)) {
+        errors.password = (
+            <Typography>
+                - At least 8 characters long.<br />
+                - At least one capital letter.<br />
+                - May contain special characters (e.g., !@#\$%^&*()_+).
+            </Typography>
+        );
+    }
+
+    if (formData.password !== formData.repeatPassword) {
+      errors.repeatPassword = 'Passwords do not match';
+    }
+
+    return errors
+};
