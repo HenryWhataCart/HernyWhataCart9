@@ -27,7 +27,10 @@ export const createBusiness = (business) => {
       const url = 'http://localhost:3001/createBusiness/';
       const response = await axios.post(url, business);
       const createBusiness = response.data;
-      dispatch(createBusinessSuccess(createBusiness));
+      dispatch({
+        type:ACTION_TYPES.CREATE_BUSINESS_SUCCESS,
+        payload:createBusiness
+      });
     } catch (error) {
       dispatch(createBusinessFailure(error.message));
     }

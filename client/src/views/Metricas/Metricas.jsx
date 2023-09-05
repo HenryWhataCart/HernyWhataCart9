@@ -28,18 +28,18 @@ const Metricas = () => {
     { id: 5, name: 'Other Offer', metrica: 85, description: "The people who received the message returned to continue buying" },
   ];
   return (
-    <Box >
-      <div >
-        <div  >
+    <Box sx={{display:"flex", height:"80vh", width:"70vw", justifyContent:"center", alignItems:"center", mt:4, mb:4 }}>
+      <Box sx={{ bgcolor: "white", borderRadius: 2, p: 1, boxShadow: 3 }}>
+        <Box >
           <Box display="flex"   sx={{color:"black", m:2}}>
             <Icon sx={{ color: "black", mx: 1, alignItems:"start"}}><BusinessRoundedIcon/></Icon>
                     Company: Apple
                 </Box>
-        </div>
-        <div >
+        </Box>
+        <Box >
           <Paper >
 
-            <TableContainer sx={{ height:"70vh",overflow: 'auto', pb: 1 }} component={Paper}>
+            <TableContainer sx={{ height:"75vh",overflow: 'auto', pb: 1 }} component={Paper}>
                     <Table  >
         <TableHead>
           <TableRow>
@@ -64,12 +64,10 @@ const Metricas = () => {
         </TableBody>
       </Table>
       </TableContainer>
-    </Paper>
-  );
-      </div>
-      </div>
+    </Paper>);
       </Box>
-      
+      </Box>
+      </Box>
     )
 }
 
