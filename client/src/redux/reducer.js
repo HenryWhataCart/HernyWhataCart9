@@ -30,7 +30,18 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.DELETE_SUPERUSER_FAILURE:
         return state;
         case ACTION_TYPES.PUT_SUPERUSER_SUCCESS:
-        return state;
+            // const index = state.superUser.indexOf(action.payload.id)
+            state.superUser.forEach((superU)=>{
+                if(superU.id === action.payload.id){
+                    superU.name = action.payload.name
+                    superU.email = action.payload.email
+                    superU.password = action.payload.password
+                }
+            })
+        return {
+            ...state,
+            superUser: [...state.superUser]
+        };
         case ACTION_TYPES.PUT_SUPERUSER_FAILURE:
         return state;
 

@@ -7,9 +7,10 @@ export const putSuperUserRequest = () => {
   };
 };
 
-export const putSuperUserSuccess = () => {
+export const putSuperUserSuccess = (updatedFields) => {
   return {
-    type: ACTION_TYPES.PUT_SUPERUSER_SUCCESS
+    type: ACTION_TYPES.PUT_SUPERUSER_SUCCESS,
+    payload: updatedFields
   };
 };
 
@@ -27,7 +28,7 @@ export const putSuperUser = (userId, updatedFields) => {
 
       const url = `http://localhost:3001/updateSuperuser/${userId}`;
       await axios.put(url, updatedFields);
-      dispatch(putSuperUserSuccess());
+      dispatch(putSuperUserSuccess(updatedFields));
     } catch (error) {
       dispatch(putSuperUserFailure(error.message));
     }
