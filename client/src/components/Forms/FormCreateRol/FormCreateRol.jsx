@@ -1,12 +1,11 @@
-import { AlertTitle, Box, Button, Snackbar, TextField, Typography } from '@mui/material';
+import { Box, Button, Snackbar, TextField, Typography } from '@mui/material';
 import { Icon, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Alert from '@mui/material/Alert';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import SendIcon from '@mui/icons-material/Send';
-import Swal from 'sweetalert2'
 import createRol from '../../../redux/actions/Rol/postRol';
 import deleteRol from '../../../redux/actions/Rol/deleteRol'
 import getRol from '../../../redux/actions/Rol/getRol';
@@ -35,19 +34,6 @@ function FormCreateRol() {
             [property]: value
         });
         }
-    
-        //---------------------------------TOAST----------------
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
         
         const onHandleSubmit = (event) => {
             event.preventDefault();
