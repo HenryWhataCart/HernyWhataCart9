@@ -1,32 +1,37 @@
 /* eslint-disable no-unused-vars */
+
 import * as React from 'react';
-import styles from './CreateMember.module.css'
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+
+import { Alert, AlertTitle, Box, Button, Snackbar, TableHead, TextField, Typography } from '@mui/material';
+import { Icon, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+
 import Checkbox from '@mui/material/Checkbox';
-import Box from '@mui/material/Box';
-import validate from './Validation'
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 import FormHelperText from '@mui/material/FormHelperText';
-import TextField from '@mui/material/TextField';
+import FormLabel from '@mui/material/FormLabel';
+import GetDataCreateMember from './getDataCreateMember';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import MoodBadRoundedIcon from '@mui/icons-material/MoodBadRounded';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { Select } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Select } from '@mui/material';
 import createUser from "../../../redux/actions/User/PostUser"
-import GetDataCreateMember from './getDataCreateMember';
-
+import deleteUser from '../../../redux/actions/User/deleteUser';
+import styles from './CreateMember.module.css'
+import validate from './Validation'
 
 function FormCreateMember() {
 
     const { dispatch,roles, user} = GetDataCreateMember()
-    
+    const [open,setOpen] = React.useState(false)
+    const [deleted,setDeleted] = React.useState(false)
 
     const buttonStyles = {
         background: "#30EAB5",  
@@ -65,23 +70,6 @@ function FormCreateMember() {
     }
 
 
-    const onHandleSubmit = (event) =>{
-        console.log("entre");
-        event.preventDefault()
-        dispatch(createUser(formUser))
-        alert('Your user '+ formUser.name +' has been created')
-        setFormUser({
-            name:"",
-            email:"",
-            password:"",
-            phone:"",
-            privilege:"",
-            rolIdRow:[],
-            businessId:""
-        })
-    }
-    
-
     const isNotCompelte = 
     !formUser.name ||
     !formUser.email||
@@ -100,27 +88,59 @@ function FormCreateMember() {
         event.preventDefault();
     };
 
+    
     // --------------------------Roles------------------------------------------
 
-    const [state, setState] = React.useState({
-        gilad: false,
-        jason: false,
-        antoine: false,
-        juan:false
-    });
+    const initialRolState = {}
+    roles.forEach((rol)=>{
+        initialRolState[rol.id] = false
+    })
+    
+    const [rolCheck,setRolCheck] = React.useState(initialRolState)
 
-    const handleChange = (event) => {
-        setState({
-        ...state,
-        [event.target.name]: event.target.checked,
-        });
-    };
+    const handleRolCheck = (event) =>{
+        const roleId = event.target.value
+        const isChecked = event.target.checked
+        
+        setRolCheck({
+            ...rolCheck,
+            [roleId]:isChecked
+        })
+    }
 
-    const { gilad, jason, antoine,juan } = state;
-    const error = [gilad, jason, antoine,juan].filter((v) => v).length >= 4 || [gilad, jason, antoine,juan].filter((v) => v).length === 0  ;
+    const error = roles.filter((v) => v).length >= 4 || roles.filter((v) => v).length === 0  ;
+    //-------------------------------------------------------------------------------------------
 
+    const onHandleSubmit = (event) =>{
+        console.log("entre");
+        event.preventDefault()
+        
+        dispatch(createUser(formUser))
+        alert('Your user '+ formUser.name +' has been created')
+        setFormUser({
+            name:"",
+            email:"",
+            password:"",
+            phone:"",
+            privilege:"",
+            rolIdRow:[],
+            businessId:""
+        })
+        
+        const selectedRoles = Object.keys(rolCheck).filter(rolId => rolCheck[rolId])
+
+        setFormUser({
+            ...formUser,
+            rolIdRow:selectedRoles
+        })
+    }
+
+    const onhandleDelete = (id) =>{
+        dispatch(deleteUser(id))
+    }
+    
     return (
-        <div>
+        <div className={styles.containerGeneral}>
             <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
                 <TextField
                         required
@@ -176,7 +196,7 @@ function FormCreateMember() {
                     <TextField
                         required
                         id="outlined-number"
-                        label="Number"
+                        label="Phone"
                         type="phone"
                         InputLabelProps={{
                         shrink: true,
@@ -223,12 +243,14 @@ function FormCreateMember() {
                         >
                         <FormLabel component="legend">Select at least 3</FormLabel>
                             <FormGroup>
-                                <FormControlLabel
+                                {roles.map((rol)=>(
+                                    <FormControlLabel
                                     control={
-                                    <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+                                    <Checkbox checked={rolCheck[rol.id]} onChange={handleRolCheck} name={rol.id} value={rol.id} />
                                     }
-                                    label="Gilad Gray"
+                                    label={rol.name}
                                 />
+                                ))}
                             </FormGroup>
                         <FormHelperText>You can display an error</FormHelperText>
                     </FormControl>
@@ -238,7 +260,52 @@ function FormCreateMember() {
                 </Button> : <Button type='submit' variant="contained" endIcon={<SendIcon />} style={buttonStyles}>
                         Send
                 </Button> }
+                <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
+                    <Alert variant="outlined" severity="success">
+                        The role was created successfully!
+                    </Alert>
+                </Snackbar>
             </form>
+            <div className = {styles.containerTable}>
+                    <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} sx={{bgcolor:"white", borderRadius:2, p:1, boxShadow:3, height:"50vh", width:"35vw"}}>
+                        <Typography  sx={{ color: "gray", textAlign: "center", fontSize:"1.3rem", mt:1.5, pb:1 , width:"35vw"}}>{"All Users"}</Typography>
+                        <TableContainer sx={{ height:"41vh",overflow: 'auto', pb: 1, width:"35vw",justifyContent:'center' }} component={Paper}>
+                        <Table >
+                        <TableBody >
+                        {user.length === 0 ? (
+                            <Box className={styles.icon}>
+                                <Icon>
+                                    <MoodBadRoundedIcon />
+                                </Icon>
+                                <Typography  sx={{ color: "gray", textAlign: "center", fontSize:"1.3rem", mt:1.5, pb:1 , width:"35vw"}}>{"There are no registered users"}</Typography>
+                            </Box>
+                            ) : (
+                            user.map((users) => (
+                                <TableRow key={users.id}>
+                                <TableCell sx={{ display: "flex", justifyContent: "space-between" }}>
+                                    <Box>{users.name}</Box>
+                                    <Box>{users.privilege}</Box>
+                                    <Box sx={{ display: "flex" }}>
+                                    <Box sx={{ cursor: "pointer" }}>
+                                        <Icon>
+                                        <DeleteForeverRoundedIcon onClick={() => onhandleDelete(users.id)} />
+                                        </Icon>
+                                    </Box>
+                                    </Box>
+                                </TableCell>
+                                </TableRow>
+                            ))
+                            )}
+                            <Snackbar open={deleted} autoHideDuration={3000} onClose={() => setDeleted(false)}>
+                                <Alert variant="outlined" severity="warning">
+                                    Role removed!
+                                </Alert>
+                            </Snackbar>
+                        </TableBody>
+                    </Table>
+                    </TableContainer>
+                    </Box>
+            </div>
         </div>
     )
 }
