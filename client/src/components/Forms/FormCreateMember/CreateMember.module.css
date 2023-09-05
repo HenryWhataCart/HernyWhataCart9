@@ -1,12 +1,65 @@
-.containerFormMember{
-    display:flex;
+
+.containerGeneral {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem auto; 
+    max-width: 1200px; 
+  }
+  
+
+  .containerFormMember {
+    flex: 1; 
+    display: flex;
     flex-direction: column;
     gap: 2rem;
-    justify-content: center;
-    margin: 1rem 27rem;
-    border: 1px solid black;
+    padding: 2rem;
+    border: 1px solid rgb(215, 213, 213);
     border-radius: 1rem;
-    box-shadow: 0 0 10px black;
-    padding: 3rem;
-    max-width: 200%;
-}
+    box-shadow: 0 0 2px rgb(0, 0, 0);
+    background-color: white;
+    min-width: 0;
+    width: 100%; 
+    max-width: 400px;
+  }
+  
+
+  .containerTable {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid rgb(215, 213, 213);
+    border-radius: 1rem;
+    box-shadow: 0 0 2px rgb(0, 0, 0);
+    background-color: white;
+    margin-bottom: 2rem;
+    min-width: 0; 
+    width: 100%; 
+    max-width: 800px; 
+  }
+  
+
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    flex-direction: column;
+  }
+  
+
+  @media (max-width: 768px) {
+    .containerGeneral {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .containerFormMember, .containerTable {
+      width: 100%; 
+
+    }
+  }
+  

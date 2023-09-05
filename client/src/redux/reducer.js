@@ -75,12 +75,15 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_USER_SUCCESS:
         return {
             ...state,
-            user: [...state.user, action.payload]
+            user: action.payload
         };
         case ACTION_TYPES.GET_USER_FAILURE:
         return state;
         case ACTION_TYPES.CREATE_USER_SUCCESS:
-        return state;
+        return {
+            ...state,
+            user:[...state.user,action.payload]
+        };
         case ACTION_TYPES.CREATE_USER_FAILURE:
         return state;
         case ACTION_TYPES.UPDATE_USER_SUCCESS:
@@ -88,7 +91,10 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.UPDATE_USER_FAILURE:
         return state;
         case ACTION_TYPES.DELETE_USER_SUCCESS:
-        return state;
+        return {
+            ...state,
+            user:state.user.filter(users => users.id !== action.payload)
+        };
         case ACTION_TYPES.DELETE_USER_FAILURE:
         return state;
 
