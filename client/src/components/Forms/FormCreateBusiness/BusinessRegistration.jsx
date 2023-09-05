@@ -75,12 +75,12 @@ console.log(business)
 
   return (
     <Box display="flex" gap={2.5} m={11} sx={{ justifyContent: "center", alignItems: "center", textAlign:"center", justifyItems:"center" }}>
-      <Box sx={{bgcolor:"white", borderRadius:2, p:1, boxShadow:3, height:"55vh", width:"29vw"}} >
+      <Box sx={{bgcolor:"white", borderRadius:2, p:1, boxShadow:3, height:"60vh", width:"29vw"}} >
         <form onSubmit={handleSubmit}>
-          <Box display="flex" sx={{p:1, flexDirection:"column"}}><Typography variant="h4"  sx={{color:"gray", fontSize:"1.5rem", textAlign:"center",justifyContent:"center", mt:1, pb:1, mb:1}}>
+          <Box display="flex" sx={{p:1, flexDirection:"column"}}><Typography variant="h4"  sx={{color:"gray", fontSize:"1.5rem", textAlign:"center",justifyContent:"center", mt:1}}>
               New Business</Typography>
           </Box>
-          <Box sx={{mt:0.5, p:1, pb:2}}>
+          <Box sx={{mt:0.5, p:1}}>
             <TextField
             label="Business Name"
             variant="outlined"
@@ -117,16 +117,16 @@ console.log(business)
             error={errors.email && <p>{errors.email}</p>}
           />
           </Box>
-          <Box sx={{m:-2}}>
+          <Box sx={{mb:1}}>
             {isNotCompelte? <Button type='notSubmit' variant="contained"  style={buttonStylesNotSubmit} >
                         Empty fields 
-                </Button> : <Button type='submit' variant="contained"  style={buttonStyles}>
+                </Button> : <Button type='submit' variant="contained"  style={buttonStyles}  >
                         Send
                 </Button> }
           </Box>
         </form>
       </Box>
-      <Box sx={{ bgcolor: "white", borderRadius: 2, p: 1, boxShadow: 3, alignItems:"center", justifyContent:"center", pb:8,height:"48vh" }}>
+      <Box sx={{ bgcolor: "white", borderRadius: 2, p: 1, boxShadow: 3, alignItems:"center", justifyContent:"center", pb:8,height:"54vh" }}>
         
         <Typography  sx={{ color: "gray", textAlign: "center", fontSize:"1.3rem", mt:1.5, pb:1 }}>{"All Business"}</Typography>
         <TableContainer sx={{ height:"41vh",overflow: 'auto', pb: 1, width:"35vw" }} component={Paper}>
