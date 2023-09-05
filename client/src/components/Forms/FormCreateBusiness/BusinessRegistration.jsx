@@ -25,7 +25,7 @@ export const CreateBusiness = () => {
 
   useEffect(()=>{
     dispatch(getBusiness())
-   },[]) 
+  },[]) 
 
   const handleChange = (event) => {
     setFormData({
@@ -60,6 +60,8 @@ export const CreateBusiness = () => {
   const onhandleDelete=(id)=>{
     dispatch(deleteBusiness(id))
 }
+
+console.log(business)
 
   return (
     <Box display="flex-wrap">
@@ -122,7 +124,7 @@ export const CreateBusiness = () => {
               <TableCell sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>{row?.name}</Box>
                 <Box sx={{display:"flex"}}>
-                  <Box><Icon><DeleteForeverRoundedIcon onClick={()=>onhandleDelete(row?.id)}></DeleteForeverRoundedIcon></Icon></Box>
+                  <Box  sx={{cursor:"pointer"}}><Icon><DeleteForeverRoundedIcon onClick={()=>onhandleDelete(row?.id)}></DeleteForeverRoundedIcon></Icon></Box>
                   {/* <Box><Icon><EditRoundedIcon onClick={()=>onhandleUpdate(row.id,row.name,row.email,row.password)}></EditRoundedIcon></Icon></Box> */}
                 </Box>
               </TableCell>

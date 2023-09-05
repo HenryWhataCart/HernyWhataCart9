@@ -5,7 +5,6 @@ const getRol = (name = '') => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`http://localhost:3001/searchRol/?name=${name}`);
-
       dispatch({
         type: ACTION_TYPES.GET_ROL_SUCCESS,
         payload: response.data
