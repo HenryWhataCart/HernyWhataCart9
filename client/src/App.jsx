@@ -15,6 +15,7 @@ import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 import Footer from './components/Footer/Footer';
 import Support from './components/Support/Support';
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
+import SuperAdmin from './views/SuperAdmin/SuperAdmin';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -22,7 +23,7 @@ function App() {
 
   const location = useLocation();
   const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
-  const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
+  const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard' && location.pathname !== "/superadmin"
   return (
     <div>
       {showNavBar && <NavBar />}
@@ -62,6 +63,12 @@ function App() {
         
         <Route
           path='/superadmin'
+          element={<SuperAdmin />}
+          // element={<AuthenticationGuard component={SuperAdmin} />}
+        />
+
+        <Route
+          path='/createsuperadmin'
           // element={<NewSuperAdmin />}
           element={<AuthenticationGuard component={NewSuperAdmin} />}
         />
