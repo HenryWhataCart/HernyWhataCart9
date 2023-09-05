@@ -1,6 +1,5 @@
 import ACTION_TYPES from './actionTypes'
 
-
 const initialState = {
     superUser: [],
     business: [],
@@ -39,13 +38,14 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_BUSINESS_SUCCESS:
         return {
             ...state,
-            business: [...state.business, ...action.payload]
+            business: action.payload
         };
         case ACTION_TYPES.GET_BUSINESS_FAILURE:
         return state;
         case ACTION_TYPES.CREATE_BUSINESS_SUCCESS:
         return {
-            ...state
+            ...state,
+            business:[...state.business,action.payload]
         };
         case ACTION_TYPES.CREATE_BUSINESS_FAILURE:
         return state;
@@ -83,18 +83,24 @@ const reducer = (state = initialState, action) => {
 
         // Rol actions
         case ACTION_TYPES.GET_ROL_SUCCESS:
-        return {
-            ...state,
-            rol: [...state.rol, action.payload]
-        };
+            return{
+                ...state,
+                rol:action.payload
+            }
         case ACTION_TYPES.GET_ROL_FAILURE:
         return state;
         case ACTION_TYPES.CREATE_ROL_SUCCESS:
-        return state;
+            return {
+                ...state,
+                rol:[...state.rol,action.payload]
+            };
         case ACTION_TYPES.CREATE_ROL_FAILURE:
         return state;
         case ACTION_TYPES.DELETE_ROL_SUCCESS:
-        return state;
+        return{
+            ...state,
+            rol:state.rol.filter(rols => rols.id !== action.payload)
+        };
         case ACTION_TYPES.DELETE_ROL_FAILURE:
         return state;
 

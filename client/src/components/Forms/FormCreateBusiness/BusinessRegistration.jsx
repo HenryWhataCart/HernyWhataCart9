@@ -23,7 +23,7 @@ export const CreateBusiness = () => {
 
   useEffect(()=>{
     dispatch(getBusiness())
-   },[]) 
+  },[]) 
 
   const handleChange = (event) => {
     setFormData({
@@ -70,6 +70,8 @@ export const CreateBusiness = () => {
     errors.name ||
     errors.email||
     errors.phone 
+
+console.log(business)
 
   return (
     <Box display="flex" gap={2.5} m={11} sx={{ justifyContent: "center", alignItems: "center", textAlign:"center", justifyItems:"center" }}>
@@ -135,7 +137,7 @@ export const CreateBusiness = () => {
               <TableCell sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>{row?.name}</Box>
                 <Box sx={{display:"flex"}}>
-                  <Box><Icon><DeleteForeverRoundedIcon onClick={()=>onhandleDelete(row?.id)}></DeleteForeverRoundedIcon></Icon></Box>
+                  <Box  sx={{cursor:"pointer"}}><Icon><DeleteForeverRoundedIcon onClick={()=>onhandleDelete(row?.id)}></DeleteForeverRoundedIcon></Icon></Box>
                   {/* <Box><Icon><EditRoundedIcon onClick={()=>onhandleUpdate(row.id,row.name,row.email,row.password)}></EditRoundedIcon></Icon></Box> */}
                 </Box>
               </TableCell>
