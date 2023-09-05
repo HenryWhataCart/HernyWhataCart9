@@ -1,10 +1,8 @@
 import { useState,useEffect } from 'react';
 import { validate } from './Validate';
 import { Box, TextField, Button, Typography} from '@mui/material';
-import { Table, TableContainer, TableBody, TableRow, TableCell, Paper, Icon , TableHead } from '@mui/material';
+import { Table, TableContainer, TableBody, TableRow, TableCell, Paper, Icon } from '@mui/material';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import styles from './BusinessRegistration.module.css'
 import { useDispatch } from 'react-redux';
 import {createBusiness} from '../../../redux/actions/Business/createBusiness'
 import {useSelector} from 'react-redux'
@@ -52,24 +50,38 @@ export const CreateBusiness = () => {
       });
     };
 
-  const buttonStyles = {
-    backgroundColor: "#09E6A7",
-    color: "white",     
-  };
-
   const onhandleDelete=(id)=>{
     dispatch(deleteBusiness(id))
-}
+  }
+  
+      const buttonStyles = {
+        background: "#30EAB5",
+        color: 'white',
+        textTransform: 'none',
+      };
+    
+      const buttonStylesNotSubmit = {
+        background: "red",
+        color: 'white',
+        textTransform: 'none',
+      };
+
+  const isNotCompelte = 
+    errors.name ||
+    errors.email||
+    errors.phone 
 
 console.log(business)
 
   return (
-    <Box display="flex-wrap">
-        <form onSubmit={handleSubmit} className={styles.container}>
-          <Box display="flex"><Typography variant="h4" align="center" style={{ color: "#4E4E4E" }} fontWeight={500} fontSize="25px" >
-              ¡Welcome Business!</Typography>
+    <Box display="flex" gap={2.5} m={11} sx={{ justifyContent: "center", alignItems: "center", textAlign:"center", justifyItems:"center" }}>
+      <Box sx={{bgcolor:"white", borderRadius:2, p:1, boxShadow:3, height:"60vh", width:"29vw"}} >
+        <form onSubmit={handleSubmit}>
+          <Box display="flex" sx={{p:1, flexDirection:"column"}}><Typography variant="h4"  sx={{color:"gray", fontSize:"1.5rem", textAlign:"center",justifyContent:"center", mt:1}}>
+              New Business</Typography>
           </Box>
-          <TextField
+          <Box sx={{mt:0.5, p:1}}>
+            <TextField
             label="Business Name"
             variant="outlined"
             name="name"
@@ -104,20 +116,21 @@ console.log(business)
             helperText={errors.email && <p>{errors.email}</p>}
             error={errors.email && <p>{errors.email}</p>}
           />
-          
-          <Button
-            variant="contained"
-            type="submit"
-            style={buttonStyles}
-          >
-            Create
-          </Button>
+          </Box>
+          <Box sx={{mb:1}}>
+            {isNotCompelte? <Button type='notSubmit' variant="contained"  style={buttonStylesNotSubmit} >
+                        Empty fields 
+                </Button> : <Button type='submit' variant="contained"  style={buttonStyles}  >
+                        Send
+                </Button> }
+          </Box>
         </form>
-
-        <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} sx={{bgcolor:"white", borderRadius:2, p:1, boxShadow:3}}>
+      </Box>
+      <Box sx={{ bgcolor: "white", borderRadius: 2, p: 1, boxShadow: 3, alignItems:"center", justifyContent:"center", pb:8,height:"54vh" }}>
+        
         <Typography  sx={{ color: "gray", textAlign: "center", fontSize:"1.3rem", mt:1.5, pb:1 }}>{"All Business"}</Typography>
         <TableContainer sx={{ height:"41vh",overflow: 'auto', pb: 1, width:"35vw" }} component={Paper}>
-        <Table  >
+        <Table   >
         <TableBody  >
           {business?.map((row) => (
             <TableRow key={row?.id} >
@@ -134,7 +147,7 @@ console.log(business)
       </Table>
       </TableContainer>
     </Box>
-  </Box>
-        
+    </Box>
+    
   );
 };
