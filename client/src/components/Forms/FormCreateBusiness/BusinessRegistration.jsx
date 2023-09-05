@@ -145,7 +145,7 @@ export const CreateBusiness = () => {
       </Table>
       </TableContainer>
     </Box>
-  </Box>
-        
+    </Box>
+    
   );
 };
