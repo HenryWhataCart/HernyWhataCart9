@@ -1,10 +1,10 @@
 import axios from 'axios';
 import ACTION_TYPES from '../../actionTypes'
 
-const getUser = (name) => {
+const getUser = (businessId = '', name = '') => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3001/userSearch/?name=${name}`);
+      const response = await axios.get(`http://localhost:3001/userSearch/?name=${name}&businessId=${businessId}`);
 
       dispatch({
         type: ACTION_TYPES.GET_USER_SUCCESS,
@@ -12,7 +12,7 @@ const getUser = (name) => {
       });
     } catch (error) {
       dispatch({
-        type:ACTION_TYPES. GET_USER_FAILURE,
+        type:ACTION_TYPES.GET_USER_FAILURE,
         payload: error.message
       });
     }

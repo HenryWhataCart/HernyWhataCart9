@@ -29,7 +29,8 @@ import validate from './Validation'
 
 function FormCreateMember() {
 
-    const { dispatch,roles, user} = GetDataCreateMember()
+    const { dispatch, roles, user, businessId} = GetDataCreateMember()
+
     const [open,setOpen] = React.useState(false)
     const [deleted,setDeleted] = React.useState(false)
 
@@ -57,7 +58,7 @@ function FormCreateMember() {
         phone:"",
         privilege:"",
         rolIdRow:[],
-        businessId:""
+        businessId: businessId
     })
     const [errors,setErrors] = React.useState({})
     const handleOnChange = (event) =>{
@@ -108,7 +109,7 @@ function FormCreateMember() {
         })
     }
 
-    const error = roles.filter((v) => v).length >= 4 || roles.filter((v) => v).length === 0  ;
+  const error = roles.filter((role) => rolCheck[role.id]).length >= 4 || roles.filter((role) => rolCheck[role.id]).length === 0
     //-------------------------------------------------------------------------------------------
 
     const onHandleSubmit = (event) =>{
@@ -124,7 +125,7 @@ function FormCreateMember() {
             phone:"",
             privilege:"",
             rolIdRow:[],
-            businessId:""
+            businessId: businessId
         })
         
         const selectedRoles = Object.keys(rolCheck).filter(rolId => rolCheck[rolId])
@@ -138,6 +139,9 @@ function FormCreateMember() {
     const onhandleDelete = (id) =>{
         dispatch(deleteUser(id))
     }
+
+    console.log(formUser);
+    console.log(user);
     
     return (
         <div className={styles.containerGeneral}>
@@ -223,16 +227,12 @@ function FormCreateMember() {
                         </Select>
                         {errors.privilege && <FormHelperText error>{errors.privilege}</FormHelperText>}
                     </FormControl>
-                    {/* <TextField
-                        required
-                        id="outlined-required"
-                        label="Business"
-                        name='businessId'
-                        value={formUser.businessId}
-                        onChange={handleOnChange}
-                        helperText={errors.businessId && <p>{errors.businessId}</p>}
-                        error={errors.businessId && <p>{errors.businessId}</p>}
-                    /> */}
+                    <TextField
+                disabled
+                id="outlined-disabled"
+                label="Business"
+                defaultValue={formUser.businessId}
+                />
                     <Box sx={{ display: 'flex' }}>
                         <FormControl
                             required
@@ -241,18 +241,19 @@ function FormCreateMember() {
                             sx={{ m: 3,color:'black' }}
                             variant="standard"
                         >
-                        <FormLabel component="legend">Select at least 3</FormLabel>
-                            <FormGroup>
+                       { formUser.privilege === "Member" && <FormLabel component="legend">Select between one & three roles</FormLabel>}
+                           { formUser.privilege === "Member" && <FormGroup>
                                 {roles.map((rol)=>(
                                     <FormControlLabel
+                                    key={rol.id}
                                     control={
                                     <Checkbox checked={rolCheck[rol.id]} onChange={handleRolCheck} name={rol.id} value={rol.id} />
                                     }
                                     label={rol.name}
                                 />
                                 ))}
-                            </FormGroup>
-                        <FormHelperText>You can display an error</FormHelperText>
+                            </FormGroup>}
+                        { formUser.privilege === "Member" && <FormHelperText>You can display an error</FormHelperText>}
                     </FormControl>
                 </Box>
                 {isNotCompelte? <Button type='notSubmit' variant="contained" endIcon={<SendIcon />} style={buttonStylesNotSubmit} >
@@ -273,12 +274,18 @@ function FormCreateMember() {
                         <Table >
                         <TableBody >
                         {user.length === 0 ? (
-                            <Box className={styles.icon}>
-                                <Icon>
-                                    <MoodBadRoundedIcon />
-                                </Icon>
-                                <Typography  sx={{ color: "gray", textAlign: "center", fontSize:"1.3rem", mt:1.5, pb:1 , width:"35vw"}}>{"There are no registered users"}</Typography>
-                            </Box>
+                            <TableRow key="no-users">
+                            <TableCell colSpan={3}>
+                                <Box className={styles.icon}>
+                                    <Icon>
+                                        <MoodBadRoundedIcon />
+                                    </Icon>
+                                    <Typography sx={{ color: "gray", textAlign: "center", fontSize: "1.3rem", mt: 1.5, pb: 1, width: "35vw" }}>
+                                        {"There are no registered users"}
+                                    </Typography>
+                                </Box>
+                            </TableCell>
+                        </TableRow>
                             ) : (
                             user.map((users) => (
                                 <TableRow key={users.id}>
