@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Box, Button, Snackbar, TextField, Typography } from '@mui/material';
-import { Icon, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import { Icon, Paper, Table, TableBody, TableCell, TableContainer, TableRow, FormControl } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import Alert from '@mui/material/Alert';
@@ -14,7 +14,7 @@ import GetDataCreateRole from './getDataCreateRole';
 
 function FormCreateRol() {
 
-        const {roles, dispatch, businessId} = GetDataCreateRole()
+        const {roles, dispatch, businessId, businessName} = GetDataCreateRole()
         const [formRol, setFormRol] = useState({
             name: "",   
             businessId: businessId
@@ -76,14 +76,14 @@ function FormCreateRol() {
         }
     
         return (
-        <div className={styles.containerForm}>
-            <form className={styles.FormCreateRol} onSubmit={onHandleSubmit}>
-            <div className={styles.containerInput}>
+        <Box sx={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', gap:2}}>
+            <FormControl onSubmit={onHandleSubmit} sx={{display:'flex', flexDirection:'column', justifyContent:'center', borderColor:'rgb(215, 213, 213)', borderRadius:3, boxShadow:3, p:5, maxWidth:'200%', bgcolor: 'white'}}>
+            <Box className={styles.containerInput} sx={{display:'flex', flexDirection:'column', alignItems:'center', gap:3}}>
                 <TextField
                 disabled
                 id="outlined-disabled"
-                label="Business"
-                defaultValue={formRol.businessId}
+                label="Company"
+                value={businessName}
                 />
                 <TextField  required id="outlined-required" label="Role Name" name='name' value={formRol.name} onChange={onHandleChange} helperText={errors.name && errors.name}
                 error={errors.name && errors.name} />
@@ -97,10 +97,9 @@ function FormCreateRol() {
                         The role was created successfully!
                     </Alert>
                 </Snackbar>
-            </div>
-            </form>
-            <div className = {styles.containerTable}>
-                    <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} sx={{bgcolor:"white", borderRadius:2, p:1, boxShadow:3, height:"50vh"}}>
+            </Box>
+            </FormControl>     
+                    <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} sx={{bgcolor:"white", borderRadius:3, p:2, boxShadow:3, height:"50vh", maxWidth:'200%'}}>
                         <Typography  sx={{ color: "gray", textAlign: "center", fontSize:"1.3rem", mt:1.5, pb:1 }}>{"All Roles"}</Typography>
                         <TableContainer sx={{ height:"41vh",overflow: 'auto', pb: 1, width:"35vw" }} component={Paper}>
                         <Table  >
@@ -126,10 +125,8 @@ function FormCreateRol() {
                         </TableBody>
                     </Table>
                     </TableContainer>
-                    </Box>
-            </div>
-            
-        </div>
+                    </Box>          
+        </Box>
         );
   }
   

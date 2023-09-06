@@ -6,7 +6,7 @@ import getRol from "../../../redux/actions/Rol/getRol"
 
 const GetDataCreateRole = () => {
 
-    const {businessId} = useParams()
+    const {businessId, businessName} = useParams()
     const roles = useSelector((state) => state.rol)
     const dispatch = useDispatch()
     console.log(roles)
@@ -19,7 +19,8 @@ const GetDataCreateRole = () => {
     return {
         roles,
         dispatch,
-        businessId
+        businessId,
+        businessName
     }
 }
 

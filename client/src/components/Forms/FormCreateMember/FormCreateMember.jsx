@@ -46,7 +46,7 @@ import validate from "./Validation";
 
 function FormCreateMember() {
 
-    const { dispatch, roles, user, businessId} = GetDataCreateMember()
+    const { dispatch, roles, user, businessId, businessName} = GetDataCreateMember()
 
     const [open,setOpen] = React.useState(false)
     const [deleted,setDeleted] = React.useState(false)
@@ -246,8 +246,8 @@ function FormCreateMember() {
                     <TextField
                 disabled
                 id="outlined-disabled"
-                label="Business"
-                defaultValue={formUser.businessId}
+                label="Company"
+                value={businessName}
                 />
                     <Box sx={{ display: 'flex' }}>
                         <FormControl
