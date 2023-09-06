@@ -1,7 +1,9 @@
 const { Op } = require("sequelize");
 const { Rol } = require("../../db");
 
-const searchRolController = async (name, businessId) => {
+
+const searchRolController = async ({name, businessId}) => {
+  
   if (!name && !businessId) {
     // Si no se proporcionan parámetros, devolver todos los roles.
     return await Rol.findAll();
@@ -29,4 +31,7 @@ const searchRolController = async (name, businessId) => {
   }
 };
 
+
 module.exports = searchRolController;
+
+
