@@ -10,7 +10,7 @@ const GetDataCreateMember = () => {
     const roles = useSelector((state) => state.rol)
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-    const {businessId} = useParams()
+    const {businessId, businessName} = useParams()
     
     useEffect(() => {
         dispatch(getRol(businessId))
@@ -23,6 +23,7 @@ const GetDataCreateMember = () => {
         dispatch,
         user,
         businessId,
+        businessName
     }
 }
 
