@@ -1,5 +1,3 @@
-import { Typography } from "@mui/material";
-
 export const validate = (formData) => {
     let errors = {}
 
