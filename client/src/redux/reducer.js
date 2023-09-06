@@ -30,7 +30,18 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.DELETE_SUPERUSER_FAILURE:
         return state;
         case ACTION_TYPES.PUT_SUPERUSER_SUCCESS:
-        return state;
+            // const index = state.superUser.indexOf(action.payload.id)
+            state.superUser.forEach((superU)=>{
+                if(superU.id === action.payload.id){
+                    superU.name = action.payload.name
+                    superU.email = action.payload.email
+                    superU.password = action.payload.password
+                }
+            })
+        return {
+            ...state,
+            superUser: [...state.superUser]
+        };
         case ACTION_TYPES.PUT_SUPERUSER_FAILURE:
         return state;
 
@@ -64,12 +75,15 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_USER_SUCCESS:
         return {
             ...state,
-            user: [...state.user, action.payload]
+            user: action.payload
         };
         case ACTION_TYPES.GET_USER_FAILURE:
         return state;
         case ACTION_TYPES.CREATE_USER_SUCCESS:
-        return state;
+        return {
+            ...state,
+            user:[...state.user,action.payload]
+        };
         case ACTION_TYPES.CREATE_USER_FAILURE:
         return state;
         case ACTION_TYPES.UPDATE_USER_SUCCESS:
@@ -77,7 +91,10 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.UPDATE_USER_FAILURE:
         return state;
         case ACTION_TYPES.DELETE_USER_SUCCESS:
-        return state;
+        return {
+            ...state,
+            user:state.user.filter(users => users.id !== action.payload)
+        };
         case ACTION_TYPES.DELETE_USER_FAILURE:
         return state;
 
