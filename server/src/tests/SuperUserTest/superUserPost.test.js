@@ -1,5 +1,5 @@
 const request = require("supertest");
-const server = require("../app");
+const server = require("../../app");
 
 describe("POST /createSuperUser", () => {
   it("should create a Super User", async () => {
