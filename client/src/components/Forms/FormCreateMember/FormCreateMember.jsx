@@ -108,7 +108,7 @@ function FormCreateMember() {
         })
     }
 
-    const error = roles.filter((v) => v).length >= 4 || roles.filter((v) => v).length === 0  ;
+    const error = roles.filter((role) => rolCheck[role.id]).length >= 4 || roles.filter((role) => rolCheck[role.id]).length === 0;
     //-------------------------------------------------------------------------------------------
 
     const onHandleSubmit = (event) =>{
@@ -241,7 +241,7 @@ function FormCreateMember() {
                             sx={{ m: 3,color:'black' }}
                             variant="standard"
                         >
-                        <FormLabel component="legend">Select at least 3</FormLabel>
+                        <FormLabel component="legend">Select between one and three roles</FormLabel>
                             <FormGroup>
                                 {roles.map((rol)=>(
                                     <FormControlLabel
