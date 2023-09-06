@@ -1,6 +1,7 @@
 const { Op } = require("sequelize");
 const { Rol } = require("../../db");
 
+
 const searchRolController = async ({name, businessId}) => {
   
   if (!name && !businessId) {
@@ -30,5 +31,7 @@ const searchRolController = async ({name, businessId}) => {
   }
 };
 
+
 module.exports = searchRolController;
+
 

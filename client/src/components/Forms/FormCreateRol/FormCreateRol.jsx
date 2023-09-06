@@ -1,30 +1,33 @@
+/* eslint-disable no-unused-vars */
+
 import { Box, Button, Snackbar, TextField, Typography } from '@mui/material';
 import { Icon, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import Alert from '@mui/material/Alert';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import GetDataCreateRole from './getDataCreateRole';
 import SendIcon from '@mui/icons-material/Send';
 import createRol from '../../../redux/actions/Rol/postRol';
 import deleteRol from '../../../redux/actions/Rol/deleteRol'
-import getRol from '../../../redux/actions/Rol/getRol';
 import styles from './FormRol.module.css';
 import validation from './Validations';
 
 function FormCreateRol() {
 
+        const {roles, dispatch, businessId} = GetDataCreateRole()
         const [formRol, setFormRol] = useState({
-            name: "",
-            businessId: "8cc1a3e5-a7f8-45a7-956b-0e2ecf470945"
+            name: "",   
+            businessId: businessId
         });
+        
         const [errors, setErrors] = useState({});
         const[open,setOpen]=useState(false)
         const[deleted,setDeleted]=useState(false)
-        const dispatch = useDispatch();
-        const rols = useSelector(state => state.rol)
+        
 
-        console.log(rols)
+        console.log(businessId);
+        console.log(roles)
         
         const onHandleChange = (event) => {
         const property = event.target.name;
@@ -45,7 +48,7 @@ function FormCreateRol() {
                 dispatch(createRol(formRol));
                 setFormRol({
                     name:"",
-                    businessId: "8cc1a3e5-a7f8-45a7-956b-0e2ecf470945"
+                    businessId: businessId
                 })
             }
         }
@@ -68,15 +71,10 @@ function FormCreateRol() {
     
         const isNotComplete = !formRol.name;
 
-        useEffect(()=>{
-            dispatch(getRol())
-        },[dispatch])
-
         const onhandleDelete = (id) =>{
             dispatch(deleteRol(id))
             setDeleted(true)
         }
-
     
         return (
         <div className={styles.containerForm}>
@@ -108,7 +106,7 @@ function FormCreateRol() {
                         <TableContainer sx={{ height:"41vh",overflow: 'auto', pb: 1, width:"35vw" }} component={Paper}>
                         <Table  >
                         <TableBody >
-                            {rols.map(rol=>(
+                            {roles?.map(rol=>(
                                 <TableRow key={rol.id} >
                                     <TableCell sx={{ display: "flex", justifyContent: "space-between" }}>
                                         <Box>{rol.name}</Box>
@@ -119,7 +117,8 @@ function FormCreateRol() {
                                         </Box>
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                            ))
+                            }
                             <Snackbar open={deleted} autoHideDuration={3000} onClose={() => setDeleted(false)}>
                                 <Alert variant="outlined" severity="warning">
                                     Role removed!
