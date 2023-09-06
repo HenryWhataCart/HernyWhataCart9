@@ -1,36 +1,14 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Box, Grid, List, ListItemAvatar, Avatar, ListItemText, Divider, ListItemButton, Skeleton } from '@mui/material';
 import styles from './ChatList.module.css'
 
-const chats = [
-  { name: 'Chat 1', text: 'Último mensaje del chat 1' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 3', text: 'Último mensaje del chat 3' },
-  { name: 'Chat 1', text: 'Último mensaje del chat 1' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 3', text: 'Último mensaje del chat 3' },
-  { name: 'Chat 1', text: 'Último mensaje del chat 1' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-  { name: 'Chat 2', text: 'Último mensaje del chat 2' },
-]
-
-const ChatList = () => {
+const ChatList = ({chats}) => {
 
     const [loading, setLoading] = React.useState(true)
 
     React.useEffect(() => {
-        setTimeout(() => setLoading(false), 3000)   
+        setTimeout(() => setLoading(false), 2000)   
     }, [])
 
     return (

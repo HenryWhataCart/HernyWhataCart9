@@ -65,13 +65,13 @@ const NavBar = () => {
             </Button>
           </Box>
                   <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
-                  <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={() => navigate("/createbusiness")}>
+                  <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={() => navigate("/superadmin")}>
                       <Box display="flex" flexDirection="column" alignItems="center">
                           <Icon sx={{ pb: 1 }}><BusinessRoundedIcon/></Icon>
                           companies
                       </Box>
                   </Button>
-                <Button variant="text" color="inherit" sx={{ mx: 4, color: "#4E4E4E" }} onClick={()=> {navigate("/createMember")} }>
+                <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={()=> {navigate("/createMember")} }>
                       <Box display="flex" flexDirection="column" alignItems="center">
                           <Icon sx={{ pb: 1 }}><PeopleRoundedIcon/></Icon>
                           Members
@@ -110,15 +110,14 @@ const NavBar = () => {
             <Box> 
               <MenuItem onClick={() => navigate("/dashboard")}>Messenger</MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
-              <MenuItem onClick={() => navigate("/createbusiness")}>Companies</MenuItem>
+              <MenuItem onClick={() => navigate("/superadmin")}>Companies</MenuItem>
               <MenuItem onClick={() => navigate("/createmember")}>Members</MenuItem>
             </Box>
           )}
-          <MenuItem>Manage</MenuItem>
-          <MenuItem>Manage company</MenuItem>
           <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
-          <MenuItem onClick={() => navigate("/superadmin")}>Super user</MenuItem>
           <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
+          <MenuItem onClick={() => navigate("/createbusiness")}>Manage companies</MenuItem>
+          <MenuItem onClick={() => navigate("/createrol")}>New role</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
