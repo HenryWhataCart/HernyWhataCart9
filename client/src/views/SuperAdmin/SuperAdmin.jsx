@@ -13,7 +13,7 @@ const SuperAdmin = () => {
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"} bgcolor={"white"} boxShadow={3} height={"80vh"} flexDirection={"column"}>
             <Typography variant="h3" sx={{color: "grey"}}>COMPANIES</Typography>
 
-            {/* //!  POR ACÁ IRÍA LA SEARCHBAR, PARA QUE SE VE DEBAJO DE "COMPANIES"*/}
+            {/* //!  POR ACÁ IRÍA LA SEARCHBAR, PARA QUE SE VEA DEBAJO DE "COMPANIES"*/}
 
             <Box sx={{display:"flex", flexDirection:"column", gap:3, maxHeight:600, overflow:"auto", p:3, bgcolor:"whitesmoke", borderRadius:3}}>
                 {companies.map((company) => (
@@ -29,14 +29,14 @@ const SuperAdmin = () => {
                         <Box sx={{display: "flex"}}>
                             <Button
                                 variant="contained"
-                                onClick={() => navigate("/createmember")}
+                                onClick={() => navigate(`/createmember/${company.id}`)}
                                 sx={{fontSize: 13, mx: 0.25}}>
                                 members
                             </Button>  
                                             
                             <Button
                                 variant="contained"
-                                onClick={() => navigate("/createrol")}
+                                onClick={() => navigate(`/createRol/${company.id}`)}
                                 sx={{fontSize: 13, mx: 0.25}}>
                                 roles
                             </Button>   
