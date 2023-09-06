@@ -25,10 +25,17 @@ const NewSuperAdmin = () => {
   })
 
   const dispatch = useDispatch();
+  // const [superUser,setSuperUser] = useState([]) 
+
   const superUser = useSelector(state=>state.superUser)
+
   
   useEffect(()=>{
-   dispatch(getSuperUser())
+    const getSPUsers = async ()=>{
+      await dispatch(getSuperUser())
+      // await setSuperUser([...superUser, ...superUsers])
+    }
+    getSPUsers()
   },[])  
 
   const theme = createTheme({
@@ -59,6 +66,9 @@ const onhandleSubmit = (event) => {
         name: "",
         email: "",
         password:"",
+      })
+      setButton({
+        value: "Create"
       })
     }
 }
@@ -133,6 +143,7 @@ const onhandleUpdate = (id,name,email,password)=>{
             <TableRow key={row.id} >
               <TableCell sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>{row.name}</Box>
+                <Box>{row.email}</Box>
                 <Box sx={{display:"flex"}}>
                   <Box><Icon><DeleteForeverRoundedIcon onClick={()=>onhandleDelete(row.id)}></DeleteForeverRoundedIcon></Icon></Box>
                   <Box><Icon><EditRoundedIcon onClick={()=>onhandleUpdate(row.id,row.name,row.email,row.password)}></EditRoundedIcon></Icon></Box>
