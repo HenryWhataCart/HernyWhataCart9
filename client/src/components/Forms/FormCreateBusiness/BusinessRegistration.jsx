@@ -66,7 +66,10 @@ export const CreateBusiness = () => {
         textTransform: 'none',
       };
 
-  const isNotCompelte = 
+  const isNotCompelte =
+    !formData.name ||
+    !formData.email ||
+    !formData.phone||
     errors.name ||
     errors.email||
     errors.phone 
