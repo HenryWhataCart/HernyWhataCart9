@@ -1,53 +1,67 @@
-/* eslint-disable no-unused-vars */
+import * as React from "react";
 
-import * as React from 'react';
+import {
+  Alert,
+  Box,
+  Button,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material";
+import {
+  Icon,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from "@mui/material";
 
-import { Alert, AlertTitle, Box, Button, Snackbar, TableHead, TextField, Typography } from '@mui/material';
-import { Icon, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-
-import Checkbox from '@mui/material/Checkbox';
-import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormLabel from '@mui/material/FormLabel';
-import GetDataCreateMember from './getDataCreateMember';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
-import MoodBadRoundedIcon from '@mui/icons-material/MoodBadRounded';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { Select } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import createUser from "../../../redux/actions/User/PostUser"
-import deleteUser from '../../../redux/actions/User/deleteUser';
-import styles from './CreateMember.module.css'
-import validate from './Validation'
+import Checkbox from "@mui/material/Checkbox";
+import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormLabel from "@mui/material/FormLabel";
+import GetDataCreateMember from "./getDataCreateMember";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import MoodBadRoundedIcon from "@mui/icons-material/MoodBadRounded";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { Select } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import createUser from "../../../redux/actions/User/PostUser";
+import deleteUser from "../../../redux/actions/User/deleteUser";
+import styles from "./CreateMember.module.css";
+import validate from "./Validation";
 
 function FormCreateMember() {
 
-    const { dispatch,roles, user} = GetDataCreateMember()
+    const { dispatch, roles, user, businessId, businessName} = GetDataCreateMember()
+
     const [open,setOpen] = React.useState(false)
     const [deleted,setDeleted] = React.useState(false)
 
-    const buttonStyles = {
-        background: "#30EAB5",  
-        color: 'white',
-        textTransform: 'none',        
-        fontWeight: 'bold',
-        padding: '10px 20px',         
-      };
-    
-      const buttonStylesNotSubmit = {
-        background: "red",  
-        color: 'white',
-        textTransform: 'none',        
-        fontWeight: 'bold',
-        padding: '10px 20px',         
-      };
+  const buttonStyles = {
+    background: "#30EAB5",
+    color: "white",
+    textTransform: "none",
+    fontWeight: "bold",
+    padding: "10px 20px",
+  };
+
+  const buttonStylesNotSubmit = {
+    background: "red",
+    color: "white",
+    textTransform: "none",
+    fontWeight: "bold",
+    padding: "10px 20px",
+  };
 
 
     const [formUser,setFormUser] = React.useState({
@@ -56,8 +70,7 @@ function FormCreateMember() {
         password:"",
         phone:"",
         privilege:"",
-        rolIdRow:[],
-        businessId:""
+        businessId: businessId
     })
     const [errors,setErrors] = React.useState({})
     const handleOnChange = (event) =>{
@@ -70,78 +83,51 @@ function FormCreateMember() {
     }
 
 
-    const isNotCompelte = 
+  const isNotCompelte =
     !formUser.name ||
-    !formUser.email||
+    !formUser.email ||
     !formUser.password ||
     !formUser.phone ||
     !formUser.privilege ||
-    !formUser.rolIdRow ||
-    !formUser.businessId 
+    !formUser.businessId;
 
-    //----------------------Password--------------------------------------------
-    const [showPassword, setShowPassword] = React.useState(false);
+  //----------------------Password--------------------------------------------
+  const [showPassword, setShowPassword] = React.useState(false);
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
-    
-    // --------------------------Roles------------------------------------------
-
-    const initialRolState = {}
-    roles.forEach((rol)=>{
-        initialRolState[rol.id] = false
-    })
-    
-    const [rolCheck,setRolCheck] = React.useState(initialRolState)
-
-    const handleRolCheck = (event) =>{
-        const roleId = event.target.value
-        const isChecked = event.target.checked
-        
-        setRolCheck({
-            ...rolCheck,
-            [roleId]:isChecked
-        })
-    }
-
-    const error = roles.filter((v) => v).length >= 4 || roles.filter((v) => v).length === 0  ;
-    //-------------------------------------------------------------------------------------------
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  
+  //------------------------------------------------------------------------
 
     const onHandleSubmit = (event) =>{
-        console.log("entre");
         event.preventDefault()
         
         dispatch(createUser(formUser))
-        alert('Your user '+ formUser.name +' has been created')
-        setFormUser({
+        setOpen(true)
+        setTimeout(() => {
+          setFormUser({
             name:"",
             email:"",
             password:"",
             phone:"",
             privilege:"",
-            rolIdRow:[],
-            businessId:""
+            businessId: businessId
         })
-        
-        const selectedRoles = Object.keys(rolCheck).filter(rolId => rolCheck[rolId])
-
-        setFormUser({
-            ...formUser,
-            rolIdRow:selectedRoles
-        })
-    }
+      }, 3000);
+      setRolCheck(initialRolState);
+    };
 
     const onhandleDelete = (id) =>{
         dispatch(deleteUser(id))
     }
+
     
     return (
         <div className={styles.containerGeneral}>
-            <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
+          <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
                 <TextField
                         required
                         id="outlined-required"
@@ -153,45 +139,45 @@ function FormCreateMember() {
                         error={errors.name && <p>{errors.name}</p>}
                     />
 
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Email"
-                        name='email'
-                        value={formUser.email}
-                        onChange={handleOnChange}
-                        helperText={errors.email && <p>{errors.email}</p>}
-                        error={errors.email && <p>{errors.email}</p>}
-                    />
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Email"
+                  name="email"
+                  value={formUser.email}
+                  onChange={handleOnChange}
+                  helperText={errors.email && <p>{errors.email}</p>}
+                  error={errors.email && <p>{errors.email}</p>}
+                />
 
-                    
-                    <FormControl sx={{ width: '23rem' }} variant="outlined" >
-                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-password"
-                            type={showPassword ? 'text' : 'password'}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
-                            label="Password"
-                            name='password'
-                            value={formUser.password}
-                            onChange={handleOnChange}
-                        />
-                        <FormHelperText id="outlined-weight-helper-text" error>
-                            {errors.password && <p>{errors.password}</p>}
-                        </FormHelperText>
-                    </FormControl>
-
+                <FormControl sx={{ width: "100%" }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                    name="password"
+                    value={formUser.password}
+                    onChange={handleOnChange}
+                  />
+                  <FormHelperText id="outlined-weight-helper-text" error>
+                    {errors.password && <p>{errors.password}</p>}
+                  </FormHelperText>
+                </FormControl>
 
                     <TextField
                         required
@@ -223,46 +209,21 @@ function FormCreateMember() {
                         </Select>
                         {errors.privilege && <FormHelperText error>{errors.privilege}</FormHelperText>}
                     </FormControl>
-                    {/* <TextField
-                        required
-                        id="outlined-required"
-                        label="Business"
-                        name='businessId'
-                        value={formUser.businessId}
-                        onChange={handleOnChange}
-                        helperText={errors.businessId && <p>{errors.businessId}</p>}
-                        error={errors.businessId && <p>{errors.businessId}</p>}
-                    /> */}
-                    <Box sx={{ display: 'flex' }}>
-                        <FormControl
-                            required
-                            error={error}
-                            component="fieldset"
-                            sx={{ m: 3,color:'black' }}
-                            variant="standard"
-                        >
-                        <FormLabel component="legend">Select at least 3</FormLabel>
-                            <FormGroup>
-                                {roles.map((rol)=>(
-                                    <FormControlLabel
-                                    control={
-                                    <Checkbox checked={rolCheck[rol.id]} onChange={handleRolCheck} name={rol.id} value={rol.id} />
-                                    }
-                                    label={rol.name}
-                                />
-                                ))}
-                            </FormGroup>
-                        <FormHelperText>You can display an error</FormHelperText>
-                    </FormControl>
-                </Box>
+                    <TextField
+                      disabled
+                      id="outlined-disabled"
+                      label="Company"
+                      value={businessName}
+                    />
+                    
                 {isNotCompelte? <Button type='notSubmit' variant="contained" endIcon={<SendIcon />} style={buttonStylesNotSubmit} >
                         Empty fields 
                 </Button> : <Button type='submit' variant="contained" endIcon={<SendIcon />} style={buttonStyles}>
                         Send
                 </Button> }
-                <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
+                <Snackbar open={open} autoHideDuration={2500} onClose={() => setOpen(false)}>
                     <Alert variant="outlined" severity="success">
-                        The role was created successfully!
+                      <Typography>{String(formUser.name)} was created successfully!</Typography>
                     </Alert>
                 </Snackbar>
             </form>
@@ -273,12 +234,18 @@ function FormCreateMember() {
                         <Table >
                         <TableBody >
                         {user.length === 0 ? (
-                            <Box className={styles.icon}>
-                                <Icon>
-                                    <MoodBadRoundedIcon />
-                                </Icon>
-                                <Typography  sx={{ color: "gray", textAlign: "center", fontSize:"1.3rem", mt:1.5, pb:1 , width:"35vw"}}>{"There are no registered users"}</Typography>
-                            </Box>
+                            <TableRow key="no-users">
+                            <TableCell colSpan={3}>
+                                <Box className={styles.icon}>
+                                    <Icon>
+                                        <MoodBadRoundedIcon />
+                                    </Icon>
+                                    <Typography sx={{ color: "gray", textAlign: "center", fontSize: "1.3rem", mt: 1.5, pb: 1, width: "35vw" }}>
+                                        {"There are no registered users"}
+                                    </Typography>
+                                </Box>
+                            </TableCell>
+                        </TableRow>
                             ) : (
                             user.map((users) => (
                                 <TableRow key={users.id}>
@@ -310,5 +277,4 @@ function FormCreateMember() {
     )
 }
 
-export default FormCreateMember
-
+export default FormCreateMember;

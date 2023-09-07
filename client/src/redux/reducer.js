@@ -75,7 +75,7 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_USER_SUCCESS:
         return {
             ...state,
-            user: action.payload
+            user: [...action.payload]
         };
         case ACTION_TYPES.GET_USER_FAILURE:
         return state;
@@ -102,10 +102,13 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_ROL_SUCCESS:
             return{
                 ...state,
-                rol:action.payload
+                rol:[...action.payload]
             }
         case ACTION_TYPES.GET_ROL_FAILURE:
-        return state;
+        return {
+            ...state,
+            rol: []
+        }
         case ACTION_TYPES.CREATE_ROL_SUCCESS:
             return {
                 ...state,

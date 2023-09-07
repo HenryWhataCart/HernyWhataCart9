@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import FormCreateMember from '../src/components/Forms/FormCreateMember/FormCreateMember';
 import './App.css'
 import { Routes, Route, useLocation } from 'react-router-dom'
@@ -14,7 +15,9 @@ import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 import Footer from './components/Footer/Footer';
 import Support from './components/Support/Support';
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
-import FormCreateRol from './components/Forms/FormCreateRol/FormCreateRol';
+import SuperAdmin from './views/SuperAdmin/SuperAdmin';
+import FormCreateRol from './components/Forms/FormCreateRol/FormCreateRol'
+
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -39,31 +42,38 @@ function App() {
 
           <Route
             path='/dashboard'
-            element= {<AuthenticationGuard component={Dashboard} />}
+            // element= {<AuthenticationGuard component={Dashboard} />}
+            element= {<Dashboard />}
           />
 
           <Route
           path='/contacts'
-          element={<AuthenticationGuard component={Contacts} />}
-          // element={<Contacts />}
+          // element={<AuthenticationGuard component={Contacts} />}
+          element={<Contacts />}
           />
 
           <Route
-          path='/createmember'
-          element={<AuthenticationGuard component={FormCreateMember} />}
-          // element={<FormCreateMember />}
+          path='/createmember/:businessId/:businessName'
+          // element={<AuthenticationGuard component={FormCreateMember} />}
+          element={<FormCreateMember />}
         />
         
         <Route
           path='/metrics'
-          element={<AuthenticationGuard component={Metricas} />}
-          // element={<Metricas />}
+          // element={<AuthenticationGuard component={Metricas} />}
+          element={<Metricas />}
         />
         
         <Route
           path='/superadmin'
-          // element={<NewSuperAdmin />}
-          element={<AuthenticationGuard component={NewSuperAdmin} />}
+          element={<SuperAdmin />}
+          // element={<AuthenticationGuard component={SuperAdmin} />}
+        />
+
+        <Route
+          path='/createsuperadmin'
+          element={<NewSuperAdmin />}
+          // element={<AuthenticationGuard component={NewSuperAdmin} />}
         />
         
         <Route
@@ -73,12 +83,12 @@ function App() {
 
         <Route
           path='/createbusiness'
-          element= {<AuthenticationGuard component={CreateBusiness} />}
-          // element= {<CreateBusiness />}
+          // element= {<AuthenticationGuard component={CreateBusiness} />}
+          element= {<CreateBusiness />}
         />
 
         <Route
-          path='/createRol'
+          path='/createRol/:businessId/:businessName'
           // element= {<AuthenticationGuard component={FormCreateRol} />}
           element= {<FormCreateRol />}
         />

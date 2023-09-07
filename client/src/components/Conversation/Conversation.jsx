@@ -1,37 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Box, Grid, List, ListItemText, TextField, IconButton } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from '@mui/icons-material/Send'
 import styles from './Conversation.module.css'
 
-const messages = [
-  { name: 'Juan', text: 'dasdadaff', timestamp: '10:00 AM', sent: true },
-  { name: 'Pedro', text: 'afadasdas?', timestamp: '10:05 AM', sent: false },
-  { name: 'Juan', text: 'sdafdfafadfadsasdgh', timestamp: '10:10 AM', sent: true },
-  { name: 'Juan', text: 'fghfdghdhd', timestamp: '10:00 AM', sent: true },
-  { name: 'Pedro', text: 'hdfhgfdgdfgdf?', timestamp: '10:05 AM', sent: false },
-  { name: 'Juan', text: 'También bien, gracias.', timestamp: '10:10 AM', sent: true },
-  { name: 'Juan', text: 'Hola, ¿cómo estás?', timestamp: '10:00 AM', sent: true },
-  { name: 'Pedro', text: 'Bien, gracias. ¿Y tú?', timestamp: '10:05 AM', sent: false },
-  { name: 'Juan', text: 'También bien, gracias.', timestamp: '10:10 AM', sent: true },
-  { name: 'Juan', text: 'Hola, ¿cómo estás?', timestamp: '10:00 AM', sent:true},
-  { name:'Pedro',text:'Bien,gracias.¿Y tú?',timestamp:'10 :05AM',sent:false},
-  {name:'Juan',text:'También bien,gracias.',timestamp:'10 :10AM',sent:true},
-  { name: 'Juan', text: 'Hola, ¿cómo estás?', timestamp: '10:00 AM', sent: true },
-  { name: 'Pedro', text: 'Bien, gracias. ¿Y tú?', timestamp: '10:05 AM', sent: false },
-  { name: 'Juan', text: 'También bien, gracias.', timestamp: '10:10 AM', sent: true },
-  { name: 'Juan', text: 'Hola, ¿cómo estás?', timestamp: '10:00 AM', sent:true},
-  { name:'Pedro',text:'Bien,gracias.¿Y tú?',timestamp:'10 :05AM',sent:false},
-  {name:'Juan',text:'También bien,gracias.',timestamp:'10 :10AM',sent:true},
-  { name: 'Juan', text: 'Hola, ¿cómo estás?', timestamp: '10:00 AM', sent:true},
-  { name:'Pedro',text:'Bien,gracias.¿Y tú?',timestamp:'10 :05AM',sent:false},
-  {name:'Juan',text:'También bien,gracias.',timestamp:'10 :10AM',sent:true},
-]
-
-const Conversation = () => {
+const Conversation = ({messages}) => {
     const [messageText, setMessageText] = React.useState('');
 
     const handleSendMessage = () => {
-        // Aquí puedes agregar lógica para enviar el mensaje
         setMessageText('');
     }
 
