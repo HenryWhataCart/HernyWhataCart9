@@ -2,7 +2,7 @@ const { User, Rol } = require("../../db");
 
 
 
-const updateUser = async (id, name, email, password,phone,privilege,rolIdRow,businessId) => {
+const updateUser = async (id, name, email, password,phone,privilege,businessId) => {
   
     const updateCount = await User.update(
       { name: name, email: email, password: password,phone:phone ,privilege: privilege, BusinessId:businessId},
@@ -13,15 +13,6 @@ const updateUser = async (id, name, email, password,phone,privilege,rolIdRow,bus
       throw new Error("the id was not found or it is incorrect");
     }
 
-    if (rolIdRow.length > 0) {
-      const updateUser = await User.findByPk(id)
-      await updateUser.setRols([])
-
-      for(const rolId of rolIdRow){
-        const findRol = await Rol.findOne({where:{id:rolId}});
-        await updateUser.addRol(findRol)
-      }
-    }
 
     return { message: "User information updated successfully" };
   
