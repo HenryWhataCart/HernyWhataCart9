@@ -62,4 +62,19 @@ describe("DELETE /deleteSuperUser/:id", () => {
       expect(error.message).toBe("Internal Server Error");
     }
   });
+  it("should delete a Super User when it exists in the database", async () => {
+    const findOneMock = jest.fn();
+    findOneMock.mockResolvedValue({ destroy: jest.fn() });
+    Superuser.findOne = findOneMock;
+
+    const destroyMock = jest.fn();
+    jest;
+    Superuser.findOne.mockReturnValue({ destroy: destroyMock });
+
+    const response = await request(server).delete("/deleteSuperUser/1");
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.message).toBe("Super User removed successfully");
+    expect(destroyMock).toHaveBeenCalled();
+  });
 });
