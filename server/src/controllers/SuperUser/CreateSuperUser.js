@@ -1,17 +1,16 @@
-const {Superuser} = require('../../db')
+const { Superuser } = require("../../db");
 
-const createSuperUser = async(name,email,password) =>{
-    
-        const [newSuperUser,created] = await Superuser.findOrCreate({
-            where:{
-                name,
-                email,
-                password
-            }
-        })
-        await newSuperUser.save()
+const createSuperUser = async (name, email, password) => {
+  const [newSuperUser] = await Superuser.findOrCreate({
+    where: {
+      name,
+      email,
+      password,
+    },
+  });
+  await newSuperUser.save();
 
-        return newSuperUser
-}
+  return newSuperUser;
+};
 
-module.exports = createSuperUser
+module.exports = createSuperUser;

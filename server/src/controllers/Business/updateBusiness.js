@@ -1,4 +1,4 @@
-const { Business } = require('../../db');
+const { Business } = require("../../db");
 
 const updatedBusiness = async (id, name, phone, email, SuperuserId) => {
    
@@ -10,7 +10,7 @@ const updatedBusiness = async (id, name, phone, email, SuperuserId) => {
             throw new Error('The id was not found or it is incorrect');
         }
 
-        return { message: 'updated information' };
+  return { message: "updated information" };
 };
 
 module.exports = updatedBusiness;
