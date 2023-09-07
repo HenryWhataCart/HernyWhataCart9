@@ -25,7 +25,7 @@ function App() {
 
   const location = useLocation();
   const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
-  const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard' && location.pathname !== "/superadmin"
+  const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
   return (
     <div>
       {showNavBar && <NavBar />}
@@ -53,7 +53,7 @@ function App() {
           />
 
           <Route
-          path='/createmember'
+          path='/createmember/:businessId/:businessName'
           // element={<AuthenticationGuard component={FormCreateMember} />}
           element={<FormCreateMember />}
         />
@@ -88,7 +88,7 @@ function App() {
         />
 
         <Route
-          path='/createRol'
+          path='/createRol/:businessId/:businessName'
           // element= {<AuthenticationGuard component={FormCreateRol} />}
           element= {<FormCreateRol />}
         />

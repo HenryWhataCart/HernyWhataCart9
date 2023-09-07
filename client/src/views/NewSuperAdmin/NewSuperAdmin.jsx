@@ -25,8 +25,8 @@ const EMPTY_FORM = {
   id: "",
   name: "",
   email: "",
-  password: ""
-}
+  password: "",
+};
 
 const NewSuperAdmin = () => {
   const dispatch = useDispatch();
@@ -54,7 +54,8 @@ const NewSuperAdmin = () => {
     },
   });
 
-  const handleChange = (event) => setForm({ ...form, [event.target.name]: event.target.value });
+  const handleChange = (event) =>
+    setForm({ ...form, [event.target.name]: event.target.value });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -94,29 +95,22 @@ const NewSuperAdmin = () => {
       form.password.length > 0
     ) {
       return false;
-    } 
+    }
     return true;
   };
 
   return (
-    <Box
-      display="flex"
-      className={styles.container}
-    >
-      <Box
-        className={styles.createContainer}
-      >
+    <Box display="flex" className={styles.container}>
+      <Box className={styles.createContainer}>
         <form onSubmit={handleSubmit}>
-          <Box
-            className={styles.createForm}
-          >
+          <Box className={styles.createForm}>
             <Box>
               <Typography sx={{ color: "gray", fontSize: "1.3rem" }}>
                 {"New Super Admin"}
               </Typography>
             </Box>
 
-            <Box sx={{width: '100%'}}>
+            <Box sx={{ width: "100%" }}>
               <TextField
                 fullWidth
                 onChange={handleChange}
@@ -130,7 +124,7 @@ const NewSuperAdmin = () => {
                 error={Boolean(errors.name)}
               />
             </Box>
-            <Box sx={{width: '100%'}}>
+            <Box sx={{ width: "100%" }}>
               <TextField
                 fullWidth
                 label="Email"
@@ -144,7 +138,7 @@ const NewSuperAdmin = () => {
                 error={Boolean(errors.email)}
               />
             </Box>
-            <Box sx={{width: '100%'}}>
+            <Box sx={{ width: "100%" }}>
               <TextField
                 fullWidth
                 label="Password"
@@ -178,9 +172,7 @@ const NewSuperAdmin = () => {
           </Box>
         </form>
       </Box>
-      <Box
-        className={styles.listContainer}
-      >
+      <Box className={styles.listContainer}>
         <Typography
           sx={{
             color: "gray",
@@ -206,14 +198,14 @@ const NewSuperAdmin = () => {
                     <Box>{row.name}</Box>
                     <Box>{row.email}</Box>
                     <Box sx={{ display: "flex" }}>
-                      <Box>
+                      <Box sx={{ cursor: "pointer" }}>
                         <Icon>
                           <DeleteForeverRoundedIcon
                             onClick={() => handleDelete(row.id)}
                           ></DeleteForeverRoundedIcon>
                         </Icon>
                       </Box>
-                      <Box>
+                      <Box sx={{ cursor: "pointer" }}>
                         <Icon>
                           <EditRoundedIcon
                             onClick={() =>

@@ -5,7 +5,7 @@ export const validation = (form) =>{
 
     if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(form.email)) errors.email = 'Email must have a valid format'
 
-    if(form.password.length < 6 ) errors.password = "Password must have at least 6 characters"
+    if(form.password.length < 6 ) errors.password = 'Password must have at least 6 characters'
 
     return errors
 }

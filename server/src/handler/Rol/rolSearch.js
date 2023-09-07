@@ -1,11 +1,11 @@
 const searchRolController = require("../../controllers/Rol/searchRol");
 
 const handlerSearchRol = async (req, res) => {
-  const { name } = req.query;
+  const { name, businessId } = req.query;
   try {
-    const wantedRoles = await searchRolController(name);
+    const wantedRoles = await searchRolController(name, businessId);
     if (!wantedRoles || wantedRoles.length === 0) {
-      return res.status(404).json({ error: "Roles not found" });
+      return res.status(200).json([]);
     }
     return res.status(200).json(wantedRoles);
   } catch (error) {

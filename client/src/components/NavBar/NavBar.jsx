@@ -28,7 +28,7 @@ const NavBar = () => {
         <Link to={"https://whatacart.ai/"}>
           <img
             className={styles.logo}
-            src="../src/assets/whatacart-logo.png"
+            src="https://i.imgur.com/MdR5aac.png"
             alt="Logo"
             height={50}
           />
