@@ -30,3 +30,4 @@ const searchRolController = async (name, businessId) => {
 }
 
 module.exports = searchRolController;
+

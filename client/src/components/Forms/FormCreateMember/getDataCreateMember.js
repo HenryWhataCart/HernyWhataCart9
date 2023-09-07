@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 
 import getRol from "../../../redux/actions/Rol/getRol"
+import getUser from "../../../redux/actions/User/getUser"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import getUser from "../../../redux/actions/User/getUser"
 
 const GetDataCreateMember = () => {
 

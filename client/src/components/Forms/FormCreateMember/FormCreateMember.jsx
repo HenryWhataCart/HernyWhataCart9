@@ -3,11 +3,9 @@ import * as React from "react";
 
 import {
   Alert,
-  AlertTitle,
   Box,
   Button,
   Snackbar,
-  TableHead,
   TextField,
   Typography,
 } from "@mui/material";
@@ -73,7 +71,6 @@ function FormCreateMember() {
         password:"",
         phone:"",
         privilege:"",
-        rolIdRow:[],
         businessId: businessId
     })
     const [errors,setErrors] = React.useState({})
@@ -93,7 +90,6 @@ function FormCreateMember() {
     !formUser.password ||
     !formUser.phone ||
     !formUser.privilege ||
-    !formUser.rolIdRow ||
     !formUser.businessId;
 
   //----------------------Password--------------------------------------------
@@ -104,63 +100,35 @@ function FormCreateMember() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  // --------------------------Roles------------------------------------------
-
-  const initialRolState = {};
-  roles.forEach((rol) => {
-    initialRolState[rol.id] = false;
-  });
-
-  const [rolCheck, setRolCheck] = React.useState(initialRolState);
-
-  const handleRolCheck = (event) => {
-    const roleId = event.target.value;
-    const isChecked = event.target.checked;
-
-    setRolCheck({
-      ...rolCheck,
-      [roleId]: isChecked,
-    });
-  };
-
-  const error = roles.filter((role) => rolCheck[role.id]).length >= 4 || roles.filter((role) => rolCheck[role.id]).length === 0
-    //-------------------------------------------------------------------------------------------
+  
+  //------------------------------------------------------------------------
 
     const onHandleSubmit = (event) =>{
-        console.log("entre");
         event.preventDefault()
         
         dispatch(createUser(formUser))
-        alert('Your user '+ formUser.name +' has been created')
-        setFormUser({
+        setOpen(true)
+        setTimeout(() => {
+          setFormUser({
             name:"",
             email:"",
             password:"",
             phone:"",
             privilege:"",
-            rolIdRow:[],
             businessId: businessId
         })
-        
-        const selectedRoles = Object.keys(rolCheck).filter(rolId => rolCheck[rolId])
-
-    setFormUser({
-      ...formUser,
-      rolIdRow: selectedRoles,
-    });
-  };
+      }, 3000);
+      setRolCheck(initialRolState);
+    };
 
     const onhandleDelete = (id) =>{
         dispatch(deleteUser(id))
     }
 
-    console.log(formUser);
-    console.log(user);
     
     return (
         <div className={styles.containerGeneral}>
-            <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
+          <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
                 <TextField
                         required
                         id="outlined-required"
@@ -172,45 +140,45 @@ function FormCreateMember() {
                         error={errors.name && <p>{errors.name}</p>}
                     />
 
-        <TextField
-          required
-          id="outlined-required"
-          label="Email"
-          name="email"
-          value={formUser.email}
-          onChange={handleOnChange}
-          helperText={errors.email && <p>{errors.email}</p>}
-          error={errors.email && <p>{errors.email}</p>}
-        />
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Email"
+                  name="email"
+                  value={formUser.email}
+                  onChange={handleOnChange}
+                  helperText={errors.email && <p>{errors.email}</p>}
+                  error={errors.email && <p>{errors.email}</p>}
+                />
 
-        <FormControl sx={{ width: "100%" }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-            name="password"
-            value={formUser.password}
-            onChange={handleOnChange}
-          />
-          <FormHelperText id="outlined-weight-helper-text" error>
-            {errors.password && <p>{errors.password}</p>}
-          </FormHelperText>
-        </FormControl>
+                <FormControl sx={{ width: "100%" }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                    name="password"
+                    value={formUser.password}
+                    onChange={handleOnChange}
+                  />
+                  <FormHelperText id="outlined-weight-helper-text" error>
+                    {errors.password && <p>{errors.password}</p>}
+                  </FormHelperText>
+                </FormControl>
 
                     <TextField
                         required
@@ -243,42 +211,20 @@ function FormCreateMember() {
                         {errors.privilege && <FormHelperText error>{errors.privilege}</FormHelperText>}
                     </FormControl>
                     <TextField
-                disabled
-                id="outlined-disabled"
-                label="Company"
-                value={businessName}
-                />
-                    <Box sx={{ display: 'flex' }}>
-                        <FormControl
-                            required
-                            error={error}
-                            component="fieldset"
-                            sx={{ m: 3,color:'black' }}
-                            variant="standard"
-                        >
-                       { formUser.privilege === "Member" && <FormLabel component="legend">Select between one & three roles</FormLabel>}
-                           { formUser.privilege === "Member" && <FormGroup>
-                                {roles.map((rol)=>(
-                                    <FormControlLabel
-                                    key={rol.id}
-                                    control={
-                                    <Checkbox checked={rolCheck[rol.id]} onChange={handleRolCheck} name={rol.id} value={rol.id} />
-                                    }
-                                    label={rol.name}
-                                />
-                                ))}
-                            </FormGroup>}
-                        { formUser.privilege === "Member" && <FormHelperText>You can display an error</FormHelperText>}
-                    </FormControl>
-                </Box>
+                      disabled
+                      id="outlined-disabled"
+                      label="Company"
+                      value={businessName}
+                    />
+                    
                 {isNotCompelte? <Button type='notSubmit' variant="contained" endIcon={<SendIcon />} style={buttonStylesNotSubmit} >
                         Empty fields 
                 </Button> : <Button type='submit' variant="contained" endIcon={<SendIcon />} style={buttonStyles}>
                         Send
                 </Button> }
-                <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
+                <Snackbar open={open} autoHideDuration={2500} onClose={() => setOpen(false)}>
                     <Alert variant="outlined" severity="success">
-                        The role was created successfully!
+                      <Typography>{String(formUser.name)} was created successfully!</Typography>
                     </Alert>
                 </Snackbar>
             </form>
