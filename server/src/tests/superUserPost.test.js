@@ -4,9 +4,9 @@ const server = require("../app");
 describe("POST /createSuperUser", () => {
   it("should create a Super User", async () => {
     const superUser = {
-      name: "MatiasTesting",
-      email: "matias@testing.com",
-      password: "testingpsw",
+      name: "MatiasTesting2",
+      email: "matias2@testing.com",
+      password: "testingpsw2",
     };
     const response = await request(server)
       .post("/createSuperUser")
