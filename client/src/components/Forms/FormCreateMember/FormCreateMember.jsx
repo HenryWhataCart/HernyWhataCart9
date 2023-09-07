@@ -116,16 +116,26 @@ function FormCreateMember() {
   const handleRolCheck = (event) => {
     const roleId = event.target.value;
     const isChecked = event.target.checked;
-
-    setRolCheck({
-      ...rolCheck,
+  
+    setRolCheck((prevRolCheck) => ({
+      ...prevRolCheck,
       [roleId]: isChecked,
-    });
+    }));
+  
+    const updatedRoles = { ...rolCheck, [roleId]: isChecked };
+    const selectedRoles = Object.keys(updatedRoles).filter((rolId) => updatedRoles[rolId]);
+    console.log(selectedRoles)
+  
+    setFormUser((prevFormUser) => ({
+      ...prevFormUser,
+      rolIdRow: selectedRoles,
+    }));
   };
+
 
   const error = roles.filter((role) => rolCheck[role.id]).length >= 4 || roles.filter((role) => rolCheck[role.id]).length === 0
     //-------------------------------------------------------------------------------------------
-
+    console.log(rolCheck)
     const onHandleSubmit = (event) =>{
         console.log("entre");
         event.preventDefault()
@@ -142,12 +152,8 @@ function FormCreateMember() {
             businessId: businessId
         })
         
-        const selectedRoles = Object.keys(rolCheck).filter(rolId => rolCheck[rolId])
+        setRolCheck(initialRolState);
 
-    setFormUser({
-      ...formUser,
-      rolIdRow: selectedRoles,
-    });
   };
 
     const onhandleDelete = (id) =>{
