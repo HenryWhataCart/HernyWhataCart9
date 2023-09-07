@@ -60,14 +60,6 @@ export const CreateBusiness = () => {
       setFormData(EMPTY_FORM);
     }
   };
-
-  const isNotCompelte =
-    !formData.name ||
-    !formData.email ||
-    !formData.phone||
-    errors.name ||
-    errors.email||
-    errors.phone 
   
   const handleDelete = (id) => {
     dispatch(deleteBusiness(id));
