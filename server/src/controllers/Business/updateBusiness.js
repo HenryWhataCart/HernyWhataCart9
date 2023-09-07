@@ -1,9 +1,9 @@
 const { Business } = require('../../db');
 
-const updatedBusiness = async (id, name, SuperuserId) => {
+const updatedBusiness = async (id, name, phone, email, SuperuserId) => {
    
         const [updatedCount, updatedRows] = await Business.update(
-            { name: name, SuperuserId: SuperuserId },
+            { name: name, phone: phone, email: email, SuperuserId: SuperuserId },
             { where: { id } }
         );
         if (updatedCount === 0) {
