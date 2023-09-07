@@ -1,5 +1,5 @@
 const request = require("supertest");
-const server = require("../app");
+const server = require("../../app");
 
 it("should create a Business", async () => {
   const businessData = {

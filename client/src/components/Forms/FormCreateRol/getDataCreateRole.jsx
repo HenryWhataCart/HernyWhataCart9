@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom"
 
 const GetDataCreateRole = () => {
 
-    const {businessId} = useParams()
+    const {businessId, businessName} = useParams()
     const roles = useSelector((state) => state.rol)
     const dispatch = useDispatch()
     console.log(roles)
@@ -21,7 +21,8 @@ const GetDataCreateRole = () => {
     return {
         roles,
         dispatch,
-        businessId
+        businessId,
+        businessName
     }
 }
 
