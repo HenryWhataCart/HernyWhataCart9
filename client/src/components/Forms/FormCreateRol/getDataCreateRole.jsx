@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react"
+
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+
 import getRol from "../../../redux/actions/Rol/getRol"
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
 
 const GetDataCreateRole = () => {
 

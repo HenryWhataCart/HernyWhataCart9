@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
-
 import { Box, Button, Snackbar, TextField, Typography } from '@mui/material';
-import { Icon, Paper, Table, TableBody, TableCell, TableContainer, TableRow, FormControl } from '@mui/material';
+import { FormControl, Icon, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import Alert from '@mui/material/Alert';
@@ -46,6 +44,7 @@ function FormCreateRol() {
         
             if (Object.keys(validateErrors).length === 0) {
                 dispatch(createRol(formRol));
+                setOpen(true)
                 setFormRol({
                     name:"",
                     businessId: businessId
@@ -78,7 +77,7 @@ function FormCreateRol() {
     
         return (
         <Box sx={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', gap:2}}>
-            <FormControl onSubmit={onHandleSubmit} sx={{display:'flex', flexDirection:'column', justifyContent:'center', borderColor:'rgb(215, 213, 213)', borderRadius:3, boxShadow:3, p:5, maxWidth:'200%', bgcolor: 'white'}}>
+            <FormControl  sx={{display:'flex', flexDirection:'column', justifyContent:'center', borderColor:'rgb(215, 213, 213)', borderRadius:3, boxShadow:3, p:5, maxWidth:'200%', bgcolor: 'white'}}>
             <Box className={styles.containerInput} sx={{display:'flex', flexDirection:'column', alignItems:'center', gap:3}}>
                 <TextField
                 disabled
@@ -90,7 +89,7 @@ function FormCreateRol() {
                 error={errors.name && errors.name} />
                 {isNotComplete ? <Button type='notSubmit' variant="contained" endIcon={<SendIcon />} style={buttonStylesNotSubmit} >
                 Empty fields
-                </Button> : <Button type='submit' variant="contained" endIcon={<SendIcon />} style={buttonStyles} onClick={()=>setOpen(true)}>
+                </Button> : <Button type='submit' variant="contained" endIcon={<SendIcon />} style={buttonStyles} onClick={onHandleSubmit}>
                 Send
                 </Button>}
                 <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
@@ -132,4 +131,3 @@ function FormCreateRol() {
   }
   
 export default FormCreateRol;
-
