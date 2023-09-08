@@ -1,6 +1,6 @@
 const request = require("supertest");
-const server = require("../app");
-const { Superuser } = require("../db");
+const server = require("../../app");
+const { Superuser } = require("../../db");
 
 jest.mock("../db");
 

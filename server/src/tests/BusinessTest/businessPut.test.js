@@ -1,5 +1,5 @@
 const request = require("supertest");
-const server = require("../app");
+const server = require("../../app");
 
 describe("PUT /updateBusiness/:id", () => {
   it("should handle an incorrect or not found ID", async () => {
