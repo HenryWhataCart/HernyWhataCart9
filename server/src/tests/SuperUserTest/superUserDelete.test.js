@@ -2,7 +2,7 @@ const request = require("supertest");
 const server = require("../../app");
 const { Superuser } = require("../../db");
 
-jest.mock("../db");
+jest.mock("../../db");
 
 describe("DELETE /deleteSuperUser/:id", () => {
   it("should delete a Super User", async () => {
