@@ -32,14 +32,7 @@ const SuperAdmin = () => {
                                 onClick={() => navigate(`/createmember/${company.id}/${company.name}`)}
                                 sx={{fontSize: 13, mx: 0.25}}>
                                 members
-                            </Button>  
-                                            
-                            <Button
-                                variant="contained"
-                                onClick={() => navigate(`/createRol/${company.id}/${company.name}`)}
-                                sx={{fontSize: 13, mx: 0.25}}>
-                                roles
-                            </Button>   
+                            </Button>    
                         </Box>                 
                      </Box>
                 ))}
