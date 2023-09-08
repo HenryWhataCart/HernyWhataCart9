@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getBusiness } from './getBusiness';
 import ACTION_TYPES from '../../actionTypes'
 
 
@@ -11,6 +12,7 @@ const updateBusiness = (id, updatedFields) => {
         type: ACTION_TYPES.UPDATE_BUSINESS_SUCCESS,
         payload: response.data
       });
+      dispatch(getBusiness());
     } catch (error) {
       dispatch({
         type: ACTION_TYPES.UPDATE_BUSINESS_FAILURE,
