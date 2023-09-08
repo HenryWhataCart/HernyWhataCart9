@@ -11,15 +11,18 @@ import {
   Icon,
 } from "@mui/material";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { useDispatch } from "react-redux";
 import { createBusiness } from "../../../redux/actions/Business/createBusiness";
 import { useSelector } from "react-redux";
 import { getBusiness } from "../../../redux/actions/Business/getBusiness";
+import updateBusiness from "../../../redux/actions/Business/putBusiness"
 import deleteBusiness from "../../../redux/actions/Business/deleteBusiness";
 import { validation } from "./validations";
 import styles from "./BusinessRegistration.module.css";
 
 const EMPTY_FORM = {
+  id: "",
   name: "",
   email: "",
   phone: "",
@@ -30,6 +33,9 @@ export const CreateBusiness = () => {
   const business = useSelector((state) => state.business);
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
+  const [button, setButton] = useState({
+    value: "Create",
+  });
 
   useEffect(() => {
     dispatch(getBusiness());
@@ -45,21 +51,29 @@ export const CreateBusiness = () => {
     setErrors(validateErrors);
 
     if (Object.keys(validateErrors).length === 0) {
-      dispatch(createBusiness(formData));
+      if (button.value === "Create") {
+        dispatch(createBusiness(formData));
+      } else {
+        dispatch(updateBusiness(formData.id, formData));
+        setButton({ value: "Create" });
+      }
       setFormData(EMPTY_FORM);
     }
   };
-
-  const isNotCompelte =
-    !formData.name ||
-    !formData.email ||
-    !formData.phone||
-    errors.name ||
-    errors.email||
-    errors.phone 
   
   const handleDelete = (id) => {
     dispatch(deleteBusiness(id));
+    setFormData(EMPTY_FORM);
+  };
+
+  const handleUpdate = (id, name, email, phone) => {
+    setFormData({
+      id: id,
+      name: name,
+      email: email,
+      phone: phone,
+    });
+    setButton({ value: "Modify" });
   };
 
   const disableSubmitButton = () => {
@@ -91,8 +105,8 @@ export const CreateBusiness = () => {
                 New Business
               </Typography>
             </Box>
-            
-            <Box sx={{ width: "100%"}}>
+
+            <Box sx={{ width: "100%" }}>
               <TextField
                 label="Business Name"
                 variant="outlined"
@@ -142,9 +156,10 @@ export const CreateBusiness = () => {
                   color: "white",
                   bgcolor: "#30EAB5",
                 }}
+                value={button.value}
                 disabled={disableSubmitButton()}
               >
-                Send
+                {button.value}
               </Button>
             </Box>
           </Box>
@@ -163,10 +178,10 @@ export const CreateBusiness = () => {
           {"All Business"}
         </Typography>
         <TableContainer
-          sx={{ height: "50vh", overflow: "auto", pb: 1}}
+          sx={{ height: "50vh", overflow: "auto", pb: 1 }}
           component={Paper}
         >
-          <Table >
+          <Table>
             <TableBody>
               {business?.map((row) => (
                 <TableRow key={row?.id}>
@@ -174,6 +189,8 @@ export const CreateBusiness = () => {
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <Box>{row?.name}</Box>
+                    <Box>{row?.phone}</Box>
+                    <Box>{row?.email}</Box>
                     <Box sx={{ display: "flex" }}>
                       <Box sx={{ cursor: "pointer" }}>
                         <Icon>
@@ -182,7 +199,20 @@ export const CreateBusiness = () => {
                           ></DeleteForeverRoundedIcon>
                         </Icon>
                       </Box>
-                      {/* <Box><Icon><EditRoundedIcon onClick={()=>onhandleUpdate(row.id,row.name,row.email,row.password)}></EditRoundedIcon></Icon></Box> */}
+                      <Box>
+                        <Icon>
+                          <EditRoundedIcon
+                            onClick={() =>
+                              handleUpdate(
+                                row.id,
+                                row.name,
+                                row.email,
+                                row.phone
+                              )
+                            }
+                          ></EditRoundedIcon>
+                        </Icon>
+                      </Box>
                     </Box>
                   </TableCell>
                 </TableRow>
