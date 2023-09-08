@@ -9,7 +9,7 @@ const updateBusiness = (id, updatedFields) => {
 
       dispatch({
         type: ACTION_TYPES.UPDATE_BUSINESS_SUCCESS,
-        payload: response.data
+        payload: updatedFields
       });
     } catch (error) {
       dispatch({
