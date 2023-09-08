@@ -97,35 +97,6 @@ const reducer = (state = initialState, action) => {
         };
         case ACTION_TYPES.DELETE_USER_FAILURE:
         return state;
-
-        // Rol actions
-        case ACTION_TYPES.GET_ROL_SUCCESS:
-            return{
-                ...state,
-                rol:[...action.payload]
-            }
-        case ACTION_TYPES.GET_ROL_FAILURE:
-        return {
-            ...state,
-            rol: []
-        }
-        case ACTION_TYPES.CREATE_ROL_SUCCESS:
-            return {
-                ...state,
-                rol:[...state.rol,action.payload]
-            };
-        case ACTION_TYPES.CREATE_ROL_FAILURE:
-        return state;
-        case ACTION_TYPES.DELETE_ROL_SUCCESS:
-        return{
-            ...state,
-            rol:state.rol.filter(rols => rols.id !== action.payload)
-        };
-        case ACTION_TYPES.DELETE_ROL_FAILURE:
-        return state;
-
-        default:
-        return state;
     }
     };
 
