@@ -6,7 +6,7 @@ const createBusiness = async (name, phone, email, SuperuserId) => {
       name,
       phone,
       email,
-      SuperuserId,
+      // SuperuserId,
     },
   });
 

@@ -16,7 +16,7 @@ import Footer from './components/Footer/Footer';
 import Support from './components/Support/Support';
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
-import FormCreateRol from './components/Forms/FormCreateRol/FormCreateRol'
+
 
 
 axios.defaults.baseURL = 'http://localhost:3001'
@@ -85,12 +85,6 @@ function App() {
           path='/createbusiness'
           // element= {<AuthenticationGuard component={CreateBusiness} />}
           element= {<CreateBusiness />}
-        />
-
-        <Route
-          path='/createRol/:businessId/:businessName'
-          // element= {<AuthenticationGuard component={FormCreateRol} />}
-          element= {<FormCreateRol />}
         />
 
         <Route
