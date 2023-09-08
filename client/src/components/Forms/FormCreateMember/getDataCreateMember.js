@@ -5,19 +5,16 @@ import { useParams } from "react-router-dom"
 
 const GetDataCreateMember = () => {
 
-    const roles = useSelector((state) => state.rol)
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state?.user)
     const dispatch = useDispatch()
     const {businessId, businessName} = useParams()
     
     useEffect(() => {
-        dispatch(getRol(businessId))
         dispatch(getUser(businessId))
     },[dispatch, businessId])
     
 
     return {
-        roles,
         dispatch,
         user,
         businessId,

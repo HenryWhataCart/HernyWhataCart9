@@ -30,7 +30,7 @@ const EMPTY_FORM = {
 
 const NewSuperAdmin = () => {
   const dispatch = useDispatch();
-  const superUser = useSelector((state) => state.superUser);
+  const superUser = useSelector((state) => state?.superUser);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [button, setButton] = useState({
