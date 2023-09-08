@@ -30,7 +30,7 @@ const EMPTY_FORM = {
 
 export const CreateBusiness = () => {
   const dispatch = useDispatch();
-  const business = useSelector((state) => state.business);
+  const business = useSelector((state) => state?.business);
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [button, setButton] = useState({
@@ -204,10 +204,10 @@ export const CreateBusiness = () => {
                           <EditRoundedIcon
                             onClick={() =>
                               handleUpdate(
-                                row.id,
-                                row.name,
-                                row.email,
-                                row.phone
+                                row?.id,
+                                row?.name,
+                                row?.email,
+                                row?.phone
                               )
                             }
                           ></EditRoundedIcon>
