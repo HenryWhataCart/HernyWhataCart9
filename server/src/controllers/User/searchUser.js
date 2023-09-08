@@ -3,7 +3,7 @@ const {User,Rol} = require('../../db')
 
 const userSearched = async({name,businessId}) =>{
     
-        if(!name && !businessId) return await User.findAll({include: Rol})
+        if(!name && !businessId) return await User.findAll()
         
         if(!name && businessId){
             return await User.findAll({where:{
@@ -19,8 +19,7 @@ const userSearched = async({name,businessId}) =>{
                     },
                     BusinessId:businessId
             
-            },
-            include:Rol
+            }
             })
             return userSearch
         }
