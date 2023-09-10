@@ -2,20 +2,22 @@ require('dotenv').config()
 const { Sequelize } = require('sequelize')
 const {DB_USER, DB_PASSWORD, DB_HOST} = process.env
 const BusinessModel = require('./models/Business')
-const RolModel = require('./models/Rol')
 const UserModel = require('./models/User')
 const SuperuserModel = require('./models/Superuser')
+const MsgReceivedModel = require('./models/MsgReceived')
+const MsgSendModel = require('./models/MsgSend')
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/db_whatacart`,{logging:false, native: false})
 
 BusinessModel(sequelize)
-RolModel(sequelize)
 UserModel(sequelize)
 SuperuserModel(sequelize)
+MsgReceivedModel(sequelize) // Validate with type: 'message'
+MsgSendModel(sequelize) //Validate with type: 'message-event' & typeofpayload: 'sent'
 
 //Associations
 
-const { User,Superuser,Business,Rol } = sequelize.models
+const { User,Superuser,Business,MsgReceived,MsgSend } = sequelize.models
 
 //First: business belongs to superuser and superuser has many business
 Superuser.hasMany(Business)
@@ -25,18 +27,15 @@ Business.belongsTo(Superuser)
 User.belongsTo(Business)
 Business.hasMany(User)
 
+MsgReceived.belongsTo(Business)
+Business.hasMany(MsgReceived)
 
-Rol.belongsTo(Business)
-Business.hasMany(Rol)
-
-//Third: User belongs to many Rol, and Rol belongs to many User, N:M, Mid table
-User.belongsToMany(Rol, { through: 'user_rol', timestamps: false})
-Rol.belongsToMany(User, { through: 'user_rol', timestamps: false})
+MsgSend.belongsTo(Business)
+Business.hasMany(MsgSend)
 
 module.exports={
     User,
     Business,
-    Rol,
     Superuser,
     conn: sequelize,
 }

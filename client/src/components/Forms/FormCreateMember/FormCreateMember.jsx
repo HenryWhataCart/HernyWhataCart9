@@ -234,7 +234,7 @@ function FormCreateMember() {
                         <TableContainer sx={{ height:"41vh",overflow: 'auto', pb: 1, width:"35vw",justifyContent:'center' }} component={Paper}>
                         <Table >
                         <TableBody >
-                        {user.length === 0 ? (
+                        {user?.length === 0 ? (
                             <TableRow key="no-users">
                             <TableCell colSpan={3}>
                                 <Box className={styles.icon}>
@@ -248,7 +248,7 @@ function FormCreateMember() {
                             </TableCell>
                         </TableRow>
                             ) : (
-                            user.map((users) => (
+                            user?.map((users) => (
                                 <TableRow key={users.id}>
                                 <TableCell sx={{ display: "flex", justifyContent: "space-between" }}>
                                     <Box>{users.name}</Box>
