@@ -5,5 +5,5 @@ const { PORT } = process.env;
 
 server.listen(PORT, async () => {
   await conn.sync({ force: true });
-  console.log("% listening at 3001");
+  console.log(`% listening at ${PORT}`);
 });
