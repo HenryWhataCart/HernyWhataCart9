@@ -1,4 +1,4 @@
-const { User, Rol } = require("../../db");
+const {User} = require('../../db')
 
 const createUser = async(name,email,password,phone,privilege, businessId) =>{
         const [newUser,created] = await User.findOrCreate({where:{name:name},defaults:{
@@ -10,7 +10,7 @@ const createUser = async(name,email,password,phone,privilege, businessId) =>{
         }
         })
 
-  return newUser;
+        return newUser;
 };
 
 module.exports = createUser;

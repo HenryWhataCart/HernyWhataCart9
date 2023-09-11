@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.GET_BUSINESS_SUCCESS:
         return {
             ...state,
-            business: action.payload
+            business:action.payload
         };
         case ACTION_TYPES.CREATE_BUSINESS_REQUEST:
             return{

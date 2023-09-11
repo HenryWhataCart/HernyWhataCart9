@@ -1,4 +1,4 @@
-const createUser = require("../../controllers/User/postUser");
+const createUser = require("../../controllers/User/postUser")
 
 const userPost = async(req,res) => {
     const {name,email,password, phone, privilege, businessId} = req.body
@@ -12,4 +12,4 @@ const userPost = async(req,res) => {
     }
 }
 
-module.exports = userPost;
+module.exports = userPost

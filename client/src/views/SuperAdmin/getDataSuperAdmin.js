@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { getBusiness } from '../../redux/actions/Business/getBusiness'
+import { useEffect } from 'react'
 
 const GetDataSuperAdmin = () => {
 
