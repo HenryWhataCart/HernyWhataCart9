@@ -2,7 +2,6 @@
 import FormCreateMember from '../src/components/Forms/FormCreateMember/FormCreateMember';
 import './App.css'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import axios from 'axios'
 import Dashboard from './views/Dashboard/Dashboard'
 import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
 import SignIn from './views/SignIn/SignIn'
@@ -16,8 +15,6 @@ import Footer from './components/Footer/Footer';
 import Support from './components/Support/Support';
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
-
-axios.defaults.baseURL = 'http://localhost:3001'
 
 function App() {
 

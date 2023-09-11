@@ -1,11 +1,16 @@
 import { Box, Button, Typography } from "@mui/material"
 import GetDataSuperAdmin from "./getDataSuperAdmin"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { getBusiness } from "../../redux/actions/Business/getBusiness"
 
 const SuperAdmin = () => {
 
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    dispatch(getBusiness())
 
     console.log(companies)
 
@@ -16,7 +21,7 @@ const SuperAdmin = () => {
             {/* //!  POR ACÁ IRÍA LA SEARCHBAR, PARA QUE SE VEA DEBAJO DE "COMPANIES"*/}
 
             <Box sx={{display:"flex", flexDirection:"column", gap:3, maxHeight:600, overflow:"auto", p:3, bgcolor:"whitesmoke", borderRadius:3}}>
-                {companies.map((company) => (
+                {companies?.map((company) => (
                      <Box
                         key={company.id} variant="contained"
                         sx={{display: "flex", justifyContent:"space-between", alignItems: "center", bgcolor: "white", p:3, borderRadius: 2, boxShadow: 3, flexWrap: "wrap", wordWrap: "break-word"}}>
