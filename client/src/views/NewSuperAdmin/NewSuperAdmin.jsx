@@ -26,7 +26,7 @@ const EMPTY_FORM = {
   name: "",
   email: "",
   password: "",
-};
+}
 
 const NewSuperAdmin = () => {
   const dispatch = useDispatch();
