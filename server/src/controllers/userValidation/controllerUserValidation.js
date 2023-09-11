@@ -4,7 +4,7 @@ const controllerValidation = async ({ id, BusinessId }) => {
     if (BusinessId && id) {
             const validateUser = await User.findOne({ where: { BusinessId, id } });
             const validateBusiness = await Business.findOne({ where: { id: BusinessId } });
-            console.log(validateBusiness)
+
             if (!validateBusiness || !validateUser) {
                 return {
                     validation: false,
