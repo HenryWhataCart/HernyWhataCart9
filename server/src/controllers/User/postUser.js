@@ -9,12 +9,6 @@ const createUser = async(name,email,password,phone,privilege, businessId) =>{
             BusinessId: businessId
         }
         })
-        
-
-  for (const rolId of rolIdRow) {
-    const findRol = await Rol.findOne({ where: { id: rolId } });
-    await newUser.addRol(findRol);
-  }
 
   return newUser;
 };

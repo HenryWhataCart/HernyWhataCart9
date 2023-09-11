@@ -1,16 +1,11 @@
 import { Box, Button, Typography } from "@mui/material"
 import GetDataSuperAdmin from "./getDataSuperAdmin"
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { getBusiness } from "../../redux/actions/Business/getBusiness"
 
 const SuperAdmin = () => {
 
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-
-    dispatch(getBusiness())
 
     console.log(companies)
 
