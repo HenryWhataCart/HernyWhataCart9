@@ -26,8 +26,7 @@ export const postSuperUser = (superUser) => {
     try {
       dispatch(postSuperUserRequest());
 
-      const url = 'http://localhost:3001/createSuperUser/';
-      const response = await axios.post(url, superUser);
+      const response = await axios.post('/createSuperUser/', superUser);
       const createdSuperUser = response.data;
 
       dispatch(postSuperUserSuccess(createdSuperUser));

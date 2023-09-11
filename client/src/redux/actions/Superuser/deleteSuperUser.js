@@ -27,10 +27,8 @@ export const deleteSuperUser = (userId) => {
     try {
       dispatch(deleteSuperUserRequest());
 
-      const url = `http://localhost:3001/deleteSuperUser/${userId}`;
-
       // Realizar la petición DELETE a la API
-      await axios.delete(url);
+      await axios.delete(`/deleteSuperUser/${userId}`);
 
       dispatch(deleteSuperUserSuccess(userId));
     } catch (error) {

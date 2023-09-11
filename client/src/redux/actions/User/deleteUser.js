@@ -4,7 +4,7 @@ import ACTION_TYPES from '../../actionTypes'
 const deleteUser = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`http://localhost:3001/deleteUser/${id}`);
+      await axios.delete(`/deleteUser/${id}`);
       
       dispatch({
         type: ACTION_TYPES.DELETE_USER_SUCCESS,

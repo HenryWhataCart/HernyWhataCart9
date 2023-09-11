@@ -17,8 +17,6 @@ import Support from './components/Support/Support';
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
 
-
-
 axios.defaults.baseURL = 'http://localhost:3001'
 
 function App() {

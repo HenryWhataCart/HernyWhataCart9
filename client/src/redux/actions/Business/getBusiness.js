@@ -26,9 +26,7 @@ export const getBusiness = (name='') => {
     try {
       dispatch(getBusinessRequest());
 
-      const url = `http://localhost:3001/searchBusiness/?name=${name}`;
-
-      const response = await axios.get(url);
+      const response = await axios.get(`/searchBusiness/?name=${name}`);
 
       const businesses = response.data;
 

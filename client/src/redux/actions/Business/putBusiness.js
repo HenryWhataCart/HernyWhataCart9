@@ -5,7 +5,8 @@ import ACTION_TYPES from '../../actionTypes'
 const updateBusiness = (id, updatedFields) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`http://localhost:3001/updateBusiness/${id}`, updatedFields);
+
+      await axios.put(`/updateBusiness/${id}`, updatedFields);
 
       dispatch({
         type: ACTION_TYPES.UPDATE_BUSINESS_SUCCESS,
