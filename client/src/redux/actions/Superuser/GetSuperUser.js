@@ -25,8 +25,7 @@ export const getSuperUser = (name = '') => {
   return async (dispatch) => {
     try {
        dispatch(getSuperUserRequest());
-      const url = `http://localhost:3001/getSuperUser/?name=${name}`;
-      const response = await axios.get(url);
+      const response = await axios.get(`/getSuperUser/?name=${name}`);
       const superUser = response.data;
 
       dispatch(getSuperUserSuccess(superUser));

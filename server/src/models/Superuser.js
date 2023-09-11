@@ -19,6 +19,11 @@ module.exports = (sequelize) =>{
         password:{
             type: DataTypes.STRING,
             allowNull: false
+        },
+        privilege: {
+            type: DataTypes.TEXT,
+            defaultValue: "SuperAdmin",
+            allowNull: false,
         }
     }, {timestamps: false});
 }

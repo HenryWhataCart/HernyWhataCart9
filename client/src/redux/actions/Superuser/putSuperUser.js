@@ -26,8 +26,7 @@ export const putSuperUser = (userId, updatedFields) => {
     try {
       dispatch(putSuperUserRequest());
 
-      const url = `http://localhost:3001/updateSuperuser/${userId}`;
-      await axios.put(url, updatedFields);
+      await axios.put(`/updateSuperuser/${userId}`, updatedFields);
       dispatch(putSuperUserSuccess(updatedFields));
     } catch (error) {
       dispatch(putSuperUserFailure(error.message));

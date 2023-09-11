@@ -4,7 +4,7 @@ import axios from 'axios';
 const createUser = (userData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:3001/createUser/', userData);
+      const response = await axios.post('/createUser/', userData);
       dispatch({
         type: ACTION_TYPES.CREATE_USER_SUCCESS,
         payload: response.data

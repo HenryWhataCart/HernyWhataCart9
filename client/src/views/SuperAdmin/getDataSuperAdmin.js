@@ -4,7 +4,7 @@ import { getBusiness } from '../../redux/actions/Business/getBusiness'
 
 const GetDataSuperAdmin = () => {
 
-    const companies = useSelector((state) => state.business)
+    const companies = useSelector((state) => state?.business)
     const dispatch = useDispatch()
  
     useEffect(() => {
