@@ -17,18 +17,30 @@ const reducer = (state = initialState, action) => {
         };
         case ACTION_TYPES.GET_SUPERUSER_FAILURE:
         return state;
+        case ACTION_TYPES.POST_SUPERUSER_REQUEST:
+            return{
+                ...state
+            }
         case ACTION_TYPES.POST_SUPERUSER_SUCCESS:
         return {
-            ...state,superUser:[...state.superUser, action.payload]
+            ...state,superUser: [...state.superUser, action.payload]
         };
         case ACTION_TYPES.POST_SUPERUSER_FAILURE:
         return state;
+        case ACTION_TYPES.DELETE_SUPERUSER_REQUEST:
+            return{
+                ...state
+            }
         case ACTION_TYPES.DELETE_SUPERUSER_SUCCESS:
         return {
             ...state, superUser: state.superUser.filter(superU => superU.id !== action.payload)
         };
         case ACTION_TYPES.DELETE_SUPERUSER_FAILURE:
         return state;
+        case ACTION_TYPES.PUT_SUPERUSER_REQUEST:
+            return{
+                ...state
+            }
         case ACTION_TYPES.PUT_SUPERUSER_SUCCESS:
             // const index = state.superUser.indexOf(action.payload.id)
             state.superUser.forEach((superU)=>{
@@ -51,6 +63,10 @@ const reducer = (state = initialState, action) => {
             ...state,
             business: action.payload
         };
+        case ACTION_TYPES.CREATE_BUSINESS_REQUEST:
+            return{
+                ...state
+            }
         case ACTION_TYPES.GET_BUSINESS_FAILURE:
         return state;
         case ACTION_TYPES.CREATE_BUSINESS_SUCCESS:
@@ -67,7 +83,17 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.DELETE_BUSINESS_FAILURE:
         return state;
         case ACTION_TYPES.UPDATE_BUSINESS_SUCCESS:
-        return state;
+            state.business.forEach((busine)=>{
+                if(busine.id === action.payload.id){
+                    busine.name = action.payload.name
+                    busine.email = action.payload.email
+                    busine.phone = action.payload.phone
+                }
+            })
+        return {
+            ...state,
+            business: [...state.business]
+        };
         case ACTION_TYPES.UPDATE_BUSINESS_FAILURE:
         return state;
 
@@ -96,35 +122,6 @@ const reducer = (state = initialState, action) => {
             user:state.user.filter(users => users.id !== action.payload)
         };
         case ACTION_TYPES.DELETE_USER_FAILURE:
-        return state;
-
-        // Rol actions
-        case ACTION_TYPES.GET_ROL_SUCCESS:
-            return{
-                ...state,
-                rol:[...action.payload]
-            }
-        case ACTION_TYPES.GET_ROL_FAILURE:
-        return {
-            ...state,
-            rol: []
-        }
-        case ACTION_TYPES.CREATE_ROL_SUCCESS:
-            return {
-                ...state,
-                rol:[...state.rol,action.payload]
-            };
-        case ACTION_TYPES.CREATE_ROL_FAILURE:
-        return state;
-        case ACTION_TYPES.DELETE_ROL_SUCCESS:
-        return{
-            ...state,
-            rol:state.rol.filter(rols => rols.id !== action.payload)
-        };
-        case ACTION_TYPES.DELETE_ROL_FAILURE:
-        return state;
-
-        default:
         return state;
     }
     };
