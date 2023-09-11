@@ -4,7 +4,8 @@ const initialState = {
     superUser: [],
     business: [],
     user: [],
-    rol: []
+    rol: [],
+    loginData: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -123,6 +124,12 @@ const reducer = (state = initialState, action) => {
         };
         case ACTION_TYPES.DELETE_USER_FAILURE:
         return state;
+
+        case ACTION_TYPES.GET_LOGIN_DATA:
+            return {
+                ...state,
+                loginData: action.payload
+            }
     }
     };
 
