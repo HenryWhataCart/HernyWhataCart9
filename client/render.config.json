@@ -1,0 +1,10 @@
+{
+    "headers": {
+      "redirects": [
+        {
+          "from": "/(.*)",
+          "to": "/index.html"
+        }
+      ]
+    }
+  }
