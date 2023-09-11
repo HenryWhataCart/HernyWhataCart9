@@ -1,8 +1,7 @@
 const createUser = require("../../controllers/User/postUser")
 
-const userPost = async(req,res) =>{
-    const {name,email,password, phone,privilege, businessId} = req.body
-    console.log({name,email,password, phone,privilege});
+const userPost = async(req,res) => {
+    const {name,email,password, phone, privilege, businessId} = req.body
     try {
         if(!name || !email || !password || !phone ) return res.status(404).json({error: 'required data not found'})
         const newUser = await createUser(name,email,password, phone, privilege, businessId)

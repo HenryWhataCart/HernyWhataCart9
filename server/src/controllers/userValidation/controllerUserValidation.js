@@ -2,10 +2,9 @@ const { User, Business } = require('../../db');
 
 const controllerValidation = async ({ id, BusinessId }) => {
     if (BusinessId && id) {
-        try {
             const validateUser = await User.findOne({ where: { BusinessId, id } });
             const validateBusiness = await Business.findOne({ where: { id: BusinessId } });
-
+            console.log(validateBusiness)
             if (!validateBusiness || !validateUser) {
                 return {
                     validation: false,
@@ -19,11 +18,6 @@ const controllerValidation = async ({ id, BusinessId }) => {
                     message: 'User belongs to this company'
                 };
             }
-            
-        } catch (error) {
-            console.log(error);
-            throw new Error(error.message);
-        }
     } else {
         throw new Error('Missing parameters');
     }

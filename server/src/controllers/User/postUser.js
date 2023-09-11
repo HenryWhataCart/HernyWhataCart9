@@ -9,8 +9,8 @@ const createUser = async(name,email,password,phone,privilege, businessId) =>{
             BusinessId: businessId
         }
         })
-        console.log(newUser)
-        return newUser
-}
 
-module.exports = createUser
+        return newUser;
+};
+
+module.exports = createUser;
