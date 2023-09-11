@@ -1,4 +1,5 @@
 .vscode/settings.json
 node_modules/
-*.json
 *.sql
+package-lock.json
+package.json
