@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from "@mui/material"
+
 import GetDataSuperAdmin from "./getDataSuperAdmin"
 import { useNavigate } from "react-router-dom"
 
@@ -34,7 +35,7 @@ const SuperAdmin = () => {
                                 members
                             </Button>    
                         </Box>                 
-                     </Box>
+                    </Box>
                 ))}
             </Box>
         </Box>
