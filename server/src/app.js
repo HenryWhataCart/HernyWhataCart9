@@ -9,7 +9,7 @@ server.name = "server";
 
 server.use(
   cors({
-    origin: ["https://whatacart-render-front.onrender.com"],
+    origin: "*",
     credentials: true,
     methods: "GET, POST, OPTIONS, PUT, DELETE",
     allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
