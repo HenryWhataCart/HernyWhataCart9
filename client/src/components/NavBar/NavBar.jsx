@@ -71,7 +71,7 @@ const NavBar = () => {
                           companies
                       </Box>
                   </Button>
-                <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={()=> {navigate("/createMember")} }>
+                <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={null}>
                       <Box display="flex" flexDirection="column" alignItems="center">
                           <Icon sx={{ pb: 1 }}><PeopleRoundedIcon/></Icon>
                           Members
@@ -111,14 +111,13 @@ const NavBar = () => {
               <MenuItem onClick={() => navigate("/dashboard")}>Messenger</MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
               <MenuItem onClick={() => navigate("/superadmin")}>Companies</MenuItem>
-              <MenuItem onClick={() => navigate("/createmember")}>Members</MenuItem>
+              <MenuItem onClick={null}>Members</MenuItem>
             </Box>
           )}
           <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
-          <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
           <MenuItem onClick={() => navigate("/createbusiness")}>Manage companies</MenuItem>
           <MenuItem onClick={() => navigate("/createsuperadmin")}>Manage super admin</MenuItem>
-          <MenuItem onClick={() => navigate("/createrol")}>New role</MenuItem>
+          <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
