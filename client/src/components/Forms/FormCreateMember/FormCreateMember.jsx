@@ -42,7 +42,7 @@ import validate from "./Validation";
 
 function FormCreateMember() {
 
-    const { dispatch, roles, user, businessId, businessName} = GetDataCreateMember()
+    const { dispatch, user, businessId, businessName} = GetDataCreateMember()
 
     const [open,setOpen] = React.useState(false)
     const [deleted,setDeleted] = React.useState(false)
@@ -115,15 +115,15 @@ function FormCreateMember() {
             phone:"",
             privilege:"",
             businessId: businessId
-        })
-      }, 3000);
-      setRolCheck(initialRolState);
+          })
+        }, 3000);
     };
 
     const onhandleDelete = (id) =>{
         dispatch(deleteUser(id))
     }
 
+    console.log(user)
     
     return (
         <div className={styles.containerGeneral}>

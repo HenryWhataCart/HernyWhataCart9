@@ -18,7 +18,7 @@ const SuperAdmin = () => {
 
             <Box sx={{display:"flex", flexDirection:"column", gap:3, maxHeight:600, overflow:"auto", p:3, bgcolor:"whitesmoke", borderRadius:3}}>
                 {companies?.map((company) => (
-                     <Box
+                    <Box
                         key={company.id} variant="contained"
                         sx={{display: "flex", justifyContent:"space-between", alignItems: "center", bgcolor: "white", p:3, borderRadius: 2, boxShadow: 3, flexWrap: "wrap", wordWrap: "break-word"}}>
 
