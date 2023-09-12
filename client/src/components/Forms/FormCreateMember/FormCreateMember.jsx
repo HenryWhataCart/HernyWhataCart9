@@ -36,7 +36,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import createUser from "../../../redux/actions/User/PostUser";
 import deleteUser from "../../../redux/actions/User/deleteUser";
 import styles from "./CreateMember.module.css";
-// import validate from "./Validation";
+import validate from "./validations";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import getValidation from '../../../redux/actions/UserValidation/userValidation'
