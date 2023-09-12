@@ -20,7 +20,7 @@ const SuperAdmin = () => {
     }, [user, loginData])
 
     const storedLoginData = JSON.parse(localStorage.getItem('loginData'))
-    console.log(storedLoginData);
+    console.log(storedLoginData)
 
     return (
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"} bgcolor={"white"} boxShadow={3} height={"80vh"} flexDirection={"column"}>

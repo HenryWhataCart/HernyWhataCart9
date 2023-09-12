@@ -50,6 +50,8 @@ function FormCreateMember() {
     const [deleted,setDeleted] = useState(false)
     const [searchQuery, setSearchQuery] = useState("");
 
+    const validation = useSelector((state) => state.validation)
+
   const buttonStyles = {
     background: "#30EAB5",
     color: "white",
@@ -141,6 +143,7 @@ function FormCreateMember() {
     }, [loginData])
     
     return (
+      <>
       <div className={styles.containerGeneral}>
         <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
           <TextField
@@ -374,6 +377,7 @@ function FormCreateMember() {
           </Box>
         </Box>
       </div>
+      </>
     );
 }
 
