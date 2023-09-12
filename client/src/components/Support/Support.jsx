@@ -20,11 +20,11 @@ export default function Support() {
         bgcolor: "white",
         borderRadius: 2,
         p: 1,
-        mb:3,
+        mb: 3,
         boxShadow: 3,
       }}
     >
-      <Box sx={{  mx: "auto", p: 2 }}>
+      <Box sx={{ mx: "auto", p: 2, width: "400px" }}>
         <Typography variant="h4" align="center" mb={2} color="#333">
           Contact Us
         </Typography>
@@ -64,6 +64,11 @@ export default function Support() {
               alignContent: "center",
               backgroundColor: "#09E6A7",
               color: "white",
+              "&:hover": {
+                animation: "buttonHover 0..s ease-in-out",
+                background: "#09e6a77b",
+                color: "#0000007b"
+              },
             }}
           >
             Submit
@@ -73,5 +78,4 @@ export default function Support() {
     </Box>
   );
 }
-
 
