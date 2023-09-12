@@ -63,7 +63,9 @@ export default function Footer() {
                 onClick={handleSupportClick}
                 sx={{
                   "&:hover": {
-                    animation: "buttonHover 0.3s ease-in-out",
+                    animation: "buttonHover 0..s ease-in-out",
+                    background: "#09e6a77b",
+                    color: "#0000007b"
                   },
                 }}
               >
@@ -96,4 +98,3 @@ export default function Footer() {
     </ThemeProvider>
   );
 }
-
