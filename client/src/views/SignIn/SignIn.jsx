@@ -6,33 +6,38 @@ const SignIn = () => {
 
   const { loginWithRedirect } = useAuth0()
   const {user} = useAuth0()
-  const [loginData, setLoginData] = useState({})
-  const [redirectUrl, setRedirectUrl] = useState('/')
+  const [loginData, setLoginData] = useState(null)
+  const [redirectUrl, setRedirectUrl] = useState(null)
 
   const login = async () => {
     await loginWithRedirect({
       appState: {
-      returnTo: '/superadmin',
+      returnTo: redirectUrl,
       },
     })
   }
 
-  // const redirect = (data) => {
-  //   if (data.metadata.privilege === 'SuperAdmin') return '/superadmin'
-  //   else return '/dashboard'
-  // }
+  const redirect = (data) => {
+    if (data.metadata.privilege === 'SuperAdmin') return '/superadmin'
+    else return '/dashboard'
+  }
 
   useEffect(() => {
-    if (user) {
+    if (user && user['loginData']) {
       setLoginData(user['loginData'])
       console.log(loginData)
-      // setRedirectUrl(redirect(loginData))
+      if (loginData && loginData.metadata) {
+        setRedirectUrl(redirect(loginData))
+      }
     }
+  }, [user])
 
-    localStorage.setItem('loginData', JSON.stringify(loginData))
-
-    login()
-  }, [user, loginData])
+  useEffect(() => {
+    if (redirectUrl) {
+      localStorage.setItem('loginData', JSON.stringify(loginData))
+      login()
+    }
+  }, [redirectUrl])
 }
 
 export default SignIn 
