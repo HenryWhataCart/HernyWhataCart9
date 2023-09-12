@@ -6,7 +6,7 @@ import { Typography } from "@mui/material"
 const SignIn = () => {
 
   const { loginWithRedirect } = useAuth0()
-  const {user} = useAuth0()
+  const { user } = useAuth0()
   const [loginData, setLoginData] = useState(null)
   const [redirectUrl, setRedirectUrl] = useState('/dashboard')
 
