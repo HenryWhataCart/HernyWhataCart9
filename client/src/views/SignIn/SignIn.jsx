@@ -4,35 +4,42 @@ import { useAuth0 } from "@auth0/auth0-react"
 
 const SignIn = () => {
 
-  const { loginWithRedirect } = useAuth0()
+  // const { loginWithRedirect } = useAuth0()
   const {user} = useAuth0()
   const [loginData, setLoginData] = useState({})
-  const [redirectUrl, setRedirectUrl] = useState('/')
+  // const [redirectUrl, setRedirectUrl] = useState('/')
 
-  const login = async () => {
-    await loginWithRedirect({
-      appState: {
-      returnTo: redirectUrl,
-      },
-    })
-  }
+  // const login = async () => {
+  //   await loginWithRedirect({
+  //     appState: {
+  //     returnTo: redirectUrl,
+  //     },
+  //   })
+  // }
 
-  const redirect = (data) => {
-    if (data.metadata.privilege === 'SuperAdmin') return '/superadmin'
-    else return '/dashboard'
-  }
+  // const redirect = (data) => {
+  //   if (data.metadata.privilege === 'SuperAdmin') return '/superadmin'
+  //   else return '/dashboard'
+  // }
 
   useEffect(() => {
     if (user) {
       setLoginData(user['loginData'])
       console.log(loginData)
-      setRedirectUrl(redirect(loginData))
+      // if (loginData && loginData.metadata) {
+      //   setRedirectUrl(redirect(loginData))
+      // }
     }
+  }, [user])
 
-    localStorage.setItem('loginData', JSON.stringify(loginData))
+  useEffect(() => {
     
-    login()
-  }, [user, loginData])
+      localStorage.setItem('loginData', JSON.stringify(loginData))
+      const storedLoginData = JSON.parse(localStorage.getItem('loginData'))
+      console.log(storedLoginData);
+      // login()
+
+  }, [])
 }
 
 export default SignIn 
