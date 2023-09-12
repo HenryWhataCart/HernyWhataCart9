@@ -6,7 +6,7 @@ const SignIn = () => {
 
   const { loginWithRedirect } = useAuth0()
   const {user} = useAuth0()
-  const [loginData, setLoginData] = useState({})
+  const [loginData, setLoginData] = useState(null)
   const [redirectUrl, setRedirectUrl] = useState('/dashboard')
 
   const login = async () => {
@@ -37,7 +37,7 @@ const SignIn = () => {
       localStorage.setItem('loginData', JSON.stringify(loginData))
       const storedLoginData = JSON.parse(localStorage.getItem('loginData'))
       console.log(storedLoginData, 'vengo del localStorage');
-      login()
+      loginData && login()
 
   }, [])
 }
