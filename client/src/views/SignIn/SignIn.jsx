@@ -12,25 +12,25 @@ const SignIn = () => {
   const login = async () => {
     await loginWithRedirect({
       appState: {
-      returnTo: redirectUrl,
+      returnTo: '/superadmin',
       },
     })
   }
 
-  const redirect = (data) => {
-    if (data.metadata.privilege === 'SuperAdmin') return '/superadmin'
-    else return '/dashboard'
-  }
+  // const redirect = (data) => {
+  //   if (data.metadata.privilege === 'SuperAdmin') return '/superadmin'
+  //   else return '/dashboard'
+  // }
 
   useEffect(() => {
     if (user) {
       setLoginData(user['loginData'])
       console.log(loginData)
-      setRedirectUrl(redirect(loginData))
+      // setRedirectUrl(redirect(loginData))
     }
 
     localStorage.setItem('loginData', JSON.stringify(loginData))
-    
+
     login()
   }, [user, loginData])
 }
