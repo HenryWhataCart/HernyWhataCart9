@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 
@@ -40,6 +42,10 @@ import createUser from "../../../redux/actions/User/PostUser";
 import deleteUser from "../../../redux/actions/User/deleteUser";
 import styles from "./CreateMember.module.css";
 import validate from "./Validation";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import getValidation from '../../../redux/actions/UserValidation/userValidation'
+import Error from "../../../views/Error/Error";
 
 function FormCreateMember() {
 
@@ -47,6 +53,7 @@ function FormCreateMember() {
 
     const [open,setOpen] = React.useState(false)
     const [deleted,setDeleted] = React.useState(false)
+    const validation = useSelector((state) => state.validation)
 
   const buttonStyles = {
     background: "#30EAB5",
@@ -124,10 +131,13 @@ function FormCreateMember() {
         dispatch(deleteUser(id))
     }
 
-    console.log(user)
+    useEffect(() => {
+      dispatch(getValidation(loginData, businessId))
+    }, [loginData])
     
     return (
-        <div className={styles.containerGeneral}>
+        <>
+        { validation ? <Box className={styles.containerGeneral}>
           <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
                 <TextField
                         required
@@ -274,7 +284,8 @@ function FormCreateMember() {
                     </TableContainer>
                     </Box>
             </div>
-        </div>
+        </Box> : <Error />}
+        </>
     )
 }
 
