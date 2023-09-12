@@ -50,7 +50,7 @@ function FormCreateMember() {
     const [deleted,setDeleted] = useState(false)
     const [searchQuery, setSearchQuery] = useState("");
 
-    const validation = useSelector((state) => state.validation)
+    // const validation = useSelector((state) => state.validation)
 
   const buttonStyles = {
     background: "#30EAB5",
@@ -138,9 +138,9 @@ function FormCreateMember() {
         dispatch(deleteUser(id))
     }
 
-    useEffect(() => {
-      dispatch(getValidation(loginData, businessId))
-    }, [loginData])
+    // useEffect(() => {
+    //   dispatch(getValidation(loginData, businessId))
+    // }, [loginData])
     
     return (
       <>
