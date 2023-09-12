@@ -6,8 +6,8 @@ const SignIn = () => {
 
   const { loginWithRedirect } = useAuth0()
   const {user} = useAuth0()
-  const [loginData, setLoginData] = useState(null)
-  const [redirectUrl, setRedirectUrl] = useState(null)
+  const [loginData, setLoginData] = useState({})
+  const [redirectUrl, setRedirectUrl] = useState('/')
 
   const login = async () => {
     await loginWithRedirect({
@@ -23,21 +23,16 @@ const SignIn = () => {
   }
 
   useEffect(() => {
-    if (user && user['loginData']) {
+    if (user) {
       setLoginData(user['loginData'])
       console.log(loginData)
-      if (loginData && loginData.metadata) {
-        setRedirectUrl(redirect(loginData))
-      }
+      setRedirectUrl(redirect(loginData))
     }
-  }, [user])
 
-  useEffect(() => {
-    if (redirectUrl) {
-      localStorage.setItem('loginData', JSON.stringify(loginData))
-      login()
-    }
-  }, [redirectUrl])
+    localStorage.setItem('loginData', JSON.stringify(loginData))
+    
+    login()
+  }, [user, loginData])
 }
 
 export default SignIn 
