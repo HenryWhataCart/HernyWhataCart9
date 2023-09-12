@@ -20,7 +20,7 @@ const Transition = () => {
         if (user) {
             setLoginData(user['loginData'])
             setLoading(false)
-            if (loginData.metadata.privilege !== "SuperAdmin") navigateTo(`/dashboard`) //${loginData.metadata.businessId}/${loginData.metadata.businessName}
+            if (loginData?.metadata?.privilege !== "SuperAdmin") navigateTo(`/dashboard`) //${loginData.metadata.businessId}/${loginData.metadata.businessName}
             else navigateTo('/superadmin')
         }
 
