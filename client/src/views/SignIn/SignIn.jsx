@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { useAuth0 } from "@auth0/auth0-react"
+import { Typography } from "@mui/material"
 
 const SignIn = () => {
 
@@ -40,6 +41,10 @@ const SignIn = () => {
       loginData && login()
 
   }, [])
+
+  return (
+    <Typography color={"black"}>loudin</Typography>
+  )
 }
 
 export default SignIn 
