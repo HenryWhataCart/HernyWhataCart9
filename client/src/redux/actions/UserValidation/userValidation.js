@@ -1,7 +1,7 @@
 import axios from "axios"
 import ACTION_TYPES from "../../actionTypes";
 
-export const getValidation = (data, businessId) => {
+const getValidation = (data, businessId) => {
     return async (dispatch) => {
         const slicedId = data.id.slice(6)
         let response
@@ -20,3 +20,5 @@ export const getValidation = (data, businessId) => {
       }
     };
   };
+
+  export default getValidation
