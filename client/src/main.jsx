@@ -9,7 +9,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import store from './redux/store.js'
 
-axios.defaults.baseURL = 'https://herny-whata-cart9.vercel.app/'
+axios.defaults.baseURL = 'https://whatacart-render.onrender.com'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
