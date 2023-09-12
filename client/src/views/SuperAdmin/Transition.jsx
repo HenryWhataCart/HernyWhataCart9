@@ -7,19 +7,19 @@ const Transition = () => {
 
 
     const {user} = useAuth0()
-    const [loginData, setLoginData] = useState(null)
+    const [loginData, setLoginData] = useState({})
+    const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
 
     const navigateTo = (ruta) => {  
         navigate(ruta)
     } 
 
-
     useEffect(() => {
 
         if (user) {
             setLoginData(user['loginData'])
-            
+            setLoading(false)
             if (loginData.metadata.privilege !== "SuperAdmin") navigateTo(`/dashboard`) //${loginData.metadata.businessId}/${loginData.metadata.businessName}
             else navigateTo('/superadmin')
         }
@@ -28,8 +28,12 @@ const Transition = () => {
             localStorage.setItem('loginData', JSON.stringify(loginData))
         }
     }, [user, loginData])
+
+    return (
+        <>
+        {loading ? <h1>loading</h1> : null}
+        </>
+    )
 }
-
-
 
 export default Transition
