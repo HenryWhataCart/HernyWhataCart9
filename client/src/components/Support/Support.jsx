@@ -77,7 +77,8 @@ export default function Support() {
             Submit
           </Button>
         </form>
-      </Box>
+      </Box
     </Box>
   );
 }
+
