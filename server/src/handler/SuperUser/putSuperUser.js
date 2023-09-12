@@ -6,6 +6,7 @@ const superUserPut = async (req, res) => {
 
   try {
     if (!id) return res.status(404).json({ error: "id not found" });
+    
     const updatedSuperuser = await updateSuperUser(id, name, email, password);
     return res.status(200).json(updatedSuperuser);
   } catch (error) {

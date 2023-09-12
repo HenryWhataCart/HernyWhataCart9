@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 
 import './App.css'
-import { Routes, Route, useLocation } from 'react-router-dom'
-import Dashboard from './views/Dashboard/Dashboard'
+
+import { Route, Routes, useLocation } from 'react-router-dom'
+
 import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
 import { Contacts } from './views/Contacts/Contacts'
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
@@ -16,6 +17,7 @@ import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
+import Support from '../../client/src/components/Support/Support'
 
 function App() {
 
