@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { createTheme } from "@mui/material/styles";
 import { Box, TextField, Button, Typography } from "@mui/material";
 import {
@@ -12,11 +13,9 @@ import {
 } from "@mui/material";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import { useDispatch } from "react-redux";
 import { createBusiness } from "../../../redux/actions/Business/createBusiness";
-import { useSelector } from "react-redux";
 import { getBusiness } from "../../../redux/actions/Business/getBusiness";
-import updateBusiness from "../../../redux/actions/Business/putBusiness"
+import updateBusiness from "../../../redux/actions/Business/putBusiness";
 import deleteBusiness from "../../../redux/actions/Business/deleteBusiness";
 import { validation } from "./validations";
 import styles from "./BusinessRegistration.module.css";
@@ -32,6 +31,7 @@ export const CreateBusiness = () => {
   const dispatch = useDispatch();
   const business = useSelector((state) => state?.business);
   const [formData, setFormData] = useState(EMPTY_FORM);
+  const [searchQuery, setSearchQuery] = useState("");
   const [errors, setErrors] = useState({});
   const [button, setButton] = useState({
     value: "Create",
@@ -60,7 +60,7 @@ export const CreateBusiness = () => {
       setFormData(EMPTY_FORM);
     }
   };
-  
+
   const handleDelete = (id) => {
     dispatch(deleteBusiness(id));
     setFormData(EMPTY_FORM);
@@ -86,6 +86,16 @@ export const CreateBusiness = () => {
     }
     return true;
   };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredBusiness = business
+    ? business.filter((row) =>
+        row.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
 
   const theme = createTheme({
     palette: {
@@ -177,13 +187,24 @@ export const CreateBusiness = () => {
         >
           {"All Business"}
         </Typography>
+
+        <TextField
+          id="outlined-search"
+          label="Search"
+          type="search"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          variant="outlined"
+          sx={{ marginBottom: 2 }}
+        />
+
         <TableContainer
           sx={{ height: "50vh", overflow: "auto", pb: 1 }}
           component={Paper}
         >
           <Table>
             <TableBody>
-              {business?.map((row) => (
+              {filteredBusiness?.map((row) => (
                 <TableRow key={row?.id}>
                   <TableCell
                     sx={{ display: "flex", justifyContent: "space-between" }}

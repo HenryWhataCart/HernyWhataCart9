@@ -61,8 +61,15 @@ export default function Footer() {
                 variant="contained"
                 color="customGreen"
                 onClick={handleSupportClick}
+                sx={{
+                  "&:hover": {
+                    animation: "buttonHover 0..s ease-in-out",
+                    background: "#09e6a77b",
+                    color: "#0000007b"
+                  },
+                }}
               >
-                Support
+                Soporte
               </Button>
             </Grid>
             <Grid
@@ -78,7 +85,7 @@ export default function Footer() {
               }}
             >
               <Typography variant="body2" color="text.primary">
-                {"Copyright © "}
+                {" © "}
                 <Link color="inherit" href="https://whatacart.ai/">
                   WhataCart
                 </Link>{" "}
