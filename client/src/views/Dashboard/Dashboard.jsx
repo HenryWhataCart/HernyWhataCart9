@@ -1,8 +1,12 @@
-import { Box, Grid } from "@mui/material"
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import './Dashboard.module.css'
+
+import { Box, Grid } from "@mui/material"
 import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
-import Footer from "../../components/Footer/Footer"
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
 
 const chats = [
     { name: 'Chat 1', text: 'Último mensaje del chat 1' },
@@ -52,18 +56,31 @@ const chats = [
   ]
 
 const Dashboard = () => {
+
+    const loginData = JSON.parse(localStorage.getItem('localStorage'))
+    const {businessId} = useParams()
+
+    businessId && console.log(businessId, 'vengo de params');
+    
+    useEffect(() => {
+        // if (loginData && businessId) {
+        //     dispatch(getValidation(loginData, businessId))
+        // }
+    }, [loginData, businessId])
+
     return (
-        <Box>
-            <Grid container sx={{mb: 2}}>
-                <Grid item xs={4}>
-                    <ChatList chats={chats}/>
+        <>
+            <Box>
+                <Grid container sx={{mb: 2}}>
+                    <Grid item xs={4}>
+                        <ChatList chats={chats}/>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <Conversation messages={messages}/>
+                    </Grid>
                 </Grid>
-                <Grid item xs={8}>
-                    <Conversation messages={messages}/>
-                </Grid>
-            </Grid>
-            <Footer />
-        </Box>
+            </Box>
+        </>
     )
 }
 

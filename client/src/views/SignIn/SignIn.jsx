@@ -8,7 +8,7 @@ const SignIn = () => {
   const login = async () => {
     await loginWithRedirect({
       appState: {
-      returnTo: "/superadmin",
+      returnTo: "/redirect",
       },
     })
   }
@@ -18,4 +18,4 @@ const SignIn = () => {
   }, )
 }
 
-export default SignIn 
+export default SignIn;

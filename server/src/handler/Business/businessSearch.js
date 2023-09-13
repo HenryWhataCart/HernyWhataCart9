@@ -1,5 +1,6 @@
 const BusinessSearched = require('../../controllers/Business/searchBusiness')
 
+
 const handlerSearchBusiness = async(req,res) =>{
     const {name} = req.query
     try {
