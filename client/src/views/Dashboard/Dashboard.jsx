@@ -61,6 +61,8 @@ const Dashboard = () => {
 
     const loginData = localStorage.getItem('localStorage')
     const {businessId} = useParams()
+    console.log(businessId);
+    console.log(loginData);
     const dispatch = useDispatch()
     const userValidation = useSelector((state) => state.validation)
 
