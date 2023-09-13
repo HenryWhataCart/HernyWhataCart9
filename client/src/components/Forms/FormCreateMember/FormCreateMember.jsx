@@ -137,15 +137,14 @@ function FormCreateMember() {
         dispatch(deleteUser(id))
     }
 
-    // const userValidation = useSelector((state) => state.validation)
+    const userValidation = useSelector((state) => state?.validation)
+    console.log(userValidation);
     const loginData = JSON.parse(localStorage.getItem('loginData'))
     console.log(loginData, "vengo de localstorage");
 
     useEffect(() => {
       dispatch(getValidation(loginData, businessId))
     }, [loginData])
-
-    console.log("error")
     
     return (
       <>

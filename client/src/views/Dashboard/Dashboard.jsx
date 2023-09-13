@@ -7,6 +7,8 @@ import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
+import getValidation from '../../redux/actions/UserValidation/userValidation'
+import { useDispatch, useSelector } from 'react-redux'
 
 const chats = [
     { name: 'Chat 1', text: 'Último mensaje del chat 1' },
@@ -57,21 +59,24 @@ const chats = [
 
 const Dashboard = () => {
 
-    const loginData = JSON.parse(localStorage.getItem('localStorage'))
+    const loginData = JSON.parse(localStorage.getItem('loginData'))
     const {businessId} = useParams()
+    const dispatch = useDispatch()
+    const validation = useSelector((state) => state?.validation)
 
+    validation && console.log(validation);
     businessId && console.log(businessId, 'vengo de params');
     loginData && console.log(loginData)
     
     useEffect(() => {
-        // if (loginData && businessId) {
-        //     dispatch(getValidation(loginData, businessId))
-        // }
+        if (loginData && businessId) {
+            dispatch(getValidation(loginData, businessId))
+        }
     }, [loginData, businessId])
 
     return (
         <>
-            <Box>
+            { validation ? <Box>
                 <Grid container sx={{mb: 2}}>
                     <Grid item xs={4}>
                         <ChatList chats={chats}/>
@@ -80,7 +85,7 @@ const Dashboard = () => {
                         <Conversation messages={messages}/>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box> : null}
         </>
     )
 }
