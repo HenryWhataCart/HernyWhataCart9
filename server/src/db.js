@@ -6,7 +6,6 @@ const UserModel = require('./models/User')
 const SuperuserModel = require('./models/Superuser')
 const MsgReceivedModel = require('./models/MsgReceived')
 const MsgSendModel = require('./models/MsgSend')
-
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,{logging:false, native: false})
 
 BusinessModel(sequelize)
