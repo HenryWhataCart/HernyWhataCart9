@@ -6,17 +6,20 @@ import { useNavigate } from "react-router-dom"
 const Redirect = () => {
 
     const {user} = useAuth0()
-    const [loginData, setLoginData] = useState({})
+    const [loginData, setLoginData] = useState(null)
     const [loading, setLoading] = useState(true)
     // const navigate = useNavigate()
+    let  storedLoginData
 
     useEffect(() => {
 
         if (user) {
             setLoginData(user['loginData'])
-            console.log(loginData);
+            loginData && console.log(loginData, "vengo de auth0");
             setLoading(false)
             localStorage.setItem('loginData', JSON.stringify(loginData))
+            loginData ? storedLoginData = JSON.parse(localStorage.getItem('loginData')): null
+            console.log(storedLoginData, "vengo de localStorage");
             // if (loginData?.metadata?.privilege === "SuperAdmin") navigate('superadmin')
             // else navigate('/dashboard')
             //${loginData.metadata.businessId}/${loginData.metadata.businessName}
