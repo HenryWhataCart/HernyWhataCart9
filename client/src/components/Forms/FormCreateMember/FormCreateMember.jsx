@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+
 import {
   Alert,
   Box,
@@ -19,6 +21,7 @@ import {
 } from "@mui/material";
 
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import Error from "../../../views/Error/Error";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import GetDataCreateMember from "./getDataCreateMember";
@@ -33,8 +36,12 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import createUser from "../../../redux/actions/User/PostUser";
 import deleteUser from "../../../redux/actions/User/deleteUser";
+import getValidation from '../../../redux/actions/UserValidation/userValidation'
 import styles from "./CreateMember.module.css";
-
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import validate from "./validations";
 
 function FormCreateMember() {
 
@@ -130,8 +137,19 @@ function FormCreateMember() {
         dispatch(deleteUser(id))
     }
 
+    // const userValidation = useSelector((state) => state.validation)
+    const loginData = JSON.parse(localStorage.getItem('loginData'))
+    console.log(loginData, "vengo de localstorage");
+
+    useEffect(() => {
+      dispatch(getValidation(loginData, businessId))
+    }, [loginData])
+
+    console.log("error")
+    
     return (
-      <div className={styles.containerGeneral}>
+      <>
+        <div className={styles.containerGeneral}>
         <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
           <TextField
             required
@@ -364,6 +382,7 @@ function FormCreateMember() {
           </Box>
         </Box>
       </div>
+      </>
     );
 }
 
