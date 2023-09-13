@@ -9,18 +9,8 @@ const SuperAdmin = () => {
 
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
-    // const { user } = useAuth0()
-    // const [loginData, setLoginData] = useState({})
-
-    // useEffect(() => {
-    //     if(user) {
-    //         setLoginData(user['loginData'])
-    //         localStorage.setItem('loginData', JSON.stringify(loginData));
-    //     }
-    // }, [user, loginData])
-
+    
     // const storedLoginData = JSON.parse(localStorage.getItem('loginData'))
-    // console.log(storedLoginData)
 
     return (
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"} bgcolor={"white"} boxShadow={3} height={"80vh"} flexDirection={"column"}>

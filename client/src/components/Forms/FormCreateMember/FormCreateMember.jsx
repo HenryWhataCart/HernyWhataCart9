@@ -50,8 +50,6 @@ function FormCreateMember() {
     const [deleted,setDeleted] = useState(false)
     const [searchQuery, setSearchQuery] = useState("");
 
-    // const validation = useSelector((state) => state.validation)
-
   const buttonStyles = {
     background: "#30EAB5",
     color: "white",
@@ -138,12 +136,14 @@ function FormCreateMember() {
         dispatch(deleteUser(id))
     }
 
-    // useEffect(() => {
-    //   dispatch(getValidation(loginData, businessId))
-    // }, [loginData])
+    const userValidation = useSelector((state) => state.validation)
+    const loginData = JSON.parse(localStorage.getItem('loginData'))
+
+    useEffect(() => {
+      dispatch(getValidation(loginData, businessId))
+    }, [loginData])
     
     return (
-      <>
       <div className={styles.containerGeneral}>
         <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
           <TextField
@@ -377,7 +377,6 @@ function FormCreateMember() {
           </Box>
         </Box>
       </div>
-      </>
     );
 }
 
