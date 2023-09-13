@@ -61,8 +61,11 @@ const Dashboard = () => {
 
     const loginData = JSON.parse(localStorage.getItem('loginData'))
     const {businessId} = useParams()
+    businessId && console.log(businessId, 'vengo de params');
+    loginData && console.log(loginData, 'vengo de localStorage');
     const dispatch = useDispatch()
     const userValidation = useSelector((state) => state.validation)
+    userValidation && console.log(userValidation);
 
     useEffect(() => {
         dispatch(getValidation(loginData, businessId))
