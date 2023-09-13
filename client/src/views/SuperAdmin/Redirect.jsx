@@ -8,7 +8,7 @@ const Redirect = () => {
     const { user } = useAuth0()
     const navigate = useNavigate()
     
-    const loginData = user?.loginData?.metadata
+    const loginData = user?.loginData
 
     const navigator = () => {
         if (loginData.privilege === "SuperAdmin") navigate('/superadmin')
