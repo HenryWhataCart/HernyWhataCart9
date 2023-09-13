@@ -16,7 +16,7 @@ import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
-import Transition from './views/SuperAdmin/Transition';
+import Redirect from './views/SuperAdmin/Redirect';
 
 function App() {
 
@@ -85,9 +85,9 @@ function App() {
         />
 
         <Route
-          path='/welcome'
+          path='/redirect'
           // element= {<AuthenticationGuard component={CreateBusiness} />}
-          element= {<Transition />}
+          element= {<Redirect />}
         />
 
         <Route

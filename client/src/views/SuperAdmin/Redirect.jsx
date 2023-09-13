@@ -3,17 +3,12 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const Transition = () => {
-
+const Redirect = () => {
 
     const {user} = useAuth0()
     const [loginData, setLoginData] = useState({})
     const [loading, setLoading] = useState(true)
-    const navigate = useNavigate()
-
-    const navigateTo = (ruta) => {  
-        navigate(ruta)
-    } 
+    // const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -21,12 +16,10 @@ const Transition = () => {
             setLoginData(user['loginData'])
             console.log(loginData);
             setLoading(false)
-            loginData?.metadata?.privilege !== "SuperAdmin" && navigateTo(`/dashboard`) //${loginData.metadata.businessId}/${loginData.metadata.businessName}
-            loginData?.metadata?.privilege === "SuperAdmin" && navigateTo('/superadmin')
-        }
-
-        return () => {
             localStorage.setItem('loginData', JSON.stringify(loginData))
+            // if (loginData?.metadata?.privilege === "SuperAdmin") navigate('superadmin')
+            // else navigate('/dashboard')
+            //${loginData.metadata.businessId}/${loginData.metadata.businessName}
         }
     }, [user, loginData])
 
@@ -37,4 +30,4 @@ const Transition = () => {
     )
 }
 
-export default Transition
+export default Redirect
