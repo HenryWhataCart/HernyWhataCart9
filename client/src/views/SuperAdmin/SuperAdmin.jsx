@@ -12,7 +12,7 @@ const SuperAdmin = () => {
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
     const validation = useSelector((state)=>state.validation)
-    console.log(validation)
+    console.log('validation')
     
     // const storedLoginData = JSON.parse(localStorage.getItem('loginData'))
 
