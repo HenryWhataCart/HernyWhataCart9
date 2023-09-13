@@ -143,6 +143,8 @@ function FormCreateMember() {
     useEffect(() => {
       dispatch(getValidation(loginData, businessId))
     }, [loginData])
+
+    console.log(userValidation)
     
     return (
       <>
