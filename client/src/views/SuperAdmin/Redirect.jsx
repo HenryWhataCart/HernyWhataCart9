@@ -7,20 +7,18 @@ const Redirect = () => {
 
     const {user} = useAuth0()
     const [loginData, setLoginData] = useState(null)
-    const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
 
     const conNavigate = () => {
 
         if (loginData?.metadata?.privilege === "SuperAdmin") navigate('superadmin')
-        else navigate('/dashboard') // ${loginData.metadata.businessId}/${loginData.metadata.businessName}
+        else navigate(`/dashboard/${loginData.metadata.businessId}/${loginData.metadata.businessName}`)
     }
 
     useEffect(() => {
 
         if (user) {
             setLoginData(user['loginData'])
-            setLoading(false)
             loginData && localStorage.setItem('loginData', JSON.stringify(loginData))
 
             conNavigate()
@@ -29,7 +27,6 @@ const Redirect = () => {
 
     return (
         <>
-        {loading ? <h1>loading</h1> : null}
         </>
     )
 }

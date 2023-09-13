@@ -8,7 +8,7 @@ const getValidation = (data, businessId) => {
       try {
         if (data.metadata.privilege !== "SuperAdmin") {
             response = await axios.get(`/userValidation/?BusinessId=${businessId}&id=${slicedId}`)
-        } // else response = true
+        }
         dispatch({
           type: ACTION_TYPES.GET_USER_VALIDATION_SUCCESS,
           payload: response.data.validation
