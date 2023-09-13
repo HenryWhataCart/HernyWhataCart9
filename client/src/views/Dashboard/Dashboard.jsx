@@ -1,8 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Grid } from "@mui/material"
 import './Dashboard.module.css'
 import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
 import Footer from "../../components/Footer/Footer"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import getValidation from "../../redux/actions/UserValidation/userValidation"
+import { useParams } from "react-router-dom"
+import Error from "../Error/Error"
 
 const chats = [
     { name: 'Chat 1', text: 'Último mensaje del chat 1' },
@@ -52,18 +58,30 @@ const chats = [
   ]
 
 const Dashboard = () => {
+
+    const loginData = localStorage.getItem('localStorage')
+    const {businessId} = useParams()
+    const dispatch = useDispatch()
+    const userValidation = useSelector((state) => state.validation)
+
+    useEffect(() => {
+        dispatch(getValidation(loginData, businessId))
+      }, [loginData, businessId])
+
     return (
-        <Box>
-            <Grid container sx={{mb: 2}}>
-                <Grid item xs={4}>
-                    <ChatList chats={chats}/>
+        <>
+            {userValidation ? <Box>
+                <Grid container sx={{mb: 2}}>
+                    <Grid item xs={4}>
+                        <ChatList chats={chats}/>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <Conversation messages={messages}/>
+                    </Grid>
                 </Grid>
-                <Grid item xs={8}>
-                    <Conversation messages={messages}/>
-                </Grid>
-            </Grid>
-            <Footer />
-        </Box>
+                <Footer />
+            </Box> : <Error />}
+        </>
     )
 }
 

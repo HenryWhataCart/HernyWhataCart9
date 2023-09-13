@@ -6,7 +6,7 @@ const getValidation = (data, businessId) => {
         const {id} = data
         let response
       try {
-        if (data.metadata.privilege !== "SuperAdmin") {
+        if (data.privilege !== "SuperAdmin") {
             response = await axios.get(`/userValidation/?BusinessId=${businessId}&id=${id}`)
         }
         dispatch({

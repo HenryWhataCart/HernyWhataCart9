@@ -16,7 +16,6 @@ const Redirect = () => {
         else navigate(`/dashboard/${businessId}`)
     }
 
-
     useEffect(() => {
         if (loginData) {
             console.log(loginData);
