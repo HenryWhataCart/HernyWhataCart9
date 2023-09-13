@@ -137,10 +137,8 @@ function FormCreateMember() {
         dispatch(deleteUser(id))
     }
 
-    const userValidation = useSelector((state) => state?.validation)
-    console.log(userValidation);
+    const validation = useSelector((state) => state?.validation)
     const loginData = JSON.parse(localStorage.getItem('loginData'))
-    console.log(loginData, "vengo de localstorage");
 
     useEffect(() => {
       dispatch(getValidation(loginData, businessId))
@@ -148,7 +146,7 @@ function FormCreateMember() {
     
     return (
       <>
-        <div className={styles.containerGeneral}>
+        { validation ? <div className={styles.containerGeneral}>
         <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
           <TextField
             required
@@ -380,7 +378,7 @@ function FormCreateMember() {
             </TableContainer>
           </Box>
         </Box>
-      </div>
+      </div> : null}
       </>
     );
 }
