@@ -8,7 +8,10 @@ const Redirect = () => {
     const { user } = useAuth0()
     const [loginData, setLoginData] = useState(null)
     const navigate = useNavigate()
-    user && console.log(user);
+    user && console.log(user, "soy user");
+
+    user && setLoginData(user['loginData'])
+    loginData && console.log(loginData, "soy el estado local");
     
     // const getLoginData = () => {
     //     setLoginData(user['loginData'])
