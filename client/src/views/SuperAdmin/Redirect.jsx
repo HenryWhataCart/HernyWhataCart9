@@ -24,12 +24,12 @@ const Redirect = () => {
     // }
 
 
-    useEffect(() => {
+    // useEffect(() => {
         // user && setLoginData(user['loginData'])
         // loginData && console.log(loginData)
         // loginData && localStorage.setItem('loginData', JSON.stringify(loginData))
         // loginData && conNavigate()
-    }, [])
+    // }, [])
 
     return (
         <>
