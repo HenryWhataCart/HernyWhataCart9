@@ -3,12 +3,14 @@ import axios from "axios"
 
 const getValidation = (data, businessId) => {
     return async (dispatch) => {
-        const {id} = data
-        try {
+      const {id} = data
+      try {
         let response
         if (data.privilege !== "SuperAdmin") {
             response = await axios.get(`/userValidation/?BusinessId=${businessId}&id=${id}`)
+            console.log(response);
         }
+        
         dispatch({
           type: ACTION_TYPES.GET_USER_VALIDATION_SUCCESS,
           payload: response.data.validation
