@@ -9,7 +9,7 @@ const SignOut = () => {
   const signout = () => {
     logout({
       logoutParams: {
-        returnTo: "https://herny-whata-cart9.vercel.app",
+        returnTo: "https://whatacart-client.vercel.app",
       },
     })
   }
