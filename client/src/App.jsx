@@ -91,10 +91,10 @@ function App() {
           // element= {<AuthenticationGuard component={CreateBusiness} />}
           element= {<Redirect />}
         />
-        {/* <Route
+        <Route
           path='*'
           element= {<Error />}
-        /> */} 
+        /> 
       </Routes>
       {showFooter && <Footer />}
     </div>
