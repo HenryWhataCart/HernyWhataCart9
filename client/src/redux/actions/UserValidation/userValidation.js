@@ -1,4 +1,4 @@
-import ACTION_TYPES from "../../actionTypes";
+import ACTION_TYPES from "../../actionTypes"
 import axios from "axios"
 
 const getValidation = (data, businessId) => {
