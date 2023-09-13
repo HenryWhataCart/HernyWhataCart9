@@ -23,8 +23,10 @@ const Redirect = () => {
 
 
     useEffect(() => {
-        user && setLoginData(user['loginData'])
-        loginData && console.log(loginData, "soy el estado local");
+        if (user) {
+            setLoginData(user['loginData'])
+            console.log(loginData, "soy el estado local");
+        }
     }, [user])
 
     return (
