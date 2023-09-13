@@ -3,9 +3,9 @@ import ACTION_TYPES from "../../actionTypes";
 
 const getValidation = (data, businessId) => {
     return async (dispatch) => {
-        const {id} = data
-        let response
+      const {id} = data
       try {
+        let response
         if (data.privilege !== "SuperAdmin") {
             response = await axios.get(`/userValidation/?BusinessId=${businessId}&id=${id}`)
         }
