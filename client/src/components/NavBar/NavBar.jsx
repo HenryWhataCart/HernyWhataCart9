@@ -43,7 +43,7 @@ const NavBar = () => {
                   <Icon sx={{ pb: 1 }}>
                     <SendRoundedIcon />
                   </Icon>
-                  messenger
+                  Messenger
                 </Box>
               </Button>
               <Button
@@ -56,7 +56,7 @@ const NavBar = () => {
                   <Icon sx={{ pb: 1 }}>
                     <ContactsRoundedIcon />
                   </Icon>
-                  contacts
+                  Contacts
                 </Box>
               </Button>
             </Box>
@@ -64,7 +64,7 @@ const NavBar = () => {
               <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={() => navigate("/superadmin")}>
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
-                  companies
+                  Companies
                 </Box>
               </Button>
               <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={() => navigate("/createMember")}>
