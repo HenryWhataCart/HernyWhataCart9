@@ -1,4 +1,4 @@
-const validation = (formUser) =>{
+const validate = (formUser) =>{
     let errors = {}
 
     if(formUser.name.length >30) errors.name = 'Must be less than 30 characters'
@@ -14,4 +14,4 @@ const validation = (formUser) =>{
     return errors
 }
 
-export default validation
+export default validate

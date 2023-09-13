@@ -5,7 +5,7 @@ const initialState = {
     business: [],
     user: [],
     rol: [],
-    loginData: null,
+    validation: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -125,11 +125,24 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.DELETE_USER_FAILURE:
         return state;
 
+        // login
+
         case ACTION_TYPES.GET_LOGIN_DATA:
             return {
                 ...state,
                 loginData: action.payload
             }
+
+        // validation
+
+        case ACTION_TYPES.GET_USER_VALIDATION_SUCCESS:
+            return {
+                ...state,
+                validation: action.payload
+            }
+
+        case ACTION_TYPES.GET_USER_VALIDATION_FAILURE:
+            return state
     }
     };
 

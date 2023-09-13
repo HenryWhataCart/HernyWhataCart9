@@ -14,6 +14,7 @@ const loginController = async ({email, password}) => {
           name: user.name,
           privilege: user.privilege,
           businessId: user.Business.id,
+          businessName: user.Business.name
         }
       }
       return user

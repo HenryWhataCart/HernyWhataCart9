@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Menu, MenuItem, Box, Button, Icon, Typography } from '@mui/material';
+import { AppBar, Box, Button, Icon, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './NavBar.module.css'
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
+
+import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import ContactsRoundedIcon from '@mui/icons-material/ContactsRounded';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useBreakpoints } from '../../hooks/useBreakpoints';
-import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import styles from './NavBar.module.css'
+import { useBreakpoints } from '../../hooks/useBreakpoints';
+import { useState } from 'react';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -33,47 +34,47 @@ const NavBar = () => {
         {!isMobile && (
           <Box sx={{ display: "flex" }}>
             <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
-              <Button
-                variant="text"
-                color="inherit"
-                sx={{ mx: 8, color: "#4E4E4E" }}
-                onClick={() => navigate("/dashboard")}
-              >
-                <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon sx={{ pb: 1 }}>
-                    <SendRoundedIcon />
-                  </Icon>
-                  Messenger
-                </Box>
-              </Button>
-              <Button
-                variant="text"
-                color="inherit"
-                sx={{ mx: 8, color: "#4E4E4E" }}
-                onClick={handleContacts}
-              >
-                <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon sx={{ pb: 1 }}>
-                    <ContactsRoundedIcon />
-                  </Icon>
-                  Contacts
-                </Box>
-              </Button>
-            </Box>
-            <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
-              <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={() => navigate("/superadmin")}>
-                <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
-                  Companies
-                </Box>
-              </Button>
-              <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={() => navigate("/createMember")}>
-                <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon sx={{ pb: 1 }}><PeopleRoundedIcon /></Icon>
-                  Members
-                </Box>
-              </Button>
-            </Box>
+            <Button
+              variant="text"
+              color="inherit"
+              sx={{ mx: 8, color: "#4E4E4E" }}
+              onClick={() => navigate("/dashboard")}
+            >
+              <Box display="flex" flexDirection="column" alignItems="center">
+                <Icon sx={{ pb: 1 }}>
+                  <SendRoundedIcon />
+                </Icon>
+                messenger
+              </Box>
+            </Button>
+            <Button
+              variant="text"
+              color="inherit"
+              sx={{ mx: 8, color: "#4E4E4E" }}
+              onClick={handleContacts}
+            >
+              <Box display="flex" flexDirection="column" alignItems="center">
+                <Icon sx={{ pb: 1 }}>
+                  <ContactsRoundedIcon />
+                </Icon>
+                contacts
+              </Box>
+            </Button>
+          </Box>
+                  <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
+                  <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={() => navigate("/superadmin")}>
+                      <Box display="flex" flexDirection="column" alignItems="center">
+                          <Icon sx={{ pb: 1 }}><BusinessRoundedIcon/></Icon>
+                          companies
+                      </Box>
+                  </Button>
+                <Button variant="text" color="inherit" sx={{ mx: 8, color: "#4E4E4E" }} onClick={null}>
+                      <Box display="flex" flexDirection="column" alignItems="center">
+                          <Icon sx={{ pb: 1 }}><PeopleRoundedIcon/></Icon>
+                          Members
+                      </Box>
+                  </Button>
+              </Box>
           </Box>
         )}
         <IconButton
@@ -105,14 +106,13 @@ const NavBar = () => {
               <MenuItem onClick={() => navigate("/dashboard")}>Messenger</MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
               <MenuItem onClick={() => navigate("/superadmin")}>Companies</MenuItem>
-              <MenuItem onClick={() => navigate("/createmember")}>Members</MenuItem>
+              <MenuItem onClick={null}>Members</MenuItem>
             </Box>
           )}
           <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
-          <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
           <MenuItem onClick={() => navigate("/createbusiness")}>Manage companies</MenuItem>
           <MenuItem onClick={() => navigate("/createsuperadmin")}>Manage super admin</MenuItem>
-          <MenuItem onClick={() => navigate("/createrol")}>New role</MenuItem>
+          <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
