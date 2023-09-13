@@ -9,11 +9,11 @@ const Redirect = () => {
     const [loginData, setLoginData] = useState(null)
     const navigate = useNavigate()
     
-    const getLoginData = () => {
-        setLoginData(user['loginData'])
-        loginData && console.log(loginData);
-        loginData && localStorage.setItem('loginData', JSON.stringify(loginData))
-    }
+    // const getLoginData = () => {
+    //     setLoginData(user['loginData'])
+    //     loginData && console.log(loginData);
+    //     loginData && localStorage.setItem('loginData', JSON.stringify(loginData))
+    // }
     // const conNavigate = () => {
     //     if (loginData?.metadata?.privilege === "SuperAdmin") navigate('/superadmin')
     //     else navigate('/dashboard') // ${loginData.metadata.businessId}/${loginData.metadata.businessName}
@@ -21,7 +21,7 @@ const Redirect = () => {
 
 
     useEffect(() => {
-        user && getLoginData()
+        user && setLoginData(user['loginData'])
         loginData && console.log(loginData);
         // loginData && conNavigate()
     }, [user])
