@@ -90,10 +90,10 @@ function App() {
           element= {<Redirect />}
         />
 
-        <Route
+        {/* <Route
           path='*'
           element= {<Error />}
-        />
+        /> */}
       </Routes>
       {showFooter && <Footer />}
     </div>
