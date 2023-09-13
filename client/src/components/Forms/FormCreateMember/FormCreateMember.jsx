@@ -144,7 +144,7 @@ function FormCreateMember() {
       dispatch(getValidation(loginData, businessId))
     }, [loginData])
 
-    console.log(userValidation)
+    console.log("error",userValidation)
     
     return (
       <>
