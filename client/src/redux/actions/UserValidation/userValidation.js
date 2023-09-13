@@ -1,5 +1,5 @@
-import axios from "axios"
 import ACTION_TYPES from "../../actionTypes";
+import axios from "axios"
 
 const getValidation = (data, businessId) => {
     return async (dispatch) => {

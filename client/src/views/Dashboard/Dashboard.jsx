@@ -1,14 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Grid } from "@mui/material"
+
 import './Dashboard.module.css'
+
+import { Box, Grid } from "@mui/material"
+import { useDispatch, useSelector } from "react-redux"
+
 import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
-import Footer from "../../components/Footer/Footer"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import getValidation from "../../redux/actions/UserValidation/userValidation"
-import { useParams } from "react-router-dom"
 import Error from "../Error/Error"
+import Footer from "../../components/Footer/Footer"
+import getValidation from "../../redux/actions/UserValidation/userValidation"
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
 
 const chats = [
     { name: 'Chat 1', text: 'Último mensaje del chat 1' },
@@ -59,19 +62,19 @@ const chats = [
 
 const Dashboard = () => {
 
-    const loginData = JSON.parse(localStorage.getItem('loginData'))
+    const loginData = JSON.parse(localStorage.getItem('localStorage'))
     const {businessId} = useParams()
-    businessId && console.log(businessId, 'vengo de params');
-    loginData && console.log(loginData, 'vengo de localStorage');
     const dispatch = useDispatch()
     const userValidation = useSelector((state) => state.validation)
     userValidation && console.log(userValidation);
-
+    
     useEffect(() => {
         if (loginData && businessId) {
+            businessId && console.log(businessId, 'vengo de params');
+            loginData && console.log(loginData, 'vengo de localStorage');
             dispatch(getValidation(loginData, businessId))
         }
-      }, [loginData, businessId])
+    }, [loginData, businessId])
 
     return (
         <>
