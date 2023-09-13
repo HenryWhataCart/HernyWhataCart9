@@ -20,9 +20,8 @@ const Redirect = () => {
             setLoginData(user['loginData'])
             loginData && console.log(loginData);
             loginData && localStorage.setItem('loginData', JSON.stringify(loginData))
-
-            loginData && conNavigate()
         }
+        loginData && conNavigate()
     }, [user])
 
     return (
