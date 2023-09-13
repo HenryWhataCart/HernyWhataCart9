@@ -8,7 +8,7 @@ const Redirect = () => {
     const { user } = useAuth0()
     const navigate = useNavigate()
     
-    const loginData = user?.loginData
+    const loginData = user?.loginData;
 
     const navigator = () => {
         const {businessId} = loginData
