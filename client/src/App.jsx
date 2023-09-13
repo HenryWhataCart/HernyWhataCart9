@@ -5,6 +5,7 @@ import './App.css'
 import { Route, Routes, useLocation } from 'react-router-dom'
 
 import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
+import axios from 'axios';
 import { Contacts } from './views/Contacts/Contacts'
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
 import Error from './views/Error/Error'
@@ -18,6 +19,8 @@ import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
 import Dashboard from './views/Dashboard/Dashboard'
+
+axios.defaults.baseURL = 'http://localhost:3001/'
 
 function App() {
 
