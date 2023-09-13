@@ -7,9 +7,9 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
 import { Contacts } from './views/Contacts/Contacts'
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
+import Dashboard from '../../client/src/views/Dashboard/Dashboard'
 import Error from './views/Error/Error'
 import Footer from './components/Footer/Footer';
-import Support from './components/Support/Support'
 import FormCreateMember from '../src/components/Forms/FormCreateMember/FormCreateMember';
 import Metricas from './views/Metricas/Metricas';
 import NavBar from './components/NavBar/NavBar';
