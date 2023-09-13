@@ -18,6 +18,7 @@ import Redirect from './views/SuperAdmin/Redirect';
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
+import Support from './components/Support/Support'
 
 function App() {
 
@@ -76,7 +77,7 @@ function App() {
         
         <Route
           path='/support'
-          element= {<Support />}
+          element= {< Support/>}
         />
 
         <Route
