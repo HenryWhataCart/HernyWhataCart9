@@ -8,10 +8,8 @@ const Redirect = () => {
     const { user } = useAuth0()
     const [loginData, setLoginData] = useState(null)
     const navigate = useNavigate()
-    user && console.log(user, "soy user");
 
-    user && setLoginData(user['loginData'])
-    loginData && console.log(loginData, "soy el estado local");
+    
     
     // const getLoginData = () => {
     //     setLoginData(user['loginData'])
@@ -24,12 +22,10 @@ const Redirect = () => {
     // }
 
 
-    // useEffect(() => {
-        // user && setLoginData(user['loginData'])
-        // loginData && console.log(loginData)
-        // loginData && localStorage.setItem('loginData', JSON.stringify(loginData))
-        // loginData && conNavigate()
-    // }, [])
+    useEffect(() => {
+        user && setLoginData(user['loginData'])
+        loginData && console.log(loginData, "soy el estado local");
+    }, [user])
 
     return (
         <>
