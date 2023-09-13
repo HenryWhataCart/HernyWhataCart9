@@ -18,7 +18,6 @@ const Redirect = () => {
 
     useEffect(() => {
         if (loginData) {
-            // console.log(loginData)
             localStorage.setItem('loginData', JSON.stringify(loginData))
             navigator()
         }
