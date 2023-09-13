@@ -3,11 +3,9 @@
 import './Dashboard.module.css'
 
 import { Box, Grid } from "@mui/material"
-import { useDispatch, useSelector } from "react-redux"
-
+import { useDispatch } from "react-redux"
 import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
-import Error from "../Error/Error"
 import Footer from "../../components/Footer/Footer"
 import getValidation from "../../redux/actions/UserValidation/userValidation"
 import { useEffect } from "react"
@@ -65,11 +63,12 @@ const Dashboard = () => {
     const loginData = JSON.parse(localStorage.getItem('localStorage'))
     const {businessId} = useParams()
     const dispatch = useDispatch()
+
+    businessId && console.log(businessId, 'vengo de params');
+    loginData && console.log(loginData, 'vengo de localStorage');
     
     useEffect(() => {
         if (loginData && businessId) {
-            businessId && console.log(businessId, 'vengo de params');
-            loginData && console.log(loginData, 'vengo de localStorage');
             dispatch(getValidation(loginData, businessId))
         }
     }, [loginData, businessId])
