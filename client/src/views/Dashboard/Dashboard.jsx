@@ -65,8 +65,6 @@ const Dashboard = () => {
     const loginData = JSON.parse(localStorage.getItem('localStorage'))
     const {businessId} = useParams()
     const dispatch = useDispatch()
-    const userValidation = useSelector((state) => state.validation)
-    userValidation && console.log(userValidation);
     
     useEffect(() => {
         if (loginData && businessId) {
@@ -78,7 +76,7 @@ const Dashboard = () => {
 
     return (
         <>
-            {userValidation ? <Box>
+            <Box>
                 <Grid container sx={{mb: 2}}>
                     <Grid item xs={4}>
                         <ChatList chats={chats}/>
@@ -88,7 +86,7 @@ const Dashboard = () => {
                     </Grid>
                 </Grid>
                 <Footer />
-            </Box> : <Error />}
+            </Box>
         </>
     )
 }
