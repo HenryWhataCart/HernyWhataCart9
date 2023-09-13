@@ -8,21 +8,22 @@ const Redirect = () => {
     const {user} = useAuth0()
     const [loginData, setLoginData] = useState(null)
     const [loading, setLoading] = useState(true)
-    // const navigate = useNavigate()
-    let  storedLoginData
+    const navigate = useNavigate()
+
+    const conNavigate = () => {
+
+        if (loginData?.metadata?.privilege === "SuperAdmin") navigate('superadmin')
+        else navigate('/dashboard') // ${loginData.metadata.businessId}/${loginData.metadata.businessName}
+    }
 
     useEffect(() => {
 
         if (user) {
             setLoginData(user['loginData'])
-            loginData && console.log(loginData, "vengo de auth0");
             setLoading(false)
-            localStorage.setItem('loginData', JSON.stringify(loginData))
-            loginData ? storedLoginData = JSON.parse(localStorage.getItem('loginData')): null
-            console.log(storedLoginData, "vengo de localStorage");
-            // if (loginData?.metadata?.privilege === "SuperAdmin") navigate('superadmin')
-            // else navigate('/dashboard')
-            //${loginData.metadata.businessId}/${loginData.metadata.businessName}
+            loginData && localStorage.setItem('loginData', JSON.stringify(loginData))
+
+            conNavigate()
         }
     }, [user, loginData])
 
