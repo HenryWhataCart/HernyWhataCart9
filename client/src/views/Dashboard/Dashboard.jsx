@@ -59,7 +59,7 @@ const chats = [
 
 const Dashboard = () => {
 
-    const loginData = localStorage.getItem('localStorage')
+    const loginData = JSON.parse(localStorage.getItem('loginData'))
     const {businessId} = useParams()
     console.log(businessId);
     console.log(loginData);
