@@ -13,6 +13,18 @@ export default function Support() {
     e.preventDefault();
   }, []);
 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
   return (
     <Box
       sx={{
@@ -36,7 +48,7 @@ export default function Support() {
             fullWidth
             label="Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleNameChange}
             margin="normal"
             required
           />
@@ -44,7 +56,7 @@ export default function Support() {
             fullWidth
             label="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             margin="normal"
             required
             type="email"
@@ -53,7 +65,7 @@ export default function Support() {
             fullWidth
             label="Message"
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={handleMessageChange}
             margin="normal"
             required
             multiline
@@ -68,7 +80,7 @@ export default function Support() {
               backgroundColor: "#09E6A7",
               color: "white",
               "&:hover": {
-                animation: "buttonHover 0..s ease-in-out",
+                animation: "buttonHover 0.3s ease-in-out",
                 background: "#09e6a77b",
                 color: "#0000007b"
               },
@@ -81,4 +93,3 @@ export default function Support() {
     </Box>
   );
 }
-

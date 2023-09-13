@@ -30,17 +30,6 @@ const NavBar = () => {
   const businessId = loginData?.businessId
   const businessName = loginData?.businessName
 
-  console.log(businessId)
-
-  businessId && console.log(businessId, "vengo de params");
-  const logger = async () => {
-    if (loginData) await console.log(loginData, "vengo de localStorage");
-  };
-
-  useEffect(() => {
-    logger();
-  }, [loginData, businessId]);
-
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const handleContacts = () => navigate("/contacts");
@@ -69,7 +58,7 @@ const NavBar = () => {
                   <Icon sx={{ pb: 1 }}>
                     <SendRoundedIcon />
                   </Icon>
-                  messenger
+                  Messenger
                 </Box>
               </Button>
               <Button
@@ -82,7 +71,7 @@ const NavBar = () => {
                   <Icon sx={{ pb: 1 }}>
                     <ContactsRoundedIcon />
                   </Icon>
-                  contacts
+                  Contacts
                 </Box>
               </Button>
             </Box>
@@ -94,10 +83,8 @@ const NavBar = () => {
                 onClick={() => navigate("/superadmin")}
               >
                 <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon sx={{ pb: 1 }}>
-                    <BusinessRoundedIcon />
-                  </Icon>
-                  companies
+                  <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
+                  Companies
                 </Box>
               </Button>
               <Button

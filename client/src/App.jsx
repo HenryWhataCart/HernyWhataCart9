@@ -7,7 +7,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
 import { Contacts } from './views/Contacts/Contacts'
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
-import Dashboard from '../../client/src/views/Dashboard/Dashboard'
+import Dashboard from './views/Dashboard/Dashboard'
 import Error from './views/Error/Error'
 import Footer from './components/Footer/Footer';
 import FormCreateMember from '../src/components/Forms/FormCreateMember/FormCreateMember';
@@ -18,7 +18,7 @@ import Redirect from './views/SuperAdmin/Redirect';
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
-import Support from './components/Support/Support'
+import Support from '../src/components/Support/Support'
 
 function App() {
 

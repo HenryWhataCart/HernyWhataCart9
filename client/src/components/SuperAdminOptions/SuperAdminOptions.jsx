@@ -36,7 +36,7 @@ const SuperAdminOptions = () => {
             onClick={handleClickBusiness}
           >
             <Box display="flex" flexDirection="column" alignItems="center">
-              <Typography variant="h4">companies</Typography>
+              <Typography variant="h4">Companies</Typography>
               <BusinessRoundedIcon fontSize="large" />
             </Box>
           </Button>
@@ -63,7 +63,7 @@ const SuperAdminOptions = () => {
             onClick={handleClickSuper}
           >
             <Box display="flex" flexDirection="column" alignItems="center">
-              <Typography variant="h4">superadmin</Typography>
+              <Typography variant="h4">Superadmin</Typography>
               <BusinessRoundedIcon fontSize="large" />
             </Box>
           </Button>
