@@ -2,6 +2,8 @@ import { Box, Button, Typography } from "@mui/material"
 
 import GetDataSuperAdmin from "./getDataSuperAdmin"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+
 // import { useEffect, useState } from "react"
 // import { useAuth0 } from "@auth0/auth0-react"
 
@@ -9,6 +11,8 @@ const SuperAdmin = () => {
 
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
+    const validation = useSelector((state)=>state.validation)
+    console.log(validation)
     
     // const storedLoginData = JSON.parse(localStorage.getItem('loginData'))
 
