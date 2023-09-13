@@ -38,7 +38,7 @@ function App() {
           />
 
           <Route
-            path='/dashboard'
+            path='/dashboard/:businessId'
             // element= {<AuthenticationGuard component={Dashboard} />}
             element= {<Dashboard />}
           />
