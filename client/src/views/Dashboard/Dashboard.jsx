@@ -68,7 +68,9 @@ const Dashboard = () => {
     userValidation && console.log(userValidation);
 
     useEffect(() => {
-        dispatch(getValidation(loginData, businessId))
+        if (loginData && businessId) {
+            dispatch(getValidation(loginData, businessId))
+        }
       }, [loginData, businessId])
 
     return (
