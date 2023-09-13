@@ -9,7 +9,7 @@ const SignOut = () => {
   const signout = () => {
     logout({
       logoutParams: {
-        returnTo: "http://localhost/5173",
+        returnTo: "http://localhost:5173",
       },
     })
   }
