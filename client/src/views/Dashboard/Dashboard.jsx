@@ -65,12 +65,15 @@ const Dashboard = () => {
     const dispatch = useDispatch()
 
     businessId && console.log(businessId, 'vengo de params');
-    loginData && console.log(loginData, 'vengo de localStorage');
+    const logger = async () => {
+        if (loginData) await console.log(loginData, 'vengo de localStorage')
+    }
     
     useEffect(() => {
-        if (loginData && businessId) {
-            dispatch(getValidation(loginData, businessId))
-        }
+        // if (loginData && businessId) {
+        //     dispatch(getValidation(loginData, businessId))
+        // }
+        logger()
     }, [loginData, businessId])
 
     return (
