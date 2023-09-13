@@ -8,7 +8,7 @@ const SignIn = () => {
   const login = async () => {
     await loginWithRedirect({
       appState: {
-      returnTo: "/superadmin",
+      returnTo: "/redirect",
       },
     })
   }

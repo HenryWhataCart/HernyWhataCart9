@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useAuth0 } from "@auth0/auth0-react"
 import { useEffect } from "react";
 
@@ -8,14 +9,15 @@ const SignOut = () => {
   const signout = () => {
     logout({
       logoutParams: {
-        returnTo: "http://localhost:5173/",
+        returnTo: "https://herny-whata-cart9.vercel.app",
       },
     })
   }
 
   useEffect(() => {
+    localStorage.removeItem('loginData')
     signout()
-  }, ) 
+  }, []) 
 }
 
 export default SignOut

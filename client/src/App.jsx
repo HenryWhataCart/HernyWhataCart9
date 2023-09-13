@@ -14,6 +14,7 @@ import FormCreateMember from '../src/components/Forms/FormCreateMember/FormCreat
 import Metricas from './views/Metricas/Metricas';
 import NavBar from './components/NavBar/NavBar';
 import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
+import Redirect from './views/SuperAdmin/Redirect';
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
@@ -39,7 +40,7 @@ function App() {
           />
 
           <Route
-            path='/dashboard'
+            path='/dashboard/:businessId'
             // element= {<AuthenticationGuard component={Dashboard} />}
             element= {<Dashboard />}
           />
@@ -54,7 +55,7 @@ function App() {
           path='/createmember/:businessId/:businessName'
           // element={<AuthenticationGuard component={FormCreateMember} />}
           element={<FormCreateMember />}
-        />
+          />
         
         <Route
           path='/metrics'
@@ -86,9 +87,15 @@ function App() {
         />
 
         <Route
+          path='/redirect'
+          // element= {<AuthenticationGuard component={CreateBusiness} />}
+          element= {<Redirect />}
+        />
+
+        {/* <Route
           path='*'
           element= {<Error />}
-        />
+        /> */}
       </Routes>
       {showFooter && <Footer />}
     </div>

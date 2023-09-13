@@ -2,13 +2,15 @@ import { Box, Button, Typography } from "@mui/material"
 
 import GetDataSuperAdmin from "./getDataSuperAdmin"
 import { useNavigate } from "react-router-dom"
+// import { useEffect, useState } from "react"
+// import { useAuth0 } from "@auth0/auth0-react"
 
 const SuperAdmin = () => {
 
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
-
-    console.log(companies)
+    
+    // const storedLoginData = JSON.parse(localStorage.getItem('loginData'))
 
     return (
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"} bgcolor={"white"} boxShadow={3} height={"80vh"} flexDirection={"column"}>

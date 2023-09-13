@@ -9,7 +9,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import store from './redux/store.js'
 
-axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = 'https://whatacart-server.onrender.com'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>

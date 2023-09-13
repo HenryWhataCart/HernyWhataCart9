@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import {
@@ -34,7 +36,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import createUser from "../../../redux/actions/User/PostUser";
 import deleteUser from "../../../redux/actions/User/deleteUser";
 import styles from "./CreateMember.module.css";
-
+import validate from "./validations";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import getValidation from '../../../redux/actions/UserValidation/userValidation'
+import Error from "../../../views/Error/Error";
 
 function FormCreateMember() {
 
@@ -130,6 +136,13 @@ function FormCreateMember() {
         dispatch(deleteUser(id))
     }
 
+    const userValidation = useSelector((state) => state.validation)
+    const loginData = JSON.parse(localStorage.getItem('loginData'))
+
+    useEffect(() => {
+      dispatch(getValidation(loginData, businessId))
+    }, [loginData])
+    
     return (
       <div className={styles.containerGeneral}>
         <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
