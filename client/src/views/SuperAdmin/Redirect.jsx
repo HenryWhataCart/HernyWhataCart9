@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom"
 
 const Redirect = () => {
 
-    const {user} = useAuth0()
+    const { user } = useAuth0()
     const [loginData, setLoginData] = useState(null)
-    const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
 
     const conNavigate = () => {
@@ -19,7 +18,7 @@ const Redirect = () => {
 
         if (user) {
             setLoginData(user['loginData'])
-            setLoading(false)
+            loginData && console.log(loginData);
             loginData && localStorage.setItem('loginData', JSON.stringify(loginData))
 
             loginData && conNavigate()
@@ -28,7 +27,6 @@ const Redirect = () => {
 
     return (
         <>
-        {loading ? <h1>loading</h1> : null}
         </>
     )
 }
