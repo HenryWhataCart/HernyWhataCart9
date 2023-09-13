@@ -61,6 +61,7 @@ const Dashboard = () => {
     const {businessId} = useParams()
 
     businessId && console.log(businessId, 'vengo de params');
+    loginData && console.log(loginData)
     
     useEffect(() => {
         // if (loginData && businessId) {
