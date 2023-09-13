@@ -46,7 +46,7 @@ function App() {
           />
 
           <Route
-          path='/contacts'
+          path='/contacts/:businessId'
           // element={<AuthenticationGuard component={Contacts} />}
           element={<Contacts />}
           />
