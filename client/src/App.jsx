@@ -95,7 +95,7 @@ function App() {
         {/* <Route
           path='*'
           element= {<Error />}
-        /> */}
+        /> */} 
       </Routes>
       {showFooter && <Footer />}
     </div>
