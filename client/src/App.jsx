@@ -91,7 +91,6 @@ function App() {
           // element= {<AuthenticationGuard component={CreateBusiness} />}
           element= {<Redirect />}
         />
-
         {/* <Route
           path='*'
           element= {<Error />}
