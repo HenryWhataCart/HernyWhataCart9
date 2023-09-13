@@ -3,10 +3,8 @@
 import './Dashboard.module.css'
 
 import { Box, Grid } from "@mui/material"
-import { useDispatch } from "react-redux"
 import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
-import Footer from "../../components/Footer/Footer"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 
@@ -63,15 +61,11 @@ const Dashboard = () => {
     const {businessId} = useParams()
 
     businessId && console.log(businessId, 'vengo de params');
-    const logger = async () => {
-        if (loginData) await console.log(loginData, 'vengo de localStorage')
-    }
     
     useEffect(() => {
         // if (loginData && businessId) {
         //     dispatch(getValidation(loginData, businessId))
         // }
-        logger()
     }, [loginData, businessId])
 
     return (
@@ -85,7 +79,6 @@ const Dashboard = () => {
                         <Conversation messages={messages}/>
                     </Grid>
                 </Grid>
-                <Footer />
             </Box>
         </>
     )
