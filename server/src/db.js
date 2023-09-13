@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { Sequelize } = require('sequelize')
-const {DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT} = process.env
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env
 const BusinessModel = require('./models/Business')
 const UserModel = require('./models/User')
 const SuperuserModel = require('./models/Superuser')
