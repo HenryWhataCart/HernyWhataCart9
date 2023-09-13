@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux"
 import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
 import Footer from "../../components/Footer/Footer"
-import getValidation from "../../redux/actions/UserValidation/userValidation"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 
@@ -62,7 +61,6 @@ const Dashboard = () => {
 
     const loginData = JSON.parse(localStorage.getItem('localStorage'))
     const {businessId} = useParams()
-    const dispatch = useDispatch();
 
     businessId && console.log(businessId, 'vengo de params');
     const logger = async () => {
