@@ -15,7 +15,7 @@ const SignOut = () => {
   }
 
   useEffect(() => {
-    // localStorage.removeItem('loginData')
+    localStorage.removeItem('loginData')
     signout()
   }, []) 
 }
