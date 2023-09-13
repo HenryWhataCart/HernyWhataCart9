@@ -64,17 +64,17 @@ const Dashboard = () => {
 
     const loginData = JSON.parse(localStorage.getItem('localStorage'))
     const {businessId} = useParams()
-    businessId && console.log(businessId, 'vengo de params');
-    loginData && console.log(loginData, 'vengo de localStorage');
     const dispatch = useDispatch()
     const userValidation = useSelector((state) => state.validation)
     userValidation && console.log(userValidation);
-
+    
     useEffect(() => {
         if (loginData && businessId) {
+            businessId && console.log(businessId, 'vengo de params');
+            loginData && console.log(loginData, 'vengo de localStorage');
             dispatch(getValidation(loginData, businessId))
         }
-      }, [loginData, businessId])
+    }, [loginData, businessId])
 
     return (
         <>
