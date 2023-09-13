@@ -11,7 +11,6 @@ const Redirect = () => {
     const navigate = useNavigate()
 
     const conNavigate = () => {
-
         if (loginData?.metadata?.privilege === "SuperAdmin") navigate('/superadmin')
         else navigate('/dashboard') // ${loginData.metadata.businessId}/${loginData.metadata.businessName}
     }
@@ -25,7 +24,7 @@ const Redirect = () => {
 
             conNavigate()
         }
-    }, [user, loginData])
+    }, [user])
 
     return (
         <>
