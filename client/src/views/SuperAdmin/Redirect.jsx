@@ -10,7 +10,7 @@ const Redirect = () => {
     const navigate = useNavigate()
 
     const conNavigate = () => {
-        if (loginData?.metadata?.privilege === "SuperAdmin") navigate('superadmin')
+        if (loginData?.metadata?.privilege === "SuperAdmin") navigate('/superadmin')
         else navigate(`/dashboard/`)
     }
 
