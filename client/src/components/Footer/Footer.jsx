@@ -2,7 +2,8 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { Box, Link } from "@mui/material";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
@@ -29,6 +30,8 @@ export default function Footer() {
   const handleSupportClick = () => {
     navigate("/support");
   };
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,9 +66,9 @@ export default function Footer() {
                 onClick={handleSupportClick}
                 sx={{
                   "&:hover": {
-                    animation: "buttonHover 0..s ease-in-out",
+                    animation: "buttonHover 0.2s ease-in-out",
                     background: "#09e6a77b",
-                    color: "#0000007b"
+                    color: "#0000007b",
                   },
                 }}
               >
@@ -89,7 +92,7 @@ export default function Footer() {
                 <Link color="inherit" href="https://whatacart.ai/">
                   WhataCart
                 </Link>{" "}
-                {new Date().getFullYear()}
+                {currentYear}
               </Typography>
             </Grid>
           </Grid>
