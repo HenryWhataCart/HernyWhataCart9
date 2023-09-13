@@ -1,14 +1,17 @@
-import { useState } from "react";
-import { TextField, Button, Typography, Box } from "@mui/material";
+import { useState, useCallback } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function Support() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
-  };
+  }, []);
 
   return (
     <Box
