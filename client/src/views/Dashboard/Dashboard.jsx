@@ -66,7 +66,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(getValidation(loginData, businessId))
-      }, [businessId])
+      }, [loginData, businessId])
 
     return (
         <>
