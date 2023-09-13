@@ -18,7 +18,6 @@ import Redirect from './views/SuperAdmin/Redirect';
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
-import Support from '../../client/src/components/Support/Support'
 
 function App() {
 

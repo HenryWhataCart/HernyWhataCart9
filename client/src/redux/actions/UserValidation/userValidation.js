@@ -8,7 +8,6 @@ const getValidation = (data, businessId) => {
         let response
         if (data.privilege !== "SuperAdmin") {
             response = await axios.get(`/userValidation/?BusinessId=${businessId}&id=${id}`)
-            console.log(response);
         }
         
         dispatch({
