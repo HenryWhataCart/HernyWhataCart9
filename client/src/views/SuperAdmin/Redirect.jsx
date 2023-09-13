@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 const Redirect = () => {
 
     const { user } = useAuth0()
-    const [loginData, setLoginData] = useState(null)
+    const [loginData, setLoginData] = useState({})
     const navigate = useNavigate()
 
     const conNavigate = () => {
