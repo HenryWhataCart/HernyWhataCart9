@@ -52,7 +52,7 @@ function App() {
           />
 
           <Route
-          path='/createmember/:businessId/:businessName'
+          path='/createmember/:businessId'
           // element={<AuthenticationGuard component={FormCreateMember} />}
           element={<FormCreateMember />}
           />

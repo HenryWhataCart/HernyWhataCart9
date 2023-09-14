@@ -64,7 +64,7 @@ const Metricas = () => {
         </TableBody>
       </Table>
       </TableContainer>
-    </Paper>);
+    </Paper>;
       </Box>
       </Box>
       </Box>

@@ -34,7 +34,7 @@ const SuperAdmin = () => {
                         <Box sx={{display: "flex"}}>
                             <Button
                                 variant="contained"
-                                onClick={() => navigate(`/createmember/${company.id}/${company.name}`)}
+                                onClick={() => navigate(`/createmember/${company.id}`)}
                                 sx={{fontSize: 13, mx: 0.25}}>
                                 members
                             </Button>    
