@@ -7,7 +7,7 @@ const GetDataCreateMember = () => {
 
     const user = useSelector(state => state?.user)
     const dispatch = useDispatch()
-    const {businessId, businessName} = useParams()
+    const {businessId} = useParams()
     
     useEffect(() => {
         dispatch(getUser(businessId))
@@ -18,7 +18,6 @@ const GetDataCreateMember = () => {
         dispatch,
         user,
         businessId,
-        businessName
     }
 }
 

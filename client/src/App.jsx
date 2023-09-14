@@ -14,7 +14,7 @@ import FormCreateMember from '../src/components/Forms/FormCreateMember/FormCreat
 import Metricas from './views/Metricas/Metricas';
 import NavBar from './components/NavBar/NavBar';
 import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
-import Redirect from './views/SuperAdmin/Redirect';
+import Redirect from './components/Redirect/Redirect';
 import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
