@@ -9,8 +9,8 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useNavigate  } from "react-router-dom";
+import {  useState } from "react";
 
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import ContactsRoundedIcon from "@mui/icons-material/ContactsRounded";
@@ -29,6 +29,8 @@ const NavBar = () => {
   const loginData = JSON.parse(localStorage.getItem("loginData"));
   const businessId = loginData?.businessId
   const businessName = loginData?.businessName
+  const nameLogged = loginData?.name
+  const privilegeLogged = loginData?.privilege
 
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -124,9 +126,9 @@ const NavBar = () => {
           <MenuItem disableRipple onClick={null}>
             <Box>
               <Typography variant="body1" fontWeight={600}>
-                Nacho
+                {nameLogged}
               </Typography>
-              <Typography variant="body2">Superadmin</Typography>
+              <Typography variant="body2">{privilegeLogged}</Typography>
             </Box>
           </MenuItem>
           {isMobile && (
