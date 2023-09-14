@@ -11,11 +11,11 @@ const SuperAdmin = () => {
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
 
-    
-    // const storedLoginData = JSON.parse(localStorage.getItem('loginData'))
+    const {privilege} = JSON.parse(localStorage.getItem("loginData"))
 
     return (
-        <Box display={"flex"} justifyContent={"center"} alignItems={"center"} bgcolor={"white"} boxShadow={3} height={"80vh"} flexDirection={"column"}>
+       <>
+        { privilege === 'SuperAdmin' ? <Box display={"flex"} justifyContent={"center"} alignItems={"center"} bgcolor={"white"} boxShadow={3} height={"80vh"} flexDirection={"column"}>
             <Typography variant="h3" sx={{color: "grey"}}>COMPANIES</Typography>
 
             {/* //!  POR ACÁ IRÍA LA SEARCHBAR, PARA QUE SE VEA DEBAJO DE "COMPANIES"*/}
@@ -42,7 +42,8 @@ const SuperAdmin = () => {
                     </Box>
                 ))}
             </Box>
-        </Box>
+        </Box> : null}
+       </>
     )
 }
 
