@@ -19,7 +19,7 @@ import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import styles from "./NavBar.module.css";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
-import { checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
+import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -38,6 +38,7 @@ const NavBar = () => {
   const handleContacts = () => navigate("/contacts");
   
   const isMember = checkIfMember(loginData?.privilege);
+  const isAdmin = checkIfAdmin(loginData?.privilege);
   const isSuperAdmin = checkIfSuperAdmin(loginData?.privilege)
   
   return (
@@ -83,7 +84,7 @@ const NavBar = () => {
             </Box>
             {!isMember && (
             <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
-              <Button
+              {!isAdmin && <Button
                 variant="text"
                 color="inherit"
                 sx={{ mx: 8, color: "#4E4E4E" }}
@@ -93,7 +94,7 @@ const NavBar = () => {
                   <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
                   Companies
                 </Box>
-              </Button>
+              </Button>}
               <Button
                 variant="text"
                 color="inherit"
@@ -145,9 +146,12 @@ const NavBar = () => {
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
               {!isMember && 
                 (<>
-                  <MenuItem onClick={() => navigate("/superadmin")}>
-                  Companies
-                  </MenuItem>
+                  {
+                    !isAdmin && 
+                      <MenuItem onClick={() => navigate("/superadmin")}>
+                      Companies
+                      </MenuItem>
+                  }
                   <MenuItem onClick={null}>Members</MenuItem>
                 </>)
               }
