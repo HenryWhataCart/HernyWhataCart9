@@ -9,8 +9,8 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {  useState } from "react";
 
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import ContactsRoundedIcon from "@mui/icons-material/ContactsRounded";
@@ -19,6 +19,7 @@ import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import styles from "./NavBar.module.css";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
+import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -27,12 +28,20 @@ const NavBar = () => {
   const open = Boolean(anchorEl);
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
+  
+
+
   const businessId = loginData?.businessId
   const businessName = loginData?.businessName
 
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const handleContacts = () => navigate("/contacts");
+  
+  const isMember = checkIfMember(loginData.privilege);
+  const isAdmin = checkIfAdmin(loginData.privilege);
+  const isSuperAdmin = checkIfSuperAdmin(loginData.privilige)
+  
 
   return (
     <AppBar position="relative" sx={{ bgcolor: "white", mb: 1 }}>
@@ -75,6 +84,7 @@ const NavBar = () => {
                 </Box>
               </Button>
             </Box>
+            { isMember && (
             <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
               <Button
                 variant="text"
@@ -82,10 +92,12 @@ const NavBar = () => {
                 sx={{ mx: 8, color: "#4E4E4E" }}
                 onClick={() => navigate("/superadmin")}
               >
+                { !isAdmin && 
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
                   Companies
                 </Box>
+                }
               </Button>
               <Button
                 variant="text"
@@ -101,6 +113,7 @@ const NavBar = () => {
                 </Box>
               </Button>
             </Box>
+            )}
           </Box>
         )}
         <IconButton
@@ -141,6 +154,8 @@ const NavBar = () => {
               <MenuItem onClick={null}>Members</MenuItem>
             </Box>
           )}
+          { !isSuperAdmin && 
+          <Box>
           <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
           <MenuItem onClick={() => navigate("/createbusiness")}>
             Manage companies
@@ -148,6 +163,8 @@ const NavBar = () => {
           <MenuItem onClick={() => navigate("/createsuperadmin")}>
             Manage super admin
           </MenuItem>
+          </Box>
+            }
           <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
         </Menu>
       </Toolbar>
