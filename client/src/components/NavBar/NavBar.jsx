@@ -19,6 +19,7 @@ import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import styles from "./NavBar.module.css";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
+import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -27,14 +28,19 @@ const NavBar = () => {
   const open = Boolean(anchorEl);
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
+  
   const businessId = loginData?.businessId
   const loginName = loginData?.name
-  const loginPrivelege = loginData?.privilege
+  const loginPrivilege = loginData?.privilege
 
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const handleContacts = () => navigate("/contacts");
-
+  
+  const isMember = checkIfMember(loginData?.privilege);
+  const isAdmin = checkIfAdmin(loginData?.privilege);
+  const isSuperAdmin = checkIfSuperAdmin(loginData?.privilege)
+  
   return (
     <AppBar position="relative" sx={{ bgcolor: "white", mb: 1 }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -76,18 +82,19 @@ const NavBar = () => {
                 </Box>
               </Button>
             </Box>
+            {!isMember && (
             <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
-              <Button
+              {!isAdmin && <Button
                 variant="text"
                 color="inherit"
                 sx={{ mx: 8, color: "#4E4E4E" }}
                 onClick={() => navigate("/superadmin")}
-              >
+              >       
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
                   Companies
                 </Box>
-              </Button>
+              </Button>}
               <Button
                 variant="text"
                 color="inherit"
@@ -102,6 +109,7 @@ const NavBar = () => {
                 </Box>
               </Button>
             </Box>
+            )}
           </Box>
         )}
         <IconButton
@@ -127,7 +135,7 @@ const NavBar = () => {
               <Typography variant="body1" fontWeight={600}>
                 {loginName}
               </Typography>
-              <Typography variant="body2">{loginPrivelege}</Typography>
+              <Typography variant="body2">{loginPrivilege}</Typography>
             </Box>
           </MenuItem>
           {isMobile && (
@@ -136,19 +144,30 @@ const NavBar = () => {
                 Messenger
               </MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
-              <MenuItem onClick={() => navigate("/superadmin")}>
-                Companies
-              </MenuItem>
-              <MenuItem onClick={null}>Members</MenuItem>
+              {!isMember && 
+                (<>
+                  {
+                    !isAdmin && 
+                      <MenuItem onClick={() => navigate("/superadmin")}>
+                      Companies
+                      </MenuItem>
+                  }
+                  <MenuItem onClick={null}>Members</MenuItem>
+                </>)
+              }
             </Box>
           )}
-          <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
-          <MenuItem onClick={() => navigate("/createbusiness")}>
-            Manage companies
-          </MenuItem>
-          <MenuItem onClick={() => navigate("/createsuperadmin")}>
-            Manage super admin
-          </MenuItem>
+          {isSuperAdmin && 
+            <Box>
+            <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
+            <MenuItem onClick={() => navigate("/createbusiness")}>
+              Manage companies
+            </MenuItem>
+            <MenuItem onClick={() => navigate("/createsuperadmin")}>
+              Manage super admin
+            </MenuItem>
+            </Box>
+          }
           <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
         </Menu>
       </Toolbar>
