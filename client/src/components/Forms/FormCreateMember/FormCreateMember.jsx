@@ -45,11 +45,14 @@ import validate from "./validations";
 
 function FormCreateMember() {
 
-    const { dispatch, user, businessId, businessName} = GetDataCreateMember()
+    const { dispatch, user, businessId} = GetDataCreateMember()
 
     const [open,setOpen] = useState(false)
     const [deleted,setDeleted] = useState(false)
     const [searchQuery, setSearchQuery] = useState("");
+
+    const loginData = JSON.parse(localStorage.getItem('loginData'))
+    const {privilege, businessName} = loginData
 
   const buttonStyles = {
     background: "#30EAB5",
@@ -138,7 +141,6 @@ function FormCreateMember() {
     }
 
     const validation = useSelector((state) => state?.validation)
-    const loginData = JSON.parse(localStorage.getItem('loginData'))
 
     useEffect(() => {
       dispatch(getValidation(loginData, businessId))
@@ -146,7 +148,7 @@ function FormCreateMember() {
     
     return (
       <>
-        { validation ? <div className={styles.containerGeneral}>
+        { validation && privilege !== 'Member' ? <div className={styles.containerGeneral}>
         <form onSubmit={onHandleSubmit} className={styles.containerFormMember}>
           <TextField
             required
