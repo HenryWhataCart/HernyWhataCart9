@@ -1,26 +1,16 @@
-import { useEffect } from "react"
 import { Box, Button, Typography } from "@mui/material"
 import GetDataSuperAdmin from "./getDataSuperAdmin"
 import { useNavigate } from "react-router-dom"
 // import { useAuth0 } from "@auth0/auth0-react"
 
 const SuperAdmin = () => {
-
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
-    let privilege = null;
-
-    useEffect(() => {
-        const loginData = JSON.parse(localStorage.getItem("loginData"))
-        if (loginData) {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            privilege = loginData.privilege
-        }
-    }, [])
+    const loginData = JSON.parse(localStorage.getItem("loginData"))
 
     return (
        <>
-        { privilege === 'SuperAdmin' ? <Box display={"flex"} justifyContent={"center"} alignItems={"center"} bgcolor={"white"} boxShadow={3} height={"80vh"} flexDirection={"column"}>
+        { loginData?.privilege === 'SuperAdmin' ? <Box display={"flex"} justifyContent={"center"} alignItems={"center"} bgcolor={"white"} boxShadow={3} height={"80vh"} flexDirection={"column"}>
             <Typography variant="h3" sx={{color: "grey"}}>COMPANIES</Typography>
 
             {/* //!  POR ACÁ IRÍA LA SEARCHBAR, PARA QUE SE VEA DEBAJO DE "COMPANIES"*/}
