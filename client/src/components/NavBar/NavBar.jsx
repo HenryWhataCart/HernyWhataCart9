@@ -29,19 +29,17 @@ const NavBar = () => {
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
   
-
-
   const businessId = loginData?.businessId
   const loginName = loginData?.name
-  const loginPrivelege = loginData?.privilege
+  const loginPrivilege = loginData?.privilege
 
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const handleContacts = () => navigate("/contacts");
   
-  const isMember = checkIfMember(loginData.privilege);
-  const isAdmin = checkIfAdmin(loginData.privilege);
-  const isSuperAdmin = checkIfSuperAdmin(loginData.privilige)
+  const isMember = checkIfMember(loginData?.privilege);
+  const isAdmin = checkIfAdmin(loginData?.privilege);
+  const isSuperAdmin = checkIfSuperAdmin(loginData?.privilige)
   
 
   return (
@@ -140,7 +138,7 @@ const NavBar = () => {
               <Typography variant="body1" fontWeight={600}>
                 {loginName}
               </Typography>
-              <Typography variant="body2">{loginPrivelege}</Typography>
+              <Typography variant="body2">{loginPrivilege}</Typography>
             </Box>
           </MenuItem>
           {isMobile && (
