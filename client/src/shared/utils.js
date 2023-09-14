@@ -1,11 +1,5 @@
-export const checkIfSuperAdmin = (privilege) => {
-    return privilege === "SuperAdmin";
-}
+export const checkIfSuperAdmin = (privilege) => privilege === "SuperAdmin";
 
-export const checkIfAdmin = (privilege) => {
-    return privilege === "Admin";
-}
+export const checkIfAdmin = (privilege) => privilege === "Admin";
 
-export const checkIfMember = (privilege) => {
-    return privilege === "Member";
-}
+export const checkIfMember = (privilege) => privilege === "Member";

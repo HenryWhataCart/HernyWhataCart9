@@ -19,7 +19,7 @@ import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import styles from "./NavBar.module.css";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
-import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
+import { checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -38,10 +38,8 @@ const NavBar = () => {
   const handleContacts = () => navigate("/contacts");
   
   const isMember = checkIfMember(loginData?.privilege);
-  const isAdmin = checkIfAdmin(loginData?.privilege);
-  const isSuperAdmin = checkIfSuperAdmin(loginData?.privilige)
+  const isSuperAdmin = checkIfSuperAdmin(loginData?.privilege)
   
-
   return (
     <AppBar position="relative" sx={{ bgcolor: "white", mb: 1 }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -83,20 +81,18 @@ const NavBar = () => {
                 </Box>
               </Button>
             </Box>
-            { isMember && (
+            {!isMember && (
             <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
               <Button
                 variant="text"
                 color="inherit"
                 sx={{ mx: 8, color: "#4E4E4E" }}
                 onClick={() => navigate("/superadmin")}
-              >
-                { !isAdmin && 
+              >       
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
                   Companies
                 </Box>
-                }
               </Button>
               <Button
                 variant="text"
@@ -147,23 +143,27 @@ const NavBar = () => {
                 Messenger
               </MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
-              <MenuItem onClick={() => navigate("/superadmin")}>
-                Companies
-              </MenuItem>
-              <MenuItem onClick={null}>Members</MenuItem>
+              {!isMember && 
+                (<>
+                  <MenuItem onClick={() => navigate("/superadmin")}>
+                  Companies
+                  </MenuItem>
+                  <MenuItem onClick={null}>Members</MenuItem>
+                </>)
+              }
             </Box>
           )}
-          { !isSuperAdmin && 
-          <Box>
-          <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
-          <MenuItem onClick={() => navigate("/createbusiness")}>
-            Manage companies
-          </MenuItem>
-          <MenuItem onClick={() => navigate("/createsuperadmin")}>
-            Manage super admin
-          </MenuItem>
-          </Box>
-            }
+          {isSuperAdmin && 
+            <Box>
+            <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
+            <MenuItem onClick={() => navigate("/createbusiness")}>
+              Manage companies
+            </MenuItem>
+            <MenuItem onClick={() => navigate("/createsuperadmin")}>
+              Manage super admin
+            </MenuItem>
+            </Box>
+          }
           <MenuItem onClick={() => navigate("/signout")}>Sign out</MenuItem>
         </Menu>
       </Toolbar>
