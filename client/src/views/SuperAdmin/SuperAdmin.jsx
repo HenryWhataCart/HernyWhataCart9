@@ -1,17 +1,22 @@
+import { useEffect } from "react"
 import { Box, Button, Typography } from "@mui/material"
-
 import GetDataSuperAdmin from "./getDataSuperAdmin"
 import { useNavigate } from "react-router-dom"
-
-// import { useEffect, useState } from "react"
 // import { useAuth0 } from "@auth0/auth0-react"
 
 const SuperAdmin = () => {
 
     const {companies} = GetDataSuperAdmin()
     const navigate = useNavigate()
+    let privilege = null;
 
-    const {privilege} = JSON.parse(localStorage.getItem("loginData"))
+    useEffect(() => {
+        const loginData = JSON.parse(localStorage.getItem("loginData"))
+        if (loginData) {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            privilege = loginData.privilege
+        }
+    }, [])
 
     return (
        <>
