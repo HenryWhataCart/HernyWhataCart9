@@ -133,9 +133,11 @@ function FormCreateMember() {
         }, 3000);
     };
 
-    const onhandleDelete = (id) =>{
-        dispatch(deleteUser(id))
-    }
+    const onhandleDelete = (id) => {
+      dispatch(deleteUser(id));
+      setDeleted(true);
+    };
+    
 
     // const userValidation = useSelector((state) => state.validation)
     const loginData = JSON.parse(localStorage.getItem('loginData'))
@@ -266,6 +268,7 @@ function FormCreateMember() {
             open={open}
             autoHideDuration={2500}
             onClose={() => setOpen(false)}
+            sx={{ backgroundColor: '#d4edda', border: '1px solid #c3e6cb', color: '#155724' }}
           >
             <Alert variant="outlined" severity="success">
               <Typography>
@@ -371,9 +374,10 @@ function FormCreateMember() {
                     open={deleted}
                     autoHideDuration={3000}
                     onClose={() => setDeleted(false)}
+                    sx={{ backgroundColor: '#d4edda' }}
                   >
-                    <Alert variant="outlined" severity="warning">
-                      Role removed!
+                    <Alert variant="filled" severity="warning">
+                      Member removed!
                     </Alert>
                   </Snackbar>
                 </TableBody>
