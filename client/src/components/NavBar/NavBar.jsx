@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AppBar,
   Box,
@@ -9,9 +10,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate  } from "react-router-dom";
-import {  useState } from "react";
-
+import { Link, useNavigate } from "react-router-dom";
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import ContactsRoundedIcon from "@mui/icons-material/ContactsRounded";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -27,9 +26,9 @@ const NavBar = () => {
   const open = Boolean(anchorEl);
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
-  const businessId = loginData?.businessId
-  const loginName = loginData?.name
-  const loginPrivelege = loginData?.privilege
+  const businessId = loginData?.businessId;
+  const loginName = loginData?.name;
+  const loginPrivelege = loginData?.privilege;
 
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -37,7 +36,14 @@ const NavBar = () => {
 
   return (
     <AppBar position="relative" sx={{ bgcolor: "white", mb: 1 }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap", 
+        }}
+      >
         <Link to="/">
           <img
             className={styles.logo}
@@ -47,12 +53,18 @@ const NavBar = () => {
           />
         </Link>
         {!isMobile && (
-          <Box sx={{ display: "flex" }}>
-            <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 15, 
+              }}
+            >
               <Button
                 variant="text"
                 color="inherit"
-                sx={{ mx: 8, color: "#4E4E4E" }}
+                sx={{ color: "#4E4E4E" }}
                 onClick={() => navigate(`/dashboard/${businessId}`)}
               >
                 <Box display="flex" flexDirection="column" alignItems="center">
@@ -65,8 +77,8 @@ const NavBar = () => {
               <Button
                 variant="text"
                 color="inherit"
-                sx={{ mx: 8, color: "#4E4E4E" }}
-                onClick={()=> navigate(`/contacts/${businessId}`)}
+                sx={{ color: "#4E4E4E" }}
+                onClick={() => navigate(`/contacts/${businessId}`)}
               >
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Icon sx={{ pb: 1 }}>
@@ -75,24 +87,24 @@ const NavBar = () => {
                   Contacts
                 </Box>
               </Button>
-            </Box>
-            <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
               <Button
                 variant="text"
                 color="inherit"
-                sx={{ mx: 8, color: "#4E4E4E" }}
+                sx={{ color: "#4E4E4E" }}
                 onClick={() => navigate("/superadmin")}
               >
                 <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
+                  <Icon>
+                    <BusinessRoundedIcon />
+                  </Icon>
                   Companies
                 </Box>
               </Button>
               <Button
                 variant="text"
                 color="inherit"
-                sx={{ mx: 8, color: "#4E4E4E" }}
-                onClick={()=> navigate(`/createmember/${businessId}`)}
+                sx={{ color: "#4E4E4E" }}
+                onClick={() => navigate(`/createmember/${businessId}`)}
               >
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Icon sx={{ pb: 1 }}>

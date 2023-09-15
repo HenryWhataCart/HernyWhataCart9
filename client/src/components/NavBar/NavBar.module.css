@@ -1,4 +1,25 @@
+/* Estilos generales para pantallas más grandes */
 .logo {
     width: 10rem;
     object-fit: contain;
+}
+
+/* Estilos específicos para pantallas más pequeñas */
+@media (max-width: 239px) {
+    .logo {
+        display: none; /* Oculta el logo */
+    }
+    
+    /* Estilos para mostrar el menú hamburguesa */
+    .menu-toggle {
+        display: block; /* Muestra el botón de menú hamburguesa */
+    }
+
+    .menu {
+        display: none; /* Oculta el menú principal */
+    }
+
+    .menu.show {
+        display: block; /* Muestra el menú al hacer clic en el botón hamburguesa */
+    }
 }
