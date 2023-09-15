@@ -132,17 +132,16 @@ const NavBar = () => {
           </MenuItem>
           {isMobile && (
             <Box>
-              <MenuItem onClick={() => navigate("/dashboard")}>
+              <MenuItem onClick={() => navigate(`/dashboard/${businessId}`)}>
                 Messenger
               </MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
               <MenuItem onClick={() => navigate("/superadmin")}>
                 Companies
               </MenuItem>
-              <MenuItem onClick={null}>Members</MenuItem>
+              <MenuItem onClick={() => navigate(`/createmember/${businessId}`)}> Members</MenuItem>
             </Box>
           )}
-          <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
           <MenuItem onClick={() => navigate("/createbusiness")}>
             Manage companies
           </MenuItem>
