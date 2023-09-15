@@ -284,7 +284,7 @@ function FormCreateMember() {
               p: 1,
               boxShadow: "0 0 2px rgb(0, 0, 0)",
               height: "50vh",
-              width: "100%", // Cambiar de "35vw" a "100%"
+              width: "100%", 
             }}
           >
             <Typography
@@ -294,7 +294,7 @@ function FormCreateMember() {
                 fontSize: "1.3rem",
                 mt: 1.5,
                 pb: 1,
-                width: "100%", // Cambiar de "35vw" a "100%"
+                width: "100%", 
               }}
             >
               {"All Users"}
@@ -313,7 +313,7 @@ function FormCreateMember() {
                 height: "41vh",
                 overflow: "auto",
                 pb: 1,
-                width: "100%", // Cambiar de "35vw" a "100%"
+                width: "100%", 
                 justifyContent: "center",
               }}
               component={Paper}
@@ -334,7 +334,7 @@ function FormCreateMember() {
                               fontSize: "1.3rem",
                               mt: 1.5,
                               pb: 1,
-                              width: "100%", // Cambiar de "35vw" a "100%"
+                              width: "100%", 
                             }}
                           >
                             {"There are no registered users"}
