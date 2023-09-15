@@ -10,7 +10,9 @@ const SignOut = () => {
   const signout = () => {
     logout({
       logoutParams: {
-        returnTo: "http://localhost:5173",
+
+        returnTo: "https://herny-whata-cart9.vercel.app/",
+
       },
     })
   }
