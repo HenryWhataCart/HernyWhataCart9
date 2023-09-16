@@ -46,6 +46,8 @@ const NavBar = () => {
   const isMember = checkIfMember(loginData?.privilege);
   const isAdmin = checkIfAdmin(loginData?.privilege);
   const isSuperAdmin = checkIfSuperAdmin(loginData?.privilege)
+
+  const logo = darkMode ? "https://uploads-ssl.webflow.com/64484d95e9797d0cef181b3a/6449cca777bcb4ec3d1248b5_whatacart.png" : "https://i.imgur.com/MdR5aac.png";
   
   return (
     //2. usar un estilo u otro dependiendo del value del darkMode. (recorder que es un boolean, y cuando sea true, implica que el darkMode esta activado)
@@ -54,7 +56,7 @@ const NavBar = () => {
         <Link to="/">
           <img
             className={styles.logo}
-            src="https://i.imgur.com/MdR5aac.png"
+            src={logo}
             alt="Logo"
             height={50}
           />
