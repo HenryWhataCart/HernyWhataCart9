@@ -90,14 +90,14 @@ function FormCreateMember() {
     }
 
     const handleSearchChange = (event) => {
-      setSearchQuery(event.target.value);
-    };
+      setSearchQuery(event.target.value)
+    }
 
     const filteredUsers = user 
     ? user.filter((user) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
-    : [];
+    : []
     
 
   const isNotCompelte =
@@ -106,7 +106,7 @@ function FormCreateMember() {
     !formUser.password ||
     !formUser.phone ||
     !formUser.privilege ||
-    !formUser.businessId;
+    !formUser.businessId
 
   //----------------------Password--------------------------------------------
   const [showPassword, setShowPassword] = useState(false);
@@ -114,8 +114,8 @@ function FormCreateMember() {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
   
   //------------------------------------------------------------------------
 
@@ -385,4 +385,4 @@ function FormCreateMember() {
     );
 }
 
-export default FormCreateMember;
+export default FormCreateMember
