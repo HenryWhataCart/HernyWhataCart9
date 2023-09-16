@@ -140,7 +140,7 @@ const NavBar = () => {
           </MenuItem>
           {isMobile && (
             <Box>
-              <MenuItem onClick={() => navigate("/dashboard")}>
+              <MenuItem onClick={() => navigate(`/dashboard/${businessId}`)}>
                 Messenger
               </MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
@@ -152,7 +152,7 @@ const NavBar = () => {
                       Companies
                       </MenuItem>
                   }
-                  <MenuItem onClick={null}>Members</MenuItem>
+                  <MenuItem onClick={()=> navigate(`/createmember/${businessId}`)}>Members</MenuItem>
                 </>)
               }
             </Box>
