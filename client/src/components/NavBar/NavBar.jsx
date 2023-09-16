@@ -10,7 +10,9 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
+import {  useState } from "react";
+import { useSelector } from "react-redux";
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import ContactsRoundedIcon from "@mui/icons-material/ContactsRounded";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,10 +20,15 @@ import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import styles from "./NavBar.module.css";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
+import {LightDarkToggle} from "./LightDarkToggle/LightDarkToggle"
 import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  
+  //1. importar el darkMode desde el store 
+  const darkMode = useSelector((state) => state?.darkMode);
+  
   const isMobile = useBreakpoints();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -39,21 +46,17 @@ const NavBar = () => {
   const isMember = checkIfMember(loginData?.privilege);
   const isAdmin = checkIfAdmin(loginData?.privilege);
   const isSuperAdmin = checkIfSuperAdmin(loginData?.privilege)
+
+  const logo = darkMode ? "https://uploads-ssl.webflow.com/64484d95e9797d0cef181b3a/6449cca777bcb4ec3d1248b5_whatacart.png" : "https://i.imgur.com/MdR5aac.png";
   
   return (
-    <AppBar position="relative" sx={{ bgcolor: "white", mb: 1 }}>
-      <Toolbar
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap", 
-        }}
-      >
+    //2. usar un estilo u otro dependiendo del value del darkMode. (recorder que es un boolean, y cuando sea true, implica que el darkMode esta activado)
+    <AppBar position="relative" sx={{ bgcolor: darkMode ? "#222" : "whiteSmoke", mb: 1 }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Link to="/">
           <img
             className={styles.logo}
-            src="https://i.imgur.com/MdR5aac.png"
+            src={logo}
             alt="Logo"
             height={50}
           />
@@ -70,7 +73,7 @@ const NavBar = () => {
               <Button
                 variant="text"
                 color="inherit"
-                sx={{ color: "#4E4E4E" }}
+                sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
                 onClick={() => navigate(`/dashboard/${businessId}`)}
               >
                 <Box display="flex" flexDirection="column" alignItems="center">
@@ -83,8 +86,9 @@ const NavBar = () => {
               <Button
                 variant="text"
                 color="inherit"
-                sx={{ color: "#4E4E4E" }}
-                onClick={() => navigate(`/contacts/${businessId}`)}
+
+                sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
+                onClick={()=> navigate(`/contacts/${businessId}`)}
               >
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Icon sx={{ pb: 1 }}>
@@ -99,7 +103,8 @@ const NavBar = () => {
               {!isAdmin && <Button
                 variant="text"
                 color="inherit"
-                sx={{ color: "#4E4E4E" }}
+                sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
+
                 onClick={() => navigate("/superadmin")}
               >       
                 <Box display="flex" flexDirection="column" alignItems="center">
@@ -112,8 +117,9 @@ const NavBar = () => {
               <Button
                 variant="text"
                 color="inherit"
-                sx={{ color: "#4E4E4E" }}
-                onClick={() => navigate(`/createmember/${businessId}`)}
+
+                sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
+                onClick={()=> navigate(`/createmember/${businessId}`)}
               >
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Icon sx={{ pb: 1 }}>
@@ -126,16 +132,19 @@ const NavBar = () => {
             )}
           </Box>
         )}
-        <IconButton
-          size="large"
-          edge="end"
-          color="inherit"
-          aria-label="menu"
-          onClick={handleMenu}
-          sx={{ color: "#4E4E4E" }}
-        >
-          <MenuIcon />
-        </IconButton>
+        <Box display="flex">
+          <LightDarkToggle/>
+          <IconButton
+            size="large"
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleMenu}
+            sx={{ color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
         <Menu
           anchorEl={anchorEl}
           open={open}
