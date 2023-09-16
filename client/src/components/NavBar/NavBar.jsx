@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AppBar,
   Box,
@@ -12,7 +13,6 @@ import {
 import { Link, useNavigate  } from "react-router-dom";
 import {  useState } from "react";
 import { useSelector } from "react-redux";
-
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import ContactsRoundedIcon from "@mui/icons-material/ContactsRounded";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -62,8 +62,14 @@ const NavBar = () => {
           />
         </Link>
         {!isMobile && (
-          <Box sx={{ display: "flex" }}>
-            <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 15, 
+              }}
+            >
               <Button
                 variant="text"
                 color="inherit"
@@ -80,6 +86,7 @@ const NavBar = () => {
               <Button
                 variant="text"
                 color="inherit"
+
                 sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
                 onClick={()=> navigate(`/contacts/${businessId}`)}
               >
@@ -97,16 +104,20 @@ const NavBar = () => {
                 variant="text"
                 color="inherit"
                 sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
+
                 onClick={() => navigate("/superadmin")}
               >       
                 <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon sx={{ pb: 1 }}><BusinessRoundedIcon /></Icon>
+                  <Icon>
+                    <BusinessRoundedIcon />
+                  </Icon>
                   Companies
                 </Box>
               </Button>}
               <Button
                 variant="text"
                 color="inherit"
+
                 sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
                 onClick={()=> navigate(`/createmember/${businessId}`)}
               >
@@ -152,7 +163,7 @@ const NavBar = () => {
           </MenuItem>
           {isMobile && (
             <Box>
-              <MenuItem onClick={() => navigate("/dashboard")}>
+              <MenuItem onClick={() => navigate(`/dashboard/${businessId}`)}>
                 Messenger
               </MenuItem>
               <MenuItem onClick={handleContacts}>Contacts</MenuItem>
@@ -164,7 +175,7 @@ const NavBar = () => {
                       Companies
                       </MenuItem>
                   }
-                  <MenuItem onClick={null}>Members</MenuItem>
+                  <MenuItem onClick={()=> navigate(`/createmember/${businessId}`)}>Members</MenuItem>
                 </>)
               }
             </Box>
