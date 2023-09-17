@@ -10,7 +10,7 @@ import {
   Avatar,
   Typography,
   Box,
-  Skeleton
+  Skeleton,
 } from "@mui/material";
 import SvgIcon from "@mui/material/SvgIcon";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
@@ -89,7 +89,7 @@ export const Contacts = () => {
   const isMobile = useBreakpoints();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-      setTimeout(() => setLoading(false),3000);
+    setTimeout(() => setLoading(false), 3000);
   }, []);
   return (
     <TableContainer
@@ -113,14 +113,14 @@ export const Contacts = () => {
                       <Avatar alt={contact.name} src="imagen.png" />
                       <Box display="flex" flexDirection="column">
                         <Typography
-                          style={{ color: "#4E4E4E" }}
+                          style={{ color: "#808080" }}
                           fontWeight={600}
                         >
                           {contact.name}
                         </Typography>
                         {isMobile && (
                           <Typography
-                            style={{ color: "#4E4E4E" }}
+                            style={{ color: "#808080" }}
                             fontWeight={400}
                           >
                             {contact.phoneNumber}
@@ -131,7 +131,7 @@ export const Contacts = () => {
                   </TableCell>
                   {!isMobile && (
                     <TableCell style={{ padding: "25px" }}>
-                      <Typography style={{ color: "#4E4E4E" }}>
+                      <Typography style={{ color: "#808080" }}>
                         {contact.phoneNumber}
                       </Typography>
                     </TableCell>
