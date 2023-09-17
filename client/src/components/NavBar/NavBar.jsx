@@ -181,7 +181,6 @@ const NavBar = () => {
           )}
           {isSuperAdmin && 
             <Box>
-            <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
             <MenuItem onClick={() => navigate("/createbusiness")}>
               Manage companies
             </MenuItem>
