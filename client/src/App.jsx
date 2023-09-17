@@ -3,7 +3,8 @@
 import './App.css'
 
 import { Route, Routes, useLocation } from 'react-router-dom'
-
+import { useDispatch } from "react-redux";
+import { setDarkMode } from './redux/actions/DarkMode/darkMode';
 import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
 import { Contacts } from './views/Contacts/Contacts'
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
@@ -11,7 +12,6 @@ import Dashboard from './views/Dashboard/Dashboard'
 import Error from './views/Error/Error'
 import Footer from './components/Footer/Footer';
 import FormCreateMember from '../src/components/Forms/FormCreateMember/FormCreateMember';
-import Metricas from './views/Metricas/Metricas';
 import NavBar from './components/NavBar/NavBar';
 import NewSuperAdmin from './views/NewSuperAdmin/NewSuperAdmin';
 import Redirect from './components/Redirect/Redirect';
@@ -21,7 +21,9 @@ import SuperAdmin from './views/SuperAdmin/SuperAdmin';
 import Support from '../src/components/Support/Support'
 
 function App() {
-
+  const dispatch = useDispatch();
+  const darkMode = JSON.parse(localStorage.getItem("darkMode"));
+  dispatch(setDarkMode(darkMode || false));
   const location = useLocation();
   const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
   const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
@@ -56,12 +58,6 @@ function App() {
           // element={<AuthenticationGuard component={FormCreateMember} />}
           element={<FormCreateMember />}
           />
-        
-        <Route
-          path='/metrics'
-          // element={<AuthenticationGuard component={Metricas} />}
-          element={<Metricas />}
-        />
         
         <Route
           path='/superadmin'

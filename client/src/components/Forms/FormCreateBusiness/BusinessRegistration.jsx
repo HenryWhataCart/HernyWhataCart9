@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { checkIfSuperAdmin } from "../../../shared/utils";
 import { createTheme } from "@mui/material/styles";
 import { Box, TextField, Button, Typography } from "@mui/material";
 import {
@@ -36,6 +37,9 @@ export const CreateBusiness = () => {
   const [button, setButton] = useState({
     value: "Create",
   });
+
+  const loginData = JSON.parse(localStorage.getItem("loginData"));
+  const isSuperAdmin = checkIfSuperAdmin(loginData?.privilege)
 
   useEffect(() => {
     dispatch(getBusiness());
@@ -106,6 +110,8 @@ export const CreateBusiness = () => {
   });
 
   return (
+    <>
+    { isSuperAdmin && (
     <Box display="flex" className={styles.container}>
       <Box className={styles.createContainer}>
         <form onSubmit={handleSubmit}>
@@ -243,5 +249,7 @@ export const CreateBusiness = () => {
         </TableContainer>
       </Box>
     </Box>
+    )}
+    </>
   );
 };
