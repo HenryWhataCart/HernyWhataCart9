@@ -24,9 +24,10 @@ function App() {
   const dispatch = useDispatch();
   const darkMode = JSON.parse(localStorage.getItem("darkMode"));
   dispatch(setDarkMode(darkMode || false));
-  const location = useLocation();
-  const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
-  const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
+  const location = useLocation()
+  const {pathname} = location
+  const showNavBar = pathname !== '/' && pathname !== '/signout'
+  const showFooter = pathname !== '/' && pathname !== '/signout' && pathname !== '/dashboard'
   return (
     <div>
       {showNavBar && <NavBar />}
