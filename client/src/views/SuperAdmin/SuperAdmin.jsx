@@ -18,6 +18,7 @@ const SuperAdmin = () => {
           boxShadow={3}
           height={"80vh"}
           flexDirection={"column"}
+          mb={4}
         >
           <Typography variant="h3" sx={{ color: "grey", marginBottom: 1 }}>
             COMPANIES
@@ -48,8 +49,7 @@ const SuperAdmin = () => {
                   boxShadow: 3,
                   flexWrap: "wrap",
                   wordWrap: "break-word",
-                  marginBottom: 2,
-                  gap: 2
+                  gap: 1,
                 }}
               >
                 <Typography

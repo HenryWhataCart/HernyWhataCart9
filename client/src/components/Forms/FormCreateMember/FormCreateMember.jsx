@@ -240,7 +240,7 @@ function FormCreateMember() {
               disabled
               id="outlined-disabled"
               label="Company"
-              value={businessName}
+              value={businessId}
             />
 
             {isNotCompelte ? (
