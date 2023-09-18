@@ -115,8 +115,9 @@ export const CreateBusiness = () => {
 
   return (
     <>
-    { isSuperAdmin && (
-    <Box display="flex" className={styles.container}>
+      <Box sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3 }}>
+        { isSuperAdmin && (
+        <Box display="flex" className={styles.container}>
       <Box className={styles.createContainer}>
         <form onSubmit={handleSubmit}>
           <Box className={styles.createForm}>
@@ -278,6 +279,7 @@ export const CreateBusiness = () => {
       </Box>
     </Box>
     )}
+      </Box>
     </>
   );
 };
