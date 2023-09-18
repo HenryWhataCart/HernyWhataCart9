@@ -147,6 +147,9 @@ const reducer = (state = initialState, action) => {
 
         case ACTION_TYPES.SET_DARK_MODE:
             return {...state, darkMode: action.payload}
+
+        default: 
+            return {...state}
     }
     };
 
