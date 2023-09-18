@@ -24,7 +24,7 @@ export const createBusiness = (business) => {
   return async (dispatch) => {
     try {
       dispatch(createBusinessRequest());
-      const response = await axios.post('/createBusiness/', business);
+      const response = await axios.post('/createBusiness', business);
       const createBusiness = response.data;
       dispatch({
         type:ACTION_TYPES.CREATE_BUSINESS_SUCCESS,
