@@ -24,7 +24,7 @@ const Conversation = ({messages,actualyChat}) => {
     const handleSendMessage = async (event) => {
         event.preventDefault()
         if (message.textMessage.trim()) {
-            await axios.post("http://localhost:3001/messageSend", message)
+            await axios.post("/messageSend", message)
             setMessage({...message, textMessage:""});    
         }else{
             alert('No se puede mandar mensajes vacios')
