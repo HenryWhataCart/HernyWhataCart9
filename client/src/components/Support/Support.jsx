@@ -52,6 +52,8 @@ export default function Support() {
     }
   });
 
+  const isNotComplete = !formData.message || !formData.user_email || !formData.user_name
+
   return (
     <Box
       sx={{
@@ -111,6 +113,7 @@ export default function Support() {
             variant="contained"
             type="submit"
             value="Send"
+            disabled={isNotComplete}
             sx={{
               mt: 2,
               alignContent: "center",
