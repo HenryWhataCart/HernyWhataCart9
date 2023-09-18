@@ -31,7 +31,7 @@ const Dashboard = () => {
         <Box bgcolor={"white"} boxShadow={4}>
           <Grid container sx={{ mb: 2, p: 3 }}>
             <Grid item xs={12} md={4}>
-              <Box sx={{ height: "100%" }}>
+              <Box>
                 <ChatList chats={chats} />
               </Box>
             </Grid>

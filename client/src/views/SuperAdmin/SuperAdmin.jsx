@@ -31,6 +31,7 @@ const SuperAdmin = () => {
               maxHeight: 600,
               overflow: "auto",
               p: 3,
+              mb: 2,
               bgcolor: "whitesmoke",
               borderRadius: 2,
             }}

@@ -27,7 +27,7 @@ function App() {
   const location = useLocation()
   const {pathname} = location
   const showNavBar = pathname !== '/' && pathname !== '/signout'
-  const showFooter = pathname !== '/' && pathname !== '/signout' && pathname !== '/dashboard'
+  const showFooter = pathname !== '/' && pathname !== '/signout' && pathname !== '/dashboard'&& pathname !== '/redirect'
   return (
     <div>
       {showNavBar && <NavBar />}
