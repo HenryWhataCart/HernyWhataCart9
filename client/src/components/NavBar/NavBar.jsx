@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   AppBar,
   Box,
@@ -10,17 +9,19 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate  } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
+
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import ContactsRoundedIcon from "@mui/icons-material/ContactsRounded";
+import {LightDarkToggle} from "./LightDarkToggle/LightDarkToggle"
 import MenuIcon from "@mui/icons-material/Menu";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import styles from "./NavBar.module.css";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
-import {LightDarkToggle} from "./LightDarkToggle/LightDarkToggle"
-import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const NavBar = () => {
   const navigate = useNavigate();
