@@ -1,16 +1,15 @@
 /* eslint-disable react/prop-types */
 
-import { Avatar, Box, Divider, Grid, List, ListItemAvatar, ListItemButton, ListItemText, Skeleton } from '@mui/material';
-
+import { Avatar, Box, Divider, Grid, Icon, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
+import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsActiveRounded';
 import React from 'react';
 import styles from './ChatList.module.css'
 
 const ChatList = ({chats, handleChats}) => {
 
-    const [loading, setLoading] = React.useState(true)
+    // const [loading, setLoading] = React.useState(true)
 
-    React.useEffect(() => {
-        setTimeout(() => setLoading(false), 2000)   
+    React.useEffect(() => {  
     }, [])
 
     return (

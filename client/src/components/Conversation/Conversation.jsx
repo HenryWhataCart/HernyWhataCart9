@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
 import { Box, Grid, IconButton, List, ListItemText, TextField } from '@mui/material';
-
+import axios from 'axios';
 import React from 'react';
 import SendIcon from '@mui/icons-material/Send'
 import styles from './Conversation.module.css'
+import { useEffect } from 'react';
 
 const Conversation = ({messages,actualyChat}) => {
     const [message, setMessage] = React.useState({
