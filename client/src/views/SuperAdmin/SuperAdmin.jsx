@@ -1,7 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import GetDataSuperAdmin from "./getDataSuperAdmin";
 import { useNavigate } from "react-router-dom";
-// import { useAuth0 } from "@auth0/auth0-react"
 
 const SuperAdmin = () => {
   const { companies } = GetDataSuperAdmin();
@@ -19,13 +18,11 @@ const SuperAdmin = () => {
           boxShadow={3}
           height={"80vh"}
           flexDirection={"column"}
+          mb={4}
         >
-          <Typography variant="h3" sx={{ color: "grey", marginBottom: "2rem" }}>
+          <Typography variant="h3" sx={{ color: "grey", marginBottom: 1 }}>
             COMPANIES
           </Typography>
-
-          {/* //!  POR ACÁ IRÍA LA SEARCHBAR, PARA QUE SE VEA DEBAJO DE "COMPANIES"*/}
-
           <Box
             sx={{
               display: "flex",
@@ -52,7 +49,7 @@ const SuperAdmin = () => {
                   boxShadow: 3,
                   flexWrap: "wrap",
                   wordWrap: "break-word",
-                  marginBottom: "1rem",
+                  gap: 1,
                 }}
               >
                 <Typography
@@ -60,19 +57,17 @@ const SuperAdmin = () => {
                     fontSize: 18,
                     fontWeight: 500,
                     color: "gray",
-                    marginBottom: "0.5rem",
                   }}
                 >
                   {company.name.toUpperCase()}
                 </Typography>
 
-                <Box sx={{ display: "flex" }}>
+                <Box sx={{ display: "flex", gap: 1 }}>
                   <Button
                     variant="contained"
                     onClick={() => navigate(`/createmember/${company.id}`)}
                     sx={{
                       fontSize: 13,
-                      mx: 0.25,
                       bgcolor: "#09E6A7",
                       "&:hover": {
                         bgcolor: "#07C292",
@@ -80,6 +75,20 @@ const SuperAdmin = () => {
                     }}
                   >
                     members
+                  </Button>
+
+                  <Button
+                    variant="contained"
+                    onClick={() => navigate(`/dashboard/${company.id}`)}
+                    sx={{
+                      fontSize: 13,
+                      bgcolor: "#09E6A7",
+                      "&:hover": {
+                        bgcolor: "#07C292",
+                      },
+                    }}
+                  >
+                    chat
                   </Button>
                 </Box>
               </Box>

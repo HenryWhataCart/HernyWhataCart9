@@ -113,7 +113,7 @@ const NavBar = () => {
                   Companies
                 </Box>
               </Button>}
-              <Button
+              {businessId && <Button
                 variant="text"
                 color="inherit"
 
@@ -126,7 +126,7 @@ const NavBar = () => {
                   </Icon>
                   Members
                 </Box>
-              </Button>
+              </Button>}
             </Box>
             )}
           </Box>
@@ -162,10 +162,10 @@ const NavBar = () => {
           </MenuItem>
           {isMobile && (
             <Box>
-              <MenuItem onClick={() => navigate(`/dashboard/${businessId}`)}>
+               <MenuItem onClick={() => navigate(`/dashboard/${businessId}`)}>
                 Messenger
               </MenuItem>
-              <MenuItem onClick={handleContacts}>Contacts</MenuItem>
+              {businessId && <MenuItem onClick={handleContacts}>Contacts</MenuItem>}
               {!isMember && 
                 (<>
                   {
@@ -174,14 +174,13 @@ const NavBar = () => {
                       Companies
                       </MenuItem>
                   }
-                  <MenuItem onClick={()=> navigate(`/createmember/${businessId}`)}>Members</MenuItem>
+                  {businessId && <MenuItem onClick={()=> navigate(`/createmember/${businessId}`)}>Members</MenuItem>}
                 </>)
               }
             </Box>
           )}
           {isSuperAdmin && 
             <Box>
-            <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
             <MenuItem onClick={() => navigate("/createbusiness")}>
               Manage companies
             </MenuItem>
