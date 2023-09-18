@@ -186,7 +186,6 @@ export const CreateBusiness = () => {
                 onChange={handleChange}
                 fullWidth
                 margin="normal"
-                disabled
               />
             </Box>
             <Box>
