@@ -3,174 +3,92 @@
 import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import ChatList from "../../components/ChatList/ChatList";
 import Conversation from "../../components/Conversation/Conversation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import getValidation from "../../redux/actions/UserValidation/userValidation";
 import { useDispatch, useSelector } from "react-redux";
+import io from "socket.io-client";
+import getMessage from "../../redux/actions/Messages/getMessages";
+import setMessage from "../../redux/actions/Messages/setMessagesRealTime";
+import {getChats} from '../../redux/actions/Chats/getChats'
+import setNotification from "../../redux/actions/Chats/setNotification";
 
-const chats = [
-  { name: "Chat 1", text: "Último mensaje del chat 1" },
-  { name: "Chat 2", text: "Último mensaje del chat 2" },
-  { name: "Chat 3", text: "Último mensaje del chat 3" },
-  { name: "Chat 4", text: "Último mensaje del chat 4" },
-  { name: "Chat 5", text: "Último mensaje del chat 5" },
-  { name: "Chat 6", text: "Último mensaje del chat 6" },
-  { name: "Chat 7", text: "Último mensaje del chat 7" },
-  { name: "Chat 8", text: "Último mensaje del chat 8" },
-  { name: "Chat 9", text: "Último mensaje del chat 9" },
-  { name: "Chat 10", text: "Último mensaje del chat 10" },
-  { name: "Chat 11", text: "Último mensaje del chat 11" },
-  { name: "Chat 12", text: "Último mensaje del chat 12" },
-  { name: "Chat 13", text: "Último mensaje del chat 13" },
-  { name: "Chat 14", text: "Último mensaje del chat 14" },
-  { name: "Chat 15", text: "Último mensaje del chat 15" },
-  { name: "Chat 16", text: "Último mensaje del chat 16" },
-  { name: "Chat 17", text: "Último mensaje del chat 17" },
-  { name: "Chat 18", text: "Último mensaje del chat 18" },
-  { name: "Chat 19", text: "Último mensaje del chat 19" },
-  { name: "Chat 20", text: "Último mensaje del chat 20" },
-];
-
-const messages = [
-  { name: "Juan", text: "dasdadaff", timestamp: "10:00 AM", sent: true },
-  { name: "Pedro", text: "afadasdas?", timestamp: "10:05 AM", sent: false },
-  {
-    name: "Juan",
-    text: "sdafdfafadfadsasdgh",
-    timestamp: "10:10 AM",
-    sent: true,
+const loginData = JSON.parse(localStorage.getItem("loginData"))
+const id = loginData?.id
+const socket = io("https://whatacart-backend.onrender.com/", {
+  query: {
+    userId: id
   },
-  { name: "Juan", text: "fghfdghdhd", timestamp: "10:00 AM", sent: true },
-  { name: "Pedro", text: "hdfhgfdgdfgdf?", timestamp: "10:05 AM", sent: false },
-  {
-    name: "Juan",
-    text: "También bien, gracias.",
-    timestamp: "10:10 AM",
-    sent: true,
-  },
-  {
-    name: "Juan",
-    text: "Hola, ¿cómo estás?",
-    timestamp: "10:00 AM",
-    sent: true,
-  },
-  {
-    name: "Pedro",
-    text: "Bien, gracias. ¿Y tú?",
-    timestamp: "10:05 AM",
-    sent: false,
-  },
-  {
-    name: "Juan",
-    text: "También bien, gracias.",
-    timestamp: "10:10 AM",
-    sent: true,
-  },
-  {
-    name: "Juan",
-    text: "Hola, ¿cómo estás?",
-    timestamp: "10:00 AM",
-    sent: true,
-  },
-  {
-    name: "Pedro",
-    text: "Bien,gracias.¿Y tú?",
-    timestamp: "10 :05AM",
-    sent: false,
-  },
-  {
-    name: "Juan",
-    text: "También bien,gracias.",
-    timestamp: "10 :10AM",
-    sent: true,
-  },
-  {
-    name: "Juan",
-    text: "Hola, ¿cómo estás?",
-    timestamp: "10:00 AM",
-    sent: true,
-  },
-  {
-    name: "Pedro",
-    text: "Bien, gracias. ¿Y tú?",
-    timestamp: "10:05 AM",
-    sent: false,
-  },
-  {
-    name: "Juan",
-    text: "También bien, gracias.",
-    timestamp: "10:10 AM",
-    sent: true,
-  },
-  {
-    name: "Juan",
-    text: "Hola, ¿cómo estás?",
-    timestamp: "10:00 AM",
-    sent: true,
-  },
-  {
-    name: "Pedro",
-    text: "Bien,gracias.¿Y tú?",
-    timestamp: "10 :05AM",
-    sent: false,
-  },
-  {
-    name: "Juan",
-    text: "También bien,gracias.",
-    timestamp: "10 :10AM",
-    sent: true,
-  },
-  {
-    name: "Juan",
-    text: "Hola, ¿cómo estás?",
-    timestamp: "10:00 AM",
-    sent: true,
-  },
-  {
-    name: "Pedro",
-    text: "Bien,gracias.¿Y tú?",
-    timestamp: "10 :05AM",
-    sent: false,
-  },
-  {
-    name: "Juan",
-    text: "También bien,gracias.",
-    timestamp: "10 :10AM",
-    sent: true,
-  },
-];
+});
 
 const Dashboard = () => {
-    const loginData = JSON.parse(localStorage.getItem("loginData"));
     const { businessId } = useParams();
+    const chats = useSelector(state => state?.chats)
+    const [userSelect, setUserSelect] = useState("");
+    const messages = useSelector((state) => state?.messages)
     const dispatch = useDispatch();
     const validation = useSelector((state) => state?.validation);
     const theme = useTheme();
     const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
+    const [actualyChat, setActualyChat] = useState({
+      name:"",
+      phone:0,
+      BusinessId: businessId,
+      ContactId: "",
+    })
 
-  validation && console.log(validation);
-  businessId && console.log(businessId, "vengo de params");
-  loginData && console.log(loginData);
+    const handleMessage = (message)=>{
+      console.log(message);  
+            if(message.from == userSelect){
+              console.log("entre");
+                dispatch(setMessage(message))
+                dispatch(setNotification(message.from,false))
+            }else{
+                console.log("Hola entre porque no me corresponde el mensaje");
+                dispatch(setNotification(message.from,true))
+            }
+    }
+
+    const handleChats = async (id,name,phone,notification) => {
+      setActualyChat({...actualyChat, name:name, phone:phone, ContactId:id})
+  
+      dispatch(getMessage(businessId, id))
+      setUserSelect(phone)
+      
+      if (notification) {
+        dispatch(setNotification(phone,false))
+      }
+  
+    }
 
   useEffect(() => {
+
     if (loginData && businessId) {
       dispatch(getValidation(loginData, businessId));
     }
-  }, [loginData, businessId]);
+
+    socket.on("message", handleMessage);
+  
+    if (!userSelect) dispatch(getChats(businessId))
+
+    return ()=>{
+      socket.off("message", handleMessage)  
+    }
+  }, [loginData, businessId, userSelect]);
 
   return (
     <>
       {validation ? (
-        <Box>
+        <Box bgcolor={"white"} boxShadow={4}>
           <Grid container sx={{ mb: 2, p: 3 }}>
             <Grid item xs={12} md={4}>
-              <Box sx={{ height: "100%" }}>
-                <ChatList chats={chats} />
+              <Box>
+                <ChatList chats={chats} handleChats={handleChats} />
               </Box>
             </Grid>
             {isLargeScreen && (
               <Grid item xs={12} md={8}>
-                <Conversation messages={messages} />
+                <Conversation messages={messages} actualyChat={actualyChat} />
               </Grid>
             )}
           </Grid>

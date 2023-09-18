@@ -3,7 +3,8 @@
 import './App.css'
 
 import { Route, Routes, useLocation } from 'react-router-dom'
-
+import { useDispatch } from "react-redux";
+import { setDarkMode } from './redux/actions/DarkMode/darkMode';
 import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
 import { Contacts } from './views/Contacts/Contacts'
 import { CreateBusiness } from './components/Forms/FormCreateBusiness/BusinessRegistration';
@@ -20,10 +21,13 @@ import SuperAdmin from './views/SuperAdmin/SuperAdmin';
 import Support from '../src/components/Support/Support'
 
 function App() {
-
-  const location = useLocation();
-  const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
-  const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
+  const dispatch = useDispatch();
+  const darkMode = JSON.parse(localStorage.getItem("darkMode"));
+  dispatch(setDarkMode(darkMode || false));
+  const location = useLocation()
+  const {pathname} = location
+  const showNavBar = pathname !== '/' && pathname !== '/signout'
+  const showFooter = pathname !== '/' && pathname !== '/signout' && pathname !== '/dashboard'&& pathname !== '/redirect'
   return (
     <div>
       {showNavBar && <NavBar />}
@@ -51,7 +55,7 @@ function App() {
           />
 
           <Route
-          path='/createmember/:businessId'
+          path='/createmember/:businessId?/:businessName?'
           // element={<AuthenticationGuard component={FormCreateMember} />}
           element={<FormCreateMember />}
           />
@@ -95,3 +99,4 @@ function App() {
 }
 
 export default App
+
