@@ -105,7 +105,8 @@ const NewSuperAdmin = () => {
 
   return (
     <>
-    { isSuperAdmin && (
+      <Box sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3 }}>
+        { isSuperAdmin && (
     <Box display="flex" className={styles.container}>
       <Box className={styles.createContainer}>
         <form onSubmit={handleSubmit}>
@@ -234,6 +235,7 @@ const NewSuperAdmin = () => {
         </TableContainer>
       </Box>
     </Box> )}
+      </Box>
     </>
   );
 };
