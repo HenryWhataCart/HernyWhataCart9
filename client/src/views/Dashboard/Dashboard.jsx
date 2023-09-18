@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+
 import ChatList from "../../components/ChatList/ChatList";
 import Conversation from "../../components/Conversation/Conversation";
 import { useEffect, useState } from "react";

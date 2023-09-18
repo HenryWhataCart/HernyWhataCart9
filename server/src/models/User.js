@@ -15,10 +15,6 @@ module.exports = (sequelize) =>{
         email:{
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true,
-            },
         },
         password:{
             type: DataTypes.STRING,
@@ -31,6 +27,9 @@ module.exports = (sequelize) =>{
         privilege:{
             type: DataTypes.ENUM('Admin','Member'),
             allowNull: false,
+        },
+        socketId:{
+            type:DataTypes.STRING
         }
     }, {timestamps: false});
 }

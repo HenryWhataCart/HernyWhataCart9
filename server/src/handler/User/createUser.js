@@ -6,13 +6,11 @@ const userPost = async(req,res) => {
     try {
         if(!name || !email || !password || !phone ) return res.status(404).json({error: 'required data not found'})
 
-        const existingName = await User.findOne({ where: { name } });
-        const existingPassword = await User.findOne({ where: { password } });
         const existingEmail = await User.findOne({ where: { email } });
         const existingPhone = await User.findOne({ where: { phone } });
 
-        if (existingName || existingPassword || existingEmail || existingPhone ) {
-        return res.status(400).json({ error: "Name, password, phone or email already exist" });
+        if (existingEmail || existingPhone ) {
+        return res.status(400).json({ error: "Phone or email already exist" });
         }
         
         const newUser = await createUser(name,email,password, phone, privilege, businessId)

@@ -55,7 +55,7 @@ function App() {
           />
 
           <Route
-          path='/createmember/:businessId'
+          path='/createmember/:businessId?/:businessName?'
           // element={<AuthenticationGuard component={FormCreateMember} />}
           element={<FormCreateMember />}
           />
@@ -99,3 +99,4 @@ function App() {
 }
 
 export default App
+
