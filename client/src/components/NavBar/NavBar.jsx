@@ -9,8 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate  } from "react-router-dom";
-import {  useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import ContactsRoundedIcon from "@mui/icons-material/ContactsRounded";
@@ -19,6 +18,7 @@ import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import styles from "./NavBar.module.css";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
+import { useState } from "react";
 
 const NavBar = () => {
   const navigate = useNavigate();

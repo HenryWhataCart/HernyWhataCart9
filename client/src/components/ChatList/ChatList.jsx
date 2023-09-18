@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
+
+import { Avatar, Box, Divider, Grid, List, ListItemAvatar, ListItemButton, ListItemText, Skeleton } from '@mui/material';
+
 import React from 'react';
-import { Box, Grid, List, ListItemAvatar, Avatar, ListItemText, Divider, ListItemButton, Skeleton } from '@mui/material';
 import styles from './ChatList.module.css'
 
 const ChatList = ({chats}) => {
@@ -12,9 +14,9 @@ const ChatList = ({chats}) => {
     }, [])
 
     return (
-            <Grid container>
+            <Grid container onClick={()=> console.log('Hola soy el chat')}>
                 <Grid sx={{bgcolor: "white", mr: 2, boxShadow: 5}} item xs={12} className={styles.scrollBarStyle}>
-                     <Box sx={{ height: '84vh', overflow: 'auto'}}>
+                    <Box sx={{ height: '84vh', overflow: 'auto'}}>
                         <List>
                 {!loading ? chats.map((chat, index) => (
                 <React.Fragment key={index}>

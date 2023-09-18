@@ -3,13 +3,13 @@
 import './Dashboard.module.css'
 
 import { Box, Grid } from "@mui/material"
+import { useDispatch, useSelector } from 'react-redux'
 
 import ChatList from "../../components/ChatList/ChatList"
 import Conversation from "../../components/Conversation/Conversation"
+import getValidation from '../../redux/actions/UserValidation/userValidation'
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import getValidation from '../../redux/actions/UserValidation/userValidation'
-import { useDispatch, useSelector } from 'react-redux'
 
 const chats = [
     { name: 'Chat 1', text: 'Último mensaje del chat 1' },
