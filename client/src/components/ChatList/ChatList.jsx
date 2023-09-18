@@ -14,7 +14,7 @@ const ChatList = ({chats}) => {
     return (
             <Grid container>
                 <Grid sx={{bgcolor: "white", mr: 2, boxShadow: 5}} item xs={12} className={styles.scrollBarStyle}>
-                     <Box sx={{ height: '84vh', overflow: 'auto'}}>
+                     <Box sx={{ height: '79vh', overflow: 'auto'}}>
                         <List>
                 {!loading ? chats.map((chat, index) => (
                 <React.Fragment key={index}>

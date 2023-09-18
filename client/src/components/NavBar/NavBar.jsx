@@ -107,7 +107,7 @@ const NavBar = () => {
                 onClick={() => navigate("/superadmin")}
               >       
                 <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon>
+                  <Icon sx={{pb: 1}}>
                     <BusinessRoundedIcon />
                   </Icon>
                   Companies
