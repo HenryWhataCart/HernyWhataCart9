@@ -1,11 +1,22 @@
-import { Box, Button, Typography } from "@mui/material";
-import GetDataSuperAdmin from "./getDataSuperAdmin";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Box, Button, Typography, Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBusiness } from "../../redux/actions/Business/getBusiness";
 
 const SuperAdmin = () => {
-  const { companies } = GetDataSuperAdmin();
   const navigate = useNavigate();
   const loginData = JSON.parse(localStorage.getItem("loginData"));
+  const [loading, setLoading] = useState(true)
+  const companies = useSelector((state) => state?.business)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getBusiness())
+    companies && setLoading(false)
+  }, [companies])
+  
 
   return (
     <>
@@ -36,64 +47,70 @@ const SuperAdmin = () => {
               borderRadius: 2,
             }}
           >
-            {companies?.map((company) => (
-              <Box
-                key={company.id}
-                variant="contained"
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  bgcolor: "white",
-                  p: 2,
-                  borderRadius: 2,
-                  boxShadow: 3,
-                  flexWrap: "wrap",
-                  wordWrap: "break-word",
-                  gap: 1,
-                }}
-              >
-                <Typography
+            {loading ? (
+              [...Array(companies.length)].map((_, index) => (
+                <Skeleton key={index} variant="rectangular" height={50} />
+              ))
+            ) : (
+              companies?.map((company) => (
+                <Box
+                  key={company.id}
+                  variant="contained"
                   sx={{
-                    fontSize: 18,
-                    fontWeight: 500,
-                    color: "gray",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    bgcolor: "white",
+                    p: 2,
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    flexWrap: "wrap",
+                    wordWrap: "break-word",
+                    gap: 1,
                   }}
                 >
-                  {company.name.toUpperCase()}
-                </Typography>
-
-                <Box sx={{ display: "flex", gap: 1 }}>
-                  <Button
-                    variant="contained"
-                    onClick={() => navigate(`/createmember/${company.id}`)}
+                  <Typography
                     sx={{
-                      fontSize: 13,
-                      bgcolor: "#09E6A7",
-                      "&:hover": {
-                        bgcolor: "#07C292",
-                      },
+                      fontSize: 18,
+                      fontWeight: 500,
+                      color: "gray",
                     }}
                   >
-                    members
-                  </Button>
+                    {company.name.toUpperCase()}
+                  </Typography>
 
-                  <Button
-                    variant="contained"
-                    onClick={() => navigate(`/dashboard/${company.id}`)}
-                    sx={{
-                      fontSize: 13,
-                      bgcolor: "#09E6A7",
-                      "&:hover": {
-                        bgcolor: "#07C292",
-                      },
-                    }}
-                  >
-                    chat
-                  </Button>
+                  <Box sx={{ display: "flex", gap: 1 }}>
+                    <Button
+                      variant="contained"
+                      onClick={() => navigate(`/createmember/${company.id}`)}
+                      sx={{
+                        fontSize: 13,
+                        bgcolor: "#09E6A7",
+                        "&:hover": {
+                          bgcolor: "#07C292",
+                        },
+                      }}
+                    >
+                      members
+                    </Button>
+
+                    <Button
+                      variant="contained"
+                      onClick={() => navigate(`/dashboard/${company.id}`)}
+                      sx={{
+                        fontSize: 13,
+                        bgcolor: "#09E6A7",
+                        "&:hover": {
+                          bgcolor: "#07C292",
+                        },
+                      }}
+                    >
+                      chat
+                    </Button>
+                  </Box>
                 </Box>
-              </Box>
-            ))}
+              ))
+            )}
           </Box>
         </Box>
       ) : null}
