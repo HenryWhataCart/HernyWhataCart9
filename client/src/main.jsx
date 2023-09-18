@@ -11,7 +11,7 @@ import ReactDOM from "react-dom/client";
 import axios from "axios";
 import store from "./redux/store.js";
 
-axios.defaults.baseURL = "https://whatacart-backend.onrender.com/"
+axios.defaults.baseURL = "https://whatacart-backend.onrender.com"
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
