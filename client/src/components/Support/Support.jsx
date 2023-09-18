@@ -82,6 +82,7 @@ export default function Support() {
             onChange={handleChange}
             margin="normal"
             required
+            error={errors.user_name && errors.user_name}
             helperText={errors.user_name && errors.user_name}
           />
           <TextField
@@ -94,6 +95,7 @@ export default function Support() {
             margin="normal"
             required
             type="email"
+            error={errors.user_email && errors.user_email}
             helperText={errors.user_email && errors.user_email}
           />
           <TextField
@@ -107,6 +109,7 @@ export default function Support() {
             required
             multiline
             rows={4}
+            error={errors.message && errors.message}
             helperText={errors.message && errors.message}
           />
           <Button
