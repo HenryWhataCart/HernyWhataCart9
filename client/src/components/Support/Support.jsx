@@ -5,13 +5,13 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
-// import { validation } from "./validations";
-// import { Snackbar, Alert } from "@mui/material";
+import { validation } from "./validations";
+import { Snackbar, Alert } from "@mui/material";
 
 
 export default function Support() {
   const form = useRef();
-  // const [open,setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const [formData, setFormData] = useState({
   user_name: "",
@@ -28,22 +28,22 @@ export default function Support() {
             [property]:value
         })
   }
-  
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
+    const validateErrors = validation(formData);
+    setErrors(validateErrors);
 
-    // const validateErrors = validation(formData);
-    // setErrors(validateErrors);
-
-    emailjs.sendForm('service_tjxxcnv', 'template_kvuqwlw', form.current, 'ydqhhd9UCkK-QFHnY')
+ 
+     emailjs.sendForm('service_krr8fja', 'template_z58x9sl', form.current, 'EIqIk2Ro6IKKfY1B9')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
           console.log(error.text);
       });
-    console.log(form.current)
-  
+    
+    setOpen(true)
+
     setFormData({
           user_name: "",
           user_email: "",
@@ -75,7 +75,7 @@ export default function Support() {
             label="Name"
             name="user_name"
             autoComplete="off"
-            value={formData.user_name}
+            value={formData.user_name.trim()}
             onChange={handleChange}
             margin="normal"
             required
@@ -86,7 +86,7 @@ export default function Support() {
             label="Email"
             name="user_email"
             autoComplete="off"
-            value={formData.user_email}
+            value={formData.user_email.trim()}
             onChange={handleChange}
             margin="normal"
             required
@@ -106,7 +106,7 @@ export default function Support() {
             rows={4}
             helperText={errors.message && errors.message}
           />
-           <Button
+          <Button
             variant="contained"
             type="submit"
             value="Send"
@@ -124,17 +124,15 @@ export default function Support() {
           >
             Submit
           </Button>
-          {/* <Snackbar
+          <Snackbar
             open={open}
             autoHideDuration={2500}
             onClose={() => setOpen(false)}
           >
             <Alert variant="outlined" severity="success">
-              <Typography>
-                {String}Email was sent successfully!
-              </Typography>
+              Email was sent successfully!
             </Alert>
-          </Snackbar> */}
+          </Snackbar>
         </form>
       </Box>
     </Box>
