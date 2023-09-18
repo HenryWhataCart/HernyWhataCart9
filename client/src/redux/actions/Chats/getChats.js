@@ -4,7 +4,7 @@ import axios from "axios"
 export const getChats = (businessId) => {
     return async(dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:3001/contactsSearch?businessId=${businessId}`)
+            const response = await axios.get(`/contactsSearch?businessId=${businessId}`)
   
             dispatch({
                 type: ACTION_TYPES.GET_CHATS_SUCCESS,

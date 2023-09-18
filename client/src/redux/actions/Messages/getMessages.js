@@ -4,8 +4,8 @@ import axios from "axios"
 const getMessage = (businessId, id) => {
     return async(dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:3001/msgFind/?BusinessId=${businessId}&ContactId=${id}`)
-            const response2 = await axios.get(`http://localhost:3001/messageSendSearch/?BusinessId=${businessId}&ContactId=${id}`)
+            const response = await axios.get(`/msgFind/?BusinessId=${businessId}&ContactId=${id}`)
+            const response2 = await axios.get(`/messageSendSearch/?BusinessId=${businessId}&ContactId=${id}`)
 
             let messages = []
             response.data.forEach((res) => {
