@@ -1,13 +1,13 @@
-import { useState, useCallback } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { validation } from "./validations";
-import { Snackbar, Alert } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
+import { useCallback, useState } from "react";
 
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import emailjs from '@emailjs/browser';
+import { useRef } from 'react';
+import { validation } from "./validations";
 
 export default function Support() {
   const form = useRef();
@@ -33,23 +33,26 @@ export default function Support() {
     event.preventDefault();
     const validateErrors = validation(formData);
     setErrors(validateErrors);
-
- 
-     emailjs.sendForm('service_krr8fja', 'template_z58x9sl', form.current, 'EIqIk2Ro6IKKfY1B9')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
     
-    setOpen(true)
-
-    setFormData({
-          user_name: "",
-          user_email: "",
-           message: "",
-            })
+    if(Object.keys(validateErrors).length === 0){
+      emailjs.sendForm('service_krr8fja', 'template_z58x9sl', form.current, 'EIqIk2Ro6IKKfY1B9')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+      
+      setOpen(true)
+  
+      setFormData({
+            user_name: "",
+            user_email: "",
+            message: "",
+              })
+    }
   });
+
+  const isNotComplete = !formData.message || !formData.user_email || !formData.user_name
 
   return (
     <Box
@@ -110,6 +113,7 @@ export default function Support() {
             variant="contained"
             type="submit"
             value="Send"
+            disabled={isNotComplete}
             sx={{
               mt: 2,
               alignContent: "center",
