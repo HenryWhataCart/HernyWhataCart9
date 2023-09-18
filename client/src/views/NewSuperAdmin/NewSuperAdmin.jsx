@@ -13,6 +13,7 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { createTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { checkIfSuperAdmin } from "../../shared/utils";
 import { postSuperUser } from "../../redux/actions/Superuser/postSuperUser";
 import { getSuperUser } from "../../redux/actions/Superuser/GetSuperUser";
 import { deleteSuperUser } from "../../redux/actions/Superuser/deleteSuperUser";
@@ -26,7 +27,7 @@ const EMPTY_FORM = {
   name: "",
   email: "",
   password: "",
-};
+}
 
 const NewSuperAdmin = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ const NewSuperAdmin = () => {
   const [button, setButton] = useState({
     value: "Create",
   });
+
+  const loginData = JSON.parse(localStorage.getItem("loginData"))
+  const isSuperAdmin = checkIfSuperAdmin(loginData?.privilege)
 
   useEffect(() => {
     const getSPUsers = async () => {
@@ -100,6 +104,8 @@ const NewSuperAdmin = () => {
   };
 
   return (
+    <>
+    { isSuperAdmin && (
     <Box display="flex" className={styles.container}>
       <Box className={styles.createContainer}>
         <form onSubmit={handleSubmit}>
@@ -227,7 +233,8 @@ const NewSuperAdmin = () => {
           </Table>
         </TableContainer>
       </Box>
-    </Box>
+    </Box> )}
+    </>
   );
 };
 export default NewSuperAdmin;
