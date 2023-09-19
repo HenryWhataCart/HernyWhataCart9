@@ -20,7 +20,7 @@ const ChatList = ({chats, handleChats}) => {
                         {chats?.map((chat, index) => (
                             <Box key={index}>
                                 <ListItemButton onClick={()=> handleChats(chat.id,chat.name ,chat.phone, chat.notification)}>
-                                    <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center', maxWidth: '100%'}}>
+                                    <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center', width: "100%"}}>
                                         <Box display='flex' alignItems='center'>
                                             <ListItemAvatar>
                                                 <Avatar>C</Avatar>
