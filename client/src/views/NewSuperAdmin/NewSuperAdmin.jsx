@@ -105,7 +105,7 @@ const NewSuperAdmin = () => {
 
   return (
     <>
-      <Box sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3 }}>
+      <Box sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3, bgcolor:"whitesmoke" }}>
         { isSuperAdmin && (
     <Box display="flex" className={styles.container}>
       <Box className={styles.createContainer}>

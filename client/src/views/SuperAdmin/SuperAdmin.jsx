@@ -14,13 +14,15 @@ const SuperAdmin = () => {
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
-          bgcolor={"white"}
+          bgcolor={"whitesmoke"}
           boxShadow={3}
           height={"80vh"}
           flexDirection={"column"}
           mb={4}
         >
-          <Typography variant="h3" sx={{ color: "grey", marginBottom: 1 }}>
+          <Box bgcolor={"white"} boxShadow={5} m={3} display={"flex"} justifyContent={"center"}
+          alignItems={"center"} flexDirection={"column"} p={3} borderRadius={1}>
+            <Typography variant="h3" sx={{ color: "grey", marginBottom: 1 }}>
             COMPANIES
           </Typography>
           <Box
@@ -32,7 +34,7 @@ const SuperAdmin = () => {
               overflow: "auto",
               p: 3,
               mb: 2,
-              bgcolor: "whitesmoke",
+              // bgcolor: "whitesmoke",
               borderRadius: 2,
             }}
           >
@@ -94,6 +96,7 @@ const SuperAdmin = () => {
                 </Box>
               </Box>
             ))}
+          </Box>
           </Box>
         </Box>
       ) : null}

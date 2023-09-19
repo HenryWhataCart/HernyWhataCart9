@@ -27,6 +27,8 @@ const Error = () => {
       justifyContent="center"
       minHeight="100vh"
       padding={isSmallScreen ? '16px' : '32px'}
+      boxShadow={4}
+      bgcolor={"whitesmoke"}
     >
       <Grid container direction="column" alignItems="center" spacing={2}>
         <Grid item>

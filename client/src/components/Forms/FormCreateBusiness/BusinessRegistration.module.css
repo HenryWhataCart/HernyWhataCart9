@@ -5,6 +5,7 @@
     flex-direction: row;
     height: 63vh;
     gap: 2em;
+    background-color: whitesmoke;
 }
 
 .createContainer {

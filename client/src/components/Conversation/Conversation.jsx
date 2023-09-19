@@ -39,7 +39,7 @@ const Conversation = ({messages,actualyChat}) => {
     if (messages?.length > 0) {
 
     return (
-        <Grid container sx={{bgcolor:"white", boxShadow: 5}}>
+        <Grid container sx={{bgcolor:"white", boxShadow: 5, borderRadius:1}}>
             <Grid item xs={12} className={styles.scrollBarStyle}>
                 <Box sx={{ height:'75vh',overflow:'auto', px :2}}>
                 <List>

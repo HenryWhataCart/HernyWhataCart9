@@ -79,7 +79,7 @@ const Dashboard = () => {
   return (
     <>
       {validation ? (
-        <Box bgcolor={"white"} boxShadow={4}>
+        <Box bgcolor={"whitesmoke"} boxShadow={4}>
           <Grid container sx={{ mb: 2, p: 3 }}>
             <Grid item xs={12} md={4}>
               <Box>

@@ -93,7 +93,7 @@ export const Contacts = () => {
   }, []);
   return (
     <TableContainer
-      sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3 }}
+      sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3, bgcolor:"whitesmoke" }}
       component={Paper}
     >
       <Table>
