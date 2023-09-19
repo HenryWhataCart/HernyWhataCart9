@@ -12,6 +12,7 @@ import getMessage from "../../redux/actions/Messages/getMessages";
 import setMessage from "../../redux/actions/Messages/setMessagesRealTime";
 import {getChats} from '../../redux/actions/Chats/getChats'
 import setNotification from "../../redux/actions/Chats/setNotification";
+import styles from "./Dashboard.module.css"
 
 const loginData = JSON.parse(localStorage.getItem("loginData"))
 const id = loginData?.id
@@ -23,6 +24,7 @@ const socket = io("https://whatacart-backend.onrender.com/", {
 
 const Dashboard = () => {
     const { businessId } = useParams();
+    const darkMode = useSelector((state) => state?.darkMode);
     const chats = useSelector(state => state?.chats)
     const [userSelect, setUserSelect] = useState("");
     const messages = useSelector((state) => state?.messages)
@@ -76,8 +78,8 @@ const Dashboard = () => {
   return (
     <>
       {validation ? (
-        <Box boxShadow={4}>
-          <Grid container sx={{ mb: 2, p: 3 }}>
+        <Box boxShadow={4} style={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
+          <Grid container sx={{ p: 3 }} className={styles.gridContainer}>
             <Grid item xs={12} md={4}>
               <Box>
                 <ChatList chats={chats} handleChats={handleChats} />

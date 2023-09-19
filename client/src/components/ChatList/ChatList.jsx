@@ -18,8 +18,6 @@ const ChatList = ({chats, handleChats}) => {
         <Grid
           sx={{
             bgcolor: darkMode ? "#222" : "white",
-            mr: 2,
-            boxShadow: 5,
             borderRadius: 1,
           }}
           item

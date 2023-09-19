@@ -40,7 +40,7 @@ export default function Footer() {
       <ResponsiveFooter
         component="footer"
         sx={{
-          backgroundColor: "transparent",
+          backgroundColor: darkMode ? "#292F2D" : "transparent",
           display: "flex",
           justifyContent: "space-between",
         }}
@@ -74,7 +74,7 @@ export default function Footer() {
                   },
                 }}
               >
-                Soporte
+                Support
               </Button>
             </Grid>
             <Grid

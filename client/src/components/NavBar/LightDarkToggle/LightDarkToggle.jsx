@@ -25,12 +25,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         },
         '& + .MuiSwitch-track': {
           opacity: 1,
-          backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#07ba87',
+          backgroundColor: theme.palette.mode === 'dark' ? '#07ba87' : '#07ba87',
         },
       },
     },
     '& .MuiSwitch-thumb': {
-      backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#09E6A7',
+      backgroundColor: theme.palette.mode === 'dark' ? '#09E6A7' : '#09E6A7',
       width: 32,
       height: 32,
       '&:before': {
