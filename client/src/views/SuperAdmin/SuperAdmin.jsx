@@ -14,6 +14,9 @@ const SuperAdmin = () => {
 
   useEffect(() => {
     dispatch(getBusiness())
+  }, [])
+
+  useEffect(() => {
     companies && setLoading(false)
   }, [companies])
   

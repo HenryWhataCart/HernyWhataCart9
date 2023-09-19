@@ -15,7 +15,7 @@ import setNotification from "../../redux/actions/Chats/setNotification";
 
 const loginData = JSON.parse(localStorage.getItem("loginData"))
 const id = loginData?.id
-const socket = io("https://whatacart-backend.onrender.com", {
+const socket = io("https://whatacart-backend.onrender.com/", {
   query: {
     userId: id
   },
