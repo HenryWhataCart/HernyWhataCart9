@@ -44,6 +44,7 @@ import { useState } from "react";
 import validate from "./validations";
 
 function FormCreateMember() {
+  const darkMode = useSelector((state) => state?.darkMode);
   const { dispatch, user, businessId } = GetDataCreateMember();
 
   const [open, setOpen] = useState(false);
@@ -145,12 +146,13 @@ function FormCreateMember() {
 
   return (
     <>
-      <Box sx={{bgcolor:"whitesmoke", boxShadow:5, p:2, borderRadius:1, mb:1.5}}>
+      <Box sx={{ bgcolor: darkMode ? "#292F2D" : "whiteSmoke"}}>
         {validation && privilege !== "Member" ? (
         <div className={styles.containerGeneral}>
           <form
             onSubmit={onHandleSubmit}
             className={styles.containerFormMember}
+            style={{backgroundColor: darkMode ? '#222' : 'whiteSmoke'}}
           >
             <TextField
               required
@@ -275,22 +277,24 @@ function FormCreateMember() {
               </Alert>
             </Snackbar>
           </form>
-          <Box className={styles.containerTable}>
+          <Box className={styles.containerTable} style={{backgroundColor: darkMode ? '#222' : 'whiteSmoke', width: '100%'}}>
             <Box
               display={"flex"}
               flexDirection={"column"}
               justifyContent={"center"}
+              alignItems={'center'}
               sx={{
                 color: "gray",
                 textAlign: "center",
                 fontSize: "1.3rem",
+                width: '100%',
                 mt: 1.3,
                 pb: 1,
               }}
             >
               <Typography
                 sx={{
-                  color: "gray",
+                  color: darkMode ? "whiteSmoke" : "grey",
                   textAlign: "center",
                   fontSize: "1.3rem",
                   mt: 1.5,
@@ -307,14 +311,16 @@ function FormCreateMember() {
                 value={searchQuery}
                 onChange={handleSearchChange}
                 variant="outlined"
-                sx={{ marginBottom: 2 }}
+                sx={{ marginBottom: 2, width: '100%' }}
               />
               <TableContainer
                 sx={{
+                  backgroundColor: darkMode ? "#222" : "whiteSmoke",
                   height: "50vh",
                   overflow: "auto",
-                  pb: 1,
+                  pb: 1
                 }}
+                style={{backgroundImage: 'none'}}
                 component={Paper}
               >
                 <Table>

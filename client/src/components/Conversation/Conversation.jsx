@@ -6,9 +6,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import SendIcon from '@mui/icons-material/Send'
 import styles from './Conversation.module.css'
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 const Conversation = ({messages,actualyChat}) => {
+    const darkMode = useSelector((state) => state?.darkMode);
     const [message, setMessage] = React.useState({
         textMessage:"",
         name: actualyChat.name,
@@ -40,7 +42,7 @@ const Conversation = ({messages,actualyChat}) => {
     if (messages?.length > 0) {
 
     return (
-        <Grid container sx={{bgcolor:"white", boxShadow: 5, borderRadius:1}}>
+        <Grid container sx={{bgcolor: darkMode ? "#222" : "white", boxShadow: 5, borderRadius:1}}>
             <Grid item xs={12} className={styles.scrollBarStyle}>
                 <Box sx={{ height:'75vh',overflow:'auto', px :2}}>
                 <List>
@@ -50,12 +52,12 @@ const Conversation = ({messages,actualyChat}) => {
                                     {!message.sent && (
                                         <Box sx={{flexGrow :1}}>
                                             <ListItemText
-                                                sx={{color: "#999"}}
+                                               
                                                 secondary={
                                                     <>
-                                                        <span>{message.text}</span>
+                                                        <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
                                                         <br />
-                                                        <span style={{fontSize:'0.8rem' ,color:'#999'}}>{message.timestamp}</span>
+                                                        <span style={{fontSize:'0.8rem', color: darkMode ? "#777" : '#999'}}>{message.timestamp}</span>
                                                     </>
                                                 }
                                             />
@@ -65,12 +67,12 @@ const Conversation = ({messages,actualyChat}) => {
                                     {message.sent && (
                                         <Box>
                                             <ListItemText
-                                                sx={{color: "#999"}}
+                                                style={{ textAlign: 'end' }}
                                                 secondary={
                                                     <>
-                                                        <span>{message.text}</span>
+                                                        <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
                                                         <br />
-                                                        <span style={{fontSize:'0.8rem', color:'#999'}}>{message.timestamp}</span>
+                                                        <span style={{fontSize:'0.8rem', color: darkMode ? "#777" : '#999'}}>{message.timestamp}</span>
                                                     </>
                                                 }
                                             />
@@ -82,7 +84,7 @@ const Conversation = ({messages,actualyChat}) => {
                     </List>
                 </Box>
             <Grid item xs={12}>
-            <Box sx={{display:'flex' ,alignItems :'center', bgcolor:"white"}}>
+            <Box sx={{display:'flex' ,alignItems :'center', bgcolor: darkMode ? "#222" : "white"}}>
                     <TextField
                         fullWidth
                         variant="outlined"

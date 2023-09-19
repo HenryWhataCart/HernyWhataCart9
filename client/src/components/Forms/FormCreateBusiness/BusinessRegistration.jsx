@@ -32,6 +32,7 @@ const EMPTY_FORM = {
 
 export const CreateBusiness = () => {
   const dispatch = useDispatch();
+  const darkMode = useSelector((state) => state?.darkMode);
   const business = useSelector((state) => state?.business);
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [searchQuery, setSearchQuery] = useState("");
@@ -107,6 +108,7 @@ export const CreateBusiness = () => {
 
   const theme = createTheme({
     palette: {
+      mode: darkMode ? 'dark' : 'light',
       customGreen: {
         main: "#09e6a7",
       },
@@ -117,12 +119,12 @@ export const CreateBusiness = () => {
     <>
       <Box sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3 }}>
         { isSuperAdmin && (
-        <Box display="flex" className={styles.container} >
-      <Box className={styles.createContainer}>
+        <Box display="flex" className={styles.container} style={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
+      <Box className={styles.createContainer} style={{backgroundColor: darkMode ? '#222' : 'whiteSmoke'}}>
         <form onSubmit={handleSubmit}>
           <Box className={styles.createForm}>
             <Box>
-              <Typography sx={{ color: "gray", fontSize: "1.3rem" }}>
+              <Typography sx={{ color: darkMode ? "whiteSmoke" : "gray", fontSize: "1.3rem" }}>
                 New Business
               </Typography>
             </Box>
@@ -208,10 +210,10 @@ export const CreateBusiness = () => {
           </Box>
         </form>
       </Box>
-      <Box className={styles.listContainer}>
+      <Box className={styles.listContainer} style={{backgroundColor: darkMode ? '#222' : 'whiteSmoke'}}>
         <Typography
           sx={{
-            color: "gray",
+            color: darkMode ? "whiteSmoke" : "gray",
             textAlign: "center",
             fontSize: "1.3rem",
             mt: 1.3,
@@ -232,11 +234,12 @@ export const CreateBusiness = () => {
         />
 
         <TableContainer
-          sx={{ height: "50vh", overflow: "auto", pb: 1 }}
+          sx={{ height: "50vh", overflow: "auto", pb: 1, backgroundColor: darkMode ? "#222" : "whiteSmoke" }}
+          style={{backgroundImage: 'none'}}
           component={Paper}
         >
-          <Table>
-            <TableBody>
+          <Table >
+            <TableBody style={{}}>
               {filteredBusiness?.map((row) => (
                 <TableRow key={row?.id}>
                   <TableCell

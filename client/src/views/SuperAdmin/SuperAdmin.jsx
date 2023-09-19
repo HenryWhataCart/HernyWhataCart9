@@ -7,9 +7,11 @@ import { getBusiness } from "../../redux/actions/Business/getBusiness";
 
 const SuperAdmin = () => {
   const navigate = useNavigate();
+  const darkMode = useSelector((state) => state?.darkMode);
   const loginData = JSON.parse(localStorage.getItem("loginData"));
   const [loading, setLoading] = useState(true)
   const companies = useSelector((state) => state?.business)
+//   const darkMode = useSelector((state) => state?.darkMode);
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -28,15 +30,14 @@ const SuperAdmin = () => {
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
-          bgcolor={"whitesmoke"}
-          boxShadow={3}
+          bgcolor={ darkMode ? "#292F2D" : "whitesmoke"}
           height={"80vh"}
           flexDirection={"column"}
           mb={4}
         >
-          <Box bgcolor={"white"} boxShadow={5} m={3} display={"flex"} justifyContent={"center"}
+          <Box bgcolor={darkMode ? "#222" : "white"} boxShadow={5} m={3} display={"flex"} justifyContent={"center"}
           alignItems={"center"} flexDirection={"column"} p={3} borderRadius={1}>
-            <Typography variant="h3" sx={{ color: "grey", marginBottom: 1 }}>
+            <Typography variant="h3" sx={{ color:  darkMode ? "whiteSmoke" : "grey", marginBottom: 1 }}>
             COMPANIES
           </Typography>
           <Box
@@ -48,7 +49,6 @@ const SuperAdmin = () => {
               overflow: "auto",
               p: 3,
               mb: 2,
-              // bgcolor: "whitesmoke",
               borderRadius: 2,
             }}
           >
@@ -65,7 +65,7 @@ const SuperAdmin = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    bgcolor: "white",
+                    bgcolor:  darkMode ? "#252525" :  "white",
                     p: 2,
                     borderRadius: 2,
                     boxShadow: 3,
@@ -78,7 +78,7 @@ const SuperAdmin = () => {
                     sx={{
                       fontSize: 18,
                       fontWeight: 500,
-                      color: "gray",
+                      color:  darkMode ? "whiteSmoke" : "gray",
                     }}
                   >
                     {company.name.toUpperCase()}

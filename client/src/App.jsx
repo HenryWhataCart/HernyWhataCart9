@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
-
 import './App.css'
-
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setDarkMode } from './redux/actions/DarkMode/darkMode';
 import { AuthenticationGuard } from "./components/Auth0/AuthenticationGuard/AuthenticationGuard";
 import { Contacts } from './views/Contacts/Contacts'
@@ -19,17 +17,27 @@ import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
 import Support from '../src/components/Support/Support'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function App() {
   const dispatch = useDispatch();
-  const darkMode = JSON.parse(localStorage.getItem("darkMode"));
-  dispatch(setDarkMode(darkMode || false));
+  const darkModeStorage = JSON.parse(localStorage.getItem("darkMode"));
+  dispatch(setDarkMode(darkModeStorage || false));
+  const darkMode = useSelector((state) => state?.darkMode);
   const location = useLocation()
   const {pathname} = location
   const showNavBar = pathname !== '/' && pathname !== '/signout'
   const showFooter = pathname !== '/' && pathname !== '/signout' && pathname !== '/dashboard'&& pathname !== '/redirect'
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+    },
+  });
+
   return (
-    <div>
+    <ThemeProvider theme={theme}>
+    <div className={darkMode ? "darkBg" : "lightBg"}>
       {showNavBar && <NavBar />}
       <Routes>
           <Route
@@ -88,6 +96,7 @@ function App() {
       </Routes>
       {showFooter && <Footer />}
     </div>
+    </ThemeProvider>
   )
 }
 
