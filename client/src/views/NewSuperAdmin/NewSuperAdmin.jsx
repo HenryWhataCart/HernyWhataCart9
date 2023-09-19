@@ -31,6 +31,7 @@ const EMPTY_FORM = {
 
 const NewSuperAdmin = () => {
   const dispatch = useDispatch();
+  const darkMode = useSelector((state) => state?.darkMode);
   const superUser = useSelector((state) => state?.superUser);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
@@ -52,6 +53,7 @@ const NewSuperAdmin = () => {
 
   const theme = createTheme({
     palette: {
+      mode: darkMode ? 'dark' : 'light',
       customGreen: {
         main: "#09e6a7",
       },
@@ -105,13 +107,14 @@ const NewSuperAdmin = () => {
 
   return (
     <>
-    { isSuperAdmin && (
+      <Box sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3, bgcolor: darkMode ? "#292F2D" : "whiteSmoke" }}>
+        { isSuperAdmin && (
     <Box display="flex" className={styles.container}>
-      <Box className={styles.createContainer}>
+      <Box className={styles.createContainer} style={{backgroundColor: darkMode ? '#222' : 'whiteSmoke'}}> 
         <form onSubmit={handleSubmit}>
           <Box className={styles.createForm}>
             <Box>
-              <Typography sx={{ color: "gray", fontSize: "1.3rem" }}>
+              <Typography sx={{ color: darkMode ? "whiteSmoke" : "gray", fontSize: "1.3rem" }}>
                 {"New Super Admin"}
               </Typography>
             </Box>
@@ -178,10 +181,10 @@ const NewSuperAdmin = () => {
           </Box>
         </form>
       </Box>
-      <Box className={styles.listContainer}>
+      <Box className={styles.listContainer} style={{backgroundColor: darkMode ? '#222' : 'whiteSmoke'}}>
         <Typography
           sx={{
-            color: "gray",
+            color: darkMode ? "whiteSmoke" : "gray",
             textAlign: "center",
             fontSize: "1.3rem",
             mt: 1.3,
@@ -191,7 +194,8 @@ const NewSuperAdmin = () => {
           {"All Super Admin's"}
         </Typography>
         <TableContainer
-          sx={{ height: "44vh", overflow: "auto", pb: 1 }}
+          sx={{ height: "44vh", overflow: "auto", pb: 1, backgroundColor: darkMode ? "#222" : "whiteSmoke" }}
+          style={{backgroundImage: 'none'}}
           component={Paper}
         >
           <Table>
@@ -234,6 +238,7 @@ const NewSuperAdmin = () => {
         </TableContainer>
       </Box>
     </Box> )}
+      </Box>
     </>
   );
 };

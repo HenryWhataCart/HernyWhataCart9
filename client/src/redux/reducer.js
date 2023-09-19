@@ -116,7 +116,19 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.CREATE_USER_FAILURE:
         return state;
         case ACTION_TYPES.UPDATE_USER_SUCCESS:
-        return state;
+            state.user.forEach((users)=>{
+                if(users.id === action.payload.id){
+                    users.name = action.payload.name
+                    users.email = action.payload.email
+                    users.password = action.payload.password
+                    users.phone = action.payload.phone
+                    users.privilege = action.payload.privilege
+                }
+            })
+        return {
+            ...state,
+            user: [...state.user]
+        };
         case ACTION_TYPES.UPDATE_USER_FAILURE:
         return state;
         case ACTION_TYPES.DELETE_USER_SUCCESS:
@@ -185,6 +197,9 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state
             }
+
+        default: 
+            return {...state}
     }
     };
 

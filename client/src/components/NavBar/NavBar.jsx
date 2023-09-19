@@ -26,7 +26,6 @@ import { useState } from "react";
 const NavBar = () => {
   const navigate = useNavigate();
   
-  //1. importar el darkMode desde el store 
   const darkMode = useSelector((state) => state?.darkMode);
   
   const isMobile = useBreakpoints();
@@ -41,7 +40,7 @@ const NavBar = () => {
 
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
-  const handleContacts = () => navigate("/contacts");
+  const handleContacts = () => navigate(`/contacts/${businessId}`);
   
   const isMember = checkIfMember(loginData?.privilege);
   const isAdmin = checkIfAdmin(loginData?.privilege);
@@ -51,8 +50,8 @@ const NavBar = () => {
   
   return (
     //2. usar un estilo u otro dependiendo del value del darkMode. (recorder que es un boolean, y cuando sea true, implica que el darkMode esta activado)
-    <AppBar position="relative" sx={{ bgcolor: darkMode ? "#222" : "whiteSmoke", mb: 1 }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+    <AppBar position="relative" sx={{ bgcolor: darkMode ? "#222" : "whiteSmoke", mb: 1, backgroundImage: 'none' }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between"}}>
         <Link to="/">
           <img
             className={styles.logo}
@@ -67,10 +66,9 @@ const NavBar = () => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: 15, 
               }}
             >
-              <Button
+              { businessId && <Button
                 variant="text"
                 color="inherit"
                 sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
@@ -82,8 +80,8 @@ const NavBar = () => {
                   </Icon>
                   Messenger
                 </Box>
-              </Button>
-              <Button
+              </Button>}
+              {businessId && <Button
                 variant="text"
                 color="inherit"
 
@@ -96,9 +94,8 @@ const NavBar = () => {
                   </Icon>
                   Contacts
                 </Box>
-              </Button>
-            </Box>
-            {!isMember && (
+              </Button>}
+              {!isMember && (
             <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
               {!isAdmin && <Button
                 variant="text"
@@ -130,6 +127,7 @@ const NavBar = () => {
               </Button>}
             </Box>
             )}
+            </Box>
           </Box>
         )}
         <Box display="flex">
