@@ -4,9 +4,10 @@ const initialState = {
     superUser: [],
     business: [],
     user: [],
-    rol: [],
     validation: true,
     darkMode: false,
+    chats: [],
+    messages: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -147,6 +148,43 @@ const reducer = (state = initialState, action) => {
 
         case ACTION_TYPES.SET_DARK_MODE:
             return {...state, darkMode: action.payload}
+
+        // chats
+        case ACTION_TYPES.GET_CHATS_SUCCESS:
+            return {
+                ...state,
+                chats: action.payload
+            }
+
+        case ACTION_TYPES.GET_CHATS_FAILURE:
+            return state
+
+        //messages
+        case ACTION_TYPES.GET_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                messages: action.payload
+            }
+
+        case ACTION_TYPES.SET_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                messages: [...state.messages, action.payload]
+            }
+        case ACTION_TYPES.SET_NOTIFICATION_SUCCESS:
+            state.chats.forEach((chat)=>{
+                if(chat.phone == action.payload.phoneNumber){
+                    chat.notification = action.payload.value
+                }
+            })
+        return {
+            ...state,
+            chats: [...state.chats]
+        };
+        case ACTION_TYPES.SET_NOTIFICATION_FAILURE:
+            return{
+                ...state
+            }
 
         default: 
             return {...state}

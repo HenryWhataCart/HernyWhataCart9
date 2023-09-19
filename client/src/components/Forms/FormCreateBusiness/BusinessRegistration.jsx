@@ -26,6 +26,8 @@ const EMPTY_FORM = {
   name: "",
   email: "",
   phone: "",
+  apiKey: "ntt9hywwien4onvunfbgvq3eqa4xahwa",
+  srcName: ""
 };
 
 export const CreateBusiness = () => {
@@ -70,12 +72,14 @@ export const CreateBusiness = () => {
     setFormData(EMPTY_FORM);
   };
 
-  const handleUpdate = (id, name, email, phone) => {
+  const handleUpdate = (id, name, email, phone, apiKey, srcName) => {
     setFormData({
       id: id,
       name: name,
       email: email,
       phone: phone,
+      apikey: apiKey,
+      srcName: srcName
     });
     setButton({ value: "Modify" });
   };
@@ -111,8 +115,9 @@ export const CreateBusiness = () => {
 
   return (
     <>
-    { isSuperAdmin && (
-    <Box display="flex" className={styles.container}>
+      <Box sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3 }}>
+        { isSuperAdmin && (
+        <Box display="flex" className={styles.container} >
       <Box className={styles.createContainer}>
         <form onSubmit={handleSubmit}>
           <Box className={styles.createForm}>
@@ -160,6 +165,28 @@ export const CreateBusiness = () => {
                 margin="normal"
                 helperText={errors.email && errors.email}
                 error={Boolean(errors.email)}
+              />
+              <TextField  
+                label="apiKey"
+                variant="outlined"
+                name="apiKey"
+                autoComplete="off"
+                value={formData.apiKey}
+                // onChange={handleChange}
+                fullWidth
+                margin="normal"
+                disabled
+              />
+              
+              <TextField  
+                label="srcName"
+                variant="outlined"
+                name="srcName"
+                autoComplete="off"
+                value={formData.srcName}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
               />
             </Box>
             <Box>
@@ -234,7 +261,9 @@ export const CreateBusiness = () => {
                                 row?.id,
                                 row?.name,
                                 row?.email,
-                                row?.phone
+                                row?.phone,
+                                row?.apikey,
+                                row?.srcName
                               )
                             }
                           ></EditRoundedIcon>
@@ -250,6 +279,7 @@ export const CreateBusiness = () => {
       </Box>
     </Box>
     )}
+      </Box>
     </>
   );
 };

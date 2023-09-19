@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   AppBar,
   Box,
@@ -10,17 +9,19 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate  } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
+
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import ContactsRoundedIcon from "@mui/icons-material/ContactsRounded";
+import {LightDarkToggle} from "./LightDarkToggle/LightDarkToggle"
 import MenuIcon from "@mui/icons-material/Menu";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import styles from "./NavBar.module.css";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
-import {LightDarkToggle} from "./LightDarkToggle/LightDarkToggle"
-import { checkIfAdmin, checkIfMember, checkIfSuperAdmin } from "../../shared/utils";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ const NavBar = () => {
                 gap: 15, 
               }}
             >
-              <Button
+              { businessId && <Button
                 variant="text"
                 color="inherit"
                 sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
@@ -81,8 +82,8 @@ const NavBar = () => {
                   </Icon>
                   Messenger
                 </Box>
-              </Button>
-              <Button
+              </Button>}
+              {businessId && <Button
                 variant="text"
                 color="inherit"
 
@@ -95,9 +96,8 @@ const NavBar = () => {
                   </Icon>
                   Contacts
                 </Box>
-              </Button>
-            </Box>
-            {!isMember && (
+              </Button>}
+              {!isMember && (
             <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
               {!isAdmin && <Button
                 variant="text"
@@ -107,13 +107,13 @@ const NavBar = () => {
                 onClick={() => navigate("/superadmin")}
               >       
                 <Box display="flex" flexDirection="column" alignItems="center">
-                  <Icon>
+                  <Icon sx={{pb: 1}}>
                     <BusinessRoundedIcon />
                   </Icon>
                   Companies
                 </Box>
               </Button>}
-              <Button
+              {businessId && <Button
                 variant="text"
                 color="inherit"
 
@@ -126,9 +126,10 @@ const NavBar = () => {
                   </Icon>
                   Members
                 </Box>
-              </Button>
+              </Button>}
             </Box>
             )}
+            </Box>
           </Box>
         )}
         <Box display="flex">
@@ -162,10 +163,10 @@ const NavBar = () => {
           </MenuItem>
           {isMobile && (
             <Box>
-              <MenuItem onClick={() => navigate(`/dashboard/${businessId}`)}>
+               <MenuItem onClick={() => navigate(`/dashboard/${businessId}`)}>
                 Messenger
               </MenuItem>
-              <MenuItem onClick={handleContacts}>Contacts</MenuItem>
+              {businessId && <MenuItem onClick={handleContacts}>Contacts</MenuItem>}
               {!isMember && 
                 (<>
                   {
@@ -174,14 +175,13 @@ const NavBar = () => {
                       Companies
                       </MenuItem>
                   }
-                  <MenuItem onClick={()=> navigate(`/createmember/${businessId}`)}>Members</MenuItem>
+                  {businessId && <MenuItem onClick={()=> navigate(`/createmember/${businessId}`)}>Members</MenuItem>}
                 </>)
               }
             </Box>
           )}
           {isSuperAdmin && 
             <Box>
-            <MenuItem onClick={() => navigate("/metrics")}>Metrics</MenuItem>
             <MenuItem onClick={() => navigate("/createbusiness")}>
               Manage companies
             </MenuItem>

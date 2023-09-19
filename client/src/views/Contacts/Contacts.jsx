@@ -1,107 +1,38 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
-import {
-  Paper,
-  Table,
-  TableRow,
-  TableContainer,
-  TableCell,
-  TableBody,
-  Avatar,
-  Typography,
-  Box,
-  Skeleton
-} from "@mui/material";
+import { Paper, Table, TableRow, TableContainer, TableCell, TableBody, Avatar, Typography, Box, Skeleton } from "@mui/material";
 import SvgIcon from "@mui/material/SvgIcon";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-
 import styles from "./Contacts.module.css";
-
-const mockContacts = [
-  {
-    id: 1,
-    name: "Nicholas Gordon",
-    phoneNumber: "123-456-7890",
-  },
-  {
-    id: 2,
-    name: "Bardley Malone",
-    phoneNumber: "987-654-3210",
-  },
-  {
-    id: 3,
-    name: "Janie Todd",
-    phoneNumber: "123-456-7891",
-  },
-  {
-    id: 4,
-    name: "Marvin Lambert",
-    phoneNumber: "987-654-3211",
-  },
-  {
-    id: 5,
-    name: "Teresa Lloyd",
-    phoneNumber: "123-456-7892",
-  },
-  {
-    id: 6,
-    name: "Fred Haynes",
-    phoneNumber: "987-654-3212",
-  },
-  {
-    id: 7,
-    name: "Rose Peters",
-    phoneNumber: "123-456-7893",
-  },
-  {
-    id: 8,
-    name: "Brian Watson",
-    phoneNumber: "987-654-3213",
-  },
-  {
-    id: 9,
-    name: "Brian Watson",
-    phoneNumber: "987-654-3213",
-  },
-  {
-    id: 10,
-    name: "Brian Watson",
-    phoneNumber: "987-654-3213",
-  },
-  {
-    id: 11,
-    name: "Brian Watson",
-    phoneNumber: "987-654-3213",
-  },
-  {
-    id: 12,
-    name: "Brian Watson",
-    phoneNumber: "987-654-3213",
-  },
-  {
-    id: 13,
-    name: "Brian Watson",
-    phoneNumber: "987-654-3213",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { getChats } from "../../redux/actions/Chats/getChats";
+import { useParams } from "react-router-dom";
 
 export const Contacts = () => {
   const darkMode = useSelector((state) => state?.darkMode);
-  const isMobile = useBreakpoints();
-  const [loading, setLoading] = useState(true);
+  const isMobile = useBreakpoints()
+  const [loading, setLoading] = useState(true)
+  const contacts = useSelector(state => state?.chats)
+  const dispatch = useDispatch()
+  const {businessId} = useParams()
+
+  console.log(contacts);
+
   useEffect(() => {
-      setTimeout(() => setLoading(false),3000);
-  }, []);
+    !contacts && dispatch(getChats(businessId))
+    contacts && setLoading(false)
+  }, [contacts])
+
   return (
     <TableContainer
-      sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3 }}
+      sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3, bgcolor:"whitesmoke" }}
       component={Paper}
     >
       <Table>
         <TableBody >
           {!loading
-            ? mockContacts.map((contact) => (
+            ? contacts?.map((contact) => (
                 <TableRow key={contact.id} style={{background: darkMode ? '#222' : 'whiteSmoke'}}>
                   <TableCell
                     style={{
@@ -126,7 +57,7 @@ export const Contacts = () => {
                             style={{ color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
                             fontWeight={400}
                           >
-                            {contact.phoneNumber}
+                            {contact.phone}
                           </Typography>
                         )}
                       </Box>
@@ -135,7 +66,7 @@ export const Contacts = () => {
                   {!isMobile && (
                     <TableCell style={{ padding: "25px", borderBottomColor: darkMode ? "#333" : "#E0E0E0"}}>
                       <Typography style={{ color: darkMode ? "whiteSmoke" : "#4E4E4E" }}>
-                        {contact.phoneNumber}
+                        {contact.phone}
                       </Typography>
                     </TableCell>
                   )}

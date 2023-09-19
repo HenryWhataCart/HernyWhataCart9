@@ -23,10 +23,10 @@ function App() {
   const darkModeStorage = JSON.parse(localStorage.getItem("darkMode"));
   dispatch(setDarkMode(darkModeStorage || false));
   const darkMode = useSelector((state) => state?.darkMode);
-  const location = useLocation();
-  const showNavBar = location.pathname !== '/' && location.pathname !== '/signout'
-  const showFooter = location.pathname !== '/' && location.pathname !== '/signout' && location.pathname !== '/dashboard'
-
+  const location = useLocation()
+  const {pathname} = location
+  const showNavBar = pathname !== '/' && pathname !== '/signout'
+  const showFooter = pathname !== '/' && pathname !== '/signout' && pathname !== '/dashboard'&& pathname !== '/redirect'
   return (
     <div className={darkMode ? "darkBg" : "lightBg"}>
       {showNavBar && <NavBar />}
@@ -43,32 +43,27 @@ function App() {
 
           <Route
             path='/dashboard/:businessId'
-            // element= {<AuthenticationGuard component={Dashboard} />}
-            element= {<Dashboard />}
+            element= {<AuthenticationGuard component={Dashboard} />}
           />
 
           <Route
           path='/contacts/:businessId'
-          // element={<AuthenticationGuard component={Contacts} />}
-          element={<Contacts />}
+          element={<AuthenticationGuard component={Contacts} />}
           />
 
           <Route
-          path='/createmember/:businessId'
-          // element={<AuthenticationGuard component={FormCreateMember} />}
-          element={<FormCreateMember />}
+          path='/createmember/:businessId?/:businessName?'
+          element={<AuthenticationGuard component={FormCreateMember} />}
           />
         
         <Route
           path='/superadmin'
-          element={<SuperAdmin />}
-          // element={<AuthenticationGuard component={SuperAdmin} />}
+          element={<AuthenticationGuard component={SuperAdmin} />}
         />
 
         <Route
           path='/createsuperadmin'
-          element={<NewSuperAdmin />}
-          // element={<AuthenticationGuard component={NewSuperAdmin} />}
+          element={<AuthenticationGuard component={NewSuperAdmin} />}
         />
         
         <Route
@@ -78,14 +73,12 @@ function App() {
 
         <Route
           path='/createbusiness'
-          // element= {<AuthenticationGuard component={CreateBusiness} />}
-          element= {<CreateBusiness />}
+          element= {<AuthenticationGuard component={CreateBusiness} />}
         />
 
         <Route
           path='/redirect'
-          // element= {<AuthenticationGuard component={CreateBusiness} />}
-          element= {<Redirect />}
+          element= {<AuthenticationGuard component={Redirect} />}
         />
         <Route
           path='*'
@@ -98,3 +91,4 @@ function App() {
 }
 
 export default App
+
