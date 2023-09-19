@@ -43,7 +43,7 @@ const Conversation = ({messages,actualyChat}) => {
     if(messages.length === 0){
         return(
             <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center', p:1}}>
-                <img style={{height:'20rem',marginBottom:'-5rem'}} src= 'https://cdn.discordapp.com/attachments/1142151085105086496/1153776175483723786/iconolaptopwhatacart.png' alt='imagen laptop' />
+                <img style={{height:'20rem',marginBottom:'-5rem'}} src= 'https://i.imgur.com/o9WtJ0W.png' alt='imagen laptop' />
                 <h2 style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</h2>
             </Box>
         )
