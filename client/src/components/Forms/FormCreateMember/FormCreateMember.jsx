@@ -69,7 +69,9 @@ function FormCreateMember() {
     privilege: "",
     businessId: businessId,
   });
+
   const [errors, setErrors] = useState({});
+
   const handleOnChange = (event) => {
     const property = event.target.name;
     const value = event.target.value;
