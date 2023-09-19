@@ -10,7 +10,7 @@ const server = express();
 const app = http.createServer(server)
 const io = new Server(app,{
     cors:{
-        origin: 'http://localhost:5173'
+        origin: 'https://whatacart-client.vercel.app'
     }
 })
 
