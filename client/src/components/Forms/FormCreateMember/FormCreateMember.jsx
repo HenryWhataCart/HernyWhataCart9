@@ -245,8 +245,6 @@ function FormCreateMember() {
               name="phone"
               value={formUser.phone}
               onChange={handleOnChange}
-              helperText={errors.phone && errors.phone}
-              error={errors.phone && errors.phone}
             />
             <FormControl>
               <InputLabel htmlFor="outlined-select-currency-native">
@@ -389,15 +387,15 @@ function FormCreateMember() {
                                   </Icon>
                                 </Box>
                                 <Box>
-                                  <Icon>
+                                  <Icon sx={{cursor:'pointer'}}>
                                       <EditRoundedIcon
                                         onClick={() =>
                                           handleUpdate(
                                             users?.id,
                                             users?.name,
                                             users?.email,
-                                            users?.phone,
                                             users?.password,
+                                            users?.phone,
                                             users?.privilege
                                           )
                                         }

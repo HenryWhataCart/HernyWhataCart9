@@ -39,6 +39,16 @@ const Conversation = ({messages,actualyChat}) => {
     const onHandleChange = (event)=>{
         setMessage({...message, [event.target.name]:event.target.value})
     }
+
+
+    if(messages.length === 0){
+        return(
+            <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center', p:1}}>
+                <img style={{height:'20rem',marginBottom:'-5rem'}} src="../../../public/iconolaptopwhatacart.png" alt="sin mensajes" />
+                <h2 style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</h2>
+            </Box>
+        )
+    }
     
     if (messages?.length > 0) {
 
@@ -53,7 +63,6 @@ const Conversation = ({messages,actualyChat}) => {
                                     {!message.sent && (
                                         <Box sx={{flexGrow :1}}>
                                             <ListItemText
-                                               
                                                 secondary={
                                                     <>
                                                         <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
@@ -117,9 +126,11 @@ const Conversation = ({messages,actualyChat}) => {
             </Grid>
         </Grid>
     )}else{
-        return(<div>
+        return(
+        <Box>
             
-        </div>)
+        </Box>
+    )
     }
     
 }
