@@ -1,18 +1,22 @@
-const { Business } = require("../../db");
+const {Business} = require('../../db')
 
-const createBusiness = async (name, phone, email, SuperuserId) => {
-  const [newBusiness] = await Business.findOrCreate({
-    where: {
-      name,
-      phone,
-      email,
-      // SuperuserId,
-    },
-  });
+// const createBusiness = async(name,phone,email,SuperuserId) =>{
+const createBusiness = async({name,phone,email,apiKey,srcName}) =>{
 
-  await newBusiness.setSuperuser(SuperuserId);
-  await newBusiness.save();
-  return newBusiness;
-};
+        const [newBusiness,created] = await Business.findOrCreate({
+            where:{
+                name,
+                phone,
+                email,
+                apiKey,
+                srcName
+                // SuperuserId
+            }
+        })
 
-module.exports = createBusiness;
+        // await newBusiness.setSuperuser(SuperuserId)
+        // await newBusiness.save()
+        return newBusiness
+}
+
+module.exports = createBusiness

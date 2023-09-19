@@ -15,6 +15,10 @@ module.exports = (sequelize)=>{
         phone:{
             type: DataTypes.BIGINT,
             allowNull: false
+        },
+        notification:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     },{timestamps:false})
 }

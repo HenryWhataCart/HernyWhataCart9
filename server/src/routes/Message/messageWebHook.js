@@ -18,6 +18,7 @@ module.exports = (io)=>{
             if (business) {
                 const users = await User.findAll({where:{BusinessId:business.id}})
                 if (users.length > 0) {
+                    const [updatedCount, updatedRows] = await Contacts.update({notification: true}, {where: {phone: payload.source}})
                     users.forEach((user)=>{
                         io.to(user.socketId).emit('message', {
                                 text:payload.payload.text,
@@ -30,18 +31,9 @@ module.exports = (io)=>{
                     })
                 }
         
-                const [newContact, created] = await Contacts.findOrCreate({where:{phone:payload.source, BusinessId:business.id}, defaults:{name:payload.sender.name}})
-                
-                await MsgReceived.create({name: payload.sender.name, phone:payload.source, payload: payload, BusinessId: business.id, ContactId: newContact.id})
+                const [newContact, created] = await Contacts.findOrCreate({where:{phone:payload.source, BusinessId:business.id}, defaults:{name:payload.sender.name, notification:true}})
+                await MsgReceived.create({name: payload.sender.name, phone:payload.source, payload: payload,timestamp:timestamp, BusinessId: business.id, ContactId: newContact.id})
             }
-            // io.emit('message', {
-            //     text:payload.payload.text,
-            //     from: payload.source,
-            //     name:payload.sender.name,
-            //     timestamp: `${hours}:${minutes}:${seconds}`,
-            //     sent:false,
-            //     key:payload.payload.id
-            // })
         }
         
         res.status(200).end()

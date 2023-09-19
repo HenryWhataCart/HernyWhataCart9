@@ -20,17 +20,9 @@ module.exports = (sequelize)=>{
             type:DataTypes.STRING,
             allowNull:false
         },
-        payload_enqueued:{
-            type: DataTypes.JSON,
-            allowNull:false
-        },
-        payload_sent:{
-            type: DataTypes.JSON,
-            allowNull:false
-        },
-        payload_delivered:{
-            type: DataTypes.JSON,
-            allowNull:false
+        timestamps:{
+            type:DataTypes.DATE,
+            allowNull:true
         }
     }, {timestamps: false})
-}
+} 
