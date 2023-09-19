@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import Error from "../../../views/Error/Error";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -49,6 +50,10 @@ function FormCreateMember() {
   const [open, setOpen] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [button, setButton] = useState({
+    value: "Create",
+  });
+
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
   const { privilege, businessName } = loginData;
@@ -142,6 +147,19 @@ function FormCreateMember() {
   useEffect(() => {
     dispatch(getValidation(loginData, businessId));
   }, [loginData]);
+
+  const handleUpdate = (businessId,name, email, password, privilege, phone, company) => {
+    setFormUser({
+      name: name,
+      email: email,
+      password: password,
+      phone: phone,
+      privilege: privilege,
+      company: company,
+      businessId: businessId
+    });
+    setButton({ value: "Modify" });
+  };
 
   return (
     <>
@@ -349,12 +367,28 @@ function FormCreateMember() {
                             <Box>{users.privilege}</Box>
                             <Box sx={{ display: "flex" }}>
                               <Box sx={{ cursor: "pointer" }}>
-                                <Icon>
-                                  <DeleteForeverRoundedIcon
-                                    onClick={() => onhandleDelete(users.id)}
-                                  />
-                                </Icon>
-                              </Box>
+                                  <Icon>
+                                    <DeleteForeverRoundedIcon
+                                      onClick={() => onhandleDelete(users.id)}
+                                    />
+                                  </Icon>
+                                </Box>
+                                <Box>
+                                  <Icon>
+                                      <EditRoundedIcon
+                                        onClick={() =>
+                                          handleUpdate(
+                                            users?.name,
+                                            users?.email,
+                                            users?.phone,
+                                            users?.password,
+                                            users?.privilege
+                                          )
+                                        }
+                                      ></EditRoundedIcon>
+                                  </Icon>
+                                </Box>
+                                
                             </Box>
                           </TableCell>
                         </TableRow>
