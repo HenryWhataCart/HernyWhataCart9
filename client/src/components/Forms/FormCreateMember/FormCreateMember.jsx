@@ -145,7 +145,7 @@ function FormCreateMember() {
 
   return (
     <>
-      <Box sx={{bgcolor:"whitesmoke", boxShadow:5, p:2, borderRadius:1}}>
+      <Box sx={{bgcolor:"whitesmoke", boxShadow:5, p:2, borderRadius:1, mb:1.5}}>
         {validation && privilege !== "Member" ? (
         <div className={styles.containerGeneral}>
           <form
