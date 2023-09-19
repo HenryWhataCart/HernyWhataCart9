@@ -14,7 +14,7 @@ const ChatList = ({chats, handleChats}) => {
 
     return (
             <Grid container>
-                <Grid sx={{bgcolor: "white", mr: 2, boxShadow: 5}} item xs={12} className={styles.scrollBarStyle}>
+                <Grid sx={{bgcolor: "white", mr: 2, boxShadow: 5, borderRadius:1}} item xs={12} className={styles.scrollBarStyle}>
                     <Box sx={{ height: '79vh', overflow: 'auto'}}>
                     <List>
                         {chats?.map((chat, index) => (

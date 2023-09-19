@@ -117,7 +117,7 @@ export const CreateBusiness = () => {
     <>
       <Box sx={{ maxHeight: "84vh", overflow: "auto", mb: 2, boxShadow: 3 }}>
         { isSuperAdmin && (
-        <Box display="flex" className={styles.container}>
+        <Box display="flex" className={styles.container} >
       <Box className={styles.createContainer}>
         <form onSubmit={handleSubmit}>
           <Box className={styles.createForm}>

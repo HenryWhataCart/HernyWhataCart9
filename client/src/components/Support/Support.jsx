@@ -61,14 +61,15 @@ export default function Support() {
         alignItems: "center",
         justifyContent: "center",
         height: "75vh",
-        bgcolor: "white",
+        bgcolor: "whitesmoke",
         borderRadius: 2,
         p: 1,
         mb: 3,
         boxShadow: 3,
       }}
     >
-      <Box sx={{ mx: "auto", p: 2, width: "400px" }}>
+      <Box container sx={{bgcolor:"white", boxShadow: 5, p:2, borderRadius:1}}>
+        <Box sx={{ mx: "auto", p: 2, width: "400px" }}>
         <Typography variant="h4" align="center" mb={2} color="grey">
           ¡Contact Us<br /> or report some bug! 
         </Typography>
@@ -141,6 +142,7 @@ export default function Support() {
             </Alert>
           </Snackbar>
         </form>
+      </Box>
       </Box>
     </Box>
   );
