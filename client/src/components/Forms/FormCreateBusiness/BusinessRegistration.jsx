@@ -21,12 +21,14 @@ import deleteBusiness from "../../../redux/actions/Business/deleteBusiness";
 import { validation } from "./validations";
 import styles from "./BusinessRegistration.module.css";
 
+const API_KEY = import.meta.env.VITE_API_KEY
+
 const EMPTY_FORM = {
   id: "",
   name: "",
   email: "",
   phone: "",
-  apiKey: "ntt9hywwien4onvunfbgvq3eqa4xahwa",
+  apiKey: API_KEY,
   srcName: ""
 };
 
@@ -167,17 +169,6 @@ export const CreateBusiness = () => {
                 margin="normal"
                 helperText={errors.email && errors.email}
                 error={Boolean(errors.email)}
-              />
-              <TextField  
-                label="apiKey"
-                variant="outlined"
-                name="apiKey"
-                autoComplete="off"
-                value={formData.apiKey}
-                // onChange={handleChange}
-                fullWidth
-                margin="normal"
-                disabled
               />
               
               <TextField  
