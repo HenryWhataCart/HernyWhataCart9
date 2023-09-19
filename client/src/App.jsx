@@ -44,32 +44,27 @@ function App() {
 
           <Route
             path='/dashboard/:businessId'
-            // element= {<AuthenticationGuard component={Dashboard} />}
-            element= {<Dashboard />}
+            element= {<AuthenticationGuard component={Dashboard} />}
           />
 
           <Route
           path='/contacts/:businessId'
-          // element={<AuthenticationGuard component={Contacts} />}
-          element={<Contacts />}
+          element={<AuthenticationGuard component={Contacts} />}
           />
 
           <Route
           path='/createmember/:businessId?/:businessName?'
-          // element={<AuthenticationGuard component={FormCreateMember} />}
-          element={<FormCreateMember />}
+          element={<AuthenticationGuard component={FormCreateMember} />}
           />
         
         <Route
           path='/superadmin'
-          element={<SuperAdmin />}
-          // element={<AuthenticationGuard component={SuperAdmin} />}
+          element={<AuthenticationGuard component={SuperAdmin} />}
         />
 
         <Route
           path='/createsuperadmin'
-          element={<NewSuperAdmin />}
-          // element={<AuthenticationGuard component={NewSuperAdmin} />}
+          element={<AuthenticationGuard component={NewSuperAdmin} />}
         />
         
         <Route
@@ -79,14 +74,12 @@ function App() {
 
         <Route
           path='/createbusiness'
-          // element= {<AuthenticationGuard component={CreateBusiness} />}
-          element= {<CreateBusiness />}
+          element= {<AuthenticationGuard component={CreateBusiness} />}
         />
 
         <Route
           path='/redirect'
-          // element= {<AuthenticationGuard component={CreateBusiness} />}
-          element= {<Redirect />}
+          element= {<AuthenticationGuard component={Redirect} />}
         />
         <Route
           path='*'
