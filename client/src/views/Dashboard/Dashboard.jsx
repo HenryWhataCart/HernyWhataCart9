@@ -141,12 +141,12 @@ const messages = [
 ];
 
 const Dashboard = () => {
-    const loginData = JSON.parse(localStorage.getItem("loginData"));
-    const { businessId } = useParams();
-    const dispatch = useDispatch();
-    const validation = useSelector((state) => state?.validation);
-    const theme = useTheme();
-    const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
+  const loginData = JSON.parse(localStorage.getItem("loginData"));
+  const { businessId } = useParams();
+  const dispatch = useDispatch();
+  const validation = useSelector((state) => state?.validation);
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   validation && console.log(validation);
   businessId && console.log(businessId, "vengo de params");
@@ -163,7 +163,7 @@ const Dashboard = () => {
       {validation ? (
         <Box>
           <Grid container style={{padding: '12px 24px 8px 24px'}}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} >
               <Box sx={{ height: "100%" }}>
                 <ChatList chats={chats} />
               </Box>

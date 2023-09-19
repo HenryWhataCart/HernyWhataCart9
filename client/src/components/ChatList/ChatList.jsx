@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Box, Grid, List, ListItemAvatar, Avatar, ListItemText, Divider, ListItemButton, Skeleton } from '@mui/material';
+import { useSelector } from "react-redux";
+import { Box, Grid, List, ListItemAvatar, Avatar, ListItemText, Divider, ListItemButton, Skeleton, Typography } from '@mui/material';
 import styles from './ChatList.module.css'
 
 const ChatList = ({chats}) => {
-
+    const darkMode = useSelector((state) => state?.darkMode);
     const [loading, setLoading] = React.useState(true)
 
     React.useEffect(() => {
@@ -12,8 +13,8 @@ const ChatList = ({chats}) => {
     }, [])
 
     return (
-            <Grid container>
-                <Grid sx={{bgcolor: "white", mr: 2, boxShadow: 5}} item xs={12} className={styles.scrollBarStyle}>
+            <Grid container >
+                <Grid sx={{bgcolor: darkMode ? '#222': "white", mr: 2, boxShadow: 5}} item xs={12} className={styles.scrollBarStyle}>
                      <Box sx={{ height: '84vh', overflow: 'auto'}}>
                         <List>
                 {!loading ? chats.map((chat, index) => (
@@ -22,7 +23,15 @@ const ChatList = ({chats}) => {
                     <ListItemAvatar>
                         <Avatar>{chat.name[0]}</Avatar>
                     </ListItemAvatar>
-                    <ListItemText sx={{color: "#4E4E4E"}} primary={chat.name} secondary={chat.text} />
+                    <ListItemText 
+                        sx={{color: darkMode ? 'whiteSmoke' : "#4E4E4E"}} 
+                        primary={chat.name} 
+                        secondary={
+                        <Typography variant="body2" color={darkMode ? '#ccc' : "#4E4E4E"}>
+                            {chat.text} 
+                        </Typography>
+                        }
+                    />
                     </ListItemButton>
                     <Divider variant="middle" component="li" />
                 </React.Fragment>

@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { useSelector } from "react-redux";
 import { Box, Grid, List, ListItemText, TextField, IconButton } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send'
 import styles from './Conversation.module.css'
 
 const Conversation = ({messages}) => {
+    const darkMode = useSelector((state) => state?.darkMode);
     const [messageText, setMessageText] = React.useState('');
 
     const handleSendMessage = () => {
@@ -12,7 +14,7 @@ const Conversation = ({messages}) => {
     }
 
     return (
-        <Grid container sx={{bgcolor:"white", boxShadow: 5}}>
+        <Grid container sx={{bgcolor: darkMode ? "#222" : "white", boxShadow: 5}}>
             <Grid item xs={12} className={styles.scrollBarStyle}>
                 <Box sx={{ height:'80vh',overflow:'auto', px :2}}>
                     <List>
@@ -22,12 +24,12 @@ const Conversation = ({messages}) => {
                                     {!message.sent && (
                                         <Box sx={{flexGrow :1}}>
                                             <ListItemText
-                                                sx={{color: "#999"}}
+                                               
                                                 secondary={
                                                     <>
-                                                        <span>{message.text}</span>
+                                                        <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
                                                         <br />
-                                                        <span style={{fontSize:'0.8rem' ,color:'#999'}}>{message.timestamp}</span>
+                                                        <span style={{fontSize:'0.8rem', color: darkMode ? "#777" : '#999'}}>{message.timestamp}</span>
                                                     </>
                                                 }
                                             />
@@ -37,12 +39,12 @@ const Conversation = ({messages}) => {
                                     {message.sent && (
                                         <Box>
                                             <ListItemText
-                                                sx={{color: "#999"}}
+                                                style={{ textAlign: 'end' }}
                                                 secondary={
                                                     <>
-                                                        <span>{message.text}</span>
+                                                        <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
                                                         <br />
-                                                        <span style={{fontSize:'0.8rem', color:'#999'}}>{message.timestamp}</span>
+                                                        <span style={{fontSize:'0.8rem', color: darkMode ? "#777" : '#999'}}>{message.timestamp}</span>
                                                     </>
                                                 }
                                             />
