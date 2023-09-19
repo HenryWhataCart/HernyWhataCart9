@@ -50,7 +50,7 @@ const SuperAdmin = () => {
             }}
           >
             {loading ? (
-              [...Array(companies.length)].map((_, index) => (
+              Array.from(new Array(7)).map((_, index) => (
                 <Skeleton key={index} variant="rectangular" height={50} />
               ))
             ) : (
