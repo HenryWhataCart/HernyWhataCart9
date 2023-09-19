@@ -124,6 +124,7 @@ export default function Support() {
               alignContent: "center",
               backgroundColor: "#09E6A7",
               color: "white",
+              fontWeight: "bold",
               "&:hover": {
                 animation: "buttonHover 0.3s ease-in-out",
                 background: "#09e6a77b",

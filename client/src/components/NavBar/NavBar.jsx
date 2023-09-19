@@ -26,7 +26,6 @@ import { useState } from "react";
 const NavBar = () => {
   const navigate = useNavigate();
   
-  //1. importar el darkMode desde el store 
   const darkMode = useSelector((state) => state?.darkMode);
   
   const isMobile = useBreakpoints();
