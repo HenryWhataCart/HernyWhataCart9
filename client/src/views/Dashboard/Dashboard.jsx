@@ -162,7 +162,7 @@ const Dashboard = () => {
     <>
       {validation ? (
         <Box>
-          <Grid container sx={{ mb: 2, p: 3 }}>
+          <Grid container style={{padding: '12px 24px 8px 24px'}}>
             <Grid item xs={12} md={4}>
               <Box sx={{ height: "100%" }}>
                 <ChatList chats={chats} />
