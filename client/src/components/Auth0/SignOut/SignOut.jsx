@@ -9,7 +9,7 @@ const SignOut = () => {
   const signout = () => {
     logout({
       logoutParams: {
-        returnTo: "https://localhost:5173/"
+        returnTo: "https://whatacart-client.vercel.app/"
       },
     });
   };
@@ -22,4 +22,3 @@ const SignOut = () => {
 
 export default SignOut;
 
-"https://whatacart-client.vercel.app/"
