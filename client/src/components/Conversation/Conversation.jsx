@@ -105,7 +105,7 @@ const Conversation = ({messages,actualyChat}) => {
         </Grid>
     )}else{
         return(<div>
-            
+            <h2>hola</h2>
         </div>)
     }
     
