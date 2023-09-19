@@ -49,7 +49,6 @@ const NavBar = () => {
   const logo = darkMode ? "https://uploads-ssl.webflow.com/64484d95e9797d0cef181b3a/6449cca777bcb4ec3d1248b5_whatacart.png" : "https://i.imgur.com/MdR5aac.png";
   
   return (
-    //2. usar un estilo u otro dependiendo del value del darkMode. (recorder que es un boolean, y cuando sea true, implica que el darkMode esta activado)
     <AppBar position="relative" sx={{ bgcolor: darkMode ? "#222" : "whiteSmoke", mb: 1, backgroundImage: 'none' }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between"}}>
         <Link to="/">
