@@ -15,7 +15,7 @@ import setNotification from "../../redux/actions/Chats/setNotification";
 
 const loginData = JSON.parse(localStorage.getItem("loginData"))
 const id = loginData?.id
-const socket = io("https://whatacart-backend.onrender.com/", {
+const socket = io("https://whatacart-backend.onrender.com", {
   query: {
     userId: id
   },
@@ -38,13 +38,10 @@ const Dashboard = () => {
     })
 
     const handleMessage = (message)=>{
-      console.log(message);  
             if(message.from == userSelect){
-              console.log("entre");
                 dispatch(setMessage(message))
                 dispatch(setNotification(message.from,false))
             }else{
-                console.log("Hola entre porque no me corresponde el mensaje");
                 dispatch(setNotification(message.from,true))
             }
     }

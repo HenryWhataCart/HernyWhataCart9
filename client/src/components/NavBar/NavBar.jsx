@@ -70,7 +70,7 @@ const NavBar = () => {
                 gap: 15, 
               }}
             >
-              <Button
+              { businessId && <Button
                 variant="text"
                 color="inherit"
                 sx={{ mx: 8, color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
@@ -82,8 +82,8 @@ const NavBar = () => {
                   </Icon>
                   Messenger
                 </Box>
-              </Button>
-              <Button
+              </Button>}
+              {businessId && <Button
                 variant="text"
                 color="inherit"
 
@@ -96,9 +96,8 @@ const NavBar = () => {
                   </Icon>
                   Contacts
                 </Box>
-              </Button>
-            </Box>
-            {!isMember && (
+              </Button>}
+              {!isMember && (
             <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
               {!isAdmin && <Button
                 variant="text"
@@ -130,6 +129,7 @@ const NavBar = () => {
               </Button>}
             </Box>
             )}
+            </Box>
           </Box>
         )}
         <Box display="flex">
