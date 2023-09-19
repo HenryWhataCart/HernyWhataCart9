@@ -9,7 +9,6 @@ const validate = (formUser) =>{
 
     if(formUser.privilege.length === 0) errors.privilege ='Must assign at least one privilege'
 
-    if(formUser.businessId.length === 0) errors.businessId = 'Must assign at least one rol' 
     
     return errors
 }

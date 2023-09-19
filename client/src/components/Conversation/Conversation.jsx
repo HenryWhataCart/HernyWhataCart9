@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
-import { Box, Grid, IconButton, List, ListItemText, TextField, Alert, Snackbar } from '@mui/material';
-import axios from 'axios';
+import { Alert, Box, Grid, IconButton, List, ListItemText, Snackbar, TextField } from '@mui/material';
 import React, { useState } from 'react';
+
 import SendIcon from '@mui/icons-material/Send'
+import axios from 'axios';
 import styles from './Conversation.module.css'
-import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const Conversation = ({messages,actualyChat}) => {
     const darkMode = useSelector((state) => state?.darkMode);

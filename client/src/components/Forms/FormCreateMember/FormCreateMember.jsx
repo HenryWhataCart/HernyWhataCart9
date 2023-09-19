@@ -9,6 +9,7 @@ import {
   Snackbar,
   TextField,
   Typography,
+  createTheme,
 } from "@mui/material";
 import {
   Icon,
@@ -22,23 +23,21 @@ import {
 
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import Error from "../../../views/Error/Error";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import GetDataCreateMember from "./getDataCreateMember";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
-import MoodBadRoundedIcon from "@mui/icons-material/MoodBadRounded";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { Select } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import createUser from "../../../redux/actions/User/PostUser";
 import deleteUser from "../../../redux/actions/User/deleteUser";
 import getValidation from "../../../redux/actions/UserValidation/userValidation";
 import styles from "./CreateMember.module.css";
+import updateUser from "../../../redux/actions/User/putUser";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -51,27 +50,18 @@ function FormCreateMember() {
   const [open, setOpen] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [button, setButton] = useState({
+    value: "Create",
+  });
+
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
-  const { privilege, businessName } = loginData;
+  const { privilege } = loginData;
 
-  const buttonStyles = {
-    background: "#30EAB5",
-    color: "white",
-    textTransform: "none",
-    fontWeight: "bold",
-    padding: "10px 20px",
-  };
 
-  const buttonStylesNotSubmit = {
-    background: "#d7d7d7",
-    color: "#9f9f9f",
-    textTransform: "none",
-    fontWeight: "bold",
-    padding: "10px 20px",
-  };
 
   const [formUser, setFormUser] = useState({
+    id:"",
     name: "",
     email: "",
     password: "",
@@ -91,18 +81,6 @@ function FormCreateMember() {
     });
   };
 
-    const handleUpdate = (businessId,name, email, password, privilege, phone, company) => {
-    setFormUser({
-      name: name,
-      email: email,
-      password: password,
-      phone: phone,
-      privilege: privilege,
-      company: company,
-      businessId: businessId
-    });
-  };
-
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -113,13 +91,6 @@ function FormCreateMember() {
       )
     : [];
 
-  const isNotCompelte =
-    !formUser.name ||
-    !formUser.email ||
-    !formUser.password ||
-    !formUser.phone ||
-    !formUser.privilege ||
-    !formUser.businessId;
 
   //----------------------Password--------------------------------------------
   const [showPassword, setShowPassword] = useState(false);
@@ -135,18 +106,27 @@ function FormCreateMember() {
   const onHandleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(createUser(formUser));
-    setOpen(true);
-    setTimeout(() => {
-      setFormUser({
-        name: "",
-        email: "",
-        password: "",
-        phone: "",
-        privilege: "",
-        businessId: businessId,
-      });
-    }, 3000);
+    const validateErrors = validate(formUser);
+    setErrors(validateErrors);
+
+    if (Object.keys(validateErrors).length === 0) {
+      if (button.value === "Create") {
+        dispatch(createUser(formUser));
+      } else {
+        dispatch(updateUser(formUser.id, formUser));
+        setButton({ value: "Create" });
+      }
+      setTimeout(() => {
+          setFormUser({
+            name: "",
+            email: "",
+            password: "",
+            phone: "",
+            privilege: "",
+            businessId: businessId,
+          });
+        }, 3000)
+    }
   };
 
   const onhandleDelete = (id) => {
@@ -158,6 +138,40 @@ function FormCreateMember() {
   useEffect(() => {
     dispatch(getValidation(loginData, businessId));
   }, [loginData]);
+
+  const handleUpdate = (id,name, email, password,phone, privilege) => {
+    setFormUser({
+      id: id,
+      name: name,
+      email: email,
+      password: password,
+      phone: phone,
+      privilege: privilege,
+    });
+    setButton({ value: "Modify" });
+  };
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+      customGreen: {
+        main: "#09e6a7",
+      },
+    },
+  });
+
+  const disableSubmitButton = () => {
+    if (
+      formUser.name.length > 0 &&
+      formUser.email.length > 0 &&
+      formUser.password.length > 0 &&
+      formUser.phone.length > 0 &&
+      formUser.privilege.length > 0 
+    ) {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <>
@@ -261,25 +275,22 @@ function FormCreateMember() {
               value={businessId}
             />
 
-            {isNotCompelte ? (
-              <Button
-                type="notSubmit"
-                variant="contained"
-                endIcon={<SendIcon />}
-                style={buttonStylesNotSubmit}
-              >
-                Empty fields
-              </Button>
-            ) : (
+            <Box>
               <Button
                 type="submit"
                 variant="contained"
-                endIcon={<SendIcon />}
-                style={buttonStyles}
+                theme={theme}
+                color="customGreen"
+                sx={{
+                  color: "white",
+                  bgcolor: "#30EAB5",
+                }}
+                value={button.value}
+                disabled={disableSubmitButton()}
               >
-                Send
+                {button.value}
               </Button>
-            )}
+            </Box>
             <Snackbar
               open={open}
               autoHideDuration={2500}
@@ -340,7 +351,7 @@ function FormCreateMember() {
               >
                 <Table>
                   <TableBody>
-                    {user?.length === 0 ? (
+                    {user?.length === 0  ? (
                       <TableRow key="no-users">
                         <TableCell colSpan={3}>
                           <Box className={styles.icon}>
@@ -371,26 +382,29 @@ function FormCreateMember() {
                             <Box>{users.privilege}</Box>
                             <Box sx={{ display: "flex" }}>
                               <Box sx={{ cursor: "pointer" }}>
-                                <Icon>
-                                  <DeleteForeverRoundedIcon
-                                    onClick={() => onhandleDelete(users.id)}
-                                  />
-                                </Icon>
-                                                        <Icon>
-                          <EditRoundedIcon
-                            onClick={() =>
-                                      handleUpdate(
-                                user.name,
-                                user.email,
-                                user.phone,
-                                user.password,
-                                user.privilege,
-                              )
-                            }
-                          ></EditRoundedIcon>
-                        </Icon>
-
-                              </Box>
+                                  <Icon>
+                                    <DeleteForeverRoundedIcon
+                                      onClick={() => onhandleDelete(users.id)}
+                                    />
+                                  </Icon>
+                                </Box>
+                                <Box>
+                                  <Icon>
+                                      <EditRoundedIcon
+                                        onClick={() =>
+                                          handleUpdate(
+                                            users?.id,
+                                            users?.name,
+                                            users?.email,
+                                            users?.phone,
+                                            users?.password,
+                                            users?.privilege
+                                          )
+                                        }
+                                      ></EditRoundedIcon>
+                                  </Icon>
+                                </Box>
+                                
                             </Box>
                           </TableCell>
                         </TableRow>

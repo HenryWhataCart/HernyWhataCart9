@@ -21,6 +21,8 @@ import deleteBusiness from "../../../redux/actions/Business/deleteBusiness";
 import { validation } from "./validations";
 import styles from "./BusinessRegistration.module.css";
 
+// const API_KEY = import.meta.env
+
 const EMPTY_FORM = {
   id: "",
   name: "",
