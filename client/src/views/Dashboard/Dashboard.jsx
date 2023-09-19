@@ -16,7 +16,9 @@ import styles from "./Dashboard.module.css"
 
 const loginData = JSON.parse(localStorage.getItem("loginData"))
 const id = loginData?.id
-const socket = io("https://whatacart-backend.onrender.com/", {
+// const socketListen = "https://whatacart-server.onrender.com/"
+const socketListen = "https://whatacart-backend.onrender.com/"
+const socket = io(socketListen, {
   query: {
     userId: id
   },
