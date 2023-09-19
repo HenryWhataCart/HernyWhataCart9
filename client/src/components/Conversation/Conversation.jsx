@@ -44,7 +44,7 @@ const Conversation = ({messages,actualyChat}) => {
     if(messages.length === 0){
         return(
             <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center', p:1}}>
-                <img style={{height:'20rem',marginBottom:'-5rem'}} src="../../../public/iconolaptopwhatacart.png" alt="sin mensajes" />
+                <img style={{height:'20rem',marginBottom:'-5rem'}} src="../../assets/iconolaptopwhatacart.png" alt="sin mensajes" />
                 <h2 style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</h2>
             </Box>
         )
