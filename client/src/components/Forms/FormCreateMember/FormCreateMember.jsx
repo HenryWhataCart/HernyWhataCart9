@@ -62,8 +62,8 @@ function FormCreateMember() {
   };
 
   const buttonStylesNotSubmit = {
-    background: "black",
-    color: "white",
+    background: "#d7d7d7",
+    color: "#9f9f9f",
     textTransform: "none",
     fontWeight: "bold",
     padding: "10px 20px",
@@ -145,7 +145,8 @@ function FormCreateMember() {
 
   return (
     <>
-      {validation && privilege !== "Member" ? (
+      <Box sx={{bgcolor:"whitesmoke", boxShadow:5, p:2, borderRadius:1}}>
+        {validation && privilege !== "Member" ? (
         <div className={styles.containerGeneral}>
           <form
             onSubmit={onHandleSubmit}
@@ -376,6 +377,7 @@ function FormCreateMember() {
           </Box>
         </div>
       ) : null}
+      </Box>
     </>
   );
 }
