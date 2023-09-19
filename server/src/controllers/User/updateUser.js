@@ -2,10 +2,10 @@ const { User, Rol } = require("../../db");
 
 
 
-const updateUser = async (id, name, email, password,phone,privilege,businessId) => {
+const updateUser = async (id, name, email, password,phone,privilege) => {
   
     const updateCount = await User.update(
-      { name: name, email: email, password: password,phone:phone ,privilege: privilege, BusinessId:businessId},
+      { name: name, email: email, password: password,phone:phone ,privilege: privilege},
       { where: { id } }
     );
   

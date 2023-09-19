@@ -12,10 +12,14 @@ const userUpdated = require("../routes/User/UserUpdate");
 const userSearch = require('../routes/User/UserSearch')
 const createUser = require('./User/UserPost')
 const userDelete = require('./User/UserDelete')
-const login = require('./Login/loginRoute')
-const validate = require('./userValidation/userValidation')
 const messageWebHook = require('./Message/messageWebHook')
 const messageSend = require('./Message/messageSend')
+const ContactsSearch = require('./Contacts/ContactsSearch')
+const msgFind = require('./Contacts/ContactFinded')
+const putNotification = require('./Contacts/updateNotification')
+const messageSendSearch = require('./Message/messageSendSearch')
+const login = require('./Login/loginRoute')
+const validate = require('./userValidation/userValidation')
 
 const routes = Router();
 
@@ -35,13 +39,14 @@ module.exports = (io)=>{
     routes.use("/", userDelete);
     routes.use("/", messageWebHook(io));
     routes.use("/", messageSend(io)); 
+    routes.use("/", ContactsSearch)
+    routes.use("/", msgFind)
+    routes.use("/", putNotification)
+    routes.use("/", messageSendSearch)    
     routes.use("/", login);
     routes.use("/",validate)
 
     return routes
 }
-
-
-
 
 

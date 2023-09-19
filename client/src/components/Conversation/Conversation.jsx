@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
-import { Box, Grid, IconButton, List, ListItemText, TextField, Alert, Snackbar } from '@mui/material';
-import axios from 'axios';
+import { Alert, Box, Grid, IconButton, List, ListItemText, Snackbar, TextField } from '@mui/material';
 import React, { useState } from 'react';
+
 import SendIcon from '@mui/icons-material/Send'
+import axios from 'axios';
 import styles from './Conversation.module.css'
-import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const Conversation = ({messages,actualyChat}) => {
     const darkMode = useSelector((state) => state?.darkMode);
@@ -38,6 +39,15 @@ const Conversation = ({messages,actualyChat}) => {
     const onHandleChange = (event)=>{
         setMessage({...message, [event.target.name]:event.target.value})
     }
+
+    if(messages.length === 0){
+        return(
+            <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center', p:1}}>
+                <img style={{height:'20rem',marginBottom:'-5rem'}} src= 'https://i.imgur.com/o9WtJ0W.png' alt='imagen laptop' />
+                <h2 style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</h2>
+            </Box>
+        )
+    }
     
     if (messages?.length > 0) {
 
@@ -52,7 +62,6 @@ const Conversation = ({messages,actualyChat}) => {
                                     {!message.sent && (
                                         <Box sx={{flexGrow :1}}>
                                             <ListItemText
-                                               
                                                 secondary={
                                                     <>
                                                         <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
@@ -116,9 +125,11 @@ const Conversation = ({messages,actualyChat}) => {
             </Grid>
         </Grid>
     )}else{
-        return(<div>
+        return(
+        <Box>
             
-        </div>)
+        </Box>
+    )
     }
     
 }

@@ -40,7 +40,7 @@ const NavBar = () => {
 
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
-  const handleContacts = () => navigate("/contacts");
+  const handleContacts = () => navigate(`/contacts/${businessId}`);
   
   const isMember = checkIfMember(loginData?.privilege);
   const isAdmin = checkIfAdmin(loginData?.privilege);

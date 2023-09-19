@@ -10,7 +10,7 @@ const server = express();
 const app = http.createServer(server)
 const io = new Server(app,{
     cors:{
-        origin: 'http://localhost:5173'
+        origin: '*'
     }
 })
 
@@ -33,6 +33,9 @@ io.on('connection', async (socket)=>{
     console.log(`Cliente conectado ${socket.id}`);
     console.log(userId);
     
+    socket.on('disconnect', () => {
+        console.log('Cliente desconectado');
+    });
 })
 
 server.use('/',routes(io))

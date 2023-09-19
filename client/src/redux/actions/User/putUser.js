@@ -1,16 +1,17 @@
-import axios from 'axios';
 import ACTION_TYPES from '../../actionTypes'
-
+import axios from 'axios';
 
 const updateUser = (id, updatedUserData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`/updateUser/${id}`, updatedUserData);
+      
+      await axios.put(`/updateUser/${id}`, updatedUserData);
 
       dispatch({
         type: ACTION_TYPES.UPDATE_USER_SUCCESS,
-        payload: response.data
+        payload: updatedUserData
       });
+      
     } catch (error) {
       dispatch({
         type: ACTION_TYPES.UPDATE_USER_FAILURE,
