@@ -75,6 +75,7 @@ export default function Support() {
         </Typography>
         <form ref={form} onSubmit={handleSubmit}>
           <TextField
+            variant="filled"
             fullWidth
             label="Name"
             name="user_name"

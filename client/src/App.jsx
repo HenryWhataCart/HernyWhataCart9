@@ -17,6 +17,7 @@ import SignIn from './views/SignIn/SignIn'
 import SignOut from './components/Auth0/SignOut/SignOut';
 import SuperAdmin from './views/SuperAdmin/SuperAdmin';
 import Support from '../src/components/Support/Support'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,15 @@ function App() {
   const {pathname} = location
   const showNavBar = pathname !== '/' && pathname !== '/signout'
   const showFooter = pathname !== '/' && pathname !== '/signout' && pathname !== '/dashboard'&& pathname !== '/redirect'
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+    },
+  });
+
   return (
+    <ThemeProvider theme={theme}>
     <div className={darkMode ? "darkBg" : "lightBg"}>
       {showNavBar && <NavBar />}
       <Routes>
@@ -87,6 +96,7 @@ function App() {
       </Routes>
       {showFooter && <Footer />}
     </div>
+    </ThemeProvider>
   )
 }
 

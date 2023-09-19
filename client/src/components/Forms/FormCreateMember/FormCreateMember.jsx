@@ -44,6 +44,7 @@ import { useState } from "react";
 import validate from "./validations";
 
 function FormCreateMember() {
+  const darkMode = useSelector((state) => state?.darkMode);
   const { dispatch, user, businessId } = GetDataCreateMember();
 
   const [open, setOpen] = useState(false);
@@ -150,6 +151,7 @@ function FormCreateMember() {
           <form
             onSubmit={onHandleSubmit}
             className={styles.containerFormMember}
+            style={{backgroundColor: darkMode ? '#222' : 'whiteSmoke'}}
           >
             <TextField
               required
@@ -274,7 +276,7 @@ function FormCreateMember() {
               </Alert>
             </Snackbar>
           </form>
-          <Box className={styles.containerTable}>
+          <Box className={styles.containerTable} style={{backgroundColor: darkMode ? '#222' : 'whiteSmoke', width: '100%'}}>
             <Box
               display={"flex"}
               flexDirection={"column"}
@@ -312,7 +314,7 @@ function FormCreateMember() {
                 sx={{
                   height: "50vh",
                   overflow: "auto",
-                  pb: 1,
+                  pb: 1
                 }}
                 component={Paper}
               >

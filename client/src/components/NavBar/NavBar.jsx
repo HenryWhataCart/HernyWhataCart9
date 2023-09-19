@@ -51,8 +51,8 @@ const NavBar = () => {
   
   return (
     //2. usar un estilo u otro dependiendo del value del darkMode. (recorder que es un boolean, y cuando sea true, implica que el darkMode esta activado)
-    <AppBar position="relative" sx={{ bgcolor: darkMode ? "#222" : "whiteSmoke", mb: 1 }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+    <AppBar position="relative" sx={{ bgcolor: darkMode ? "#222" : "whiteSmoke", mb: 1, backgroundImage: 'none' }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between"}}>
         <Link to="/">
           <img
             className={styles.logo}
@@ -67,7 +67,6 @@ const NavBar = () => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: 15, 
               }}
             >
               { businessId && <Button

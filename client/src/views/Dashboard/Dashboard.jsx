@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import ChatList from "../../components/ChatList/ChatList";
 import Conversation from "../../components/Conversation/Conversation";
 import { useEffect, useState } from "react";
@@ -28,8 +28,8 @@ const Dashboard = () => {
     const messages = useSelector((state) => state?.messages)
     const dispatch = useDispatch();
     const validation = useSelector((state) => state?.validation);
-    const theme = useTheme();
-    const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
+    // const theme = useTheme();
+    // const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
     const [actualyChat, setActualyChat] = useState({
       name:"",
       phone:0,
@@ -76,18 +76,21 @@ const Dashboard = () => {
   return (
     <>
       {validation ? (
-        <Box bgcolor={"whitesmoke"} boxShadow={4}>
+        <Box boxShadow={4}>
           <Grid container sx={{ mb: 2, p: 3 }}>
             <Grid item xs={12} md={4}>
               <Box>
                 <ChatList chats={chats} handleChats={handleChats} />
               </Box>
             </Grid>
-            {isLargeScreen && (
+            {/* {isLargeScreen && (
               <Grid item xs={12} md={8}>
                 <Conversation messages={messages} actualyChat={actualyChat} />
               </Grid>
-            )}
+            )} */}
+            <Grid item xs={12} md={8}>
+                <Conversation messages={messages} actualyChat={actualyChat} />
+              </Grid>
           </Grid>
         </Box>
       ) : null}

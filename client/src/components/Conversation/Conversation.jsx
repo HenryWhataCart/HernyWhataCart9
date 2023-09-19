@@ -83,7 +83,7 @@ const Conversation = ({messages,actualyChat}) => {
                     </List>
                 </Box>
             <Grid item xs={12}>
-            <Box sx={{display:'flex' ,alignItems :'center', bgcolor:"white"}}>
+            <Box sx={{display:'flex' ,alignItems :'center', bgcolor: darkMode ? "#222" : "white"}}>
                     <TextField
                         fullWidth
                         variant="outlined"
