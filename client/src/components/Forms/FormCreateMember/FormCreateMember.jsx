@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import Error from "../../../views/Error/Error";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -78,13 +79,27 @@ function FormCreateMember() {
     privilege: "",
     businessId: businessId,
   });
+
   const [errors, setErrors] = useState({});
+
   const handleOnChange = (event) => {
     const property = event.target.name;
     const value = event.target.value;
     setFormUser({
       ...formUser,
       [property]: value,
+    });
+  };
+
+    const handleUpdate = (businessId,name, email, password, privilege, phone, company) => {
+    setFormUser({
+      name: name,
+      email: email,
+      password: password,
+      phone: phone,
+      privilege: privilege,
+      company: company,
+      businessId: businessId
     });
   };
 
@@ -361,6 +376,20 @@ function FormCreateMember() {
                                     onClick={() => onhandleDelete(users.id)}
                                   />
                                 </Icon>
+                                                        <Icon>
+                          <EditRoundedIcon
+                            onClick={() =>
+                                      handleUpdate(
+                                user.name,
+                                user.email,
+                                user.phone,
+                                user.password,
+                                user.privilege,
+                              )
+                            }
+                          ></EditRoundedIcon>
+                        </Icon>
+
                               </Box>
                             </Box>
                           </TableCell>
