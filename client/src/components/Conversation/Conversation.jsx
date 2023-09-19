@@ -40,11 +40,10 @@ const Conversation = ({messages,actualyChat}) => {
         setMessage({...message, [event.target.name]:event.target.value})
     }
 
-
     if(messages.length === 0){
         return(
             <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center', p:1}}>
-                <img style={{height:'20rem',marginBottom:'-5rem'}} src="../../assets/iconolaptopwhatacart.png" alt="sin mensajes" />
+                <img style={{height:'20rem',marginBottom:'-5rem'}} src= 'https://i.imgur.com/o9WtJ0W.png' alt='imagen laptop' />
                 <h2 style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</h2>
             </Box>
         )
