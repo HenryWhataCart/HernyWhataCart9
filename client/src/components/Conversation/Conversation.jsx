@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
-import { Box, Grid, IconButton, List, ListItemText, TextField } from '@mui/material';
+import { Box, Grid, IconButton, List, ListItemText, TextField, Alert, Snackbar } from '@mui/material';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import SendIcon from '@mui/icons-material/Send'
 import styles from './Conversation.module.css'
 import { useEffect } from 'react';
@@ -16,6 +16,7 @@ const Conversation = ({messages,actualyChat}) => {
         BusinessId: actualyChat.BusinessId,
         ContactId: actualyChat.ContactId
     });
+    const [open, setOpen] = useState(false)
 
     useEffect(()=>{
         setMessage({...message, name: actualyChat.name, phone: actualyChat.phone, BusinessId: actualyChat.BusinessId, ContactId: actualyChat.ContactId,})
@@ -26,8 +27,8 @@ const Conversation = ({messages,actualyChat}) => {
         if (message.textMessage.trim()) {
             await axios.post("/messageSend", message)
             setMessage({...message, textMessage:""});    
-        }else{
-            alert('No se puede mandar mensajes vacios')
+        } else {
+            setOpen(true)
         }
         
     }
@@ -86,7 +87,7 @@ const Conversation = ({messages,actualyChat}) => {
                         fullWidth
                         variant="outlined"
                         size="small"
-                        placeholder="Escribe un mensaje..."
+                        placeholder="Write a message..."
                         name='textMessage'
                         value={message.textMessage}
                         onChange={onHandleChange}
@@ -97,10 +98,19 @@ const Conversation = ({messages,actualyChat}) => {
                         }}
                     />
                     <IconButton onClick={handleSendMessage}>
-                        <SendIcon/>
+                        <SendIcon />
+                                    <Snackbar
+                                    open={open}
+                                    autoHideDuration={3000}
+                                    onClose={() => setOpen(false)}
+                                  >
+                                    <Alert variant="outlined" severity="error">
+                                      Can t send empty messages!
+                                    </Alert>
+                                  </Snackbar>
                     </IconButton>
                 </Box>
-            </Grid>
+          </Grid>
             </Grid>
         </Grid>
     )}else{
