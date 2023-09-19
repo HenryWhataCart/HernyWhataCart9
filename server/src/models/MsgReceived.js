@@ -19,6 +19,10 @@ module.exports = (sequelize)=>{
         payload:{
             type: DataTypes.JSON,
             allowNull:false
+        },
+        timestamp:{
+            type: DataTypes.BIGINT,
+            allowNull: false
         }
     }, {timestamps: false})
 }
