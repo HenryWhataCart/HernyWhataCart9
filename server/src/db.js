@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { Sequelize } = require('sequelize')
-const {DB_USER, DB_PASSWORD, DB_HOST,DATABASE_URL} = process.env
+const {DB_USER, DB_PASSWORD, DB_HOST,DATABASE_URL, DB_PORT, DB_NAME} = process.env
 const BusinessModel = require('./models/Business')
 const UserModel = require('./models/User')
 const SuperuserModel = require('./models/Superuser')
@@ -8,9 +8,9 @@ const MsgReceivedModel = require("./models/MsgReceived");
 const MsgSendModel = require("./models/MsgSend");
 const ContactsModel = require('./models/Contacts')
 
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/db_whatacart`,{logging:false, native: false})
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,{logging:false, native: false})
 // postgres://fl0user:FN3gLZ9Prvmq@ep-green-pine-55017894.us-east-2.aws.neon.tech:5432/whatacart-db?sslmode=require
-const sequelize = new Sequelize(DATABASE_URL,{dialect:"postgres",logging:false})
+// const sequelize = new Sequelize(DATABASE_URL,{dialect:"postgres",logging:false})
 
 BusinessModel(sequelize)
 UserModel(sequelize)
