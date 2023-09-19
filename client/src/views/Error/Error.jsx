@@ -1,11 +1,14 @@
 import { Box, Button, Grid, Typography, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import LogoError from '../../assets/whatacart-ErrorLogo.png'
 
 const Error = () => {
+  const darkMode = useSelector((state) => state?.darkMode);
   const isSmallScreen = useMediaQuery('(max-width:600px)');
 
   const errorStyles = {
-    color: 'gray',
+    color:  darkMode ? 'whiteSmoke' : 'gray',
     fontSize: isSmallScreen ? '40px' : '55px',
     marginBottom: isSmallScreen ? '8px' : '16px',
     textAlign: 'center',
@@ -13,9 +16,8 @@ const Error = () => {
 
   const buttonStyles = {
     background: "#30EAB5",
-    color: 'white',
+    color: 'black',
     textTransform: 'none',
-    fontWeight: 'bold',
     padding: '10px 20px',
   };
 
@@ -26,8 +28,17 @@ const Error = () => {
       justifyContent="center"
       minHeight="100vh"
       padding={isSmallScreen ? '16px' : '32px'}
+      boxShadow={4}
+      bgcolor={ darkMode ? "#292F2D" : "whitesmoke"}
     >
       <Grid container direction="column" alignItems="center" spacing={2}>
+        <Grid item>
+          <img
+            src={LogoError}
+            alt="Logo Error"
+            height={250}
+          />
+        </Grid>
         <Grid item>
           <Typography variant={isSmallScreen ? "h3" : "h1"} style={errorStyles}>
             Error <span style={{ color: "#30EAB5" }}>404</span>

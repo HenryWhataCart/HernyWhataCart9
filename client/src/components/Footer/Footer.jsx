@@ -7,6 +7,7 @@ import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const theme = createTheme({
   palette: {
@@ -26,6 +27,7 @@ const ResponsiveFooter = styled(Box)(({ theme }) => ({
 
 export default function Footer() {
   const navigate = useNavigate();
+  const darkMode = useSelector((state) => state?.darkMode);
 
   const handleSupportClick = () => {
     navigate("/support");
@@ -38,7 +40,7 @@ export default function Footer() {
       <ResponsiveFooter
         component="footer"
         sx={{
-          backgroundColor: "transparent",
+          backgroundColor: darkMode ? "#292F2D" : "transparent",
           display: "flex",
           justifyContent: "space-between",
         }}
@@ -72,7 +74,7 @@ export default function Footer() {
                   },
                 }}
               >
-                Soporte
+                Support
               </Button>
             </Grid>
             <Grid
@@ -87,7 +89,7 @@ export default function Footer() {
                 },
               }}
             >
-              <Typography variant="body2" color="text.primary">
+              <Typography variant="body2" color={darkMode ? "whiteSmoke" : "text.primary"}>
                 {" © "}
                 <Link color="inherit" href="https://whatacart.ai/">
                   WhataCart

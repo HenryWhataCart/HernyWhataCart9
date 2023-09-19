@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import ChatList from "../../components/ChatList/ChatList";
 import Conversation from "../../components/Conversation/Conversation";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import getMessage from "../../redux/actions/Messages/getMessages";
 import setMessage from "../../redux/actions/Messages/setMessagesRealTime";
 import {getChats} from '../../redux/actions/Chats/getChats'
 import setNotification from "../../redux/actions/Chats/setNotification";
+import styles from "./Dashboard.module.css"
 
 const loginData = JSON.parse(localStorage.getItem("loginData"))
 const id = loginData?.id
@@ -23,13 +24,14 @@ const socket = io("https://whatacart-backend.onrender.com/", {
 
 const Dashboard = () => {
     const { businessId } = useParams();
+    const darkMode = useSelector((state) => state?.darkMode);
     const chats = useSelector(state => state?.chats)
     const [userSelect, setUserSelect] = useState("");
     const messages = useSelector((state) => state?.messages)
     const dispatch = useDispatch();
     const validation = useSelector((state) => state?.validation);
-    const theme = useTheme();
-    const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
+    // const theme = useTheme();
+    // const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
     const [actualyChat, setActualyChat] = useState({
       name:"",
       phone:0,
@@ -38,13 +40,10 @@ const Dashboard = () => {
     })
 
     const handleMessage = (message)=>{
-      console.log(message);  
             if(message.from == userSelect){
-              console.log("entre");
                 dispatch(setMessage(message))
                 dispatch(setNotification(message.from,false))
             }else{
-                console.log("Hola entre porque no me corresponde el mensaje");
                 dispatch(setNotification(message.from,true))
             }
     }
@@ -79,18 +78,21 @@ const Dashboard = () => {
   return (
     <>
       {validation ? (
-        <Box bgcolor={"white"} boxShadow={4}>
-          <Grid container sx={{ mb: 2, p: 3 }}>
+        <Box boxShadow={4} style={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
+          <Grid container sx={{ p: 3 }} className={styles.gridContainer}>
             <Grid item xs={12} md={4}>
               <Box>
                 <ChatList chats={chats} handleChats={handleChats} />
               </Box>
             </Grid>
-            {isLargeScreen && (
+            {/* {isLargeScreen && (
               <Grid item xs={12} md={8}>
                 <Conversation messages={messages} actualyChat={actualyChat} />
               </Grid>
-            )}
+            )} */}
+            <Grid item xs={12} md={8}>
+                <Conversation messages={messages} actualyChat={actualyChat} />
+              </Grid>
           </Grid>
         </Box>
       ) : null}

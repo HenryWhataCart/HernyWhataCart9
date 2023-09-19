@@ -21,6 +21,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
     <Auth0Provider
       domain={domain}
       clientId={clientId}
+      cacheLocation="localstorage"
       authorizationParams={{
         redirect_uri: redirectUri,
       }}

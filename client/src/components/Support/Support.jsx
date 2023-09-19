@@ -1,6 +1,6 @@
 import { Alert, Snackbar } from "@mui/material";
 import { useCallback, useState } from "react";
-
+import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -10,6 +10,7 @@ import { useRef } from 'react';
 import { validation } from "./validations";
 
 export default function Support() {
+  const darkMode = useSelector((state) => state?.darkMode);
   const form = useRef();
   const [open, setOpen] = useState(false)
 
@@ -61,15 +62,16 @@ export default function Support() {
         alignItems: "center",
         justifyContent: "center",
         height: "75vh",
-        bgcolor: "white",
+        bgcolor: darkMode ? "#292F2D" : "whitesmoke",
         borderRadius: 2,
         p: 1,
         mb: 3,
         boxShadow: 3,
       }}
     >
-      <Box sx={{ mx: "auto", p: 2, width: "400px" }}>
-        <Typography variant="h4" align="center" mb={2} color="grey">
+      <Box container sx={{bgcolor:  darkMode ? "#222" : "white", boxShadow: 5, p:2, borderRadius:1}}>
+        <Box sx={{ mx: "auto", p: 2, width: "400px" }}>
+        <Typography variant="h4" align="center" mb={2} color={ darkMode ? "whiteSmoke" : "grey"}>
           ¡Contact Us<br /> or report some bug! 
         </Typography>
         <form ref={form} onSubmit={handleSubmit}>
@@ -122,6 +124,7 @@ export default function Support() {
               alignContent: "center",
               backgroundColor: "#09E6A7",
               color: "white",
+              fontWeight: "bold",
               "&:hover": {
                 animation: "buttonHover 0.3s ease-in-out",
                 background: "#09e6a77b",
@@ -141,6 +144,7 @@ export default function Support() {
             </Alert>
           </Snackbar>
         </form>
+      </Box>
       </Box>
     </Box>
   );
