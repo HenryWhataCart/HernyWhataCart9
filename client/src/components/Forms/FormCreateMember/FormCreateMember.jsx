@@ -428,7 +428,7 @@ function FormCreateMember() {
       ) : null}
       </Box>
     </>
-  );
+  )
 }
 
 export default FormCreateMember;
