@@ -2,7 +2,9 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  overflow-x: hidden; /* Oculta la barra de desplazamiento horizontal */
 }
+
 
 .darkBg { 
   background-color: #292f2d;
