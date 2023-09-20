@@ -80,7 +80,7 @@ const Dashboard = () => {
   return (
     <>
       {validation ? (
-        <Box boxShadow={4} style={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
+        <Box boxShadow={4} sx={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
           <Grid container sx={{ p: 3 }} className={styles.gridContainer}>
             <Grid item xs={12} md={4}>
               <Box>
