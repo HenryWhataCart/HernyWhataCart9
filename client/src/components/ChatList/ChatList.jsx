@@ -24,7 +24,7 @@ const ChatList = ({chats, handleChats}) => {
           xs={12}
           className={styles.scrollBarStyle}
         >
-          <Box sx={{ height: "79vh", overflow: "auto" }}>
+          <Box sx={{ height:"79.5vh", overflow: "auto" }}>
             <List>
               {chats?.map((chat, index) => (
                 <Box key={index}>

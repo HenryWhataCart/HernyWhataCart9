@@ -54,7 +54,7 @@ const Conversation = ({ messages, actualyChat }) => {
 
     return (
       <Grid container sx={{ bgcolor: darkMode ? "#222" : "white", boxShadow: 5, borderRadius: 1 }}>
-        <Grid item xs={12} style={{ height: '75vh', overflow: 'auto', padding: '16px', overflowX: 'hidden' }}>
+        <Grid item xs={12} style={{ maxHeight: '72vh', minHeight:"72vh", overflow: 'auto', padding: '16px', overflowX: 'hidden' }}>
           <List>
             {messages?.map((message, index) => (
               <React.Fragment key={index}>
@@ -82,7 +82,7 @@ const Conversation = ({ messages, actualyChat }) => {
                         margin: '4px',
                         alignSelf: message.sent ? 'flex-end' : 'flex-start',
                         display: 'inline-block',
-                        maxWidth: '70%', 
+                        maxWidth: '40%', 
                         maxHeight: expandedMessageIndex === index ? 'none' : '200px',
                         overflowY: expandedMessageIndex === index ? 'none' : 'auto', 
                         whiteSpace: 'pre-wrap', 
@@ -100,7 +100,7 @@ const Conversation = ({ messages, actualyChat }) => {
                           {message.text.substring(0, MAX_CHARACTERS)}
                           {' '}
                           <span
-                            style={{ cursor: 'pointer', color: message.sent ? 'white' : darkMode ? "whiteSmoke" : '#333' , fontweight: 20}}
+                            style={{ cursor: 'pointer', color: message.sent ? 'white' : darkMode ? "whiteSmoke" : '#333' , fontWeight: 'bolder'}}
                             onClick={() => setExpandedMessageIndex(index)}
                           >
                             
