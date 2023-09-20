@@ -13,9 +13,3 @@
     background-color: white;
 }
 
-@media (max-width: 900px) {
-    .gridContainer { 
-        gap: 2em;
-    }
-}
-

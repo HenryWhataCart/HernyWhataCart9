@@ -16,16 +16,20 @@ import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsAct
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./ChatList.module.css";
 import { setCurrentChat } from "../../redux/actions/CurrentChat/setCurrentChat";
+import { useBreakpoints } from "../../hooks/useBreakpoints";
 
 const ChatList = ({ chats, handleChats }) => {
   const dispatch = useDispatch();
+  const currentChat = useSelector((state) => state?.currentChat);
   const darkMode = useSelector((state) => state?.darkMode);
+  const isMobile = useBreakpoints();
 
   const handleChatClick = (chat) => {
     dispatch(setCurrentChat(chat))
     handleChats(chat.id, chat.name, chat.phone, chat.notification);
   };
 
+  if (!isMobile || Object.keys(currentChat).length === 0) {
   return (
     <Grid container>
       <Grid
@@ -91,6 +95,9 @@ const ChatList = ({ chats, handleChats }) => {
       </Grid>
     </Grid>
   );
+  } else {
+    return <></>
+  }
 };
 
 export default ChatList;

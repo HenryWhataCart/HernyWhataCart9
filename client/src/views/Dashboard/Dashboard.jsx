@@ -12,7 +12,6 @@ import getMessage from "../../redux/actions/Messages/getMessages";
 import setMessage from "../../redux/actions/Messages/setMessagesRealTime";
 import {getChats} from '../../redux/actions/Chats/getChats'
 import setNotification from "../../redux/actions/Chats/setNotification";
-import styles from "./Dashboard.module.css"
 
 const loginData = JSON.parse(localStorage.getItem("loginData"))
 const id = loginData?.id
@@ -70,7 +69,7 @@ const Dashboard = () => {
     <>
       {validation ? (
         <Box boxShadow={4} style={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
-          <Grid container sx={{ p: 3 }} className={styles.gridContainer}>
+          <Grid container sx={{ p: 3 }}>
             <Grid item xs={12} md={4}>
               <Box>
                 <ChatList chats={chats} handleChats={handleChats} />
