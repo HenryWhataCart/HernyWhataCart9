@@ -1,32 +1,35 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { checkIfSuperAdmin } from "../../../shared/utils";
-import { createTheme } from "@mui/material/styles";
-import { Box, TextField, Button, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import {
-  Table,
-  TableContainer,
-  TableBody,
-  TableRow,
-  TableCell,
-  Paper,
   Icon,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
+import { checkIfSuperAdmin } from "../../../shared/utils";
 import { createBusiness } from "../../../redux/actions/Business/createBusiness";
-import { getBusiness } from "../../../redux/actions/Business/getBusiness";
-import updateBusiness from "../../../redux/actions/Business/putBusiness";
+import { createTheme } from "@mui/material/styles";
 import deleteBusiness from "../../../redux/actions/Business/deleteBusiness";
-import { validation } from "./validations";
+import { getBusiness } from "../../../redux/actions/Business/getBusiness";
 import styles from "./BusinessRegistration.module.css";
+import updateBusiness from "../../../redux/actions/Business/putBusiness";
+import { validation } from "./validations";
+
+const API_KEY = import.meta.env.VITE_API_KEY
 
 const EMPTY_FORM = {
   id: "",
   name: "",
   email: "",
   phone: "",
-  apiKey: "ntt9hywwien4onvunfbgvq3eqa4xahwa",
+  apiKey: API_KEY,
   srcName: ""
 };
 
@@ -168,17 +171,6 @@ export const CreateBusiness = () => {
                 helperText={errors.email && errors.email}
                 error={Boolean(errors.email)}
               />
-              <TextField  
-                label="apiKey"
-                variant="outlined"
-                name="apiKey"
-                autoComplete="off"
-                value={formData.apiKey}
-                // onChange={handleChange}
-                fullWidth
-                margin="normal"
-                disabled
-              />
               
               <TextField  
                 label="srcName"
@@ -257,7 +249,7 @@ export const CreateBusiness = () => {
                         </Icon>
                       </Box>
                       <Box>
-                        <Icon>
+                        <Icon sx={{cursor:'pointer'}}>
                           <EditRoundedIcon
                             onClick={() =>
                               handleUpdate(

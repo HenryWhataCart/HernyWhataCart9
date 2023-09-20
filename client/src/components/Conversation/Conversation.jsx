@@ -37,11 +37,20 @@ const Conversation = ({ messages, actualyChat }) => {
 
   }
 
-  const onHandleChange = (event) => {
-    setMessage({ ...message, [event.target.name]: event.target.value })
-  }
+    const onHandleChange = (event)=>{
+        setMessage({...message, [event.target.name]:event.target.value})
+    }
 
-  if (messages?.length > 0) {
+    if(messages.length === 0){
+        return(
+            <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center', p:1}}>
+                <img style={{height:'20rem',marginBottom:'-5rem'}} src= 'https://i.imgur.com/o9WtJ0W.png' alt='imagen laptop' />
+                <h2 style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</h2>
+            </Box>
+        )
+    }
+    
+    if (messages?.length > 0) {
 
     return (
       <Grid container sx={{ bgcolor: darkMode ? "#222" : "white", boxShadow: 5, borderRadius: 1 }}>
@@ -52,33 +61,33 @@ const Conversation = ({ messages, actualyChat }) => {
                 <Box
                   sx={{
                     display: 'flex',
-                    flexDirection: message.sent ? 'row-reverse' : 'row', // Invertir dirección para mensajes enviados
+                    flexDirection: message.sent ? 'row-reverse' : 'row', 
                     alignItems: 'flex-start',
                   }}
                 >
                   <Box
                     sx={{
                       flexGrow: 1,
-                      textAlign: message.sent ? 'right' : 'left', // Alinear texto a la derecha para mensajes enviados
-                      pr: message.sent ? 0 : 1, // Espaciado derecho para mensajes enviados
-                      pl: message.sent ? 1 : 0, // Espaciado izquierdo para mensajes recibidos
+                      textAlign: message.sent ? 'right' : 'left', 
+                      pr: message.sent ? 0 : 1,
+                      pl: message.sent ? 1 : 0,
                     }}
                   >
                     <Paper
                       sx={{
-                        backgroundColor: message.sent ? '#4CAF50' : darkMode ? "#222" : "whiteSmoke",
+                        backgroundColor: message.sent ? '#0cb280' : darkMode ? "#222" : "whiteSmoke",
                         color: message.sent ? 'white' : darkMode ? "whiteSmoke" : '#333',
                         padding: '8px 12px',
                         borderRadius: '10px',
                         margin: '4px',
                         alignSelf: message.sent ? 'flex-end' : 'flex-start',
                         display: 'inline-block',
-                        maxWidth: '70%', // Límite máximo de ancho
-                        maxHeight: expandedMessageIndex === index ? 'none' : '200px', // Límite máximo de altura
-                        overflowY: expandedMessageIndex === index ? 'none' : 'auto', // Agregar desplazamiento vertical
-                        whiteSpace: 'pre-wrap', // Envolver texto
-                        wordWrap: 'break-word', // Envolver palabras largas
-                        wordBreak: 'break-word', // Permitir saltos de línea en palabras largas
+                        maxWidth: '70%', 
+                        maxHeight: expandedMessageIndex === index ? 'none' : '200px',
+                        overflowY: expandedMessageIndex === index ? 'none' : 'auto', 
+                        whiteSpace: 'pre-wrap', 
+                        wordWrap: 'break-word', 
+                        wordBreak: 'break-word',
 
                       }}
                     >
@@ -90,14 +99,13 @@ const Conversation = ({ messages, actualyChat }) => {
                         <>
                           {message.text.substring(0, MAX_CHARACTERS)}
                           {' '}
-                          <Typography
-                            variant="body1"
-                            sx={{ cursor: 'pointer', color: message.sent ? 'white' : darkMode ? "whiteSmoke" : '#333' , fontweight: 20}}
+                          <span
+                            style={{ cursor: 'pointer', color: message.sent ? 'white' : darkMode ? "whiteSmoke" : '#333' , fontweight: 20}}
                             onClick={() => setExpandedMessageIndex(index)}
                           >
-                            <br />
+                            
                             Ver más...
-                          </Typography>
+                          </span>
                         </>
                       )}
                     </React.Fragment>
@@ -149,9 +157,8 @@ const Conversation = ({ messages, actualyChat }) => {
     );
   } else {
     return (
-      <div>
-        <h2></h2>
-      </div>
+    <>
+    </>
     )
   }
 

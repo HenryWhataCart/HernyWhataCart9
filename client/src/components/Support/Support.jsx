@@ -61,11 +61,10 @@ export default function Support() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "75vh",
+        height: "80%",
         bgcolor: darkMode ? "#292F2D" : "whitesmoke",
         borderRadius: 2,
-        p: 1,
-        mb: 3,
+        p: 2,
         boxShadow: 3,
       }}
     >
