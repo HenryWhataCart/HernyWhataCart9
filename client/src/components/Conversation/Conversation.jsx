@@ -15,15 +15,24 @@ import {
   Avatar,
   ListItemText
 } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React, { useState } from "react";
 
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useBreakpoints } from "../../hooks/useBreakpoints";
+import { setCurrentChat } from "../../redux/actions/CurrentChat/setCurrentChat";
+
+
 const MAX_CHARACTERS = 150;
+
 const Conversation = ({ messages, actualyChat }) => {
+  const dispatch = useDispatch();
   const darkMode = useSelector((state) => state?.darkMode);
+  const currentChat = useSelector((state) => state?.currentChat);
+  const isMobile = useBreakpoints();
   const [expandedMessageIndex, setExpandedMessageIndex] = useState(null);
 
   const [message, setMessage] = React.useState({
@@ -59,7 +68,11 @@ const Conversation = ({ messages, actualyChat }) => {
     setMessage({ ...message, [event.target.name]: event.target.value });
   };
 
-  if (messages.length === 0) {
+  const handleBackButton = () => {
+    dispatch(setCurrentChat({}))
+  }
+
+  if (!isMobile && messages.length === 0) {
     return (
       <Box
         sx={{
@@ -92,7 +105,7 @@ const Conversation = ({ messages, actualyChat }) => {
     );
   }
 
-  if (messages?.length > 0) {
+  if (messages?.length > 0 && Object.keys(currentChat).length > 0) {
     return (
       <Grid
         container
@@ -112,6 +125,7 @@ const Conversation = ({ messages, actualyChat }) => {
             overflowX: "hidden",
           }}
         >
+         
           <Box
             display="flex"
             alignItems="center"
@@ -121,6 +135,12 @@ const Conversation = ({ messages, actualyChat }) => {
               borderRadius: 1,
             }}
           >
+            {
+              isMobile && 
+              <IconButton color="white" onClick={handleBackButton}>
+                <ArrowBackIcon />
+              </IconButton>
+            }
             <ListItemAvatar>
               <Avatar alt={actualyChat.name} src="imagen.png" />
             </ListItemAvatar>
