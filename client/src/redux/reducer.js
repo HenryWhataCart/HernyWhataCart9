@@ -7,7 +7,8 @@ const initialState = {
     validation: true,
     darkMode: false,
     chats: [],
-    messages: []
+    messages: [],
+    currentChat: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -196,6 +197,11 @@ const reducer = (state = initialState, action) => {
         case ACTION_TYPES.SET_NOTIFICATION_FAILURE:
             return{
                 ...state
+            }
+        case ACTION_TYPES.SET_CURRENT_CHAT: 
+            return {
+                ...state,
+                currentChat: action.payload
             }
 
         default: 
