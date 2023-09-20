@@ -23,21 +23,14 @@ const socket = io("https://whatacart-backend.onrender.com/", {
 });
 
 const Dashboard = () => {
+    const [userSelect, setUserSelect] = useState("");
     const { businessId } = useParams();
     const darkMode = useSelector((state) => state?.darkMode);
     const chats = useSelector(state => state?.chats)
-    const [userSelect, setUserSelect] = useState("");
+    const currentChat = useSelector(state => state?.currentChat)
     const messages = useSelector((state) => state?.messages)
     const dispatch = useDispatch();
     const validation = useSelector((state) => state?.validation);
-    // const theme = useTheme();
-    // const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
-    const [actualyChat, setActualyChat] = useState({
-      name:"",
-      phone:0,
-      BusinessId: businessId,
-      ContactId: "",
-    })
 
     const handleMessage = (message)=>{
             if(message.from == userSelect){
@@ -48,9 +41,7 @@ const Dashboard = () => {
             }
     }
 
-    const handleChats = async (id,name,phone,notification) => {
-      setActualyChat({...actualyChat, name:name, phone:phone, ContactId:id})
-  
+    const handleChats = ( id, name, phone, notification ) => { 
       dispatch(getMessage(businessId, id))
       setUserSelect(phone)
       
@@ -91,7 +82,7 @@ const Dashboard = () => {
               </Grid>
             )} */}
             <Grid item xs={12} md={8}>
-                <Conversation messages={messages} actualyChat={actualyChat} />
+                <Conversation messages={messages} actualyChat={currentChat} />
               </Grid>
           </Grid>
         </Box>
