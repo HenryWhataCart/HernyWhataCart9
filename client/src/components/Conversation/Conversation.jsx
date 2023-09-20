@@ -13,14 +13,13 @@ import {
   Typography,
   ListItemAvatar,
   Avatar,
-  ListItemText
+  ListItemText,
+  CircularProgress
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import React, { useState } from "react";
-
+import React, { useState, useRef, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
 import { setCurrentChat } from "../../redux/actions/CurrentChat/setCurrentChat";
@@ -32,9 +31,11 @@ const Conversation = ({ messages, actualyChat }) => {
   const dispatch = useDispatch();
   const darkMode = useSelector((state) => state?.darkMode);
   const currentChat = useSelector((state) => state?.currentChat);
+  const loadingMessages = useSelector((state) => state?.loadingMessages);
   const isMobile = useBreakpoints();
   const [expandedMessageIndex, setExpandedMessageIndex] = useState(null);
-
+  const listRef = useRef(null);
+  
   const [message, setMessage] = React.useState({
     textMessage: "",
     name: actualyChat.name,
@@ -72,6 +73,13 @@ const Conversation = ({ messages, actualyChat }) => {
     dispatch(setCurrentChat({}))
   }
 
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [messages]);
+  
+
   if (!isMobile && messages.length === 0) {
     return (
       <Box
@@ -107,32 +115,15 @@ const Conversation = ({ messages, actualyChat }) => {
 
   if (messages?.length > 0 && Object.keys(currentChat).length > 0) {
     return (
-      <Grid
-        container
-        sx={{
-          bgcolor: darkMode ? "#222" : "white",
-          boxShadow: 5,
-          borderRadius: 1,
-        }}
-      >
-        <Grid
-          item
-          xs={12}
-          style={{
-            height: "75vh",
-            overflow: "auto",
-            padding: "16px",
-            overflowX: "hidden",
-          }}
-        >
-         
-          <Box
+      <>
+      <Box
             display="flex"
             alignItems="center"
             sx={{
-              bgcolor: darkMode ? "#292F2D" : "#dddbdb",
+              bgcolor: darkMode ? "#1b1b1b" : "#dddbdb",
               padding: 1,
               borderRadius: 1,
+              zIndex: 99
             }}
           >
             {
@@ -157,8 +148,38 @@ const Conversation = ({ messages, actualyChat }) => {
               }
             />
           </Box>
-
-          <List>
+          
+      <Grid
+        container
+        sx={{
+          bgcolor: darkMode ? "#222" : "white",
+          boxShadow: 5,
+          borderRadius: 1,
+        }}
+      >
+        <Grid
+          item
+          xs={12}
+          style={{
+            height: "60vh",
+            overflow: "auto",
+            padding: "16px",
+            overflowX: "hidden",
+            position: "relative"
+          }}
+        >
+          {
+            loadingMessages ? 
+            <Box sx={{ display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "60vh"
+              }}>
+              <CircularProgress sx={{ color: '#09E6A7' }} />
+            </Box>
+            :
+            <div ref={listRef}>
+            <List>
             {messages?.map((message, index) => (
               <React.Fragment key={index}>
                 <Box
@@ -249,6 +270,9 @@ const Conversation = ({ messages, actualyChat }) => {
               </React.Fragment>
             ))}
           </List>
+          </div>
+          }
+         
         </Grid>
         <Grid item xs={12}>
           <Box
@@ -288,6 +312,7 @@ const Conversation = ({ messages, actualyChat }) => {
           </Box>
         </Grid>
       </Grid>
+      </>
     );
   } else {
     return <></>;

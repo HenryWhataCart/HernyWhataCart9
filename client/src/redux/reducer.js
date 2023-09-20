@@ -8,7 +8,8 @@ const initialState = {
     darkMode: false,
     chats: [],
     messages: [],
-    currentChat: {}
+    currentChat: {},
+    loadingMessages: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -203,6 +204,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentChat: action.payload
             }
+        case ACTION_TYPES.SET_LOADING_MESSAGES:
+            return {
+                 ...state,
+                 loadingMessages: action.payload
+            };
 
         default: 
             return {...state}
