@@ -48,7 +48,7 @@ const ChatList = ({ chats, handleChats }) => {
                     >
                       <Box display="flex" alignItems="center">
                         <ListItemAvatar>
-                          <Avatar sx={{ bgcolor:"gray", color: darkMode ? "whiteSmoke" : "#4E4E4E"}} alt={chat.name} src="imagen.png" />
+                          <Avatar sx={{ bgcolor:chat?.color, color: darkMode ? "whiteSmoke" : "#4E4E4E"}} alt={chat.name} src="imagen.png" />
                         </ListItemAvatar>
                         <ListItemText
                           sx={{ color: darkMode ? "whiteSmoke" : "#4E4E4E" }}

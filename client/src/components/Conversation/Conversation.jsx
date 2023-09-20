@@ -1,40 +1,41 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
-import { Alert, Box, Grid, IconButton, List, ListItemText, Snackbar, TextField, Typography } from '@mui/material';
+import { Alert, Box, Grid, IconButton, List, Paper, Snackbar, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
 import SendIcon from '@mui/icons-material/Send'
 import axios from 'axios';
-import styles from './Conversation.module.css'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+const MAX_CHARACTERS = 150;
+const Conversation = ({ messages, actualyChat }) => {
+  const darkMode = useSelector((state) => state?.darkMode);
+  const [expandedMessageIndex, setExpandedMessageIndex] = useState(null);
 
-const Conversation = ({messages,actualyChat}) => {
-    const darkMode = useSelector((state) => state?.darkMode);
-    const [message, setMessage] = React.useState({
-        textMessage:"",
-        name: actualyChat.name,
-        phone: actualyChat.phone,
-        BusinessId: actualyChat.BusinessId,
-        ContactId: actualyChat.ContactId
-    });
-    const [open, setOpen] = useState(false)
+  const [message, setMessage] = React.useState({
+    textMessage: "",
+    name: actualyChat.name,
+    phone: actualyChat.phone,
+    BusinessId: actualyChat.BusinessId,
+    ContactId: actualyChat.ContactId
+  });
+  const [open, setOpen] = useState(false)
 
-    useEffect(()=>{
-        setMessage({...message, name: actualyChat.name, phone: actualyChat.phone, BusinessId: actualyChat.BusinessId, ContactId: actualyChat.ContactId,})
-    },[actualyChat])
+  useEffect(() => {
+    setMessage({ ...message, name: actualyChat.name, phone: actualyChat.phone, BusinessId: actualyChat.BusinessId, ContactId: actualyChat.ContactId, })
+  }, [actualyChat])
 
-    const handleSendMessage = async (event) => {
-        event.preventDefault()
-        if (message.textMessage.trim()) {
-            await axios.post("/messageSend", message)
-            setMessage({...message, textMessage:""});    
-        } else {
-            setOpen(true)
-        }
-        
+  const handleSendMessage = async (event) => {
+    event.preventDefault()
+    if (message.textMessage.trim()) {
+      await axios.post("/messageSend", message)
+      setMessage({ ...message, textMessage: "" });
+    } else {
+      setOpen(true)
     }
+
+  }
 
     const onHandleChange = (event)=>{
         setMessage({...message, [event.target.name]:event.target.value})
@@ -42,7 +43,7 @@ const Conversation = ({messages,actualyChat}) => {
 
     if(messages.length === 0){
         return(
-            <Box sx={{bgcolor: darkMode ? "#222" : "white" ,display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center',boxShadow:5, p:1,height:'77vh',overflow:'auto', borderRadius:1, mb:1 }}>
+            <Box sx={{bgcolor: darkMode ? "#222" : "white" ,display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center',boxShadow:5, p:1,height:'77vh',overflow:'auto', borderRadius:1, mb:1, textAlign:"center" }}>
                 <img style={{height:'20rem',marginBottom:'-5rem'}} src= 'https://i.imgur.com/o9WtJ0W.png' alt='imagen laptop' />
                 <Typography variant='h4' style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</Typography>
             </Box>
@@ -52,86 +53,115 @@ const Conversation = ({messages,actualyChat}) => {
     if (messages?.length > 0) {
 
     return (
-        <Grid container sx={{bgcolor: darkMode ? "#222" : "white", boxShadow: 5, borderRadius:1, mb:2}}>
-            <Grid item xs={12} className={styles.scrollBarStyle}>
-                <Box sx={{ height:'75vh',overflow:'auto', px :2, borderRadius:1 }}>
-                <List>
-                        {messages?.map((message,index)=>(
-                            <React.Fragment key={index}>
-                                <Box sx={{display:'flex'}}>
-                                    {!message.sent && (
-                                        <Box sx={{flexGrow :1}}>
-                                            <ListItemText
-                                                secondary={
-                                                    <>
-                                                        <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
-                                                        <br />
-                                                        <span style={{fontSize:'0.8rem', color: darkMode ? "#777" : '#999'}}>{message.timestamp}</span>
-                                                    </>
-                                                }
-                                            />
-                                        </Box>
-                                    )}
-                                    {message.sent && <Box sx={{flexGrow: 1}}/>}
-                                    {message.sent && (
-                                        <Box>
-                                            <ListItemText
-                                                style={{ textAlign: 'end' }}
-                                                secondary={
-                                                    <>
-                                                        <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
-                                                        <br />
-                                                        <span style={{fontSize:'0.8rem', color: darkMode ? "#777" : '#999'}}>{message.timestamp}</span>
-                                                    </>
-                                                }
-                                            />
-                                        </Box>
-                                    )}
-                                </Box>
-                            </React.Fragment>
-                        ))}
-                    </List>
+      <Grid container sx={{ bgcolor: darkMode ? "#222" : "white", boxShadow: 5, borderRadius: 1 }}>
+        <Grid item xs={12} style={{ height: '75vh', overflow: 'auto', padding: '16px', overflowX: 'hidden' }}>
+          <List>
+            {messages?.map((message, index) => (
+              <React.Fragment key={index}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: message.sent ? 'row-reverse' : 'row', 
+                    alignItems: 'flex-start',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      flexGrow: 1,
+                      textAlign: message.sent ? 'right' : 'left', 
+                      pr: message.sent ? 0 : 1,
+                      pl: message.sent ? 1 : 0,
+                    }}
+                  >
+                    <Paper
+                      sx={{
+                        backgroundColor: message.sent ? '#0cb280' : darkMode ? "#222" : "whiteSmoke",
+                        color: message.sent ? 'white' : darkMode ? "whiteSmoke" : '#333',
+                        padding: '8px 12px',
+                        borderRadius: '10px',
+                        margin: '4px',
+                        alignSelf: message.sent ? 'flex-end' : 'flex-start',
+                        display: 'inline-block',
+                        maxWidth: '70%', 
+                        maxHeight: expandedMessageIndex === index ? 'none' : '200px',
+                        overflowY: expandedMessageIndex === index ? 'none' : 'auto', 
+                        whiteSpace: 'pre-wrap', 
+                        wordWrap: 'break-word', 
+                        wordBreak: 'break-word',
+
+                      }}
+                    >
+                      {message.text.length > MAX_CHARACTERS ? (
+                    <React.Fragment>
+                      {expandedMessageIndex === index ? (
+                        message.text
+                      ) : (
+                        <>
+                          {message.text.substring(0, MAX_CHARACTERS)}
+                          {' '}
+                          <span
+                            style={{ cursor: 'pointer', color: message.sent ? 'white' : darkMode ? "whiteSmoke" : '#333' , fontweight: 20}}
+                            onClick={() => setExpandedMessageIndex(index)}
+                          >
+                            
+                            Ver más...
+                          </span>
+                        </>
+                      )}
+                    </React.Fragment>
+                  ) : (
+                    message.text
+                  )}
+                  <br />
+                  <Typography variant="caption" style={{ fontSize: '0.8rem', color: darkMode && message.sent ? "whiteSmoke" : !message.sent && 'grey' }}>
+                    {message.timestamp}
+                  </Typography>
+                    </Paper>
+                  </Box>
                 </Box>
-            <Grid item xs={12}>
-            <Box sx={{display:'flex' ,alignItems :'center', bgcolor: darkMode ? "#222" : "white"}}>
-                    <TextField
-                        fullWidth
-                        variant="outlined"
-                        size="small"
-                        placeholder="Write a message..."
-                        name='textMessage'
-                        value={message.textMessage}
-                        onChange={onHandleChange}
-                        onKeyPress={(e)=>{
-                            if(e.key==='Enter'){
-                                handleSendMessage(e);
-                            }
-                        }}
-                    />
-                    <IconButton onClick={handleSendMessage}>
-                        <SendIcon />
-                                    <Snackbar
-                                    open={open}
-                                    autoHideDuration={3000}
-                                    onClose={() => setOpen(false)}
-                                  >
-                                    <Alert variant="outlined" severity="error">
-                                      Can t send empty messages!
-                                    </Alert>
-                                  </Snackbar>
-                    </IconButton>
-                </Box>
-          </Grid>
-            </Grid>
+              </React.Fragment>
+            ))}
+          </List>
         </Grid>
-    )}else{
-        return(
-        <Box>
-            
-        </Box>
+        <Grid item xs={12}>
+          <Box sx={{ display: 'flex', alignItems: 'center', bgcolor: darkMode ? "#222" : "white", padding: '16px' }}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              size="small"
+              placeholder="Write a message..."
+              name='textMessage'
+              value={message.textMessage}
+              onChange={onHandleChange}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  handleSendMessage(e);
+                }
+              }}
+            />
+            <IconButton onClick={handleSendMessage}>
+              <SendIcon />
+              <Snackbar
+                open={open}
+                autoHideDuration={3000}
+                onClose={() => setOpen(false)}
+              >
+                <Alert variant="outlined" severity="error">
+                  Cant send empty messages!
+                </Alert>
+              </Snackbar>
+            </IconButton>
+          </Box>
+        </Grid>
+      </Grid>
+    );
+  } else {
+    return (
+    <>
+    </>
     )
-    }
-    
+  }
+
 }
 
-export default Conversation
+export default Conversation;
