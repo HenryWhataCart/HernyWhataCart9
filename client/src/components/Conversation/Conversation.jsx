@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
-import { Alert, Box, Grid, IconButton, List, ListItemText, Snackbar, TextField } from '@mui/material';
+import { Avatar, Alert, Box, Grid, IconButton, Typography, List, ListItemText, ListItemAvatar, Snackbar, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
 import SendIcon from '@mui/icons-material/Send'
@@ -24,6 +24,8 @@ const Conversation = ({messages,actualyChat}) => {
     useEffect(()=>{
         setMessage({...message, name: actualyChat.name, phone: actualyChat.phone, BusinessId: actualyChat.BusinessId, ContactId: actualyChat.ContactId,})
     },[actualyChat])
+
+
 
     const handleSendMessage = async (event) => {
         event.preventDefault()
@@ -52,79 +54,139 @@ const Conversation = ({messages,actualyChat}) => {
     if (messages?.length > 0) {
 
     return (
-        <Grid container sx={{bgcolor: darkMode ? "#222" : "white", boxShadow: 5, borderRadius:1}}>
-            <Grid item xs={12} className={styles.scrollBarStyle}>
-                <Box sx={{ height:'75vh',overflow:'auto', px :2}}>
-                <List>
-                        {messages?.map((message,index)=>(
-                            <React.Fragment key={index}>
-                                <Box sx={{display:'flex'}}>
-                                    {!message.sent && (
-                                        <Box sx={{flexGrow :1}}>
-                                            <ListItemText
-                                                secondary={
-                                                    <>
-                                                        <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
-                                                        <br />
-                                                        <span style={{fontSize:'0.8rem', color: darkMode ? "#777" : '#999'}}>{message.timestamp}</span>
-                                                    </>
-                                                }
-                                            />
-                                        </Box>
-                                    )}
-                                    {message.sent && <Box sx={{flexGrow: 1}}/>}
-                                    {message.sent && (
-                                        <Box>
-                                            <ListItemText
-                                                style={{ textAlign: 'end' }}
-                                                secondary={
-                                                    <>
-                                                        <span style={{color: darkMode ? "whiteSmoke" : '#333'}}>{message.text}</span>
-                                                        <br />
-                                                        <span style={{fontSize:'0.8rem', color: darkMode ? "#777" : '#999'}}>{message.timestamp}</span>
-                                                    </>
-                                                }
-                                            />
-                                        </Box>
-                                    )}
-                                </Box>
-                            </React.Fragment>
-                        ))}
-                    </List>
-                </Box>
-            <Grid item xs={12}>
-            <Box sx={{display:'flex' ,alignItems :'center', bgcolor: darkMode ? "#222" : "white"}}>
-                    <TextField
-                        fullWidth
-                        variant="outlined"
-                        size="small"
-                        placeholder="Write a message..."
-                        name='textMessage'
-                        value={message.textMessage}
-                        onChange={onHandleChange}
-                        onKeyPress={(e)=>{
-                            if(e.key==='Enter'){
-                                handleSendMessage(e);
-                            }
-                        }}
-                    />
-                    <IconButton onClick={handleSendMessage}>
-                        <SendIcon />
-                                    <Snackbar
-                                    open={open}
-                                    autoHideDuration={3000}
-                                    onClose={() => setOpen(false)}
-                                  >
-                                    <Alert variant="outlined" severity="error">
-                                      Can t send empty messages!
-                                    </Alert>
-                                  </Snackbar>
-                    </IconButton>
-                </Box>
+      <Grid
+        container
+        sx={{
+          bgcolor: darkMode ? "#222" : "white",
+          boxShadow: 5,
+          borderRadius: 1,
+        }}
+      >
+        <Grid item xs={12} className={styles.scrollBarStyle}>
+          <Box
+            display="flex" alignItems="center"
+            sx={{
+              bgcolor: darkMode ? "#292F2D" : "#dddbdb",
+              padding: 1,
+              borderRadius: 1
+            }}
+          >
+            <ListItemAvatar>
+              <Avatar alt={actualyChat.name} src="imagen.png" />
+            </ListItemAvatar>
+            <ListItemText
+            sx={{ color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
+            primary={actualyChat.name}
+            secondary={
+                <Typography variant="caption" color={darkMode ? "whiteSmoke" : "4E4E4E"}>
+              {actualyChat.phone}
+            </Typography>
+            }
+            />
+            </Box>
+          <Box sx={{ height: "75vh", overflow: "auto", px: 2 }}>
+            <List>
+              {messages?.map((message, index) => (
+                <React.Fragment key={index}>
+                  <Box sx={{ display: "flex" }}>
+                    {!message.sent && (
+                      <Box sx={{ flexGrow: 1 }}>
+                        <ListItemText
+                          secondary={
+                            <>
+                              <span
+                                style={{
+                                  color: darkMode ? "whiteSmoke" : "#333",
+                                }}
+                              >
+                                {message.text}
+                              </span>
+                              <br />
+                              <span
+                                style={{
+                                  fontSize: "0.8rem",
+                                  color: darkMode ? "#777" : "#999",
+                                }}
+                              >
+                                {message.timestamp}
+                              </span>
+                            </>
+                          }
+                        />
+                      </Box>
+                    )}
+                    {message.sent && <Box sx={{ flexGrow: 1 }} />}
+                    {message.sent && (
+                      <Box>
+                        <ListItemText
+                          style={{ textAlign: "end" }}
+                          secondary={
+                            <>
+                              <span
+                                style={{
+                                  color: darkMode ? "whiteSmoke" : "#333",
+                                }}
+                              >
+                                {message.text}
+                              </span>
+                              <br />
+                              <span
+                                style={{
+                                  fontSize: "0.8rem",
+                                  color: darkMode ? "#777" : "#999",
+                                }}
+                              >
+                                {message.timestamp}
+                              </span>
+                            </>
+                          }
+                        />
+                      </Box>
+                    )}
+                  </Box>
+                </React.Fragment>
+              ))}
+            </List>
+          </Box>
+          <Grid item xs={12}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                bgcolor: darkMode ? "#222" : "white",
+              }}
+            >
+              <TextField
+                fullWidth
+                variant="outlined"
+                size="small"
+                placeholder="Write a message..."
+                name="textMessage"
+                value={message.textMessage}
+                onChange={onHandleChange}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleSendMessage(e);
+                  }
+                }}
+              />
+              <IconButton onClick={handleSendMessage}>
+                <SendIcon />
+                <Snackbar
+                  open={open}
+                  autoHideDuration={3000}
+                  onClose={() => setOpen(false)}
+                >
+                  <Alert variant="outlined" severity="error">
+                    Can t send empty messages!
+                  </Alert>
+                </Snackbar>
+              </IconButton>
+            </Box>
           </Grid>
-            </Grid>
         </Grid>
-    )}else{
+      </Grid>
+    );}else{
         return(
         <Box>
             
