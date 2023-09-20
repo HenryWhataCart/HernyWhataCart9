@@ -3,6 +3,12 @@ import axios from "axios";
 
 const getMessage = (businessId, id) => {
   return async (dispatch) => {
+
+    dispatch({
+      type: ACTION_TYPES.SET_LOADING_MESSAGES,
+      payload: true,
+    });
+
     try {
       const response = await axios.get(
         `/msgFind/?BusinessId=${businessId}&ContactId=${id}`
@@ -57,12 +63,22 @@ const getMessage = (businessId, id) => {
           return timestampA - timestampB;
         }
       });
+      dispatch({
+        type: ACTION_TYPES.SET_LOADING_MESSAGES,
+        payload: false,
+      });
 
       dispatch({
         type: ACTION_TYPES.GET_MESSAGE_SUCCESS,
         payload: messages,
       });
+   
     } catch (error) {
+      dispatch({
+        type: ACTION_TYPES.SET_LOADING_MESSAGES,
+        payload: false,
+      });
+
       dispatch({
         type: ACTION_TYPES.GET_MESSAGE_FAILURE,
         payload: error.message,
