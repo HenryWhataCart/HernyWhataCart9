@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
-import { Alert, Box, Grid, IconButton, List, ListItemText, Snackbar, TextField } from '@mui/material';
+import { Alert, Box, Grid, IconButton, List, ListItemText, Snackbar, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
 import SendIcon from '@mui/icons-material/Send'
@@ -42,9 +42,9 @@ const Conversation = ({messages,actualyChat}) => {
 
     if(messages.length === 0){
         return(
-            <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center', p:1}}>
+            <Box sx={{bgcolor: darkMode ? "#222" : "white" ,display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'center',boxShadow:5, p:1,height:'77vh',overflow:'auto', borderRadius:1, mb:1 }}>
                 <img style={{height:'20rem',marginBottom:'-5rem'}} src= 'https://i.imgur.com/o9WtJ0W.png' alt='imagen laptop' />
-                <h2 style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</h2>
+                <Typography variant='h4' style={{color: darkMode ? "whiteSmoke" : '#333'}}>To send a message you must select a chat</Typography>
             </Box>
         )
     }
@@ -52,9 +52,9 @@ const Conversation = ({messages,actualyChat}) => {
     if (messages?.length > 0) {
 
     return (
-        <Grid container sx={{bgcolor: darkMode ? "#222" : "white", boxShadow: 5, borderRadius:1}}>
+        <Grid container sx={{bgcolor: darkMode ? "#222" : "white", boxShadow: 5, borderRadius:1, mb:2}}>
             <Grid item xs={12} className={styles.scrollBarStyle}>
-                <Box sx={{ height:'75vh',overflow:'auto', px :2}}>
+                <Box sx={{ height:'75vh',overflow:'auto', px :2, borderRadius:1 }}>
                 <List>
                         {messages?.map((message,index)=>(
                             <React.Fragment key={index}>
