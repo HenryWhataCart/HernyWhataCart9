@@ -12,7 +12,6 @@ import getMessage from "../../redux/actions/Messages/getMessages";
 import setMessage from "../../redux/actions/Messages/setMessagesRealTime";
 import {getChats} from '../../redux/actions/Chats/getChats'
 import setNotification from "../../redux/actions/Chats/setNotification";
-import styles from "./Dashboard.module.css"
 
 const loginData = JSON.parse(localStorage.getItem("loginData"))
 const id = loginData?.id
@@ -25,21 +24,14 @@ const socket = io(socketListen, {
 });
 
 const Dashboard = () => {
+    const [userSelect, setUserSelect] = useState("");
     const { businessId } = useParams();
     const darkMode = useSelector((state) => state?.darkMode);
     const chats = useSelector(state => state?.chats)
-    const [userSelect, setUserSelect] = useState("");
+    const currentChat = useSelector(state => state?.currentChat)
     const messages = useSelector((state) => state?.messages)
     const dispatch = useDispatch();
     const validation = useSelector((state) => state?.validation);
-    // const theme = useTheme();
-    // const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
-    const [actualyChat, setActualyChat] = useState({
-      name:"",
-      phone:0,
-      BusinessId: businessId,
-      ContactId: "",
-    })
 
     const handleMessage = (message)=>{
             if(message.from == userSelect){
@@ -50,9 +42,7 @@ const Dashboard = () => {
             }
     }
 
-    const handleChats = async (id,name,phone,notification) => {
-      setActualyChat({...actualyChat, name:name, phone:phone, ContactId:id})
-  
+    const handleChats = ( id, name, phone, notification ) => { 
       dispatch(getMessage(businessId, id))
       setUserSelect(phone)
       
@@ -80,8 +70,8 @@ const Dashboard = () => {
   return (
     <>
       {validation ? (
-        <Box boxShadow={4} sx={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
-          <Grid container sx={{ p: 3 }} className={styles.gridContainer}>
+        <Box boxShadow={4} style={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
+          <Grid container sx={{ p: 3 }}>
             <Grid item xs={12} md={4}>
               <Box>
                 <ChatList chats={chats} handleChats={handleChats} />
@@ -93,7 +83,7 @@ const Dashboard = () => {
               </Grid>
             )} */}
             <Grid item xs={12} md={8}>
-                <Conversation messages={messages} actualyChat={actualyChat} />
+                <Conversation messages={messages} actualyChat={currentChat} />
               </Grid>
           </Grid>
         </Box>

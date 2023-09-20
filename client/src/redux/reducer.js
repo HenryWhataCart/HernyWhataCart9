@@ -7,7 +7,9 @@ const initialState = {
     validation: true,
     darkMode: false,
     chats: [],
-    messages: []
+    messages: [],
+    currentChat: {},
+    loadingMessages: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -197,6 +199,16 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state
             }
+        case ACTION_TYPES.SET_CURRENT_CHAT: 
+            return {
+                ...state,
+                currentChat: action.payload
+            }
+        case ACTION_TYPES.SET_LOADING_MESSAGES:
+            return {
+                 ...state,
+                 loadingMessages: action.payload
+            };
 
         default: 
             return {...state}

@@ -1,85 +1,103 @@
 /* eslint-disable react/prop-types */
 
-import { Avatar, Box, Divider, Grid, Icon, List, Typography, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
-import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsActiveRounded';
-import React from 'react';
-import { useSelector } from "react-redux";
-import styles from './ChatList.module.css'
+import {
+  Avatar,
+  Box,
+  Divider,
+  Grid,
+  Icon,
+  List,
+  Typography,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
+import { useSelector, useDispatch } from "react-redux";
+import styles from "./ChatList.module.css";
+import { setCurrentChat } from "../../redux/actions/CurrentChat/setCurrentChat";
+import { useBreakpoints } from "../../hooks/useBreakpoints";
 
-const ChatList = ({chats, handleChats}) => {
-    const darkMode = useSelector((state) => state?.darkMode);
-    // const [loading, setLoading] = React.useState(true)
+const ChatList = ({ chats, handleChats }) => {
+  const dispatch = useDispatch();
+  const currentChat = useSelector((state) => state?.currentChat);
+  const darkMode = useSelector((state) => state?.darkMode);
+  const isMobile = useBreakpoints();
 
-    React.useEffect(() => {  
-    }, [])
+  const handleChatClick = (chat) => {
+    dispatch(setCurrentChat(chat))
+    handleChats(chat.id, chat.name, chat.phone, chat.notification);
+  };
 
-    return (
-      <Grid container>
-        <Grid
-          sx={{
-            bgcolor: darkMode ? "#222" : "white",
-            borderRadius: 1,
-          }}
-          item
-          xs={12}
-          className={styles.scrollBarStyle}
-        >
-          <Box sx={{ height:"79.5vh", overflow: "auto" }}>
-            <List>
-              {chats?.map((chat, index) => (
-                <Box key={index}>
-                  <ListItemButton
-                    onClick={() =>
-                      handleChats(
-                        chat.id,
-                        chat.name,
-                        chat.phone,
-                        chat.notification
-                      )
-                    }
+  if (!isMobile || Object.keys(currentChat).length === 0) {
+  return (
+    <Grid container>
+      <Grid
+        sx={{
+          bgcolor: darkMode ? "#222" : "white",
+          borderRadius: 1,
+        }}
+        item
+        xs={12}
+        className={styles.scrollBarStyle}
+      >
+        <Box sx={{ height: "79vh", overflow: "auto" }}>
+          <List>
+            {chats?.map((chat, index) => (
+              <Box key={index}>
+                <ListItemButton onClick={() => handleChatClick(chat)}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
                   >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        width: "100%",
-                      }}
-                    >
-                      <Box display="flex" alignItems="center">
-                        <ListItemAvatar>
-                          <Avatar alt={chat.name} src="imagen.png" />
-                        </ListItemAvatar>
-                        <ListItemText
-                          sx={{ color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
-                          primary={chat.name}
-                          secondary={
-                            <Typography
-                              variant="body2"
-                              color={darkMode ? "#ccc" : "#4E4E4E"}
-                            >
-                              text
-                            </Typography>
-                          }
+                    <Box display="flex" alignItems="center">
+                      <ListItemAvatar>
+                        <Avatar
+                          sx={{
+                            bgcolor: chat?.color,
+                            color: darkMode ? "whiteSmoke" : "#4E4E4E",
+                          }}
+                          alt={chat.name}
+                          src="imagen.png"
                         />
-                      </Box>
-                      <Box>
-                        {chat.notification && (
-                          <Icon sx={{ color: "black" }}>
-                            <NotificationsActiveRoundedIcon />
-                          </Icon>
-                        )}
-                      </Box>
+                      </ListItemAvatar>
+                      <ListItemText
+                        sx={{ color: darkMode ? "whiteSmoke" : "#4E4E4E" }}
+                        primary={chat.name}
+                        secondary={
+                          <Typography
+                            variant="body2"
+                            color={darkMode ? "#ccc" : "#4E4E4E"}
+                          >
+                            text
+                          </Typography>
+                        }
+                      />
                     </Box>
-                  </ListItemButton>
-                  <Divider variant="middle" component="li" />
-                </Box>
-              ))}
-            </List>
-          </Box>
-        </Grid>
+                    <Box>
+                      {chat.notification && (
+                        <Icon sx={{ color: "black" }}>
+                          <NotificationsActiveRoundedIcon />
+                        </Icon>
+                      )}
+                    </Box>
+                  </Box>
+                </ListItemButton>
+                <Divider variant="middle" component="li" />
+              </Box>
+            ))}
+          </List>
+        </Box>
       </Grid>
-    );
-}
+    </Grid>
+  );
+  } else {
+    return <></>
+  }
+};
 
-export default ChatList
+export default ChatList;
