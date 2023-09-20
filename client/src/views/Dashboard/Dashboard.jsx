@@ -15,7 +15,9 @@ import setNotification from "../../redux/actions/Chats/setNotification";
 
 const loginData = JSON.parse(localStorage.getItem("loginData"))
 const id = loginData?.id
-const socket = io("https://whatacart-backend.onrender.com/", {
+// const socketListen = "https://whatacart-server.onrender.com/"
+const socketListen = "https://whatacart-backend.onrender.com/"
+const socket = io(socketListen, {
   query: {
     userId: id
   },
@@ -40,7 +42,7 @@ const Dashboard = () => {
             }
     }
 
-    const handleChats = ( id, name, phone, notification ) => { 
+    const handleChats = ( id, phone, notification ) => { 
       dispatch(getMessage(businessId, id))
       setUserSelect(phone)
       
@@ -68,8 +70,8 @@ const Dashboard = () => {
   return (
     <>
       {validation ? (
-        <Box boxShadow={4} style={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke'}}>
-          <Grid container sx={{ p: 3 }}>
+        <Box boxShadow={4} sx={{backgroundColor: darkMode ? '#292F2D' : 'whiteSmoke', mb:1}}>
+          <Grid container sx={{ p: 3}}>
             <Grid item xs={12} md={4}>
               <Box>
                 <ChatList chats={chats} handleChats={handleChats} />

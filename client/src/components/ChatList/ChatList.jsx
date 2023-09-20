@@ -36,12 +36,13 @@ const ChatList = ({ chats, handleChats }) => {
         sx={{
           bgcolor: darkMode ? "#222" : "white",
           borderRadius: 1,
+          boxShadow: 1
         }}
         item
         xs={12}
         className={styles.scrollBarStyle}
       >
-        <Box sx={{ height: "79vh", overflow: "auto" }}>
+        <Box sx={{ height: "78.3vh", overflow: "auto" }}>
           <List>
             {chats?.map((chat, index) => (
               <Box key={index}>
@@ -73,7 +74,7 @@ const ChatList = ({ chats, handleChats }) => {
                             variant="body2"
                             color={darkMode ? "#ccc" : "#4E4E4E"}
                           >
-                            text
+                            {chat.phone}
                           </Typography>
                         }
                       />

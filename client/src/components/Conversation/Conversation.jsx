@@ -89,9 +89,9 @@ const Conversation = ({ messages, actualyChat }) => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          boxShadow: 5,
+          boxShadow: 3,
           p: 1,
-          height: "77vh",
+          height: "76.5vh",
           overflow: "auto",
           borderRadius: 1,
           mb: 1,
@@ -123,7 +123,7 @@ const Conversation = ({ messages, actualyChat }) => {
               bgcolor: darkMode ? "#1b1b1b" : "#dddbdb",
               padding: 1,
               borderRadius: 1,
-              zIndex: 99
+              zIndex: 99,
             }}
           >
             {
@@ -152,16 +152,17 @@ const Conversation = ({ messages, actualyChat }) => {
       <Grid
         container
         sx={{
-          bgcolor: darkMode ? "#222" : "white",
-          boxShadow: 5,
-          borderRadius: 1,
+            bgcolor: darkMode ? "#222" : "white",
+            boxShadow: 1,
+            borderRadius: 1,
+            backgroundImage: darkMode ? `url("https://i.imgur.com/Mo7c4se.png")` : `url("https://i.imgur.com/YZ64SOP.png")`
         }}
       >
         <Grid
           item
           xs={12}
           style={{
-            height: "60vh",
+            height: "62vh",
             overflow: "auto",
             padding: "16px",
             overflowX: "hidden",
@@ -199,26 +200,16 @@ const Conversation = ({ messages, actualyChat }) => {
                   >
                     <Paper
                       sx={{
-                        backgroundColor: message.sent
-                          ? "#0cb280"
-                          : darkMode
-                          ? "#222"
-                          : "whiteSmoke",
-                        color: message.sent
-                          ? "white"
-                          : darkMode
-                          ? "whiteSmoke"
-                          : "#333",
+                        backgroundColor: message.sent ? "#0cb280" : darkMode ? "#333333" : "#e9e9e9",
+                        color: message.sent ? "white" : darkMode ? "whiteSmoke" : "#5c5c5c",
                         padding: "8px 12px",
                         borderRadius: "10px",
                         margin: "4px",
                         alignSelf: message.sent ? "flex-end" : "flex-start",
                         display: "inline-block",
                         maxWidth: "70%",
-                        maxHeight:
-                          expandedMessageIndex === index ? "none" : "200px",
-                        overflowY:
-                          expandedMessageIndex === index ? "none" : "auto",
+                        maxHeight: expandedMessageIndex === index ? "none" : "200px",
+                        overflowY: expandedMessageIndex === index ? "none" : "auto",
                         whiteSpace: "pre-wrap",
                         wordWrap: "break-word",
                         wordBreak: "break-word",
@@ -234,12 +225,8 @@ const Conversation = ({ messages, actualyChat }) => {
                               <span
                                 style={{
                                   cursor: "pointer",
-                                  color: message.sent
-                                    ? "white"
-                                    : darkMode
-                                    ? "whiteSmoke"
-                                    : "#333",
-                                  fontweight: 20,
+                                  color: message.sent ? "white" : darkMode ? "whiteSmoke" : "#333",
+                                  fontWeight: "bold",
                                 }}
                                 onClick={() => setExpandedMessageIndex(index)}
                               >
