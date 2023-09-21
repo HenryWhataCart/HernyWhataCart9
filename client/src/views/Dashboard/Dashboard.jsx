@@ -28,10 +28,15 @@ const Dashboard = () => {
     const { businessId } = useParams();
     const darkMode = useSelector((state) => state?.darkMode);
     const chats = useSelector(state => state?.chats)
-    const currentChat = useSelector(state => state?.currentChat)
     const messages = useSelector((state) => state?.messages)
     const dispatch = useDispatch();
     const validation = useSelector((state) => state?.validation);
+    const [actualyChat, setActualyChat] = useState({
+      name:"",
+      phone:0,
+      BusinessId: businessId,
+      ContactId: "",
+    })
 
     const handleMessage = (message)=>{
             if(message.from == userSelect){
@@ -42,8 +47,10 @@ const Dashboard = () => {
             }
     }
 
-    const handleChats = ( id, phone, notification ) => { 
-      dispatch(getMessage(businessId, id))
+    const handleChats = async (id,name,phone,notification) => {
+      setActualyChat({...actualyChat, name:name, phone:phone, ContactId:id})
+  
+      dispatch(getMessage(businessId, id)) //businessId, contactId
       setUserSelect(phone)
       
       if (notification) {
@@ -83,7 +90,7 @@ const Dashboard = () => {
               </Grid>
             )} */}
             <Grid item xs={12} md={8}>
-                <Conversation messages={messages} actualyChat={currentChat} />
+                <Conversation messages={messages} actualyChat={actualyChat} />
               </Grid>
           </Grid>
         </Box>
