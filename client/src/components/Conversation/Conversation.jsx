@@ -41,7 +41,7 @@ const Conversation = ({ messages, actualyChat }) => {
     name: actualyChat.name,
     phone: actualyChat.phone,
     BusinessId: actualyChat.BusinessId,
-    ContactId: actualyChat.ContactId,
+    ContactId: actualyChat.id,
   });
   const [open, setOpen] = useState(false);
 
@@ -51,7 +51,7 @@ const Conversation = ({ messages, actualyChat }) => {
       name: actualyChat.name,
       phone: actualyChat.phone,
       BusinessId: actualyChat.BusinessId,
-      ContactId: actualyChat.ContactId,
+      ContactId: actualyChat.id,
     });
   }, [actualyChat]);
 

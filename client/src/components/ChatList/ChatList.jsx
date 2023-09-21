@@ -26,7 +26,7 @@ const ChatList = ({ chats, handleChats }) => {
 
   const handleChatClick = (chat) => {
     dispatch(setCurrentChat(chat))
-    handleChats(chat.id, chat.name, chat.phone, chat.notification);
+    handleChats(chat.id, chat.phone, chat.notification);
   };
 
   if (!isMobile || Object.keys(currentChat).length === 0) {
